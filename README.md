@@ -4,7 +4,8 @@ WIP personal site for hosting blog posts, photos, nfts, books, highlights, etc
 
 built using nextjs (react + tailwindcss) and ghost as CMS. wanted to use ghost for membership tools and email, etc...
 
-boilerplate was generated using ```bash
+boilerplate was generated using 
+``bash
 npx create-next-app --example cms-ghost cms-ghost-app
 ```
 
