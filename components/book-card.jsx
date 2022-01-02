@@ -1,10 +1,15 @@
 import Link from "next/link";
 import Image from "next/image";
 
-export default function BookCard({ id, author, title, cover_image_url }) {
+export default function BookCard({
+  highlights_url,
+  author,
+  title,
+  cover_image_url,
+}) {
   return (
     <>
-      <Link href={`/books/${id}`}>
+      <Link href={highlights_url}>
         <div className=" w-full shadow-md lg:max-w-full lg:flex">
           <div className="relative my-2 lg:w-32 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden">
             <Image objectFit="contain" src={cover_image_url} layout="fill" />

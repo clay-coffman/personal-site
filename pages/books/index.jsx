@@ -1,4 +1,3 @@
-import Link from "next/link";
 import Head from "next/head";
 import Header from "@/components/header";
 import Container from "@/components/container";
@@ -24,7 +23,7 @@ export default function BookList({ books }) {
           <h1 className="text-4xl lg:text-6xl font-bold tracking-tighter leading-tight md:leading-none mb-12 text-center md:text-left">
             These are books that I have read.
           </h1>
-          <p className="md:text-xl md:text-left mb-12">
+          <p className="md:text-xl md:text-left mb-4">
             They are synced over from Readwise using their API. You should be
             able to view all of my highlights by clicking on a book.
           </p>
@@ -36,6 +35,7 @@ export default function BookList({ books }) {
                 id={book.id}
                 author={book.author}
                 cover_image_url={book.cover_image_url}
+                highlights_url={book.highlights_url}
               />
             ))}
           </div>
