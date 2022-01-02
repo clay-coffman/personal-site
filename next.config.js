@@ -1,5 +1,10 @@
 module.exports = {
   images: {
-    domains: ["static.gotsby.org", "journals.ghost.io"],
+    domains: [
+      "m.media-amazon.com",
+      "journals.ghost.io",
+      "images-na.ssl-images-amazon.com",
+      "readwise-assets.s3.amazonaws.com",
+    ],
   },
 };
