@@ -6,12 +6,14 @@
     "start": "next start"
   },
   "dependencies": {
+    "@lottiefiles/react-lottie-player": "^3.4.4",
     "@material-tailwind/react": "0.3.4",
     "@tryghost/content-api": "^1.4.13",
     "axios": "^0.24.0",
     "classnames": "2.3.1",
     "date-fns": "2.22.1",
     "dotenv": "^10.0.0",
+    "flickr-sdk": "^6.0.0",
     "lazysizes": "^5.3.0",
     "next": "latest",
     "react": "^17.0.2",
