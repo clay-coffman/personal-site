@@ -5,7 +5,7 @@ import Layout from "@/components/layout";
 import { getBooks } from "../../lib/readwise";
 import BookCard from "@/components/book-card";
 
-export async function getStaticProps(context) {
+export async function getStaticProps() {
   const books = await getBooks();
 
   return { props: { books } };
