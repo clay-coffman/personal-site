@@ -1,8 +1,10 @@
+import React, { useCallback } from "react";
 import Head from "next/head";
 import Header from "@/components/header";
 import Container from "@/components/container";
 import Layout from "@/components/layout";
 import Gallery from "react-photo-gallery";
+import Image from "@/components/image";
 
 //import PhotoAlbum from "@/components/photo-album";
 
@@ -15,7 +17,7 @@ import { getAllPhotos } from "@/lib/flickr";
  * of all albums + photos)
  */
 
-export async function getStaticProps(context) {
+export async function getStaticProps() {
   let photos = await getAllPhotos();
   //
   // need to get all photosets, then fetch photos
@@ -26,6 +28,7 @@ export async function getStaticProps(context) {
 }
 
 export default function Index({ photos }) {
+  const imageRenderer = useCallback(({ photo }) => <Image photo={photo} />);
   return (
     <Layout>
       <Container>
@@ -33,7 +36,7 @@ export default function Index({ photos }) {
           <title>Photos</title>
         </Head>
         <Header />
-        <Gallery photos={photos} />
+        <Gallery photos={photos} renderImage={imageRenderer} />
       </Container>
     </Layout>
   );
