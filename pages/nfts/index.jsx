@@ -5,7 +5,7 @@ import Layout from "@/components/layout";
 import { getEthNfts } from "@/lib/ethereum";
 import { getSolNfts } from "@/lib/solana";
 
-const eth_wallet_address = "0xd85ac680059EA70cB322E358680F579538B8531C";
+const eth_wallet_address = process.env.ETH_WALLET_ADDRESS;
 
 const sol_wallet_address = "";
 
