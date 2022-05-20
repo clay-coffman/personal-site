@@ -4,7 +4,7 @@ export default function Header() {
   return (
     <h2 className="text-accent-2 text-xl md:text-3xl font-bold tracking-tight md:tracking-tighter space-x-3 leading-tight mb-20 mt-8">
       <Link href="/">
-        <a className="hover:underline">Blog</a>
+        <a className="hover:underline">Writing</a>
       </Link>
       <Link href="/books/">
         <a className="hover:underline">Books</a>
@@ -15,8 +15,8 @@ export default function Header() {
       <Link href="/nfts/">
         <a className="hover:underline">NFTs</a>
       </Link>
-      <Link href="/about/">
-        <a className="hover:underline">About</a>
+      <Link href="/bio/">
+        <a className="hover:underline">Bio</a>
       </Link>
     </h2>
   );
