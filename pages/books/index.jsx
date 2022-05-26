@@ -20,12 +20,14 @@ export default function BookList({ books }) {
             <title>Books</title>
           </Head>
           <Header />
-          <h1 className="text-4xl lg:text-6xl font-bold tracking-tighter leading-tight md:leading-none mb-12 text-center md:text-left">
-            These are books that I have read.
-          </h1>
-          <p className="md:text-xl md:text-left mb-4">
-            They are synced over from Readwise using their API. You should be
-            able to view all of my highlights by clicking on a book.
+          <p className="font-body md:text-xl md:text-left mb-4">
+            These are some of my favorite book highlights (synced over using the{" "}
+            <span className="hover:text-blue-600">
+              <a href="https://readwise.io/">Readwise API</a>
+            </span>
+            . This isn't necessarily a comprehensive list of every book I've
+            read since I don't highlight everything (and I haven't had a Kindle
+            that long).{" "}
           </p>
           <div className="p-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-5">
             {books.map((book) => (

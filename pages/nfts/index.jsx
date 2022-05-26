@@ -2,24 +2,23 @@ import Head from "next/head";
 import Header from "@/components/header";
 import Container from "@/components/container";
 import Layout from "@/components/layout";
+import NFTCard from "@/components/nft-card";
 import { getEthNfts } from "@/lib/ethereum";
 import { getSolNfts } from "@/lib/solana";
 
-const eth_wallet_address = process.env.ETH_WALLET_ADDRESS;
-
-const sol_wallet_address = "";
-
 export async function getStaticProps() {
   // get ethereum NFTs for wallet address
-  const ethNFTs = await getEthNfts(eth_wallet_address);
+  const ethNFTs = await getEthNfts();
+
+  const solNFTs = await getSolNfts();
 
   // get solana NFTs for wallet address
   // const solNFTs = await getSolNfts(sol_wallet_address);
 
-  return { props: { ethNFTs } };
+  return { props: { ethNFTs, solNFTs } };
 }
 
-export default function NFTList({ ethNFTs }) {
+export default function NFTList({ solNFTs, ethNFTs }) {
   return (
     <>
       <Layout>
@@ -28,15 +27,28 @@ export default function NFTList({ ethNFTs }) {
             <title>NFTs</title>
           </Head>
           <Header />
-          <h1 className="text-4xl lg:text-6xl font-bold tracking-tighter leading-tight md:leading-none mb-12 text-center md:text-left">
-            These are all my NFTs across various blockchains
-          </h1>
-          <p className="md:text-xl md:text-left mb-4">
-            Some are on Solana, Ethereum, Wax, etc
+          <p className="font-body md:text-xl md:text-left mb-4">
+            These are some of the NFTs I own on Solana and Ethereum.
           </p>
-          <div className="p-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-5">
+          <h1 className="my-8 font-title italic text-3xl">Ethereum</h1>
+          <div className="mx-auto grid grid-cols-1 md:grid-cols-4 gap-5">
             {ethNFTs.map((nft) => (
-              <p>{nft.id}</p>
+              <NFTCard
+                key={nft.id}
+                permalink={nft.permalink}
+                image_url={nft.image_url}
+              />
+            ))}
+          </div>
+          <br></br>
+          <h1 className="font-title italic text-3xl">Solana</h1>
+          <div className="mx-auto grid grid-cols-1 md:grid-cols-4 gap-5">
+            {solNFTs.map((nft) => (
+              <NFTCard
+                key={nft.name}
+                permalink={nft.external_url}
+                image_url={nft.image}
+              />
             ))}
           </div>
         </Container>

@@ -18,6 +18,11 @@ module.exports = {
       lineHeight: {
         tight: 1.2,
       },
+      fontFamily: {
+        display: ["koulen"],
+        title: ['"josefin sans"'],
+        body: ["forum"],
+      },
       fontSize: {
         "5xl": "2.5rem",
         "6xl": "2.75rem",

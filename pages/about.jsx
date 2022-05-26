@@ -9,13 +9,10 @@ export default function About() {
       <Layout>
         <Container>
           <Head>
-            <title>Bio</title>
+            <title>About</title>
           </Head>
           <Header />
-          <h1 className="text-4xl lg:text-6xl font-bold tracking-tighter leading-tight md:leading-none mb-12 text-center md:text-left">
-            Bio
-          </h1>
-          <p className="md:text-xl md:text-left mb-4">Coming soon...</p>
+          <p className="text-xl text-left mb-4 font-body">Coming soon...</p>
         </Container>
       </Layout>
     </>

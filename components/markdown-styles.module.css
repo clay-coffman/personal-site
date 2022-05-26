@@ -1,11 +1,13 @@
 .markdown {
   @apply text-lg leading-relaxed;
+  @apply font-body;
 }
 
 .markdown p,
 .markdown ul,
 .markdown ol,
 .markdown blockquote {
+  @apply font-body;
   @apply my-6;
 }
 
