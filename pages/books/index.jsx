@@ -25,9 +25,9 @@ export default function BookList({ books }) {
             <span className="hover:text-blue-600">
               <a href="https://readwise.io/">Readwise API</a>
             </span>
-            . This isn't necessarily a comprehensive list of every book I've
-            read since I don't highlight everything (and I haven't had a Kindle
-            that long).{" "}
+            . This isnt necessarily a comprehensive list of every book Ive read
+            since I dont highlight everything (and I havent had a Kindle that
+            long).{" "}
           </p>
           <div className="p-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-5">
             {books.map((book) => (

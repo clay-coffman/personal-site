@@ -8,7 +8,7 @@ export default function NFTCard({ permalink, image_url }) {
         <div className="w-full shadow-md md:max-w-full">
           <div className="relative m-2 flex-none bg-cover rounded-t md:rounded-t-none md:rounded-l text-center overflow-hidden">
             {image_url ? (
-              <Image width={250} height={250} src={image_url} />
+              <Image width={250} height={250} src={image_url} al={image_url} />
             ) : (
               <></>
             )}

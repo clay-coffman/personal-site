@@ -12,6 +12,7 @@ export default function Footer() {
               href={`https://github.com/clay-coffman/personal-site`}
               className="mx-3 font-bold hover:underline"
               target="_blank"
+              rel="noreferrer"
             >
               <FontAwesomeIcon icon={faCode} /> View source
             </a>

@@ -3,7 +3,8 @@
   "scripts": {
     "dev": "next",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "lint": "next lint"
   },
   "browser": {
     "child_process": false
@@ -29,6 +30,8 @@
   },
   "devDependencies": {
     "autoprefixer": "10.2.6",
+    "eslint": "8.16.0",
+    "eslint-config-next": "12.1.6",
     "postcss": "8.3.5",
     "tailwindcss": "^2.2.4"
   }
