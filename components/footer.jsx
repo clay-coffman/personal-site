@@ -4,9 +4,9 @@ import { faCode } from "@fortawesome/free-solid-svg-icons";
 
 export default function Footer() {
   return (
-    <footer className="font-body bg-accent-1 border-t border-accent-3">
+    <footer className="font-body text-xs">
       <Container>
-        <div className="py-28 flex flex-col lg:flex-row items-center">
+        <div className="m-16 flex flex-col lg:flex-row items-center">
           <div className="flex flex-col lg:flex-row justify-center items-center">
             <a
               href={`https://github.com/clay-coffman/personal-site`}

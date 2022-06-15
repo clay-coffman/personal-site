@@ -1,5 +1,5 @@
 .markdown {
-  @apply text-lg leading-relaxed;
+  @apply text-xl leading-relaxed;
   @apply font-body;
 }
 
@@ -17,4 +17,12 @@
 
 .markdown h3 {
   @apply text-2xl mt-8 mb-4 leading-snug;
+}
+
+/* make text smaller on mobile */
+@media screen and (max-width: 600px) {
+  .markdown {
+    @apply text-sm leading-relaxed;
+    @apply font-body;
+  }
 }
