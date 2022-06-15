@@ -55,11 +55,10 @@ export default function About() {
                               Midwestern boy who finally found his way out to
                               the west coast. Since I was a kid I liked to build
                               things - whether it was jumps for a dirtbike or
-                              modding my family's computer - I was always
-                              hacking away at something. I should have been an
-                              engineer but I ended up not being a great fit for
-                              the rigors of a traditional computer science
-                              degree.
+                              modding my familys computer - I was always hacking
+                              away at something. I should have been an engineer
+                              but I ended up not being a great fit for the
+                              rigors of a traditional computer science degree.
                             </p>
                           </div>
                         </div>
@@ -78,6 +77,7 @@ export default function About() {
                                 <a
                                   href="https://www.linkedin.com/in/claymcoffman/"
                                   target="_blank"
+                                  rel="noreferrer"
                                 >
                                   <FontAwesomeIcon icon={brands("LinkedIn")} />
                                 </a>
@@ -87,6 +87,7 @@ export default function About() {
                                 <a
                                   href="https://twitter.com/Clay_Coffman"
                                   target="_blank"
+                                  rel="noreferrer"
                                 >
                                   <FontAwesomeIcon icon={brands("twitter")} />
                                 </a>
