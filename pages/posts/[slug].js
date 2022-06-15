@@ -40,7 +40,6 @@ export default function Post({ post, morePosts, preview }) {
               />
               <PostBody content={post.html} />
             </article>
-            <SectionSeparator />
             {morePosts.length > 0 && <MoreStories posts={morePosts} />}
           </>
         )}

@@ -14,7 +14,7 @@ export default function Footer() {
               target="_blank"
               rel="noreferrer"
             >
-              <FontAwesomeIcon icon={faCode} /> View source
+              <FontAwesomeIcon icon={faCode} /> View source (be gentle...)
             </a>
           </div>
         </div>
