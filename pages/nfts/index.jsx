@@ -30,6 +30,17 @@ export default function NFTList({ solNFTs, ethNFTs }) {
           <p className="font-body md:text-xl md:text-left mb-4">
             These are some of the NFTs I own on Solana and Ethereum.
           </p>
+
+          <h1 className="font-title italic text-3xl">Solana</h1>
+          <div className="mx-auto grid grid-cols-1 md:grid-cols-4 gap-5">
+            {solNFTs.map((nft) => (
+              <NFTCard
+                key={nft.name}
+                permalink={nft.external_url}
+                image_url={nft.image}
+              />
+            ))}
+          </div>
           <h1 className="my-8 font-title italic text-3xl">Ethereum</h1>
           <div className="mx-auto grid grid-cols-1 md:grid-cols-4 gap-5">
             {ethNFTs.map((nft) => (
@@ -41,16 +52,6 @@ export default function NFTList({ solNFTs, ethNFTs }) {
             ))}
           </div>
           <br></br>
-          <h1 className="font-title italic text-3xl">Solana</h1>
-          <div className="mx-auto grid grid-cols-1 md:grid-cols-4 gap-5">
-            {solNFTs.map((nft) => (
-              <NFTCard
-                key={nft.name}
-                permalink={nft.external_url}
-                image_url={nft.image}
-              />
-            ))}
-          </div>
         </Container>
       </Layout>
     </>
