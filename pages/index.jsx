@@ -21,7 +21,7 @@ export default function About() {
             <section className="relative py-16">
               <div className="container">
                 <div className="relative flex flex-col min-w-0 rounded break-words bg-white mb-6 shadow-xl -mt-20">
-                  <div className="p-12 lg:p-24">
+                  <div className="p-12 lg:py-24">
                     <div className="flex flex-wrap justify-center">
                       <div className="w-full md:w-3/12 lg:order-2 flex justify-center">
                         <div className="relative drop-shadow-md">
@@ -231,7 +231,7 @@ export default function About() {
                       <div className="flex flex-wrap justify-center">
                         <div className="w-full lg:w-6/12 px-4">
                           <div className="py-4">
-                            <p className="font-body mb-4 text-sm lg:text-md text-gray-800">
+                            <p className="font-body mb-4 text-sm md:text-lg text-gray-800">
                               You can find me on
                               <span className="mx-2">
                                 <a

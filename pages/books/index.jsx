@@ -20,12 +20,12 @@ export default function BookList({ books }) {
             <title>Books</title>
           </Head>
           <Header />
-          <p className="font-body md:text-xl md:text-left mb-4">
+          <p className="font-body text-sm md:text-xl md:text-left mb-4">
             These are some of my favorite book highlights (synced over using the{" "}
             <span className="hover:text-blue-600">
               <a href="https://readwise.io/">Readwise API</a>
             </span>
-            . This isnt necessarily a comprehensive list of every book Ive read
+            ). This isnt necessarily a comprehensive list of every book Ive read
             since I dont highlight everything (and I havent had a Kindle that
             long).{" "}
           </p>
