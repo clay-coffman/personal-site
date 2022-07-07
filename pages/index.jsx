@@ -27,7 +27,7 @@ export default function About() {
                         <div className="relative drop-shadow-md">
                           <Image
                             src={profilePic}
-                            alt="profile picture of author"
+                            alt="clay coffman"
                             className="rounded-full h-auto align-middle border-none absolute -m-16 -ml-20 lg:-ml-16"
                           />
                         </div>
@@ -42,9 +42,6 @@ export default function About() {
                           <FontAwesomeIcon icon={faMapPin} />
                         </span>
                         Los Angeles, California
-                      </div>
-                      <div className="mb-2 text-gray-700 mt-8">
-                        Product leader, founder, investor, builder
                       </div>
                     </div>
                     <div className="mt-8 text-center">
@@ -68,7 +65,7 @@ export default function About() {
                       <div className="flex flex-wrap justify-center">
                         <div className="w-full lg:w-6/12 px-4">
                           <div className="pb-8 border-b border-gray-300">
-                            <p className="font-body text-sm lg:text-lg text-gray-800">
+                            <p className="font-body text-xl lg:text-2xl font-semibold text-gray-800">
                               Experience
                             </p>
                             <div className="text-left mb-8">
@@ -167,7 +164,7 @@ export default function About() {
                                 </li>
                               </ul>
                             </div>
-                            <p className="font-body text-sm lg:text-lg text-gray-800">
+                            <p className="font-body text-xl lg:text-2xl font-semibold text-gray-800">
                               Education, Certifications, and Other Stuff
                             </p>
                             <div className="text-left mb-8">
@@ -234,7 +231,7 @@ export default function About() {
                       <div className="flex flex-wrap justify-center">
                         <div className="w-full lg:w-6/12 px-4">
                           <div className="py-4">
-                            <p className="font-body mb-4 text-md lg:text-lg text-gray-800">
+                            <p className="font-body mb-4 text-sm lg:text-md text-gray-800">
                               You can find me on
                               <span className="mx-2">
                                 <a

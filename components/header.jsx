@@ -5,7 +5,7 @@ export default function Header() {
   return (
     <div>
       <Intro />
-      <h2 className="text-accent-2 text-xl md:text-3xl font-title font-bold italic space-x-3 leading-tight mb-10">
+      <h2 className="text-accent-2 text-xl lg:text-3xl text-center font-title font-bold italic space-x-2 mb-8">
         <Link href="/">
           <a className="hover:underline">About</a>
         </Link>
