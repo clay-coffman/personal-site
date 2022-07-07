@@ -64,6 +64,169 @@ export default function About() {
                         </div>
                       </div>
                     </div>
+                    <div className="mt-8 text-center">
+                      <div className="flex flex-wrap justify-center">
+                        <div className="w-full lg:w-6/12 px-4">
+                          <div className="pb-8 border-b border-gray-300">
+                            <p className="font-body text-sm lg:text-lg text-gray-800">
+                              Experience
+                            </p>
+                            <div className="text-left mb-8">
+                              <ul className="list-outside font-body">
+                                <li className="mt-4 text-md lg:text-xl">
+                                  Cryptoslam{" "}
+                                  <span className="text-sm lg:text-xl text-gray-500 italic">
+                                    Chief Product Officer
+                                  </span>
+                                  <br></br>
+                                  <p className="mt-2 text-sm lg:text-lg indent-8">
+                                    Joined in December 2021 as part of 10m
+                                    venture round. Scaled product team from
+                                    scratch.
+                                  </p>
+                                </li>
+                                <li className="mt-4 text-md lg:text-xl">
+                                  Zego (Powered By PayLease){" "}
+                                  <span className="text-sm lg:text-xl text-gray-500 italic">
+                                    Director of Product Management
+                                  </span>
+                                  <br></br>
+                                  <p className="mt-2 text-sm lg:text-lg indent-8">
+                                    Rolled over as a Director of Product
+                                    Management after Zego was acquired by
+                                    PayLease. Was in charge of running the
+                                    Resident Experience products
+                                    post-acquisition.{" "}
+                                    <span className="italic">
+                                      PayLease was rebranded as Zego after our
+                                      acquistion... hence "Zego (Powered by
+                                      PayLease)"
+                                    </span>
+                                  </p>
+                                </li>
+                                <li className="mt-4 text-md lg:text-xl">
+                                  Zego{" "}
+                                  <span className="text-sm lg:text-xl text-gray-500 italic">
+                                    Co-founder/Head of Product
+                                  </span>
+                                  <br></br>
+                                  <p className="mt-2 text-sm lg:text-lg indent-8">
+                                    Proptech startup that I co-founded and
+                                    helped scale. We built an IoT device
+                                    management platform for multifamily
+                                    owners/operators, as well as a resident
+                                    engagement app. Participated in Techstars
+                                    Kansas City (2017).{" "}
+                                    <a
+                                      href="https://www.prweb.com/releases/paylease_acquires_zego_to_innovate_the_resident_living_experience/prweb16291564.htm"
+                                      target="_blank"
+                                      rel="noreferrer"
+                                    >
+                                      Acquired by Paylease, a Vista Equity
+                                      Partners co. in 2019.
+                                    </a>
+                                  </p>
+                                </li>
+                                <li className="mt-4 text-md lg:text-xl">
+                                  Brightergy{" "}
+                                  <span className="text-sm lg:text-xl text-gray-500 italic">
+                                    Sales/Process/Product Manager
+                                  </span>
+                                  <br></br>
+                                  <p className="mt-2 text-sm lg:text-lg indent-8">
+                                    Commercial solar installer. Initially worked
+                                    in sales, transitioned into product role to
+                                    help launch Brighterlink building management
+                                    product. Also helped build out marketing and
+                                    sales process automation (Salesforce,
+                                    Marketo, etc).
+                                  </p>
+                                </li>
+                                <li className="mt-4 text-md lg:text-xl">
+                                  Sungevity{" "}
+                                  <span className="text-sm lg:text-xl text-gray-500 italic">
+                                    Solar Consultant
+                                  </span>
+                                  <br></br>
+                                  <p className="mt-2 text-sm lg:text-lg indent-8">
+                                    I sold solar panels to consumers all over
+                                    the country. If you owned a roof in Southern
+                                    California in 2016 I probably called you.
+                                  </p>
+                                </li>
+                                <li className="mt-4 text-md lg:text-xl">
+                                  PerfectMind Software{" "}
+                                  <span className="text-sm lg:text-xl text-gray-500 italic">
+                                    Business Development
+                                  </span>
+                                  <br></br>
+                                  <p className="mt-2 text-sm lg:text-lg indent-8">
+                                    I sold software to martial arts and yoga
+                                    studios.
+                                  </p>
+                                </li>
+                              </ul>
+                            </div>
+                            <p className="font-body text-sm lg:text-lg text-gray-800">
+                              Education, Certifications, and Other Stuff
+                            </p>
+                            <div className="text-left mb-8">
+                              <ul className="list-outside font-body">
+                                <li className="mt-4 text-md lg:text-xl">
+                                  University of British Columbia{" "}
+                                  <span className="text-sm lg:text-xl text-gray-500 italic">
+                                    B.A. Psychology
+                                  </span>
+                                  <br></br>
+                                  <p className="mt-2 text-sm lg:text-lg indent-8">
+                                    Went to school for a double major in Comp
+                                    Sci and Business, graduated with a Psych
+                                    degree... wasn't a great "student".
+                                  </p>
+                                </li>
+                                <li className="mt-4 text-md lg:text-xl">
+                                  Udacity{" "}
+                                  <span className="text-sm lg:text-xl text-gray-500 italic">
+                                    Full Stack Web Developer Nanodegree
+                                  </span>
+                                  <br></br>
+                                  <p className="mt-2 text-sm lg:text-lg indent-8">
+                                    Fun refresher I did to brush up on coding
+                                    skills. Mostly Python (Flask), Javascript
+                                    (React/Angular), and various infra/devops
+                                    tools (k8s, AWS, Heroku, Docker, etc).
+                                  </p>
+                                </li>
+                                <li className="mt-4 text-md lg:text-xl">
+                                  Corporate Finance Institute{" "}
+                                  <span className="text-sm lg:text-xl text-gray-500 italic">
+                                    Financial Modeling and Valuation Analyst
+                                    Cerfificate
+                                  </span>
+                                  <br></br>
+                                  <p className="mt-2 text-sm lg:text-lg indent-8">
+                                    Wanted to improve my financial modeling
+                                    skills. Turns out, I really like it.
+                                  </p>
+                                </li>
+                                <li className="mt-4 text-md lg:text-xl">
+                                  Pragmatic Marketing Institute{" "}
+                                  <span className="text-sm lg:text-xl text-gray-500 italic">
+                                    PMC Level IV
+                                  </span>
+                                  <br></br>
+                                  <p className="mt-2 text-sm lg:text-lg indent-8">
+                                    Product Management development. Really great
+                                    program, part of Vista's PM development
+                                    curriculum.
+                                  </p>
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                     <div className="text-center m-8">
                       <h3 className="font-body text-2xl lg:text-4xl font-semibold leading-normal text-gray-800 mb-4">
                         Get in touch
