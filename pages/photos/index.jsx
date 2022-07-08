@@ -37,8 +37,9 @@ export default function Index({ photos }) {
         </Head>
         <Header />
         <p className="font-body text-sm md:text-xl md:text-left mb-4">
-          These are some pictures I've taken throughout the years. They are
-          being synced over via Flickr's API, so if it's broken... let me know.
+          These are some pictures I&apos;ve taken throughout the years. They are
+          being synced over via Flickr&apos;s API, so if it&apos;s broken... let
+          me know.
         </p>
         <Gallery photos={photos} renderImage={imageRenderer} />
       </Container>

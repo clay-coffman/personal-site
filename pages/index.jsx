@@ -107,8 +107,8 @@ export default function About() {
                                     post-acquisition.{" "}
                                     <span className="italic">
                                       PayLease was rebranded as Zego after our
-                                      acquistion... hence "Zego (Powered by
-                                      PayLease)"
+                                      acquistion... hence &quot;Zego (Powered by
+                                      PayLease)&quot;.
                                     </span>
                                   </p>
                                 </li>
