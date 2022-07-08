@@ -18,9 +18,9 @@ export default function About() {
               <title>About</title>
             </Head>
             <Header />
-            <section className="relative py-16">
+            <section className="relative">
               <div className="container">
-                <div className="relative flex flex-col min-w-0 rounded break-words bg-white mb-6 shadow-xl -mt-20">
+                <div className="relative flex flex-col min-w-0 rounded break-words bg-white mb-6 shadow-xl">
                   <div className="p-12 lg:py-24">
                     <div className="flex flex-wrap justify-center">
                       <div className="w-full md:w-3/12 lg:order-2 flex justify-center">
@@ -49,13 +49,21 @@ export default function About() {
                         <div className="w-full lg:w-6/12 px-4">
                           <div className="py-8 border-t border-b border-gray-300">
                             <p className="font-body text-sm lg:text-lg text-gray-800">
-                              Midwestern boy who finally found his way out to
-                              the west coast. Since I was a kid I liked to build
-                              things - whether it was jumps for a dirtbike or
-                              modding my familys computer - I was always hacking
-                              away at something. I should have been an engineer
-                              but I ended up not being a great fit for the
-                              rigors of a traditional computer science degree.
+                              I&apos;ve heard that the hardest thing in the world is
+                              change. The second hardest is writing a blurb
+                              about yourself.<br></br>
+                              <br></br>I&apos;ve worn a lot of different hats in my
+                              career. I scratched and clawed my way into tech
+                              via sales but ultimately I&apos;ve always loved
+                              building products, so I feel like I ended up in
+                              the right place in product management.<br></br>
+                              <br></br>
+                              After working in solar energy, proptech/real
+                              estate, and most recently web3/crypto, I&apos;m
+                              currently taking some time off to travel and
+                              explore a few different ideas. If you have any
+                              ideas for startups or problems you want to solve,
+                              let&apos;s catch up.
                             </p>
                           </div>
                         </div>

@@ -29,7 +29,7 @@ export default function BookList({ books }) {
             since I dont highlight everything (and I havent had a Kindle that
             long).{" "}
           </p>
-          <div className="p-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-5">
+          <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-5">
             {books.map((book) => (
               <BookCard
                 key={book.id}
