@@ -71,12 +71,23 @@ export default function About() {
                             <div className="text-left mb-8">
                               <ul className="list-outside font-body">
                                 <li className="mt-4 text-md lg:text-xl">
+                                  On Deck{" "}
+                                  <span className="text-sm lg:text-xl text-gray-500 italic">
+                                    ODF 14 (Present)
+                                  </span>
+                                  <br></br>
+                                  <p className="mt-2 text-sm lg:text-lg indent-8">
+                                    Trying to find the next thing...
+                                  </p>
+                                </li>
+                                <li className="mt-4 text-md lg:text-xl">
                                   Cryptoslam{" "}
                                   <span className="text-sm lg:text-xl text-gray-500 italic">
                                     Chief Product Officer
                                   </span>
                                   <br></br>
                                   <p className="mt-2 text-sm lg:text-lg indent-8">
+                                    Multi-chain NFT market data aggregator.
                                     Joined in December 2021 as part of 10m
                                     venture round. Scaled product team from
                                     scratch.
@@ -134,9 +145,7 @@ export default function About() {
                                     Commercial solar installer. Initially worked
                                     in sales, transitioned into product role to
                                     help launch Brighterlink building management
-                                    product. Also helped build out marketing and
-                                    sales process automation (Salesforce,
-                                    Marketo, etc).
+                                    product.
                                   </p>
                                 </li>
                                 <li className="mt-4 text-md lg:text-xl">
@@ -158,8 +167,9 @@ export default function About() {
                                   </span>
                                   <br></br>
                                   <p className="mt-2 text-sm lg:text-lg indent-8">
-                                    I sold software to martial arts and yoga
-                                    studios.
+                                    I cold-called martial arts and yoga studios
+                                    to sell them an out-dated CRM software. It
+                                    was tough.
                                   </p>
                                 </li>
                               </ul>
@@ -172,51 +182,27 @@ export default function About() {
                                 <li className="mt-4 text-md lg:text-xl">
                                   University of British Columbia{" "}
                                   <span className="text-sm lg:text-xl text-gray-500 italic">
-                                    B.A. Psychology
+                                    B.A. Psychology (2015)
                                   </span>
-                                  <br></br>
-                                  <p className="mt-2 text-sm lg:text-lg indent-8">
-                                    Went to school for a double major in Comp
-                                    Sci and Business, graduated with a Psych
-                                    degree... wasn't a great "student".
-                                  </p>
                                 </li>
                                 <li className="mt-4 text-md lg:text-xl">
                                   Udacity{" "}
                                   <span className="text-sm lg:text-xl text-gray-500 italic">
                                     Full Stack Web Developer Nanodegree
                                   </span>
-                                  <br></br>
-                                  <p className="mt-2 text-sm lg:text-lg indent-8">
-                                    Fun refresher I did to brush up on coding
-                                    skills. Mostly Python (Flask), Javascript
-                                    (React/Angular), and various infra/devops
-                                    tools (k8s, AWS, Heroku, Docker, etc).
-                                  </p>
                                 </li>
                                 <li className="mt-4 text-md lg:text-xl">
                                   Corporate Finance Institute{" "}
                                   <span className="text-sm lg:text-xl text-gray-500 italic">
                                     Financial Modeling and Valuation Analyst
-                                    Cerfificate
+                                    (FMVA) Cerfificate
                                   </span>
-                                  <br></br>
-                                  <p className="mt-2 text-sm lg:text-lg indent-8">
-                                    Wanted to improve my financial modeling
-                                    skills. Turns out, I really like it.
-                                  </p>
                                 </li>
                                 <li className="mt-4 text-md lg:text-xl">
                                   Pragmatic Marketing Institute{" "}
                                   <span className="text-sm lg:text-xl text-gray-500 italic">
                                     PMC Level IV
                                   </span>
-                                  <br></br>
-                                  <p className="mt-2 text-sm lg:text-lg indent-8">
-                                    Product Management development. Really great
-                                    program, part of Vista's PM development
-                                    curriculum.
-                                  </p>
                                 </li>
                               </ul>
                             </div>

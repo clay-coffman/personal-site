@@ -28,7 +28,11 @@ export default function NFTList({ solNFTs, ethNFTs }) {
           </Head>
           <Header />
           <p className="font-body md:text-xl md:text-left mb-4">
-            These are some of the NFTs I own on Solana and Ethereum.
+            These are some of the NFTs I've accumulated over time. I say
+            accumulated because you can't stop someone from sending you an
+            NFT... so I didn't buy all of these. A lot are spam/junk I've been
+            sent. And, frankly, I don't spend time in NFTs anymore so I'm not
+            going to clean it up... This just seemed like a fun thing to code.
           </p>
 
           <h1 className="font-title italic text-3xl">Solana</h1>
