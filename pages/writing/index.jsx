@@ -6,8 +6,8 @@ import { getAllPostsForHome } from "@/lib/ghost/content";
 import Head from "next/head";
 import Header from "@/components/header";
 
-export async function getStaticProps({ preview }) {
-  const allPosts = (await getAllPostsForHome(preview)) || [];
+export async function getStaticProps() {
+  const allPosts = (await getAllPostsForHome()) || [];
   return {
     props: { allPosts },
   };
