@@ -27,8 +27,8 @@ export default function About() {
                         <div className="relative drop-shadow-md">
                           <Image
                             src={profilePic}
-                            alt="clay coffman"
-                            className="rounded-full h-auto align-middle border-none absolute -m-16 -ml-20 lg:-ml-16"
+                            alt="clay coffman profile pic"
+                            className="rounded-full h-auto align-middle border-none"
                           />
                         </div>
                       </div>
@@ -92,7 +92,7 @@ export default function About() {
                                     Co-founder/CEO (October 2022 - Present)
                                   </span>
                                   <br></br>
-                                  <p className="mt-2 text-sm lg:text-lg indent-8">
+                                  <p className="mt-2 text-sm lg:text-lg">
                                     Helping to solve Americas skilled labor
                                     crisis.
                                   </p>
@@ -103,7 +103,7 @@ export default function About() {
                                     ODF 14
                                   </span>
                                   <br></br>
-                                  <p className="mt-2 text-sm lg:text-lg indent-8">
+                                  <p className="mt-2 text-sm lg:text-lg">
                                     Trying to find the next thing...
                                   </p>
                                 </li>
@@ -113,7 +113,7 @@ export default function About() {
                                     Chief Product Officer
                                   </span>
                                   <br></br>
-                                  <p className="mt-2 text-sm lg:text-lg indent-8">
+                                  <p className="mt-2 text-sm lg:text-lg">
                                     Multi-chain NFT market data aggregator.
                                     Joined in December 2021 as part of 10m
                                     venture round. Scaled product team from
@@ -126,7 +126,7 @@ export default function About() {
                                     Director of Product Management
                                   </span>
                                   <br></br>
-                                  <p className="mt-2 text-sm lg:text-lg indent-8">
+                                  <p className="mt-2 text-sm lg:text-lg">
                                     Rolled over as a Director of Product
                                     Management after Zego was acquired by
                                     PayLease. Was in charge of running the
@@ -145,7 +145,7 @@ export default function About() {
                                     Co-founder/Head of Product
                                   </span>
                                   <br></br>
-                                  <p className="mt-2 text-sm lg:text-lg indent-8">
+                                  <p className="mt-2 text-sm lg:text-lg">
                                     Proptech startup that I co-founded and
                                     helped scale. We built an IoT device
                                     management platform for multifamily
@@ -168,7 +168,7 @@ export default function About() {
                                     Sales/Process/Product Manager
                                   </span>
                                   <br></br>
-                                  <p className="mt-2 text-sm lg:text-lg indent-8">
+                                  <p className="mt-2 text-sm lg:text-lg">
                                     Commercial solar installer. Initially worked
                                     in sales, transitioned into product role to
                                     help launch Brighterlink building management
@@ -181,7 +181,7 @@ export default function About() {
                                     Solar Consultant
                                   </span>
                                   <br></br>
-                                  <p className="mt-2 text-sm lg:text-lg indent-8">
+                                  <p className="mt-2 text-sm lg:text-lg">
                                     I sold solar panels to consumers all over
                                     the country. If you owned a roof in Southern
                                     California in 2016 I probably called you.
@@ -193,7 +193,7 @@ export default function About() {
                                     Business Development
                                   </span>
                                   <br></br>
-                                  <p className="mt-2 text-sm lg:text-lg indent-8">
+                                  <p className="mt-2 text-sm lg:text-lg">
                                     I cold-called martial arts and yoga studios
                                     to sell them an out-dated CRM software. It
                                     was tough.
