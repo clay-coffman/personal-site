@@ -19,8 +19,8 @@ export default function HeroPost({ title, coverImage, date, excerpt, slug }) {
           <div className="font-body m-8 md:m-8">
             <div>
               <h3 className="mb-4 text-xl md:text-6xl leading-tight">
-                <Link href={`/posts/${slug}`}>
-                  <a className="hover:underline">{title}</a>
+                <Link href={`/posts/${slug}`} className="hover:underline">
+                  {title}
                 </Link>
               </h3>
               <div className="mb-4 text-sm md:text-xl">
