@@ -6,12 +6,7 @@ import Container from "@/components/container";
 import Layout from "@/components/layout";
 import BookList from "@/components/book-list";
 import { getBooks } from "@/lib/airtable";
-
-// something to fix an error in react select due to ssr?
-import dynamic from "next/dynamic";
-const Select = dynamic(() => import("react-select"), {
-  ssr: false,
-});
+import Select from "react-select";
 
 export async function getServerSideProps() {
   // this sets the INITIAL state
