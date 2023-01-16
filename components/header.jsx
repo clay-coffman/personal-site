@@ -9,11 +9,6 @@ export default function Header() {
         <Link href="/" className="hover:underline">
           About
         </Link>
-        {/* comment out writing for now
-        <Link href="/writing/">
-        <a className="hover:underline">Writing</a>
-        </Link>
-            */}
         <Link href="/books/" className="hover:underline">
           Bookshelf
         </Link>

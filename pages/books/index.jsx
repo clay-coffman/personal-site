@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react";
 import React from "react";
+import Select from "react-select";
+
+import Container from "@/components/container";
 import Head from "next/head";
 import Header from "@/components/header";
-import Container from "@/components/container";
 import Layout from "@/components/layout";
 import BookList from "@/components/book-list";
 import { getBooks } from "@/lib/airtable";
-import Select from "react-select";
 
 export async function getServerSideProps() {
   // this sets the INITIAL state
@@ -28,13 +29,12 @@ export default function Books({ books }) {
     setSortBy(value);
   };
 
-  // useEffect = Componnetdidmount - runs after render
   // this updates on initial render
   useEffect(() => {
     // sorts books by sortBy from state
     const sortArray = (property) => {
       let sorted = [];
-      console.log(`sort by ${property}`);
+
       // check the property here and use correct sort function
       switch (property) {
         case "Rating":
@@ -59,13 +59,12 @@ export default function Books({ books }) {
         default:
           sorted = data;
       }
-      console.log(sorted);
       return sorted;
     };
 
     const sortedBooks = sortArray(sortBy);
     setData(sortedBooks);
-  }, [data, sortBy]);
+  }, [sortBy]);
 
   // sort options (passed to select component)
   const sort_options = [
@@ -76,44 +75,46 @@ export default function Books({ books }) {
 
   return (
     <>
-      <Layout>
-        <Container>
-          <Head>
-            <title>Bookshelf</title>
-          </Head>
-          <Header />
-          <p className="font-body text-sm md:text-xl md:text-left mb-4">
-            Inspired by{" "}
-            <span className="text-blue-600">
-              <a
-                href="https://patrickcollison.com/bookshelf"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Patrick Collisons bookshelf
-              </a>
-            </span>
-            {", "}
-            this is a pretty accurate digital representation of the physical
-            books on my bookshelves right now. The stars indicate how I felt
-            about a book. You can filter using the drop-down. Using{" "}
-            <span className="text-blue-600">
-              <a
-                href="https://airtable.com/shrbhyeOxYShcdgCU/tblFKk2Z5THzqPENb"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Airtable
-              </a>
-            </span>{" "}
-            for a backend.
-          </p>
-          <div className="flex font-body pb-4">
-            <Select options={sort_options} onChange={handleChange} />
-          </div>
-          <BookList books={data} />
-        </Container>
-      </Layout>
+      <main>
+        <Layout>
+          <Container>
+            <Head>
+              <title>Bookshelf</title>
+            </Head>
+            <Header />
+            <p className="font-body text-sm md:text-xl md:text-left mb-4">
+              Inspired by{" "}
+              <span className="text-blue-600">
+                <a
+                  href="https://patrickcollison.com/bookshelf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Patrick Collisons bookshelf
+                </a>
+              </span>
+              {", "}
+              this is a pretty accurate digital representation of the physical
+              books on my bookshelves right now. The stars indicate how I felt
+              about a book. You can filter using the drop-down. Using{" "}
+              <span className="text-blue-600">
+                <a
+                  href="https://airtable.com/shrbhyeOxYShcdgCU/tblFKk2Z5THzqPENb"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Airtable
+                </a>
+              </span>{" "}
+              for a backend.
+            </p>
+            <div className="flex font-body pb-4">
+              <Select options={sort_options} onChange={handleChange} />
+            </div>
+            <BookList books={data} />
+          </Container>
+        </Layout>
+      </main>
     </>
   );
 }

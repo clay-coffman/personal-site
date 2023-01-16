@@ -1,14 +1,16 @@
 import Container from "@/components/container";
-import Header from "@/components/header";
-import Layout from "@/components/layout";
 import Head from "next/head";
+import Header from "@/components/header";
 import Image from "next/image";
-import profilePic from "../public/assets/profile_bw.jpeg";
+import Layout from "@/components/layout";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { brands } from "@fortawesome/fontawesome-svg-core/import.macro";
 import { faMapPin } from "@fortawesome/free-solid-svg-icons";
 
-export default function About() {
+import profilePic from "../public/assets/profile_bw.jpeg";
+
+export default function Index() {
   return (
     <>
       <main className="profile-page">
