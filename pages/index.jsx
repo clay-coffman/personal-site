@@ -58,14 +58,11 @@ export default function Index() {
                               my career. I scratched and clawed my way into tech
                               via sales but ultimately I&apos;ve always loved
                               building products, so I feel like I ended up in
-                              the right place in product management.<br></br>
+                              the right place in product management. Whether
+                              it&apos;s software, legos, or motorcycles,
+                              I&apos;ve always been tinkering or building
+                              something.<br></br>
                               <br></br>
-                              After working in solar energy, proptech/real
-                              estate, and most recently web3/crypto, I&apos;m
-                              currently taking some time off to travel and
-                              explore a few different ideas. If you have any
-                              ideas for startups or problems you want to solve,
-                              let&apos;s catch up.
                             </p>
                           </div>
                         </div>
@@ -95,14 +92,14 @@ export default function Index() {
                                   </span>
                                   <br></br>
                                   <p className="mt-2 text-sm lg:text-lg">
-                                    Helping to solve Americas skilled labor
-                                    crisis.
+                                    TradeFoundry is on a mission to solve the
+                                    skilled labor crisis in America.
                                   </p>
                                 </li>
                                 <li className="mt-4 text-md lg:text-xl">
                                   On Deck{" "}
                                   <span className="text-sm lg:text-xl text-gray-500 italic">
-                                    ODF 14
+                                    Fellow, ODF 20
                                   </span>
                                   <br></br>
                                   <p className="mt-2 text-sm lg:text-lg">
@@ -202,6 +199,26 @@ export default function Index() {
                                   </p>
                                 </li>
                               </ul>
+                              <p className="mt-8 font-body text-xl text-center lg:text-2xl font-semibold text-gray-800">
+                                Stuff I Do Sometimes
+                              </p>
+                              <div className="text-left mb-8">
+                                <ul className="list-outside font-body">
+                                  <li className="mt-4 text-md lg:text-xl">
+                                    Due Diligence Consulting{" "}
+                                    <p className="mt-2 text-sm lg:text-lg">
+                                      I have helped venture funds and other
+                                      investors evalute potential investments.
+                                    </p>
+                                  </li>
+                                  <li className="mt-4 text-md lg:text-xl">
+                                    Angel Investing{" "}
+                                    <p className="mt-2 text-sm lg:text-lg">
+                                      DocuCare, Harmony.ai, ReNFT, Cabin Labs
+                                    </p>
+                                  </li>
+                                </ul>
+                              </div>
                             </div>
                             <p className="font-body text-xl lg:text-2xl font-semibold text-gray-800">
                               Education, Certifications, and Other Stuff
@@ -231,6 +248,12 @@ export default function Index() {
                                   Pragmatic Marketing Institute{" "}
                                   <span className="text-sm lg:text-xl text-gray-500 italic">
                                     PMC Level IV
+                                  </span>
+                                </li>
+                                <li className="mt-4 text-md lg:text-xl">
+                                  Dribbble Education{" "}
+                                  <span className="text-sm lg:text-xl text-gray-500 italic">
+                                    UI Design 101
                                   </span>
                                 </li>
                               </ul>
@@ -265,6 +288,16 @@ export default function Index() {
                                   rel="noreferrer"
                                 >
                                   <FontAwesomeIcon icon={brands("twitter")} />
+                                </a>
+                              </span>
+                              or
+                              <span className="mx-2">
+                                <a
+                                  href="https://twitter.com/Clay_Coffman"
+                                  target="_blank"
+                                  rel="noreferrer"
+                                >
+                                  <FontAwesomeIcon icon={brands("github")} />
                                 </a>
                               </span>
                               or shoot me an email - claymcoffman @ gmail.com
