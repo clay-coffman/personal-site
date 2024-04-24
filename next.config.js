@@ -1,31 +1,13 @@
 module.exports = {
   images: {
-    domains: ["journals.ghost.io"],
-    // use experimental remotePatterns to handle random subdomains from cdn
-    // remotePatterns: [
-    //   {
-    //     hostname: [
-    //       "**.media-amazon.com",
-    //       "**.ghost.io",
-    //       "**.ssl-images-amazon.com",
-    //       "**.amazonaws.com",
-    //       "unsplash.com",
-    //       "**.unsplash.com",
-    //       "googleusercontent.com",
-    //       "**.googleusercontent.com",
-    //       "openseauserdata.com",
-    //       "**.openseauserdata.com",
-    //       "**.img.seadn.io",
-    //       "img.seadn.io",
-    //       "arweave.net",
-    //       "**.arweave.net",
-    //       "**.ipfs.io",
-    //       "**.solnft.host",
-    //       "3334445556666.com",
-    //       "**.ibb.co",
-    //     ],
-    //   },
-    // ],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "cdn.aframe.io",
+        port: "",
+        pathname: "/a-painter/images/*",
+      },
+    ],
   },
   webpack(config) {
     config.resolve.fallback = {

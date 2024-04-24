@@ -15,6 +15,9 @@ export default function Header() {
         <Link href="/photos/" className="hover:underline">
           Photos
         </Link>
+        <Link href="/stuff/" className="hover:underline">
+          Stuff
+        </Link>
       </h2>
     </div>
   );
