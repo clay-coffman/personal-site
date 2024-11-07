@@ -12,12 +12,14 @@ export default function Header() {
         <Link href="/books/" className="hover:underline">
           Bookshelf
         </Link>
-        <Link href="/photos/" className="hover:underline">
+        <a
+          href="https://claymcoffman.myportfolio.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hover:underline"
+        >
           Photos
-        </Link>
-        <Link href="/stuff/" className="hover:underline">
-          Stuff
-        </Link>
+        </a>
       </h2>
     </div>
   );

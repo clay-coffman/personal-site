@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev -p 3001",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
@@ -23,6 +23,7 @@
     "aframe-react": "^4.4.0",
     "autoprefixer": "^10.4.13",
     "axios": "^1.2.2",
+    "classnames": "^2.5.1",
     "dotenv": "^16.0.3",
     "eslint": "8.31.0",
     "eslint-config-next": "13.1.2",
