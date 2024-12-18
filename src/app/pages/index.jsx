@@ -10,14 +10,7 @@ import { faMapPin } from "@fortawesome/free-solid-svg-icons";
 
 import profilePic from "../public/assets/profile_bw.jpeg";
 
-import dynamic from "next/dynamic";
-
 import { experiences, sideProjects, education } from "src/app/data/profile";
-
-const ResumeVR = dynamic(() => import("../pages/resume-vr"), {
-  ssr: false,
-  loading: () => <p>Loading VR Experience...</p>,
-});
 
 export default function Index() {
   const socialLinks = [
