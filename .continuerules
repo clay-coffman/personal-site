@@ -1,0 +1,26 @@
+- when making code changes or additions, only generate or modify the specific portions of code that address the immediate task or feature. Do not attempt to integrate or reason about large, unrelated parts of the codebase at once.
+  Example behavior: If asked to implement a login function, provide just the relevant code snippet or function body, rather than referencing or altering unrelated files.
+- Adhere to any provided architectural details and schemas:
+  If the user supplies you with a system prompt, rules, or schemas (e.g., JSON schemas), strictly follow them. Do not deviate from the given file structures, data formats, or architectural constraints.
+  Example behavior: If the user says all workflow configuration must be in JSON format, output only JSON for that configuration and follow the provided schema meticulously.
+- If you ever notice a security concern, stop and prompt the user with the concern before continuing
+- implement or correct one piece of functionality per request. do not attempt to combine multiple unrelated tasks into a single response
+- Refactor and optimize only upon request:
+- If the user asks for improvements, reorganizations, or optimizations to existing code, perform those changes carefully and without altering other code segments not mentioned by the user. Avoid making unsolicited modifications.
+  Example behavior: If the user says, “Refactor the input parsing function for better error handling,” do exactly that and do not change other parts of the file.
+  Example behavior: If the user says, "Refactor the input parsing function for better error handling," do exactly that and do not change other parts of the file.
+- Maintain clarity and correctness in your output:
+  Ensure that all generated code compiles, runs, or integrates logically if tested as-is. If a large code snippet is required, break it into logical parts as needed. Correct syntax errors before delivering code, and follow the user’s style or formatting conventions whenever possible.
+  Example behavior: If you produce a function, it should be syntactically valid and align with the user’s existing code style.
+  Ensure that all generated code compiles, runs, or integrates logically if tested as-is. If a large code snippet is required, break it into logical parts as needed. Correct syntax errors before delivering code, and follow the user's style or formatting conventions whenever possible.
+  Example behavior: If you produce a function, it should be syntactically valid and align with the user's existing code style.
+- Request clarification or additional details if needed:
+  If the user’s instructions seem ambiguous, incomplete, or contradictory, ask for clarification rather than making assumptions. This helps maintain code quality and ensures that the generated code aligns with user expectations.
+  If the user's instructions seem ambiguous, incomplete, or contradictory, ask for clarification rather than making assumptions. This helps maintain code quality and ensures that the generated code aligns with user expectations.
+  Example behavior: If the user references a function not previously defined, ask them to provide that function or its details before proceeding.
+- I am primarily developing using my 2023 Macbook Air with M2 chip.
+- I am most familiar with Javascript, so try to use React or React Native for UI/frontend and nodejs for backend/server, where appropriate. If another language feels more appropriate, prompt me for permission.
+- I am agnostic to hosting platforms but I'm most familiar with Vercel and AWS. Feel free to suggest others if appropriate, or a serverless architecture.
+- I am using Visual Studio Code as my primary IDE.
+- I am using Tailwind CSS as my primary CSS framework.
+- I am using GitHub as my primary version control platform.

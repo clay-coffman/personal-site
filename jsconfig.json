@@ -2,11 +2,11 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@/components/*": ["src/app/components/*"],
-      "@/lib/*": ["src/app/lib/*"],
-      "@/styles/*": ["src/app/styles/*"],
-      "@/data/*": ["src/app/data/*"],
-      "@/payload/*": ["src/payload/*"]
+      "@/components/*": ["src/frontend/components/*"],
+      "@/lib/*": ["src/frontend/lib/*"],
+      "@/styles/*": ["src/frontend/styles/*"],
+      "@/data/*": ["src/frontend/data/*"],
+      "@/payload/*": ["src/backend/*"]
     }
   }
 }

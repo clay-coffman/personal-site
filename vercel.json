@@ -1,12 +1,15 @@
 {
-  "buildCommand": "cd src/payload && yarn build",
-  "outputDirectory": "src/payload/dist",
-  "installCommand": "cd src/payload && yarn install",
-  "framework": "node",
-  "rewrites": [
+  "version": 2,
+  "builds": [
     {
-      "source": "/(.*)",
-      "destination": "/api/index"
+      "src": "src/payload/index.js",
+      "use": "@vercel/static-build"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "src/payload/index.js"
     }
   ]
 }
