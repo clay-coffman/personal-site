@@ -1,3 +1,4 @@
+// next.config.js - Use this updated version
 module.exports = {
   images: {
     remotePatterns: [
@@ -7,15 +8,25 @@ module.exports = {
         port: "",
         pathname: "/a-painter/images/*",
       },
+      {
+        protocol: "http",
+        hostname: "localhost",
+        port: "3000",
+        pathname: "/media/**",
+      },
+      {
+        protocol: "https",
+        hostname: "*.public.blob.vercel-storage.com",
+        port: "",
+        pathname: "/**",
+      },
     ],
   },
   webpack(config) {
     config.resolve.fallback = {
-      ...config.resolve.fallback, // if you miss it, all the other options in fallback, specified
-      // by next.js will be dropped. Doesn't make much sense, but how it is
-      fs: false, // the solution
+      ...config.resolve.fallback,
+      fs: false,
     };
-
     return config;
   },
 };

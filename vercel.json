@@ -1,0 +1,12 @@
+{
+  "buildCommand": "cd src/payload && yarn build",
+  "outputDirectory": "src/payload/dist",
+  "installCommand": "cd src/payload && yarn install",
+  "framework": "node",
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/api/index"
+    }
+  ]
+}

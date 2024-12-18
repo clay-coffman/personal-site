@@ -7,7 +7,7 @@ import Head from "next/head";
 import Header from "@/components/header";
 import Layout from "@/components/layout";
 import BookList from "@/components/book-list";
-import { getBooks } from "@/lib/airtable";
+import { getBooks } from "@/lib/books";
 
 export async function getServerSideProps() {
   // this sets the INITIAL state
@@ -99,11 +99,11 @@ export default function Books({ books }) {
               about a book. You can filter using the drop-down. Using{" "}
               <span className="text-blue-600">
                 <a
-                  href="https://airtable.com/shrbhyeOxYShcdgCU/tblFKk2Z5THzqPENb"
+                  href="https://payloadcms.com"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  Airtable
+                  Payload CMS
                 </a>
               </span>{" "}
               for a backend.

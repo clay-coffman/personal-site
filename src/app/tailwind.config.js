@@ -41,5 +41,19 @@ module.exports = {
   variants: {
     extend: {},
   },
-  plugins: [],
+  plugins: [
+    function({ addComponents }) {
+      addComponents({
+        '.text-title': {
+          '@apply font-body text-xl lg:text-2xl font-semibold text-gray-800': {}
+        },
+        '.text-body': {
+          '@apply font-body text-sm lg:text-lg text-gray-800': {}
+        },
+        '.text-meta': {
+          '@apply text-sm lg:text-xl text-gray-500 italic': {}
+        }
+      })
+    }
+  ],
 };
