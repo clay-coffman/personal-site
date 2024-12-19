@@ -81,3 +81,28 @@ export async function deleteBook(id) {
     return false;
   }
 }
+
+/**
+ * Updates multiple books in a batch
+ * @param {Array<{id: number, updates: Object}>} updates - Array of book updates
+ * @returns {Promise<boolean>} Success status
+ */
+export async function updateBooks(updates) {
+  try {
+    const { error } = await supabase
+      .from('books')
+      .upsert(
+        updates.map(({ id, updates }) => ({
+          id,
+          ...updates,
+          updated_at: new Date().toISOString(),
+        }))
+      );
+
+    if (error) throw error;
+    return true;
+  } catch (error) {
+    console.error('Error updating books:', error);
+    return false;
+  }
+}

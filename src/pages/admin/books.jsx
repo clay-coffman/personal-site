@@ -5,7 +5,8 @@ import Container from '@/components/container';
 import Head from 'next/head';
 import ProtectedRoute from '@/components/protected-route';
 import { useAuth } from '@/lib/auth';
-import { getBooks, addBook, deleteBook } from '@/lib/books';
+import { getBooks, addBook, deleteBook, updateBooks } from '@/lib/books';
+import Select from 'react-select';
 
 export async function getStaticProps() {
   const books = await getBooks();
@@ -21,6 +22,7 @@ export default function AdminBooks({ books: initialBooks }) {
   const [books, setBooks] = useState(initialBooks);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [pendingUpdates, setPendingUpdates] = useState({});
   const { signOut } = useAuth();
   const router = useRouter();
 
@@ -53,173 +55,228 @@ export default function AdminBooks({ books: initialBooks }) {
           date_completed: '',
           cover_image: '',
         });
-        router.replace(router.asPath);
       }
     } catch (err) {
-      setError('Failed to add book');
-      console.error(err);
+      setError(err.message);
+    } finally {
+      setLoading(false);
     }
-
-    setLoading(false);
   };
 
   const handleDelete = async (id) => {
-    if (!window.confirm('Are you sure you want to delete this book?')) return;
+    if (window.confirm('Are you sure you want to delete this book?')) {
+      setLoading(true);
+      setError(null);
 
+      try {
+        const success = await deleteBook(id);
+        if (success) {
+          setBooks(books.filter((book) => book.id !== id));
+        }
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    }
+  };
+
+  const handleRatingChange = (bookId, newRating) => {
+    setPendingUpdates((prev) => ({
+      ...prev,
+      [bookId]: { ...prev[bookId], rating: newRating },
+    }));
+  };
+
+  const saveRatingChanges = async () => {
     setLoading(true);
     setError(null);
 
     try {
-      const success = await deleteBook(id);
+      const updates = Object.entries(pendingUpdates).map(([id, updates]) => ({
+        id: parseInt(id),
+        updates,
+      }));
+
+      const success = await updateBooks(updates);
       if (success) {
-        setBooks(books.filter((book) => book.id !== id));
+        setBooks((prevBooks) =>
+          prevBooks.map((book) =>
+            pendingUpdates[book.id]
+              ? { ...book, ...pendingUpdates[book.id] }
+              : book
+          )
+        );
+        setPendingUpdates({});
       }
     } catch (err) {
-      setError('Failed to delete book');
-      console.error(err);
+      setError(err.message);
+    } finally {
+      setLoading(false);
     }
-
-    setLoading(false);
   };
+
+  const ratingOptions = [
+    { value: 1, label: '⭐' },
+    { value: 2, label: '⭐⭐' },
+    { value: 3, label: '⭐⭐⭐' },
+    { value: 4, label: '⭐⭐⭐⭐' },
+    { value: 5, label: '⭐⭐⭐⭐⭐' },
+  ];
 
   return (
     <ProtectedRoute>
       <Layout>
         <Head>
-          <title>Manage Books | Clay Coffman</title>
+          <title>Manage Books</title>
         </Head>
         <Container>
-          <div className="py-10">
-            <div className="flex justify-between items-center mb-8">
-              <h1 className="text-3xl font-bold">Manage Books</h1>
-              <button
-                onClick={handleSignOut}
-                className="bg-gray-200 hover:bg-gray-300 px-4 py-2 rounded"
-              >
-                Sign Out
-              </button>
-            </div>
+          <div className="flex justify-between items-center mb-8">
+            <h1 className="text-3xl font-bold">Manage Books</h1>
+            <button
+              onClick={handleSignOut}
+              className="px-4 py-2 bg-gray-200 rounded hover:bg-gray-300"
+            >
+              Sign Out
+            </button>
+          </div>
 
+          <div className="mb-8">
+            <h2 className="text-xl font-semibold mb-4">Add New Book</h2>
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label className="block mb-1">Book Title</label>
+                  <input
+                    type="text"
+                    value={newBook.title}
+                    onChange={(e) =>
+                      setNewBook({ ...newBook, title: e.target.value })
+                    }
+                    className="w-full p-2 border rounded"
+                    placeholder="Enter book title"
+                    required
+                  />
+                </div>
+                <div>
+                  <label className="block mb-1">Author</label>
+                  <input
+                    type="text"
+                    value={newBook.author}
+                    onChange={(e) =>
+                      setNewBook({ ...newBook, author: e.target.value })
+                    }
+                    className="w-full p-2 border rounded"
+                    placeholder="Enter author name"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label className="block mb-1">Rating (1-5 stars)</label>
+                  <input
+                    type="number"
+                    min="1"
+                    max="5"
+                    value={newBook.rating}
+                    onChange={(e) =>
+                      setNewBook({ ...newBook, rating: parseInt(e.target.value) })
+                    }
+                    className="w-full p-2 border rounded"
+                    required
+                  />
+                </div>
+                <div>
+                  <label className="block mb-1">Date Completed</label>
+                  <input
+                    type="date"
+                    value={newBook.date_completed}
+                    onChange={(e) =>
+                      setNewBook({ ...newBook, date_completed: e.target.value })
+                    }
+                    className="w-full p-2 border rounded"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label className="block mb-1">Cover Image URL</label>
+                <input
+                  type="url"
+                  value={newBook.cover_image}
+                  onChange={(e) =>
+                    setNewBook({ ...newBook, cover_image: e.target.value })
+                  }
+                  className="w-full p-2 border rounded"
+                  placeholder="https://example.com/book-cover.jpg"
+                />
+              </div>
+
+              <button
+                type="submit"
+                disabled={loading}
+                className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 disabled:bg-blue-300"
+              >
+                Add Book
+              </button>
+            </form>
+          </div>
+
+          <div>
+            <div className="flex justify-between items-center mb-4">
+              <h2 className="text-xl font-semibold">Current Books</h2>
+              {Object.keys(pendingUpdates).length > 0 && (
+                <button
+                  onClick={saveRatingChanges}
+                  disabled={loading}
+                  className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 disabled:bg-green-300"
+                >
+                  Save Changes
+                </button>
+              )}
+            </div>
             {error && (
-              <div className="bg-red-50 text-red-500 p-4 rounded mb-4">
+              <div className="mb-4 p-4 bg-red-100 text-red-700 rounded">
                 {error}
               </div>
             )}
-
-            <div className="bg-white p-6 rounded-lg shadow-sm mb-8">
-              <h2 className="text-xl font-semibold mb-4">Add New Book</h2>
-              <form onSubmit={handleSubmit} className="space-y-4">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div>
-                    <label htmlFor="title" className="block text-sm font-medium text-gray-700 mb-1">
-                      Book Title
-                    </label>
-                    <input
-                      id="title"
-                      type="text"
-                      required
-                      value={newBook.title}
-                      onChange={(e) => setNewBook({ ...newBook, title: e.target.value })}
-                      className="w-full border rounded-md p-2 focus:ring-blue-500 focus:border-blue-500"
-                      placeholder="Enter book title"
-                    />
+            <div className="space-y-4">
+              {books.map((book) => (
+                <div
+                  key={book.id}
+                  className="p-4 border rounded flex items-center justify-between"
+                >
+                  <div className="flex-1">
+                    <h3 className="font-semibold">{book.title}</h3>
+                    <p className="text-gray-600">{book.author}</p>
                   </div>
-                  
-                  <div>
-                    <label htmlFor="author" className="block text-sm font-medium text-gray-700 mb-1">
-                      Author
-                    </label>
-                    <input
-                      id="author"
-                      type="text"
-                      required
-                      value={newBook.author}
-                      onChange={(e) => setNewBook({ ...newBook, author: e.target.value })}
-                      className="w-full border rounded-md p-2 focus:ring-blue-500 focus:border-blue-500"
-                      placeholder="Enter author name"
-                    />
-                  </div>
-
-                  <div>
-                    <label htmlFor="rating" className="block text-sm font-medium text-gray-700 mb-1">
-                      Rating (1-5 stars)
-                    </label>
-                    <input
-                      id="rating"
-                      type="number"
-                      required
-                      min="1"
-                      max="5"
-                      value={newBook.rating}
-                      onChange={(e) => setNewBook({ ...newBook, rating: parseInt(e.target.value) })}
-                      className="w-full border rounded-md p-2 focus:ring-blue-500 focus:border-blue-500"
-                    />
-                  </div>
-
-                  <div>
-                    <label htmlFor="date_completed" className="block text-sm font-medium text-gray-700 mb-1">
-                      Date Completed
-                    </label>
-                    <input
-                      id="date_completed"
-                      type="date"
-                      required
-                      value={newBook.date_completed}
-                      onChange={(e) => setNewBook({ ...newBook, date_completed: e.target.value })}
-                      className="w-full border rounded-md p-2 focus:ring-blue-500 focus:border-blue-500"
-                    />
-                  </div>
-
-                  <div className="md:col-span-2">
-                    <label htmlFor="cover_image" className="block text-sm font-medium text-gray-700 mb-1">
-                      Cover Image URL
-                    </label>
-                    <input
-                      id="cover_image"
-                      type="url"
-                      value={newBook.cover_image}
-                      onChange={(e) => setNewBook({ ...newBook, cover_image: e.target.value })}
-                      className="w-full border rounded-md p-2 focus:ring-blue-500 focus:border-blue-500"
-                      placeholder="https://example.com/book-cover.jpg"
-                    />
-                  </div>
-                </div>
-
-                <div className="pt-4">
-                  <button
-                    type="submit"
-                    disabled={loading}
-                    className="w-full md:w-auto bg-blue-600 text-white px-6 py-2 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 transition-colors duration-200"
-                  >
-                    {loading ? 'Adding Book...' : 'Add Book'}
-                  </button>
-                </div>
-              </form>
-            </div>
-
-            <div className="bg-white p-6 rounded-lg shadow-sm">
-              <h2 className="text-xl font-semibold mb-4">Current Books</h2>
-              <div className="space-y-4">
-                {books.map((book) => (
-                  <div
-                    key={book.id}
-                    className="flex justify-between items-center p-4 border rounded-md hover:bg-gray-50"
-                  >
-                    <div>
-                      <h3 className="font-medium">{book.title}</h3>
-                      <p className="text-gray-600 text-sm">{book.author}</p>
-                      <p className="text-yellow-500 text-sm">{'★'.repeat(book.rating)}{'☆'.repeat(5-book.rating)}</p>
+                  <div className="flex items-center gap-4">
+                    <div className="w-48">
+                      <Select
+                        value={ratingOptions.find(
+                          (option) =>
+                            option.value ===
+                            (pendingUpdates[book.id]?.rating ?? book.rating)
+                        )}
+                        onChange={(option) =>
+                          handleRatingChange(book.id, option.value)
+                        }
+                        options={ratingOptions}
+                        isSearchable={false}
+                      />
                     </div>
                     <button
                       onClick={() => handleDelete(book.id)}
-                      disabled={loading}
-                      className="text-red-600 hover:text-red-800 px-3 py-1 rounded-md hover:bg-red-50 transition-colors duration-200"
+                      className="text-red-500 hover:text-red-700"
                     >
                       Delete
                     </button>
                   </div>
-                ))}
-              </div>
+                </div>
+              ))}
             </div>
           </div>
         </Container>
