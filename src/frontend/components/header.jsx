@@ -6,10 +6,10 @@ export default function Header() {
     <div>
       <Intro />
       <h2 className="text-accent-2 text-xl md:text-4xl text-center md:text-left font-title font-bold italic md:space-x-3 space-x-2 mb-8">
-        <Link href="/" className="hover:underline">
+        <Link href="/" legacyBehavior={false} className="hover:underline">
           About
         </Link>
-        <Link href="/books/" className="hover:underline">
+        <Link href="/books" legacyBehavior={false} className="hover:underline">
           Bookshelf
         </Link>
         <a

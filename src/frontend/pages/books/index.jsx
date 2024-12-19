@@ -31,40 +31,22 @@ export default function Books({ books }) {
 
   // this updates on initial render
   useEffect(() => {
-    // sorts books by sortBy from state
-    const sortArray = (property) => {
-      let sorted = [];
-
-      // check the property here and use correct sort function
-      switch (property) {
-        case "Rating":
-          // TODO at some point, handle when a book doesn't have a rating (lol)
-          // right now, it just breaks and doesn't work at all...
-          sorted = [...data].sort(
-            (a, b) => b.fields[property] - a.fields[property]
-          );
-          break;
-        case "Title":
-          sorted = [...data].sort((a, b) =>
-            a.fields[property].localeCompare(b.fields[property])
-          );
-          break;
-        case "Date Completed":
-          sorted = [...data].sort((a, b) => {
-            const dateA = Date.parse(a.fields[property]);
-            const dateB = Date.parse(b.fields[property]);
-            return dateB - dateA;
-          });
-          break;
-        default:
-          sorted = data;
-      }
+    const sortArray = (type) => {
+      const sorted = [...data].sort((a, b) => {
+        if (type === "Rating") {
+          return b.fields.Rating - a.fields.Rating;
+        } else if (type === "Date Completed") {
+          return new Date(b.fields["Date Completed"]) - new Date(a.fields["Date Completed"]);
+        } else {
+          return a.fields.Title.localeCompare(b.fields.Title);
+        }
+      });
       return sorted;
     };
 
     const sortedBooks = sortArray(sortBy);
     setData(sortedBooks);
-  }, [sortBy]);
+  }, [sortBy, data]);
 
   // sort options (passed to select component)
   const sort_options = [
