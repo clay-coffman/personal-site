@@ -1,21 +1,27 @@
 import { createContext, useContext, useState } from 'react';
 
-const AuthContext = createContext({});
+const AuthContext = createContext();
 
-export const AuthProvider = ({ children }) => {
+export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
 
   const signIn = async (username, password) => {
     try {
-      // Check against environment variables
-      if (
-        username === process.env.NEXT_PUBLIC_ADMIN_USERNAME &&
-        password === process.env.NEXT_PUBLIC_ADMIN_PASSWORD
-      ) {
-        setUser({ username });
-        return { error: null };
+      const response = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ username, password }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Invalid credentials');
       }
-      throw new Error('Invalid credentials');
+
+      const data = await response.json();
+      setUser({ username });
+      return { error: null };
     } catch (error) {
       return { error };
     }
@@ -23,7 +29,6 @@ export const AuthProvider = ({ children }) => {
 
   const signOut = async () => {
     setUser(null);
-    return { error: null };
   };
 
   return (
@@ -31,12 +36,8 @@ export const AuthProvider = ({ children }) => {
       {children}
     </AuthContext.Provider>
   );
-};
+}
 
-export const useAuth = () => {
-  const context = useContext(AuthContext);
-  if (context === undefined) {
-    throw new Error('useAuth must be used within an AuthProvider');
-  }
-  return context;
-};
+export function useAuth() {
+  return useContext(AuthContext);
+}
