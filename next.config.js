@@ -1,25 +1,20 @@
 // next.config.js - Use this updated version
-module.exports = {
+/** @type {import('next').NextConfig} */
+const nextConfig = {
   images: {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "cdn.aframe.io",
+        hostname: "i.gr-assets.com",
         port: "",
-        pathname: "/a-painter/images/*",
-      },
-      {
-        protocol: "http",
-        hostname: "localhost",
-        port: "3000",
-        pathname: "/media/**",
+        pathname: "/images/**",
       },
       {
         protocol: "https",
         hostname: "*.public.blob.vercel-storage.com",
         port: "",
         pathname: "/**",
-      },
+      }
     ],
   },
   webpack(config) {
@@ -29,4 +24,9 @@ module.exports = {
     };
     return config;
   },
+  reactStrictMode: true,
+  poweredByHeader: false,
+  compress: true,
 };
+
+module.exports = nextConfig;
