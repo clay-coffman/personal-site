@@ -1,0 +1,24 @@
+[project]
+name = "personal-site"
+version = "1.0.0"
+description = "Clay Coffman Personal Site - Flask Version"
+readme = "README.md"
+requires-python = ">=3.11"
+authors = [
+    {name = "Clay Coffman", email = "claymcoffman@gmail.com"}
+]
+dependencies = [
+    "Flask==3.0.0",
+    "Flask-SQLAlchemy==3.1.1",
+    "Flask-Login==0.6.3",
+    "python-dotenv==1.0.0",
+    "Werkzeug==3.0.1",
+    "gunicorn==21.2.0",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.uv]
+dev-dependencies = []

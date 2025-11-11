@@ -14,6 +14,7 @@ A lightweight, fast personal portfolio and bookshelf website built with Flask, B
 ## Tech Stack
 
 - **Backend**: Flask 3.0 with Python 3.11+
+- **Package Manager**: [uv](https://github.com/astral-sh/uv) - Fast Python package installer and resolver
 - **Database**: SQLite (file-based, portable)
 - **Frontend**: Bootstrap 5.3, vanilla JavaScript
 - **Authentication**: Flask-Login with werkzeug password hashing
@@ -21,21 +22,25 @@ A lightweight, fast personal portfolio and bookshelf website built with Flask, B
 
 ## Quick Start
 
-### 1. Setup Virtual Environment
+### 1. Install Dependencies
+
+First, ensure you have [uv](https://github.com/astral-sh/uv) installed:
+
+```bash
+# Install uv (if not already installed)
+curl -LsSf https://astral.sh/uv/install.sh | sh
+```
+
+Then install project dependencies:
 
 ```bash
 cd flask-app
-python3 -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
+uv sync
 ```
 
-### 2. Install Dependencies
+This will create a virtual environment and install all dependencies automatically.
 
-```bash
-pip install -r requirements.txt
-```
-
-### 3. Configure Environment
+### 2. Configure Environment
 
 Copy `.env.example` to `.env` and update values:
 
@@ -52,20 +57,20 @@ ADMIN_USERNAME=your-username
 ADMIN_PASSWORD=your-password
 ```
 
-### 4. Initialize Database
+### 3. Initialize Database
 
 ```bash
 # Create database with sample data
-python migrations/import_books.py --sample
+uv run python migrations/import_books.py --sample
 
 # Or import from JSON
-python migrations/import_books.py --json books_export.json
+uv run python migrations/import_books.py --json books_export.json
 ```
 
-### 5. Run the Application
+### 4. Run the Application
 
 ```bash
-python app.py
+uv run python app.py
 ```
 
 Visit http://localhost:5001
@@ -117,16 +122,17 @@ flask-app/
 ```bash
 # Install dependencies
 sudo apt update
-sudo apt install python3-pip python3-venv nginx
+sudo apt install nginx
+
+# Install uv
+curl -LsSf https://astral.sh/uv/install.sh | sh
 
 # Clone repository
 git clone <repo-url>
 cd personal-site/flask-app
 
-# Setup virtual environment
-python3 -m venv venv
-source venv/bin/activate
-pip install -r requirements.txt
+# Install dependencies with uv
+uv sync
 ```
 
 ### 2. Configure Gunicorn
@@ -141,8 +147,8 @@ After=network.target
 [Service]
 User=www-data
 WorkingDirectory=/var/www/personal-site/flask-app
-Environment="PATH=/var/www/personal-site/flask-app/venv/bin"
-ExecStart=/var/www/personal-site/flask-app/venv/bin/gunicorn --workers 2 --bind 127.0.0.1:8000 app:create_app()
+Environment="PATH=/var/www/personal-site/flask-app/.venv/bin"
+ExecStart=/var/www/personal-site/flask-app/.venv/bin/gunicorn --workers 2 --bind 127.0.0.1:8000 app:create_app()
 
 [Install]
 WantedBy=multi-user.target
@@ -183,7 +189,13 @@ sudo systemctl restart nginx
 ### 5. SSL with Let's Encrypt
 
 ```bash
-sudo apt install certbot python3-certbot-nginx
+# Install certbot using uv (recommended) or system package manager
+uv tool install certbot
+uv tool install certbot-nginx
+
+# Or use system packages
+# sudo apt install certbot python3-certbot-nginx
+
 sudo certbot --nginx -d yourdomain.com
 ```
 
