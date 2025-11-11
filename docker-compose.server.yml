@@ -1,0 +1,34 @@
+# Production configuration for server with existing Docker services
+# This runs Flask on a different port to avoid conflicts with Nextcloud/Calibre
+
+services:
+  web:
+    build: .
+    container_name: personal-site
+    ports:
+      - "8082:5000"  # Use port 8082 to avoid conflicts
+    environment:
+      - FLASK_ENV=production
+      - DATABASE_URL=sqlite:////app/data/database.db
+      - SECRET_KEY=${SECRET_KEY}
+      - ADMIN_USERNAME=${ADMIN_USERNAME}
+      - ADMIN_PASSWORD=${ADMIN_PASSWORD}
+    volumes:
+      - ./data:/app/data
+      - ./static:/app/static:ro
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    networks:
+      - personal-site-network
+
+  # We don't need nginx since we'll access Flask directly or through reverse proxy
+  # The app serves its own static files
+
+networks:
+  personal-site-network:
+    driver: bridge
