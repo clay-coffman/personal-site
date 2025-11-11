@@ -14,11 +14,14 @@ RUN apt-get update && apt-get install -y \
 COPY --from=ghcr.io/astral-sh/uv:latest /uv /usr/local/bin/uv
 
 # Copy dependency files first for better caching
-COPY pyproject.toml uv.lock* ./
+COPY pyproject.toml ./
 
 # Create virtual environment and install dependencies
+# Use uv pip install instead of sync since we don't have a lock file
 RUN uv venv && \
-    uv sync --frozen --no-dev
+    . .venv/bin/activate && \
+    uv pip install -e . --no-deps && \
+    uv pip install Flask Flask-SQLAlchemy Flask-Login python-dotenv gunicorn
 
 # Copy application code
 COPY . .
