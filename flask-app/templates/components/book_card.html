@@ -1,0 +1,46 @@
+<div class="card h-100 shadow-sm book-card">
+    <div class="card-body">
+        <!-- Book Cover -->
+        {% if book.cover_image %}
+        <div class="text-center mb-3">
+            <img src="{{ book.cover_image }}"
+                 alt="{{ book.title }}"
+                 class="img-fluid rounded"
+                 style="max-height: 200px; object-fit: cover;"
+                 loading="lazy">
+        </div>
+        {% endif %}
+
+        <!-- Book Title -->
+        <h3 class="h5 card-title">{{ book.title }}</h3>
+
+        <!-- Author -->
+        <p class="text-muted mb-2">by {{ book.author }}</p>
+
+        <!-- Rating -->
+        {% if book.rating %}
+        <div class="mb-2">
+            {% for i in range(5) %}
+                {% if i < book.rating %}
+                <i class="fas fa-star text-warning"></i>
+                {% else %}
+                <i class="far fa-star text-warning"></i>
+                {% endif %}
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <!-- Date Completed -->
+        {% if book.date_completed %}
+        <p class="text-muted small mb-0">
+            <i class="far fa-calendar"></i>
+            {{ book.date_completed.strftime('%B %Y') }}
+        </p>
+        {% endif %}
+
+        <!-- Currently Reading Badge -->
+        {% if book.currently_reading %}
+        <span class="badge bg-primary mt-2">Currently Reading</span>
+        {% endif %}
+    </div>
+</div>

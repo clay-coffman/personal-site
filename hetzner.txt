@@ -1,0 +1,237 @@
+Console
+Search…
+⌘ K
+
+Feedback
+
+
+
+1
+Activities
+View all 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+K1161039125
+Limited availability of Cloud plans
+Created:
+2024-06-17 03:00 GMT-7
+Last updated:
+1 day ago
+Details
+Limited availability of Cloud plans
+Created:
+2024-06-17 03:00 GMT-7
+Last updated:
+1 day ago
+Details
+
+Dismiss all
+cpx21
+#112786049
+fedora-4gb-hil-1
+5.78.113.1
+2a01:4ff:1f0:e582::/64
+Add Floating IP
+OnOff
+3
+vCPU
+4 GB
+RAM
+40 GB
+Disk local
+100 GB
+1 Volumes
+0.43
+Usage
+0/2
+ TB
+Traffic out
+9.99
+/mo
+Price
+Add labels
+Activities
+View all 
+Server updated
+16 hours ago
+Server rescue system disabled
+18 hours ago
+Server started
+19 hours ago
+Server is being started
+19 hours ago
+Server shut down
+19 hours ago
+Server is being shut down
+19 hours ago
+Volume resized
+19 hours ago
+Server type changed
+19 hours ago
+Options
+
+Disable
+Backups
+
+Select group
+Placement group
+
+Disable
+Public Network
+Location
+Datacenter
+hil-dc1
+City
+Hillsboro, OR
+Country
+US
+Network zone
+us-west
+Legal NoticeData PrivacySystem PoliciesTerms and Conditions
+
+firewall 
+Console
+Search…
+⌘ K
+
+Feedback
+
+
+
+1
+Activities
+View all 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+K1161039125
+Limited availability of Cloud plans
+Created:
+2024-06-17 03:00 GMT-7
+Last updated:
+1 day ago
+Details
+Limited availability of Cloud plans
+Created:
+2024-06-17 03:00 GMT-7
+Last updated:
+1 day ago
+Details
+
+Dismiss all
+firewall-1
+Rules
+7
+Applied to
+1 Resource
+Inbound
+Any IPv4
+Any IPv6
+TCP
+22
+Any IPv4
+Any IPv6
+ICMP
+Any IPv4
+Any IPv6
+TCP
+80
+Any IPv4
+Any IPv6
+TCP
+443
+Any IPv4
+Any IPv6
+TCP
+8443
+Any IPv4
+Any IPv6
+TCP
+8080
+calibre-web
+Any IPv4
+Any IPv6
+TCP
+8083
+Add rule
+Outbound
+All outbound traffic is allowed. Add a rule to restrict outbound traffic.
+Add rule
+Legal NoticeData PrivacySystem PoliciesTerms and Conditions
