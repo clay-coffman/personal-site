@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block title %}Clay Coffman - Bookshelf{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <!-- Header -->
+    <div class="row mb-4">
+        <div class="col-md-8">
+            <h1 class="h2 mb-3">Bookshelf</h1>
+            <p class="text-muted">
+                A collection of books I've read and recommend. Inspired by
+                <a href="https://patrickcollison.com/bookshelf" target="_blank" class="text-decoration-none">
+                    Patrick Collison's bookshelf</a>.
+            </p>
+        </div>
+        <div class="col-md-4">
+            <!-- Sort Dropdown -->
+            <div class="d-flex justify-content-md-end">
+                <select id="sortSelect" class="form-select" style="width: auto;">
+                    <option value="rating" {% if current_sort == 'rating' %}selected{% endif %}>Highest Rated</option>
+                    <option value="date" {% if current_sort == 'date' %}selected{% endif %}>Recently Read</option>
+                    <option value="title" {% if current_sort == 'title' %}selected{% endif %}>Title (A-Z)</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <!-- Books Grid -->
+    <div class="row g-4">
+        {% for book in books %}
+        <div class="col-12 col-md-6 col-lg-4">
+            {% include 'components/book_card.html' %}
+        </div>
+        {% endfor %}
+    </div>
+
+    {% if not books %}
+    <div class="text-center py-5">
+        <p class="text-muted">No books found. Check back later!</p>
+    </div>
+    {% endif %}
+</div>
+
+<script>
+document.getElementById('sortSelect').addEventListener('change', function() {
+    const sortValue = this.value;
+    window.location.href = '{{ url_for("main.books") }}?sort=' + sortValue;
+});
+</script>
+{% endblock %}
