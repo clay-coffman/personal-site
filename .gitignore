@@ -29,13 +29,17 @@ uv.lock
 instance/
 .webassets-cache
 .env
+.env.*
+*.env
+flask_session/
+config.local.py
+local_settings.py
 
 # Database
 *.db
 *.sqlite
 *.sqlite3
 
-# IDE
 .vscode/
 .idea/
 *.swp
@@ -48,6 +52,46 @@ Thumbs.db
 
 # Logs
 *.log
+logs/
+*.pid
+*.seed
+*.pid.lock
+
+# Testing
+htmlcov/
+.coverage
+.coverage.*
+*.cover
+.pytest_cache/
+.hypothesis/
+.tox/
+
+# Type checkers
+.mypy_cache/
+.dmypy.json
+dmypy.json
+.pyre/
+.pytype/
+
+# Docker
+postgres-data/
+redis-data/
+mysql-data/
+
+# Local
+.python-version
+.tool-versions
+
+tmp/
+temp/
+*.tmp
+*.bak
+*.key
+*.pem
+*.crt
+*.p12
+private/
+secrets/
 
 docs/
 old_nextjs_archive/
