@@ -13,14 +13,28 @@
 
 /* Typography */
 body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-family: "Atkinson Hyperlegible", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
     color: #333;
     line-height: 1.6;
+    font-weight: 400;
+    font-optical-sizing: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 h1, h2, h3, h4, h5, h6 {
-    font-weight: 600;
+    font-family: "Atkinson Hyperlegible", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    font-weight: 700;
     color: #212529;
+}
+
+/* Name Typography - Oswald */
+.navbar-brand,
+.name-header {
+    font-family: "Oswald", sans-serif !important;
+    font-weight: 500 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1px !important;
 }
 
 /* Navigation */
@@ -30,11 +44,11 @@ h1, h2, h3, h4, h5, h6 {
 
 .navbar-brand {
     font-size: 1.25rem;
-    letter-spacing: -0.5px;
 }
 
 .nav-link {
-    font-weight: 500;
+    font-family: "Atkinson Hyperlegible", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    font-weight: 400;
     transition: color 0.2s;
 }
 
@@ -66,7 +80,8 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Buttons */
 .btn {
-    font-weight: 500;
+    font-family: "Atkinson Hyperlegible", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    font-weight: 400;
     padding: 0.5rem 1rem;
     transition: all 0.2s;
 }
@@ -83,6 +98,12 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Forms */
+.form-control,
+.form-select {
+    font-family: "Atkinson Hyperlegible", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    font-weight: 400;
+}
+
 .form-control:focus,
 .form-select:focus {
     border-color: var(--primary-color);
