@@ -33,14 +33,6 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link {{ 'active' if request.endpoint == 'main.index' }}"
-                           href="{{ url_for('main.index') }}">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link {{ 'active' if request.endpoint == 'main.books' }}"
-                           href="{{ url_for('main.books') }}">Bookshelf</a>
-                    </li>
                     {% if current_user.is_authenticated %}
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url_for('admin.books_dashboard') }}">Admin</a>
