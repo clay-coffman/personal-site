@@ -21,40 +21,30 @@
               href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
         <!-- Custom CSS -->
         <link rel="stylesheet"
-              href="{{ url_for('static', filename='css/custom.css') }}?v=13">
+              href="{{ url_for('static', filename='css/custom.css') }}?v=16">
         {% block extra_head %}{% endblock %}
     </head>
     <body>
         <!-- Navigation -->
-        <nav class="navbar navbar-expand-lg navbar-dark">
-            <div class="container">
-                <a class="navbar-brand fw-bold" href="{{ url_for("main.index") }}">Clay Coffman</a>
-                <button class="navbar-toggler"
-                        type="button"
-                        data-bs-toggle="collapse"
-                        data-bs-target="#navbarNav">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav ms-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url_for("main.blog") }}">Blog</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url_for("main.projects") }}">Projects</a>
-                        </li>
-                        {% if current_user.is_authenticated %}
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ url_for("admin.books_dashboard") }}">Admin</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ url_for("admin.logout") }}">Logout</a>
-                            </li>
-                        {% endif %}
-                    </ul>
-                </div>
-            </div>
+        <nav class="site-nav">
+            <button class="hamburger" id="menuToggle" aria-label="Toggle menu" aria-expanded="false">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
         </nav>
+
+        <!-- Slide-out Menu (Mobile) -->
+        <div class="menu-overlay" id="menuOverlay"></div>
+        <div class="slide-menu" id="slideMenu">
+            <button class="menu-close" id="menuClose" aria-label="Close menu">&times;</button>
+            <ul class="menu-links">
+                <li><a href="#hero" class="mobile-nav-link">Home</a></li>
+                <li><a href="#experience" class="mobile-nav-link">Experience</a></li>
+                <li><a href="#skills" class="mobile-nav-link">Skills</a></li>
+                <li><a href="#projects" class="mobile-nav-link">Projects</a></li>
+                <li><a href="#education" class="mobile-nav-link">Education</a></li>
+            </ul>
+        </div>
         <!-- Flash Messages -->
         {% with messages = get_flashed_messages(with_categories=true) %}
             {% if messages %}
@@ -74,15 +64,96 @@
             {% block content %}{% endblock %}
         </main>
         <!-- Footer -->
-        <footer class="py-4 mt-5">
-            <div class="container text-center">
-                <p class="text-muted mb-0">© {{ current_year }} Clay Coffman. All rights reserved.</p>
+        <footer class="site-footer">
+            <div class="container">
+                <p class="mb-0">© {{ current_year }} Clay Coffman</p>
             </div>
         </footer>
         <!-- Bootstrap JS Bundle -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Custom JS -->
         <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+        <script>
+            // Hamburger menu toggle
+            const menuToggle = document.getElementById('menuToggle');
+            const menuClose = document.getElementById('menuClose');
+            const slideMenu = document.getElementById('slideMenu');
+            const menuOverlay = document.getElementById('menuOverlay');
+
+            function openMenu() {
+                slideMenu.classList.add('open');
+                menuOverlay.classList.add('open');
+                menuToggle.setAttribute('aria-expanded', 'true');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeMenu() {
+                slideMenu.classList.remove('open');
+                menuOverlay.classList.remove('open');
+                menuToggle.setAttribute('aria-expanded', 'false');
+                document.body.style.overflow = '';
+            }
+
+            menuToggle.addEventListener('click', openMenu);
+            menuClose.addEventListener('click', closeMenu);
+            menuOverlay.addEventListener('click', closeMenu);
+
+            // Smooth scroll function
+            function smoothScrollTo(targetId) {
+                const targetSection = document.querySelector(targetId);
+                if (targetSection) {
+                    const offsetTop = targetSection.getBoundingClientRect().top + window.pageYOffset;
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
+            }
+
+            // Smooth scroll for section nav links
+            document.querySelectorAll('.section-nav a').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    smoothScrollTo(this.getAttribute('href'));
+                });
+            });
+
+            // Mobile menu links - close menu and smooth scroll
+            document.querySelectorAll('.mobile-nav-link').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    closeMenu();
+                    setTimeout(() => {
+                        smoothScrollTo(targetId);
+                    }, 300);
+                });
+            });
+
+            // Highlight active section in nav
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('.section-nav a');
+
+            function highlightNav() {
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    if (window.scrollY >= sectionTop - 200) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === '#' + current) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+
+            window.addEventListener('scroll', highlightNav, { passive: true });
+            highlightNav();
+        </script>
         {% block extra_scripts %}
         {% endblock %}
     </body>

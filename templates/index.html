@@ -1,125 +1,140 @@
 {% extends "base.html" %}
 
-{% block title %}Clay Coffman - About{% endblock %}
+{% block title %}Clay Coffman{% endblock %}
 
 {% block content %}
-<div class="container py-5">
-    <div class="row">
-        <!-- Left Column - Profile Sidebar -->
-        <div class="col-lg-4 mb-4">
-            <div class="text-center mb-4">
-                <!-- Profile Image -->
-                <img src="{{ url_for('static', filename='img/profile/profile_bw.jpeg') }}"
-                     alt="Clay Coffman"
-                     class="rounded-circle img-fluid mb-4 shadow"
-                     style="max-width: 250px;">
+<div class="page-layout">
+    <!-- Sticky Sidebar Nav -->
+    <aside class="sidebar-nav">
+        <nav class="section-nav" id="sectionNav">
+            <a href="#hero" class="nav-item">Home</a>
+            <a href="#experience" class="nav-item">Experience</a>
+            <a href="#skills" class="nav-item">Skills</a>
+            <a href="#projects" class="nav-item">Projects</a>
+            <a href="#education" class="nav-item">Education</a>
+        </nav>
+    </aside>
 
-                <p class="text-muted mb-3">
-                    <i class="fas fa-map-marker-alt"></i> {{ profile.location }}
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Hero Section -->
+        <section id="hero" class="hero-section">
+            <div class="hero-content">
+                <!-- Name -->
+                <h1 class="hero-name">
+                    <span class="name-line">Clay</span>
+                    <span class="name-line">Coffman</span>
+                </h1>
+
+                <!-- Bio -->
+                <p class="hero-bio">{{ profile.bio }}</p>
+
+                <!-- Location -->
+                <p class="hero-location">
+                    <i class="fas fa-map-marker-alt" aria-hidden="true"></i> {{ profile.location }}
                 </p>
-                <p class="mb-4">{{ profile.bio }}</p>
 
                 <!-- Social Links -->
-                <div class="d-flex justify-content-center gap-3 mb-4">
-                    <a href="{{ profile.social.linkedin }}" target="_blank" class="social-link">
-                        <i class="fab fa-linkedin fa-2x"></i>
+                <div class="hero-social">
+                    <a href="mailto:{{ profile.email }}" class="social-link" aria-label="Send email">
+                        <i class="fas fa-envelope" aria-hidden="true"></i>
                     </a>
-                    <a href="{{ profile.social.github }}" target="_blank" class="social-link">
-                        <i class="fab fa-github fa-2x"></i>
+                    <a href="{{ profile.social.linkedin }}" target="_blank" class="social-link" aria-label="LinkedIn">
+                        <i class="fab fa-linkedin" aria-hidden="true"></i>
+                    </a>
+                    <a href="{{ profile.social.github }}" target="_blank" class="social-link" aria-label="GitHub">
+                        <i class="fab fa-github" aria-hidden="true"></i>
                     </a>
                 </div>
-
-                <!-- Contact -->
-                <p class="small">
-                    <a href="mailto:{{ profile.email }}" class="text-decoration-none">
-                        <i class="fas fa-envelope"></i> {{ profile.email }}
-                    </a>
-                </p>
             </div>
+        </section>
 
-            <!-- Skills Section -->
-            <div class="skills-section mb-4">
-                <h3 class="sidebar-header">Skills</h3>
-                <div class="skills-list">
-                    {% for skill in profile.skills %}
-                    <span class="skill-tag">{{ skill }}</span>
-                    {% endfor %}
-                </div>
-            </div>
-
-            <!-- Education Section - Sidebar (Desktop Only) -->
-            <div class="sidebar-education">
-                <h3 class="sidebar-header">Education & Certifications</h3>
-                {% for edu in profile.education %}
-                <div class="sidebar-education-item">
-                    <h4>{{ edu.institution }}</h4>
-                    <p>{{ edu.credential }}</p>
-                    {% if edu.year %}
-                    <span class="year">{{ edu.year }}</span>
-                    {% endif %}
-                </div>
-                {% endfor %}
-            </div>
-        </div>
-
-        <!-- Right Column - Content -->
-        <div class="col-lg-8">
-            <!-- Experience Section -->
-            <section class="mb-5">
-                <h2 class="section-header mb-4 pb-2 border-bottom">Experience</h2>
-                <div class="experience-timeline">
-                    {% for exp in profile.experiences %}
-                    <div class="experience-item{% if loop.first %} career-break{% endif %}">
+        <!-- Experience Section -->
+        <section id="experience" class="content-section">
+            <h2 class="section-header">Experience</h2>
+            <div class="experience-list">
+                {% for exp in profile.experiences %}
+                <div class="experience-item{% if loop.first %} highlighted{% endif %}">
+                    <div class="experience-header">
                         <h3 class="company-name">
                             {% if exp.url %}
-                            <a href="{{ exp.url }}" target="_blank" class="text-decoration-none">
+                            <a href="{{ exp.url }}" target="_blank">
                                 {{ exp.company }} <i class="fas fa-external-link-alt small"></i>
                             </a>
                             {% else %}
                             {{ exp.company }}
                             {% endif %}
                         </h3>
-                        {% if exp.role %}
-                        <p class="job-title mb-0">{{ exp.role }}</p>
-                        {% endif %}
                         {% if exp.period %}
-                        <p class="job-period">{{ exp.period }}</p>
+                        <span class="job-period">{{ exp.period }}</span>
                         {% endif %}
-                        <p class="job-description">{{ exp.description }}</p>
                     </div>
-                    {% endfor %}
-                </div>
-            </section>
-
-            <!-- Side Projects Section -->
-            <section class="mb-5">
-                <h2 class="section-header mb-4 pb-2 border-bottom">Side Projects</h2>
-                {% for project in profile.side_projects %}
-                <div class="mb-3">
-                    <h3 class="company-name company-name-sm">{{ project.title }}</h3>
-                    <p class="job-description">{{ project.description }}</p>
+                    {% if exp.role %}
+                    <p class="job-title">{{ exp.role }}</p>
+                    {% endif %}
+                    <p class="job-description">{{ exp.description }}</p>
                 </div>
                 {% endfor %}
-            </section>
+            </div>
+        </section>
 
-            <!-- Education Section - Mobile Only -->
-            <section class="mb-5 mobile-education" style="display: none;">
-                <h2 class="section-header mb-4 pb-2 border-bottom">Education & Certifications</h2>
-                {% for edu in profile.education %}
-                <div class="mb-3">
-                    <div class="d-flex justify-content-between align-items-start">
-                        <div>
-                            <h3 class="company-name company-name-sm">{{ edu.institution }}</h3>
-                            <p class="job-description mb-0">{{ edu.credential }}</p>
-                        </div>
-                        {% if edu.year %}
-                        <span class="text-muted small">{{ edu.year }}</span>
-                        {% endif %}
+        <!-- Skills Section -->
+        <section id="skills" class="content-section">
+            <h2 class="section-header">Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-group">
+                    <h4 class="skill-category-label">Dotfiles</h4>
+                    <a href="https://github.com/clay-coffman/dotfiles" target="_blank">
+                        <i class="fas fa-terminal" aria-hidden="true"></i> dotfiles
+                    </a>
+                </div>
+                {% for category, skills in profile.skills.items() %}
+                <div class="skill-group">
+                    <h4 class="skill-category-label">{{ category }}</h4>
+                    <div class="skill-tags">
+                        {% for skill in skills %}
+                        <span class="skill-tag">{{ skill }}</span>
+                        {% endfor %}
                     </div>
                 </div>
                 {% endfor %}
-            </section>
-        </div>
+            </div>
+        </section>
+
+        <!-- Side Projects Section -->
+        <section id="projects" class="content-section">
+            <h2 class="section-header">Side Projects</h2>
+            {% for project in profile.side_projects %}
+            <div class="project-item">
+                <h3 class="company-name company-name-sm">
+                    {% if project.url %}
+                    <a href="{{ project.url }}" target="_blank">
+                        {{ project.title }} <i class="fas fa-external-link-alt small"></i>
+                    </a>
+                    {% else %}
+                    {{ project.title }}
+                    {% endif %}
+                </h3>
+                <p class="job-description">{{ project.description }}</p>
+            </div>
+            {% endfor %}
+        </section>
+
+        <!-- Education Section -->
+        <section id="education" class="content-section">
+            <h2 class="section-header">Education</h2>
+            {% for edu in profile.education %}
+            <div class="education-item">
+                <div class="d-flex justify-content-between align-items-baseline flex-wrap">
+                    <h3 class="company-name company-name-sm">{{ edu.institution }}</h3>
+                    {% if edu.year %}
+                    <span class="edu-year">{{ edu.year }}</span>
+                    {% endif %}
+                </div>
+                <p class="job-description">{{ edu.credential }}</p>
+            </div>
+            {% endfor %}
+        </section>
     </div>
 </div>
 {% endblock %}

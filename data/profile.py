@@ -2,13 +2,13 @@ profile_data = {
     "name": "Clay Coffman",
     "location": "Los Angeles, California",
     "email": "contact@clay21.mozmail.com",
-    "bio": "Founder, product leader, developer, lifelong learner.",
+    "bio": "Builder & ex-founder. Currently student.",
     "experiences": [
         {
-            "company": "Career Break/Student",
+            "company": "Student",
             "role": "",
             "period": "Fall 2024 - Present",
-            "description": "Decided it was time for a break. I always wanted to go back to school to finish the CS degree I dropped out of at UBC. Taking the time to go back and do that now, as well as travel a bit, get married, and explore some other passions/interests.",
+            "description": "Always wanted to go back and learn more about hardware/low-level systems and take more math and physics. Doing a second degree in CS at Oregon State. Current focus is hardware/systems-programming and networking.",
         },
         {
             "company": "TradeFoundry",
@@ -90,19 +90,11 @@ profile_data = {
             "year": "",
         },
     ],
-    "skills": [
-        "Python",
-        "Flask",
-        "JavaScript",
-        "React",
-        "Node.js",
-        "MongoDB",
-        "Express",
-        "C/C++",
-        "Linux",
-        "PostgreSQL",
-        "Git",
-    ],
+    "skills": {
+        "Languages": ["Python", "Java/TypeScript", "C/C++"],
+        "Backend": ["Flask", "Node.js", "Bun", "Express", "PostgreSQL", "MongoDB"],
+        "Other": ["Linux", "Docker"],
+    },
     "social": {
         "linkedin": "https://www.linkedin.com/in/claymcoffman/",
         "github": "https://github.com/clay-coffman",
