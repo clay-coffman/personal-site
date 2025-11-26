@@ -5,16 +5,15 @@
 {% block content %}
 <div class="container py-5">
     <div class="row">
-        <!-- Left Column - Profile -->
+        <!-- Left Column - Profile Sidebar -->
         <div class="col-lg-4 mb-4">
-            <div class="text-center">
+            <div class="text-center mb-4">
                 <!-- Profile Image -->
                 <img src="{{ url_for('static', filename='img/profile/profile_bw.jpeg') }}"
                      alt="Clay Coffman"
                      class="rounded-circle img-fluid mb-4 shadow"
                      style="max-width: 250px;">
 
-                <h1 class="h3 mb-2 name-header">{{ profile.name }}</h1>
                 <p class="text-muted mb-3">
                     <i class="fas fa-map-marker-alt"></i> {{ profile.location }}
                 </p>
@@ -22,10 +21,10 @@
 
                 <!-- Social Links -->
                 <div class="d-flex justify-content-center gap-3 mb-4">
-                    <a href="{{ profile.social.linkedin }}" target="_blank" class="text-primary">
+                    <a href="{{ profile.social.linkedin }}" target="_blank" class="social-link">
                         <i class="fab fa-linkedin fa-2x"></i>
                     </a>
-                    <a href="{{ profile.social.github }}" target="_blank" class="text-dark">
+                    <a href="{{ profile.social.github }}" target="_blank" class="social-link">
                         <i class="fab fa-github fa-2x"></i>
                     </a>
                 </div>
@@ -37,59 +36,81 @@
                     </a>
                 </p>
             </div>
+
+            <!-- Skills Section -->
+            <div class="skills-section mb-4">
+                <h3 class="sidebar-header">Skills</h3>
+                <div class="skills-list">
+                    {% for skill in profile.skills %}
+                    <span class="skill-tag">{{ skill }}</span>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- Education Section - Sidebar (Desktop Only) -->
+            <div class="sidebar-education">
+                <h3 class="sidebar-header">Education & Certifications</h3>
+                {% for edu in profile.education %}
+                <div class="sidebar-education-item">
+                    <h4>{{ edu.institution }}</h4>
+                    <p>{{ edu.credential }}</p>
+                    {% if edu.year %}
+                    <span class="year">{{ edu.year }}</span>
+                    {% endif %}
+                </div>
+                {% endfor %}
+            </div>
         </div>
 
         <!-- Right Column - Content -->
         <div class="col-lg-8">
             <!-- Experience Section -->
             <section class="mb-5">
-                <h2 class="h4 mb-4 pb-2 border-bottom">Experience</h2>
-                {% for exp in profile.experiences %}
-                <div class="mb-4">
-                    <div class="d-flex justify-content-between align-items-start">
-                        <div>
-                            <h3 class="h5 mb-1">
-                                {% if exp.url %}
-                                <a href="{{ exp.url }}" target="_blank" class="text-decoration-none text-dark">
-                                    {{ exp.company }} <i class="fas fa-external-link-alt small"></i>
-                                </a>
-                                {% else %}
-                                {{ exp.company }}
-                                {% endif %}
-                            </h3>
-                            {% if exp.role %}
-                            <p class="text-primary mb-1">{{ exp.role }}</p>
+                <h2 class="section-header mb-4 pb-2 border-bottom">Experience</h2>
+                <div class="experience-timeline">
+                    {% for exp in profile.experiences %}
+                    <div class="experience-item{% if loop.first %} career-break{% endif %}">
+                        <h3 class="company-name">
+                            {% if exp.url %}
+                            <a href="{{ exp.url }}" target="_blank" class="text-decoration-none">
+                                {{ exp.company }} <i class="fas fa-external-link-alt small"></i>
+                            </a>
+                            {% else %}
+                            {{ exp.company }}
                             {% endif %}
-                        </div>
-                        {% if exp.period %}
-                        <span class="text-muted small">{{ exp.period }}</span>
+                        </h3>
+                        {% if exp.role %}
+                        <p class="job-title mb-0">{{ exp.role }}</p>
                         {% endif %}
+                        {% if exp.period %}
+                        <p class="job-period">{{ exp.period }}</p>
+                        {% endif %}
+                        <p class="job-description">{{ exp.description }}</p>
                     </div>
-                    <p class="text-muted">{{ exp.description }}</p>
+                    {% endfor %}
                 </div>
-                {% endfor %}
             </section>
 
             <!-- Side Projects Section -->
             <section class="mb-5">
-                <h2 class="h4 mb-4 pb-2 border-bottom">Side Projects</h2>
+                <h2 class="section-header mb-4 pb-2 border-bottom">Side Projects</h2>
                 {% for project in profile.side_projects %}
                 <div class="mb-3">
-                    <h3 class="h6 mb-1">{{ project.title }}</h3>
-                    <p class="text-muted mb-0">{{ project.description }}</p>
+                    <h3 class="company-name company-name-sm">{{ project.title }}</h3>
+                    <p class="job-description">{{ project.description }}</p>
                 </div>
                 {% endfor %}
             </section>
 
-            <!-- Education Section -->
-            <section class="mb-5">
-                <h2 class="h4 mb-4 pb-2 border-bottom">Education & Certifications</h2>
+            <!-- Education Section - Mobile Only -->
+            <section class="mb-5 mobile-education" style="display: none;">
+                <h2 class="section-header mb-4 pb-2 border-bottom">Education & Certifications</h2>
                 {% for edu in profile.education %}
                 <div class="mb-3">
                     <div class="d-flex justify-content-between align-items-start">
                         <div>
-                            <h3 class="h6 mb-1">{{ edu.institution }}</h3>
-                            <p class="text-muted mb-0">{{ edu.credential }}</p>
+                            <h3 class="company-name company-name-sm">{{ edu.institution }}</h3>
+                            <p class="job-description mb-0">{{ edu.credential }}</p>
                         </div>
                         {% if edu.year %}
                         <span class="text-muted small">{{ edu.year }}</span>

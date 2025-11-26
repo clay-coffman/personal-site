@@ -1,211 +1,282 @@
 /* Custom styles for Clay Coffman's personal site */
 
 :root {
-    --primary-color: #007bff;
-    --secondary-color: #6c757d;
-    --success-color: #28a745;
-    --info-color: #17a2b8;
-    --warning-color: #ffc107;
-    --danger-color: #dc3545;
-    --light-color: #f8f9fa;
-    --dark-color: #343a40;
+    /* Color Palette - Black & White with Ocean Blue accent */
+    --primary: #1a1a1a;
+    --primary-light: #333333;
+    --background: #ffffff;
+    --background-alt: #f5f5f5;
+    --accent: #0077b6; /* Ocean blue */
+    --accent-dark: #005a8c;
+    --muted: #666666;
 }
 
 /* Typography */
 body {
-    font-family: "Atkinson Hyperlegible", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
-    color: #333;
+    font-family: "Atkinson Hyperlegible Mono", monospace;
+    font-size: 17px;
+    color: var(--primary);
     line-height: 1.6;
     font-weight: 400;
-    font-optical-sizing: auto;
+    background-color: var(--background);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
 
 h1, h2, h3, h4, h5, h6 {
-    font-family: "Atkinson Hyperlegible", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
-    font-weight: 700;
-    color: #212529;
+    font-family: "Bebas Neue", sans-serif;
+    font-weight: 400;
+    color: var(--primary);
+    letter-spacing: 1px;
 }
 
-/* Name Typography - Oswald */
-.navbar-brand,
-.name-header {
-    font-family: "Oswald", sans-serif !important;
-    font-weight: 500 !important;
-    text-transform: uppercase !important;
-    letter-spacing: 1px !important;
+/* Section Headers */
+.section-header {
+    font-family: "Bebas Neue", sans-serif;
+    font-weight: 400;
+    letter-spacing: 2px;
+    font-size: 2.5rem;
+    color: var(--primary);
+    margin-bottom: 1.5rem;
 }
 
 /* Navigation */
 .navbar {
-    box-shadow: 0 2px 4px rgba(0,0,0,.08);
+    background-color: var(--primary) !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
 .navbar-brand {
-    font-size: 1.25rem;
+    font-family: "Bebas Neue", sans-serif;
+    font-weight: 400;
+    letter-spacing: 2px;
+    font-size: 1.75rem;
+    color: var(--background) !important;
+}
+
+.navbar-brand:hover {
+    color: var(--accent) !important;
 }
 
 .nav-link {
-    font-family: "Atkinson Hyperlegible", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
-    font-weight: 400;
+    font-family: "Atkinson Hyperlegible Mono", monospace;
+    color: var(--background) !important;
     transition: color 0.2s;
 }
 
-.nav-link:hover {
-    color: var(--primary-color) !important;
+.nav-link:hover,
+.nav-link.active {
+    color: var(--accent) !important;
 }
 
-.nav-link.active {
-    color: var(--primary-color) !important;
-    border-bottom: 2px solid var(--primary-color);
-    padding-bottom: 0.25rem;
+/* Links */
+a {
+    color: var(--accent);
+    text-decoration: none;
+    background-image: linear-gradient(currentColor, currentColor);
+    background-position: 0% 100%;
+    background-repeat: no-repeat;
+    background-size: 0% 1px;
+    transition: background-size 0.2s ease-out, color 0.2s ease-out;
+}
+
+a:hover {
+    color: var(--accent-dark);
+    background-size: 100% 1px;
+}
+
+/* Disable underline animation for nav, social, and button links */
+.nav-link,
+.navbar-brand,
+.social-link,
+.btn {
+    background-image: none;
 }
 
 /* Profile Image */
 .rounded-circle {
-    border: 4px solid #fff;
+    border: 4px solid var(--primary);
 }
 
-/* Cards */
-.card {
-    border: 1px solid rgba(0,0,0,.125);
-    transition: transform 0.2s, box-shadow 0.2s;
+/* Skills */
+.skills-list {
+    text-align: left;
 }
 
-.book-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0,0,0,.15) !important;
+.skill-tag {
+    display: inline-block;
+    background-color: var(--primary);
+    color: var(--background);
+    padding: 0.25rem 0.75rem;
+    border-radius: 1rem;
+    font-size: 0.85rem;
+    margin: 0.2rem 0.4rem 0.2rem 0;
 }
 
-/* Buttons */
-.btn {
-    font-family: "Atkinson Hyperlegible", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+/* Sidebar Headers */
+.sidebar-header {
+    font-family: "Bebas Neue", sans-serif;
     font-weight: 400;
-    padding: 0.5rem 1rem;
-    transition: all 0.2s;
+    letter-spacing: 1.5px;
+    font-size: 1.6rem;
+    color: var(--primary);
+    margin-bottom: 1rem;
+    border-bottom: 2px solid var(--primary);
+    padding-bottom: 0.5rem;
 }
 
-.btn-primary {
-    background-color: var(--primary-color);
-    border-color: var(--primary-color);
+/* Experience Timeline */
+.experience-timeline {
+    position: relative;
 }
 
-.btn-primary:hover {
-    background-color: #0056b3;
-    border-color: #0056b3;
-    transform: translateY(-1px);
+.experience-item {
+    position: relative;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
 }
 
-/* Forms */
-.form-control,
-.form-select {
-    font-family: "Atkinson Hyperlegible", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+/* Career Break */
+.experience-item.career-break {
+    background-color: var(--background-alt);
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    border-left: 4px solid var(--accent);
+}
+
+/* Company Name */
+.company-name {
+    font-family: "Bebas Neue", sans-serif;
     font-weight: 400;
+    font-size: 2rem;
+    color: var(--primary);
+    margin-bottom: 0.1rem;
+    letter-spacing: 1px;
+    line-height: 1;
 }
 
-.form-control:focus,
-.form-select:focus {
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+/* Smaller variant for side projects and secondary items */
+.company-name.company-name-sm {
+    font-size: 1.4rem;
+}
+
+/* Job Title */
+.job-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--muted);
+    margin-bottom: 0.25rem;
+}
+
+/* Job Period */
+.job-period {
+    font-size: 0.95rem;
+    color: var(--muted);
+    margin-bottom: 0.75rem;
+    font-style: italic;
+}
+
+/* Job Description */
+.job-description {
+    color: var(--primary);
+    line-height: 1.4;
+}
+
+/* Sidebar Education */
+.sidebar-education-item {
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--background-alt);
+}
+
+.sidebar-education-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.sidebar-education-item h4 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 0.25rem;
+}
+
+.sidebar-education-item p {
+    font-size: 0.95rem;
+    color: var(--muted);
+    margin-bottom: 0;
+}
+
+.sidebar-education-item .year {
+    font-size: 0.8rem;
+    color: var(--muted);
 }
 
 /* Social Links */
-.fab {
+.social-link {
+    color: var(--primary) !important;
     transition: transform 0.2s, color 0.2s;
 }
 
-.fab:hover {
+.social-link:hover {
+    color: var(--accent) !important;
     transform: scale(1.1);
 }
 
-/* Experience Section */
-.border-bottom {
-    border-color: #dee2e6 !important;
+/* Buttons */
+.btn-primary {
+    background-color: var(--accent);
+    border-color: var(--accent);
+}
+
+.btn-primary:hover {
+    background-color: var(--accent-dark);
+    border-color: var(--accent-dark);
+}
+
+/* Forms */
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 0.2rem rgba(0, 119, 182, 0.25);
 }
 
 /* Footer */
 footer {
-    margin-top: auto;
-    border-top: 1px solid #dee2e6;
+    background-color: var(--primary) !important;
+    border-top: none;
 }
 
-/* Book Rating Stars */
-.fa-star {
-    font-size: 0.9rem;
+footer p {
+    color: var(--background) !important;
 }
 
-/* Alert Messages */
-.alert {
-    border-radius: 0.5rem;
-    animation: slideDown 0.3s ease-out;
+/* Book Cards */
+.book-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
 }
 
-@keyframes slideDown {
-    from {
-        transform: translateY(-10px);
-        opacity: 0;
+/* Responsive */
+@media (max-width: 991px) {
+    .sidebar-education {
+        display: none;
     }
-    to {
-        transform: translateY(0);
-        opacity: 1;
+
+    .mobile-education {
+        display: block !important;
     }
 }
 
-/* Responsive adjustments */
+@media (min-width: 992px) {
+    .mobile-education {
+        display: none !important;
+    }
+}
+
 @media (max-width: 768px) {
     .navbar-brand {
-        font-size: 1.1rem;
+        font-size: 1.25rem !important;
     }
-
-    .book-card .card-body {
-        padding: 1rem;
-    }
-
-    h1 {
-        font-size: 1.75rem;
-    }
-
-    h2 {
-        font-size: 1.5rem;
-    }
-}
-
-/* Utility Classes */
-.shadow-sm {
-    box-shadow: 0 .125rem .25rem rgba(0,0,0,.075) !important;
-}
-
-.text-decoration-none:hover {
-    text-decoration: underline !important;
-}
-
-/* Admin Dashboard */
-.table-hover tbody tr:hover {
-    background-color: rgba(0,0,0,.03);
-}
-
-/* Loading State */
-.loading {
-    opacity: 0.6;
-    pointer-events: none;
-}
-
-/* Custom scrollbar */
-::-webkit-scrollbar {
-    width: 10px;
-    height: 10px;
-}
-
-::-webkit-scrollbar-track {
-    background: #f1f1f1;
-}
-
-::-webkit-scrollbar-thumb {
-    background: #888;
-    border-radius: 5px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: #555;
 }

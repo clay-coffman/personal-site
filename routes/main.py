@@ -26,3 +26,15 @@ def books():
                          .order_by(desc(Book.rating), desc(Book.date_completed)).all()
 
     return render_template('books.html', books=books, current_sort=sort)
+
+
+@main_bp.route('/blog')
+def blog():
+    """Blog page"""
+    return render_template('blog.html')
+
+
+@main_bp.route('/projects')
+def projects():
+    """Projects page"""
+    return render_template('projects.html')
