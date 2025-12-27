@@ -1,46 +1,32 @@
 <div class="card h-100 shadow-sm book-card">
-    <div class="card-body">
-        <!-- Book Cover -->
-        {% if book.cover_image %}
-        <div class="text-center mb-3">
-            <img src="{{ book.cover_image }}"
-                 alt="{{ book.title }}"
-                 class="img-fluid rounded"
-                 style="max-height: 200px; object-fit: cover;"
-                 loading="lazy">
-        </div>
-        {% endif %}
+    <!-- Book Cover -->
+    {% if book.has_cover %}
+    <img src="{{ url_for('main.cover', book_id=book.id) }}"
+         alt="{{ book.title }}"
+         class="card-img-top"
+         style="height: 280px; object-fit: cover;"
+         loading="lazy">
+    {% else %}
+    <div class="card-img-top bg-secondary d-flex align-items-center justify-content-center"
+         style="height: 280px;">
+        <span class="text-white-50">No Cover</span>
+    </div>
+    {% endif %}
 
+    <div class="card-body">
         <!-- Book Title -->
-        <h3 class="h5 card-title">{{ book.title }}</h3>
+        <h3 class="h6 card-title mb-1">{{ book.title }}</h3>
 
         <!-- Author -->
-        <p class="text-muted mb-2">by {{ book.author }}</p>
+        <p class="text-muted small mb-2">{{ book.author }}</p>
 
-        <!-- Rating -->
-        {% if book.rating %}
-        <div class="mb-2">
-            {% for i in range(5) %}
-                {% if i < book.rating %}
-                <i class="fas fa-star text-warning"></i>
-                {% else %}
-                <i class="far fa-star text-warning"></i>
-                {% endif %}
+        <!-- Tags/Genre -->
+        {% if book.tags %}
+        <div>
+            {% for tag in book.tags[:2] %}
+            <span class="badge bg-light text-dark">{{ tag }}</span>
             {% endfor %}
         </div>
-        {% endif %}
-
-        <!-- Date Completed -->
-        {% if book.date_completed %}
-        <p class="text-muted small mb-0">
-            <i class="far fa-calendar"></i>
-            {{ book.date_completed.strftime('%B %Y') }}
-        </p>
-        {% endif %}
-
-        <!-- Currently Reading Badge -->
-        {% if book.currently_reading %}
-        <span class="badge bg-primary mt-2">Currently Reading</span>
         {% endif %}
     </div>
 </div>

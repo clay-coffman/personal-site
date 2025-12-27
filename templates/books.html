@@ -3,49 +3,57 @@
 {% block title %}Clay Coffman - Bookshelf{% endblock %}
 
 {% block content %}
-<div class="container py-5">
-    <!-- Header -->
-    <div class="row mb-4">
-        <div class="col-md-8">
-            <h1 class="h2 mb-3">Bookshelf</h1>
-            <p class="text-muted">
-                A collection of books I've read and recommend. Inspired by
-                <a href="https://patrickcollison.com/bookshelf" target="_blank" class="text-decoration-none">
-                    Patrick Collison's bookshelf</a>.
-            </p>
-        </div>
-        <div class="col-md-4">
-            <!-- Sort Dropdown -->
-            <div class="d-flex justify-content-md-end">
-                <select id="sortSelect" class="form-select" style="width: auto;">
-                    <option value="rating" {% if current_sort == 'rating' %}selected{% endif %}>Highest Rated</option>
-                    <option value="date" {% if current_sort == 'date' %}selected{% endif %}>Recently Read</option>
-                    <option value="title" {% if current_sort == 'title' %}selected{% endif %}>Title (A-Z)</option>
-                </select>
+<div class="page-layout">
+    <!-- Sticky Sidebar Nav -->
+    <aside class="sidebar-nav">
+        <nav class="section-nav" id="sectionNav">
+            <a href="{{ url_for('main.index') }}" class="nav-item">Home</a>
+            <div class="nav-subitems collapsed">
+                <a href="/#experience" class="nav-subitem">Experience</a>
+                <a href="/#skills" class="nav-subitem">Skills</a>
+                <a href="/#projects" class="nav-subitem">Projects</a>
+                <a href="/#education" class="nav-subitem">Education</a>
             </div>
+            <a href="{{ url_for('main.books') }}" class="nav-item active">Books</a>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="container py-5">
+            <!-- Header -->
+            <div class="row mb-4">
+                <div class="col">
+                    <h1 class="h2 mb-3">Bookshelf</h1>
+                    <p class="text-muted">
+                        These are books that I either enjoyed enough to want to read
+                        them again, or had a profound impact on my life (or both, in
+                        some cases).
+                    </p>
+                    <p class="text-muted">
+                        <em>
+                            Technically, they are books I've rated 5-stars in
+                            Calibre, which I also host on this server.
+                        </em>
+                    </p>
+                </div>
+            </div>
+
+            <!-- Books Grid -->
+            <div class="row g-4">
+                {% for book in books %}
+                <div class="col-6 col-md-4 col-lg-3">
+                    {% include 'components/book_card.html' %}
+                </div>
+                {% endfor %}
+            </div>
+
+            {% if not books %}
+            <div class="text-center py-5">
+                <p class="text-muted">No books found. Check back later!</p>
+            </div>
+            {% endif %}
         </div>
     </div>
-
-    <!-- Books Grid -->
-    <div class="row g-4">
-        {% for book in books %}
-        <div class="col-12 col-md-6 col-lg-4">
-            {% include 'components/book_card.html' %}
-        </div>
-        {% endfor %}
-    </div>
-
-    {% if not books %}
-    <div class="text-center py-5">
-        <p class="text-muted">No books found. Check back later!</p>
-    </div>
-    {% endif %}
 </div>
-
-<script>
-document.getElementById('sortSelect').addEventListener('change', function() {
-    const sortValue = this.value;
-    window.location.href = '{{ url_for("main.books") }}?sort=' + sortValue;
-});
-</script>
 {% endblock %}

@@ -1,7 +1,6 @@
-from flask import Blueprint, render_template, request
-from models.book import Book
+from flask import Blueprint, render_template, request, send_file, abort
 from data.profile import profile_data
-from sqlalchemy import desc
+from calibre import get_favorite_books, get_cover_path
 
 main_bp = Blueprint('main', __name__)
 
@@ -12,20 +11,18 @@ def index():
 
 @main_bp.route('/books')
 def books():
-    """Public bookshelf page"""
-    sort = request.args.get('sort', 'rating')
+    """Public bookshelf - 5-star books from Calibre library"""
+    books = get_favorite_books()
+    return render_template('books.html', books=books)
 
-    # Query books based on sort parameter
-    if sort == 'date':
-        books = Book.query.filter(Book.date_completed.isnot(None))\
-                         .order_by(desc(Book.date_completed)).all()
-    elif sort == 'title':
-        books = Book.query.order_by(Book.title).all()
-    else:  # Default to rating
-        books = Book.query.filter(Book.rating.isnot(None))\
-                         .order_by(desc(Book.rating), desc(Book.date_completed)).all()
 
-    return render_template('books.html', books=books, current_sort=sort)
+@main_bp.route('/covers/<int:book_id>')
+def cover(book_id):
+    """Serve cover image from Calibre library"""
+    cover_path = get_cover_path(book_id)
+    if not cover_path:
+        abort(404)
+    return send_file(cover_path, mimetype='image/jpeg', max_age=86400)
 
 
 @main_bp.route('/blog')
