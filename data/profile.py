@@ -2,7 +2,6 @@ profile_data = {
     "name": "Clay Coffman",
     "location": "Los Angeles, California",
     "email": "contact@clay21.mozmail.com",
-    "bio": "Builder & ex-founder. Currently student.",
     "experiences": [
         {
             "company": "Student",

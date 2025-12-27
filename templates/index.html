@@ -7,11 +7,14 @@
     <!-- Sticky Sidebar Nav -->
     <aside class="sidebar-nav">
         <nav class="section-nav" id="sectionNav">
-            <a href="#hero" class="nav-item">Home</a>
-            <a href="#experience" class="nav-item">Experience</a>
-            <a href="#skills" class="nav-item">Skills</a>
-            <a href="#projects" class="nav-item">Projects</a>
-            <a href="#education" class="nav-item">Education</a>
+            <a href="{{ url_for('main.index') }}" class="nav-item active">Home</a>
+            <div class="nav-subitems">
+                <a href="#experience" class="nav-subitem">Experience</a>
+                <a href="#skills" class="nav-subitem">Skills</a>
+                <a href="#projects" class="nav-subitem">Projects</a>
+                <a href="#education" class="nav-subitem">Education</a>
+            </div>
+            <a href="{{ url_for('main.books') }}" class="nav-item">Books</a>
         </nav>
     </aside>
 
@@ -25,9 +28,6 @@
                     <span class="name-line">Clay</span>
                     <span class="name-line">Coffman</span>
                 </h1>
-
-                <!-- Bio -->
-                <p class="hero-bio">{{ profile.bio }}</p>
 
                 <!-- Location -->
                 <p class="hero-location">

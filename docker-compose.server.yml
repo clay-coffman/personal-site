@@ -16,6 +16,7 @@ services:
     volumes:
       - ./data:/app/data
       - ./static:/app/static:ro
+      - /mnt/volume-hil-1/ncdata/personal-1/files/Books/Calibre:/calibre:ro
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:5000/api/health"]

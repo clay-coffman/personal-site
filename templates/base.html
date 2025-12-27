@@ -21,7 +21,7 @@
               href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
         <!-- Custom CSS -->
         <link rel="stylesheet"
-              href="{{ url_for('static', filename='css/custom.css') }}?v=16">
+              href="{{ url_for('static', filename='css/custom.css') }}?v=17">
         {% block extra_head %}{% endblock %}
     </head>
     <body>
@@ -38,11 +38,12 @@
         <div class="slide-menu" id="slideMenu">
             <button class="menu-close" id="menuClose" aria-label="Close menu">&times;</button>
             <ul class="menu-links">
-                <li><a href="#hero" class="mobile-nav-link">Home</a></li>
-                <li><a href="#experience" class="mobile-nav-link">Experience</a></li>
-                <li><a href="#skills" class="mobile-nav-link">Skills</a></li>
-                <li><a href="#projects" class="mobile-nav-link">Projects</a></li>
-                <li><a href="#education" class="mobile-nav-link">Education</a></li>
+                <li><a href="/" class="mobile-nav-link">Home</a></li>
+                <li><a href="/#experience" class="mobile-nav-link">Experience</a></li>
+                <li><a href="/#skills" class="mobile-nav-link">Skills</a></li>
+                <li><a href="/#projects" class="mobile-nav-link">Projects</a></li>
+                <li><a href="/#education" class="mobile-nav-link">Education</a></li>
+                <li><a href="{{ url_for('main.books') }}" class="mobile-nav-link">Books</a></li>
             </ul>
         </div>
         <!-- Flash Messages -->
@@ -110,23 +111,30 @@
                 }
             }
 
-            // Smooth scroll for section nav links
+            // Smooth scroll for section nav links (only for anchor links)
             document.querySelectorAll('.section-nav a').forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    smoothScrollTo(this.getAttribute('href'));
-                });
+                const href = link.getAttribute('href');
+                if (href.startsWith('#')) {
+                    link.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        smoothScrollTo(href);
+                    });
+                }
             });
 
-            // Mobile menu links - close menu and smooth scroll
+            // Mobile menu links - close menu and navigate
             document.querySelectorAll('.mobile-nav-link').forEach(link => {
                 link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const targetId = this.getAttribute('href');
+                    const href = this.getAttribute('href');
                     closeMenu();
-                    setTimeout(() => {
-                        smoothScrollTo(targetId);
-                    }, 300);
+                    // Only intercept pure anchor links for smooth scroll
+                    if (href.startsWith('#')) {
+                        e.preventDefault();
+                        setTimeout(() => {
+                            smoothScrollTo(href);
+                        }, 300);
+                    }
+                    // Regular links and /#section links navigate normally
                 });
             });
 
