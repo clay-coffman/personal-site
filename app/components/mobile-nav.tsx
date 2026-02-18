@@ -62,8 +62,8 @@ export function MobileNav() {
           {[
             { to: "/", label: "Home" },
             { to: "/#experience", label: "Experience" },
-            { to: "/#skills", label: "Skills" },
             { to: "/#projects", label: "Projects" },
+            { to: "/#skills", label: "Skills" },
             { to: "/#education", label: "Education" },
             { to: "/books", label: "Books" },
           ].map(({ to, label }) => (

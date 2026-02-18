@@ -6,10 +6,11 @@ export interface Experience {
   url?: string;
 }
 
-export interface SideProject {
+export interface Project {
   title: string;
   description: string;
-  url?: string;
+  url: string;
+  language?: string;
 }
 
 export interface Education {
@@ -23,7 +24,7 @@ export interface ProfileData {
   location: string;
   email: string;
   experiences: Experience[];
-  sideProjects: SideProject[];
+  projects: Project[];
   education: Education[];
   skills: Record<string, string[]>;
   social: {
@@ -43,6 +44,19 @@ export const profileData: ProfileData = {
       period: "Fall 2024 - Present",
       description:
         "Always wanted to go back and learn more about hardware/low-level systems and take more math and physics. Doing a second degree in CS at Oregon State. Current focus is hardware/systems-programming and networking.",
+    },
+    {
+      company: "Due Diligence Consulting",
+      role: "",
+      period: "2022 - Present",
+      description:
+        "I have helped venture funds and other investors evalute potential investments.",
+    },
+    {
+      company: "Angel Investing",
+      role: "",
+      period: "2022 - Present",
+      description: "CarePilot, Harmony.ai, ReNFT, Cabin Labs",
     },
     {
       company: "TradeFoundry",
@@ -94,15 +108,25 @@ export const profileData: ProfileData = {
         "I cold-called martial arts and yoga studios to sell them an out-dated CRM software. It was tough.",
     },
   ],
-  sideProjects: [
+  projects: [
     {
-      title: "Due Diligence Consulting",
+      title: "cc-notify",
       description:
-        "I have helped venture funds and other investors evalute potential investments.",
+        "Desktop notifications for Claude Code -- know when any instance needs your attention",
+      url: "https://github.com/clay-coffman/cc-notify",
+      language: "Shell",
     },
     {
-      title: "Angel Investing",
-      description: "CarePilot, Harmony.ai, ReNFT, Cabin Labs",
+      title: "dotfiles",
+      description: "new dotfiles repo",
+      url: "https://github.com/clay-coffman/dotfiles",
+      language: "Lua",
+    },
+    {
+      title: "personal-site",
+      description: "clay.bio",
+      url: "https://github.com/clay-coffman/personal-site",
+      language: "TypeScript",
     },
   ],
   education: [

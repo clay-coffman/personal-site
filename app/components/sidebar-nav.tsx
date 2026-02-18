@@ -29,7 +29,7 @@ export function SidebarNav({ activeSection }: SidebarNavProps) {
           )}
           style={{ marginTop: isHome ? "-0.5rem" : 0 }}
         >
-          {["experience", "skills", "projects", "education"].map((section) => (
+          {["experience", "projects", "skills", "education"].map((section) => (
             <a
               key={section}
               href={`#${section}`}
