@@ -61,15 +61,29 @@ export function getFavoriteBooks(): CalibreBook[] {
 
   conn.close();
 
+  const { library } = getCalibrePaths();
+
   return rows.map((row) => ({
     id: row.id,
     title: row.title,
-    author: row.authors || parseAuthorSort(row.author_sort),
+    author: row.authors
+      ? formatAuthors(row.authors)
+      : parseAuthorSort(row.author_sort),
     authorSort: row.author_sort,
     path: row.path,
-    hasCover: Boolean(row.has_cover),
+    hasCover:
+      Boolean(row.has_cover) &&
+      existsSync(join(library, row.path, "cover.jpg")),
     tags: row.tags ? row.tags.split(",") : [],
   }));
+}
+
+function formatAuthors(authors: string): string {
+  return authors
+    .split(",")
+    .map((a) => a.trim())
+    .map((a) => a.replace(/\s*\([^)]*\)/, ""))
+    .join(", ");
 }
 
 export function parseAuthorSort(authorSort: string): string {

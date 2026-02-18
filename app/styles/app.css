@@ -81,9 +81,14 @@ a:hover {
   background-size: 100% 1px;
 }
 
-/* Disable underline animation for special links */
+/* Disable underline animation and reset color for nav/special links */
 .no-underline-anim {
   background-image: none;
+  color: inherit;
+}
+
+.no-underline-anim:hover {
+  color: inherit;
 }
 
 /* Custom text size utilities */
