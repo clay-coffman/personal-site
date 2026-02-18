@@ -14,7 +14,7 @@ build/
 *.db
 *.sqlite
 *.sqlite3
-data/
+/data/
 
 # Editor
 .vscode/
