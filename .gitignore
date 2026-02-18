@@ -1,45 +1,22 @@
-# Python
-__pycache__/
-*.py[cod]
-*$py.class
-*.so
-.Python
-env/
-venv/
-.venv/
-ENV/
-build/
-develop-eggs/
-dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-wheels/
-*.egg-info/
-.installed.cfg
-*.egg
-uv.lock
+# Dependencies
+node_modules/
 
-# Flask
-instance/
-.webassets-cache
+# Build
+build/
+.react-router/
+
+# Environment
 .env
 .env.*
-*.env
-flask_session/
-config.local.py
-local_settings.py
+!.env.example
 
 # Database
 *.db
 *.sqlite
 *.sqlite3
+data/
 
+# Editor
 .vscode/
 .idea/
 *.swp
@@ -53,45 +30,13 @@ Thumbs.db
 # Logs
 *.log
 logs/
-*.pid
-*.seed
-*.pid.lock
 
-# Testing
-htmlcov/
-.coverage
-.coverage.*
-*.cover
-.pytest_cache/
-.hypothesis/
-.tox/
-
-# Type checkers
-.mypy_cache/
-.dmypy.json
-dmypy.json
-.pyre/
-.pytype/
-
-# Docker
-postgres-data/
-redis-data/
-mysql-data/
-
-# Local
-.python-version
-.tool-versions
-
-tmp/
-temp/
-*.tmp
-*.bak
+# Secrets
 *.key
 *.pem
 *.crt
-*.p12
 private/
 secrets/
 
-docs/
-old_nextjs_archive/
+# Reference screenshots
+*.png

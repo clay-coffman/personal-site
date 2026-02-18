@@ -1,0 +1,199 @@
+@import "tailwindcss";
+
+@theme {
+  /* Colors - Light mode defaults */
+  --color-background: #fff;
+  --color-background-alt: #f5f5f5;
+  --color-foreground: #1a1a1a;
+  --color-foreground-light: #333333;
+  --color-muted: #666;
+  --color-accent: #0077b6;
+  --color-accent-dark: #005a8c;
+  --color-border: #e5e5e5;
+
+  /* Fonts */
+  --font-mono: "Atkinson Hyperlegible Mono", monospace;
+  --font-heading: "Bebas Neue", sans-serif;
+
+  /* Sidebar */
+  --sidebar-width: 180px;
+}
+
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-background: #0a0a0a;
+    --color-background-alt: #1a1a1a;
+    --color-foreground: #ededed;
+    --color-foreground-light: #d4d4d4;
+    --color-muted: #a3a3a3;
+    --color-accent: #38bdf8;
+    --color-accent-dark: #0ea5e9;
+    --color-border: #2a2a2a;
+  }
+}
+
+/* Base styles */
+html,
+html body {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-mono);
+  font-size: 17px;
+  color: var(--color-foreground);
+  line-height: 1.6;
+  font-weight: 400;
+  background-color: var(--color-background);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Heading typography */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+  font-weight: 400;
+  color: var(--color-foreground);
+  letter-spacing: 1px;
+}
+
+/* Link styles */
+a {
+  color: var(--color-accent);
+  text-decoration: none;
+  background-image: linear-gradient(currentColor, currentColor);
+  background-position: 0% 100%;
+  background-repeat: no-repeat;
+  background-size: 0% 1px;
+  transition:
+    background-size 0.2s ease-out,
+    color 0.2s ease-out;
+}
+
+a:hover {
+  color: var(--color-accent-dark);
+  background-size: 100% 1px;
+}
+
+/* Disable underline animation for special links */
+.no-underline-anim {
+  background-image: none;
+}
+
+/* Custom text size utilities */
+@utility text-h1 {
+  font-family: var(--font-heading);
+  font-size: 6rem;
+  line-height: 0.9;
+  letter-spacing: 2px;
+  font-weight: 400;
+}
+
+@utility text-h2 {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  letter-spacing: 2px;
+  font-weight: 400;
+}
+
+@utility text-h3 {
+  font-family: var(--font-heading);
+  font-size: 1.6rem;
+  letter-spacing: 1px;
+  line-height: 1.1;
+  font-weight: 400;
+}
+
+@utility text-h3-sm {
+  font-family: var(--font-heading);
+  font-size: 1.3rem;
+  letter-spacing: 1px;
+  line-height: 1.1;
+  font-weight: 400;
+}
+
+@utility text-nav {
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  letter-spacing: 1.5px;
+}
+
+@utility text-nav-mobile {
+  font-family: var(--font-heading);
+  font-size: 1.8rem;
+  letter-spacing: 2px;
+}
+
+@utility text-body {
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+@utility text-body-sm {
+  font-size: 0.95rem;
+}
+
+@utility text-body-xs {
+  font-size: 0.9rem;
+}
+
+@utility text-body-2xs {
+  font-size: 0.85rem;
+}
+
+@utility text-skill-label {
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+}
+
+@utility link-underline {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-position: 0% 100%;
+  background-repeat: no-repeat;
+  background-size: 0% 1px;
+  transition:
+    background-size 0.2s ease-out,
+    color 0.2s ease-out;
+}
+
+@utility link-underline-hover {
+  background-size: 100% 1px;
+}
+
+/* Responsive heading sizes */
+@media (max-width: 991px) {
+  .text-h1 {
+    font-size: 4.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .text-h1 {
+    font-size: 3.5rem;
+  }
+
+  .text-h2 {
+    font-size: 1.75rem;
+  }
+
+  .text-h3 {
+    font-size: 1.4rem;
+  }
+
+  .text-h3-sm {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .text-h1 {
+    font-size: 2.8rem;
+  }
+}
