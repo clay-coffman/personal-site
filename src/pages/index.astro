@@ -1,0 +1,25 @@
+---
+import BaseLayout from "~/layouts/BaseLayout.astro";
+import PageLayout from "~/components/PageLayout.astro";
+import HeroSection from "~/components/HeroSection.astro";
+import ExperienceSection from "~/components/ExperienceSection.astro";
+import ProjectsSection from "~/components/ProjectsSection.astro";
+import SkillsSection from "~/components/SkillsSection.astro";
+import EducationSection from "~/components/EducationSection.astro";
+import Scrollspy from "~/components/Scrollspy.astro";
+import { profileData } from "~/data/profile";
+---
+
+<BaseLayout
+  title="Clay Coffman"
+  description="Clay Coffman — product leader, entrepreneur, and lifelong learner."
+>
+  <PageLayout>
+    <HeroSection profile={profileData} />
+    <ExperienceSection experiences={profileData.experiences} />
+    <ProjectsSection projects={profileData.projects} />
+    <SkillsSection skills={profileData.skills} />
+    <EducationSection education={profileData.education} />
+  </PageLayout>
+  <Scrollspy />
+</BaseLayout>

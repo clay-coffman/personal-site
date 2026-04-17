@@ -1,25 +1,24 @@
-# Clay Coffman Personal Site
+# about-clay.com
 
-My personal site. Built with React Router v7 + Tailwind CSS. Hosted on my trusty little
-hetzner server. Don't break it.
+Personal site for Clay Coffman. Static Astro site deployed on Cloudflare Pages.
 
-## Tech Stack
-
-- **Framework**: React Router v7 with SSR
-- **Styling**: Tailwind CSS v4 with custom theme
-- **Database**: SQLite via Drizzle ORM + better-sqlite3
-- **Authentication**: Cookie sessions
-- **Books**: Calibre library integration
-- **Production**: Express + Docker
-
-## How to dev
+## Quick start
 
 ```bash
 npm install
-
-# make sure .env exists!
-cp .env.example .env
-
-npm run build:icons
-npm run dev
+npm run dev      # http://localhost:4321
+npm run build    # static output in dist/
 ```
+
+## Sync books from Calibre
+
+The `/books` page reads `src/data/books.json`, populated from a Calibre library
+by `scripts/sync-books.mjs`. This runs on the Hetzner host that has the library
+mounted — not locally, not in CF Pages build.
+
+```bash
+CALIBRE_LIBRARY=/calibre npm run sync-books             # full sync + push
+CALIBRE_LIBRARY=/calibre npm run sync-books -- --dry-run  # preview
+```
+
+See `CLAUDE.md` for architecture details.

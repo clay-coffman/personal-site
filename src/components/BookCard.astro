@@ -1,0 +1,46 @@
+---
+import Badge from "./Badge.astro";
+import type { Book } from "~/data/books";
+
+interface Props {
+  book: Book;
+}
+
+const { book } = Astro.props;
+---
+
+<div
+  class="overflow-hidden rounded-lg border border-border bg-background shadow-sm"
+>
+  {
+    book.hasCover ? (
+      <img
+        src={`/covers/${book.id}.jpg`}
+        alt={book.title}
+        class="h-[280px] w-full object-cover"
+        loading="lazy"
+      />
+    ) : (
+      <div class="flex h-[280px] items-center justify-center bg-background-alt">
+        <span class="text-muted/50">No Cover</span>
+      </div>
+    )
+  }
+  <div class="p-4">
+    <h3
+      class="mb-1 text-body-sm font-semibold leading-tight text-foreground"
+    >
+      {book.title}
+    </h3>
+    <p class="mb-2 text-body-2xs text-muted">{book.author}</p>
+    {
+      book.tags.length > 0 && (
+        <div class="flex flex-wrap gap-1">
+          {book.tags.slice(0, 2).map((tag) => (
+            <Badge>{tag}</Badge>
+          ))}
+        </div>
+      )
+    }
+  </div>
+</div>

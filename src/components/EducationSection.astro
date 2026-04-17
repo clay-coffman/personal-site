@@ -1,0 +1,30 @@
+---
+import SectionHeader from "./SectionHeader.astro";
+import type { Education } from "~/data/profile";
+
+interface Props {
+  education: Education[];
+}
+
+const { education } = Astro.props;
+---
+
+<section
+  id="education"
+  class="scroll-mt-8 border-t border-background-alt py-16 max-md:py-12"
+>
+  <SectionHeader>Education</SectionHeader>
+  {
+    education.map((edu) => (
+      <div class="mb-6">
+        <div class="flex flex-wrap items-baseline justify-between">
+          <h3 class="text-h3-sm text-foreground">{edu.institution}</h3>
+          {edu.year && (
+            <span class="text-body-xs text-muted">{edu.year}</span>
+          )}
+        </div>
+        <p class="mt-2 leading-[1.5] text-foreground">{edu.credential}</p>
+      </div>
+    ))
+  }
+</section>

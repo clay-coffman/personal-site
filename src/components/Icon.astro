@@ -1,0 +1,18 @@
+---
+interface Props {
+  name: string;
+  size?: number;
+  class?: string;
+}
+
+const { name, size = 20, class: className } = Astro.props;
+---
+
+<svg
+  width={size}
+  height={size}
+  class:list={["inline-block shrink-0", className]}
+  aria-hidden="true"
+>
+  <use href={`/sprite.svg#${name}`}></use>
+</svg>

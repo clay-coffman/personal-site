@@ -1,0 +1,44 @@
+---
+import SectionHeader from "./SectionHeader.astro";
+import Icon from "./Icon.astro";
+
+interface Props {
+  skills: Record<string, string[]>;
+}
+
+const { skills } = Astro.props;
+---
+
+<section
+  id="skills"
+  class="scroll-mt-8 border-t border-background-alt py-16 max-md:py-12"
+>
+  <SectionHeader>Skills</SectionHeader>
+  <div class="grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-8">
+    <div class="mb-4">
+      <h4 class="text-skill-label mb-3 text-foreground">Dotfiles</h4>
+      <a
+        href="https://github.com/clay-coffman/dotfiles"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <Icon name="terminal" size={14} class="mr-1" /> dotfiles
+      </a>
+    </div>
+
+    {
+      Object.entries(skills).map(([category, items]) => (
+        <div class="mb-4">
+          <h4 class="text-skill-label mb-3 text-foreground">{category}</h4>
+          <div class="flex flex-wrap gap-2">
+            {items.map((skill) => (
+              <span class="inline-block rounded-full bg-background-alt px-3 py-1 text-body-2xs text-foreground">
+                {skill}
+              </span>
+            ))}
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</section>

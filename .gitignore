@@ -2,19 +2,12 @@
 node_modules/
 
 # Build
-build/
-.react-router/
+dist/
+.astro/
 
 # Environment
 .env
 .env.*
-!.env.example
-
-# Database
-*.db
-*.sqlite
-*.sqlite3
-/data/
 
 # Editor
 .vscode/

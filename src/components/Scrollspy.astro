@@ -1,0 +1,42 @@
+---
+---
+
+<script>
+  const links = Array.from(
+    document.querySelectorAll<HTMLAnchorElement>("aside [data-section]")
+  );
+  if (links.length) {
+    const sections = links
+      .map((a) => {
+        const id = a.dataset.section;
+        return id ? document.getElementById(id) : null;
+      })
+      .filter((el): el is HTMLElement => el !== null);
+
+    const setActive = (id: string | null) => {
+      links.forEach((a) => {
+        if (id && a.dataset.section === id) {
+          a.setAttribute("aria-current", "true");
+        } else {
+          a.removeAttribute("aria-current");
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .map((e) => e.target as HTMLElement);
+        if (visible.length === 0) return;
+        const topmost = visible.reduce((prev, curr) =>
+          curr.offsetTop < prev.offsetTop ? curr : prev
+        );
+        setActive(topmost.id);
+      },
+      { rootMargin: "-20% 0px -60% 0px" }
+    );
+
+    sections.forEach((s) => observer.observe(s));
+  }
+</script>

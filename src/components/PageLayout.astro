@@ -1,0 +1,16 @@
+---
+import SidebarNav from "./SidebarNav.astro";
+import MobileNav from "./MobileNav.astro";
+import Footer from "./Footer.astro";
+---
+
+<MobileNav />
+<div class="flex min-h-screen">
+  <SidebarNav />
+  <div
+    class="ml-0 max-w-full flex-1 px-5 md:ml-[var(--sidebar-width)] md:px-8 md:pr-12"
+  >
+    <slot />
+  </div>
+</div>
+<Footer />
