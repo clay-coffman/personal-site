@@ -6,6 +6,9 @@ import tailwindcss from "@tailwindcss/vite";
 export default defineConfig({
   site: "https://about-clay.com",
   trailingSlash: "never",
+  build: {
+    format: "file",
+  },
   integrations: [mdx(), sitemap()],
   vite: {
     plugins: [tailwindcss()],
