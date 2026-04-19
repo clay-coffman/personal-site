@@ -1,0 +1,20 @@
+---
+import SectionHeader from "./SectionHeader.astro";
+import BookGrid from "./BookGrid.astro";
+import { books } from "~/data/books";
+
+const featured = books.slice(0, 6);
+---
+
+<section
+  id="bookshelf"
+  class="scroll-mt-8 border-t border-background-alt py-16 max-md:py-12"
+>
+  <SectionHeader>Bookshelf</SectionHeader>
+  <BookGrid books={featured} />
+  <div class="mt-6 text-right">
+    <a href="/books" class="text-body-sm text-muted hover:text-accent">
+      Full shelf &rarr;
+    </a>
+  </div>
+</section>
