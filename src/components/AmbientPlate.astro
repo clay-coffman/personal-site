@@ -1,0 +1,145 @@
+---
+---
+
+<div data-ambient-plate class="ambient-plate" aria-hidden="true">
+  <div class="ambient-plate__viewport">
+    <div class="ambient-plate__orb"></div>
+    <div class="ambient-plate__dots"></div>
+    <div class="ambient-plate__grain"></div>
+  </div>
+</div>
+
+<style>
+  .ambient-plate {
+    position: sticky;
+    top: 0;
+    height: 0;
+    z-index: 0;
+    pointer-events: none;
+    --orb-x: 72%;
+    --orb-y: 72%;
+    --orb-size: 780px;
+    --orb-size-mobile: 460px;
+  }
+
+  .ambient-plate__viewport {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  .ambient-plate__orb {
+    position: absolute;
+    left: var(--orb-x);
+    top: var(--orb-y);
+    width: var(--orb-size);
+    height: var(--orb-size);
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    background: radial-gradient(
+      circle at 40% 40%,
+      #9a3412,
+      transparent 65%
+    );
+    filter: blur(34px);
+    mix-blend-mode: multiply;
+    opacity: 0.6;
+  }
+
+  .ambient-plate__dots {
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(
+      rgba(30, 10, 0, 0.2) 1px,
+      transparent 1.3px
+    );
+    background-size: 3.5px 3.5px;
+    mix-blend-mode: multiply;
+    opacity: 0.45;
+  }
+
+  .ambient-plate__grain {
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+    mix-blend-mode: multiply;
+    opacity: 0.12;
+  }
+
+  @media (max-width: 767px) {
+    .ambient-plate__orb {
+      width: var(--orb-size-mobile);
+      height: var(--orb-size-mobile);
+    }
+  }
+
+  /* Dark mode — orb pops via screen blend on dark ink */
+  @media (prefers-color-scheme: dark) {
+    .ambient-plate__orb {
+      background: radial-gradient(
+        circle at 40% 40%,
+        #c2410c,
+        transparent 65%
+      );
+      mix-blend-mode: screen;
+      opacity: 0.45;
+    }
+
+    .ambient-plate__dots {
+      background-image: radial-gradient(
+        rgba(245, 239, 226, 0.15) 1px,
+        transparent 1.3px
+      );
+      mix-blend-mode: screen;
+      opacity: 0.25;
+    }
+
+    .ambient-plate__grain {
+      mix-blend-mode: screen;
+      opacity: 0.08;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ambient-plate {
+      --orb-x: 45% !important;
+      --orb-y: 45% !important;
+      --orb-size: 650px !important;
+      --orb-size-mobile: 380px !important;
+    }
+  }
+</style>
+
+<script>
+  const plate = document.querySelector<HTMLElement>("[data-ambient-plate]");
+  const reduceMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  ).matches;
+
+  if (plate && !reduceMotion) {
+    let raf = 0;
+    const update = () => {
+      raf = 0;
+      const max =
+        document.documentElement.scrollHeight - window.innerHeight;
+      const p = max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0;
+      const lerp = (a: number, b: number) => a + (b - a) * p;
+      plate.style.setProperty("--orb-x", `${lerp(72, 18)}%`);
+      plate.style.setProperty("--orb-y", `${lerp(72, 22)}%`);
+      plate.style.setProperty("--orb-size", `${lerp(780, 520)}px`);
+      plate.style.setProperty(
+        "--orb-size-mobile",
+        `${lerp(460, 300)}px`
+      );
+    };
+    const onScroll = () => {
+      if (!raf) raf = requestAnimationFrame(update);
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll, { passive: true });
+    update();
+  }
+</script>

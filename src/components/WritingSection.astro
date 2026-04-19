@@ -1,0 +1,46 @@
+---
+import NumberedSectionHeader from "./NumberedSectionHeader.astro";
+
+const drafts = [
+  "On learning to solder at 32",
+  "What the trades taught me about software",
+  "A reading list for would-be founders",
+];
+---
+
+<section
+  id="writing"
+  class="scroll-mt-8 border-t border-border px-16 py-30 max-md:px-5 max-md:py-16"
+>
+  <NumberedSectionHeader num="08" title="Writing" kicker="soon" />
+  <div
+    class="grid gap-16 md:grid-cols-2 max-md:grid-cols-1 max-md:gap-8"
+  >
+    <p
+      class="font-heading text-[1.625rem] leading-[1.5] text-foreground-light font-normal m-0 max-md:text-xl"
+    >
+      I'm working on a few essays. First batch will be notes on hardware, some
+      reflections from building companies, and a long thing about skilled
+      trades.
+    </p>
+    <div>
+      <div
+        class="mb-3.5 font-mono text-[11px] uppercase tracking-[2px] text-muted"
+      >
+        Drafts in progress
+      </div>
+      {
+        drafts.map((t) => (
+          <div class="flex items-baseline justify-between border-t border-border-soft py-3">
+            <span class="font-heading text-[17px] tracking-[0.3px] text-foreground-light max-md:text-[15px]">
+              {t}
+            </span>
+            <span class="font-mono text-[10px] uppercase tracking-[1px] text-muted">
+              draft
+            </span>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

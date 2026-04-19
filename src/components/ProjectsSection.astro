@@ -1,6 +1,5 @@
 ---
-import SectionHeader from "./SectionHeader.astro";
-import Icon from "./Icon.astro";
+import NumberedSectionHeader from "./NumberedSectionHeader.astro";
 import type { Project } from "~/data/profile";
 
 interface Props {
@@ -12,30 +11,38 @@ const { projects } = Astro.props;
 
 <section
   id="projects"
-  class="scroll-mt-8 border-t border-background-alt py-16 max-md:py-12"
+  class="scroll-mt-8 border-t border-border px-16 py-30 max-md:px-5 max-md:py-16"
 >
-  <SectionHeader>Projects</SectionHeader>
-  {
-    projects.map((project) => (
-      <div class="mb-6">
-        <h3 class="text-h3-sm text-foreground">
-          <a
-            href={project.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="text-foreground hover:text-accent"
-          >
-            {project.title}{" "}
-            <Icon name="external-link" size={12} class="opacity-50" />
-          </a>
-          {project.language && (
-            <span class="ml-3 inline-block rounded-full bg-background-alt px-2.5 py-0.5 align-middle text-body-sm text-muted">
-              {project.language}
-            </span>
-          )}
-        </h3>
-        <p class="mt-2 leading-[1.5] text-foreground">{project.description}</p>
-      </div>
-    ))
-  }
+  <NumberedSectionHeader num="03" title="Projects" kicker="repos" />
+  <div
+    class="grid gap-8 md:grid-cols-3 max-md:grid-cols-1 max-md:gap-5"
+  >
+    {
+      projects.map((p) => (
+        <a
+          href={p.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="group block border-t-2 border-accent py-6 no-underline-anim text-foreground max-md:py-5"
+        >
+          <div class="mb-3 flex items-baseline justify-between gap-3">
+            <h3 class="text-h3-sm m-0 text-foreground transition-colors group-hover:text-accent">
+              {p.title}
+            </h3>
+            {p.language && (
+              <span class="shrink-0 bg-accent-soft px-2 py-0.5 font-mono text-[10px] uppercase tracking-[1px] text-accent">
+                {p.language}
+              </span>
+            )}
+          </div>
+          <p class="m-0 text-[14.5px] leading-[1.55] text-foreground-light max-md:text-sm">
+            {p.description}
+          </p>
+          <div class="mt-3.5 font-mono text-[11px] uppercase tracking-[1px] text-accent">
+            view →
+          </div>
+        </a>
+      ))
+    }
+  </div>
 </section>

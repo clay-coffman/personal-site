@@ -1,0 +1,53 @@
+---
+import type { ProfileData } from "~/data/profile";
+
+interface Props {
+  profile: ProfileData;
+}
+
+const { profile } = Astro.props;
+const year = new Date().getFullYear();
+---
+
+<footer
+  class="flex items-baseline gap-10 border-t-2 border-accent px-16 pt-20 pb-12 md:flex-row max-md:flex-col max-md:items-start max-md:gap-5 max-md:px-5 max-md:pt-12 max-md:pb-9"
+>
+  <div
+    class="font-heading text-[2rem] uppercase tracking-[1px] text-foreground font-normal max-md:text-2xl"
+  >
+    {profile.name}
+  </div>
+  <div class="font-mono text-xs tracking-[1px] text-muted">
+    Salt Lake City · © {year}
+  </div>
+  <div class="ml-auto flex gap-[18px] font-mono text-xs max-md:ml-0">
+    <a
+      href={`mailto:${profile.email}`}
+      class="no-underline-anim text-accent hover:text-accent-dark"
+    >
+      email
+    </a>
+    <a
+      href={profile.social.linkedin}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="no-underline-anim text-accent hover:text-accent-dark"
+    >
+      linkedin
+    </a>
+    <a
+      href={profile.social.github}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="no-underline-anim text-accent hover:text-accent-dark"
+    >
+      github
+    </a>
+    <a
+      href="/rss.xml"
+      class="no-underline-anim text-accent hover:text-accent-dark"
+    >
+      rss
+    </a>
+  </div>
+</footer>

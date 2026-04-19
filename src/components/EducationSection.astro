@@ -1,5 +1,5 @@
 ---
-import SectionHeader from "./SectionHeader.astro";
+import NumberedSectionHeader from "./NumberedSectionHeader.astro";
 import type { Education } from "~/data/profile";
 
 interface Props {
@@ -11,20 +11,24 @@ const { education } = Astro.props;
 
 <section
   id="education"
-  class="scroll-mt-8 border-t border-background-alt py-16 max-md:py-12"
+  class="scroll-mt-8 border-t border-border px-16 py-30 max-md:px-5 max-md:py-16"
 >
-  <SectionHeader>Education</SectionHeader>
-  {
-    education.map((edu) => (
-      <div class="mb-6">
-        <div class="flex flex-wrap items-baseline justify-between">
-          <h3 class="text-h3-sm text-foreground">{edu.institution}</h3>
-          {edu.year && (
-            <span class="text-body-xs text-muted">{edu.year}</span>
-          )}
+  <NumberedSectionHeader num="05" title="Education" />
+  <div>
+    {
+      education.map((e) => (
+        <div class="grid border-t border-border-soft py-6 md:grid-cols-[120px_1fr_auto] md:gap-10 max-md:grid-cols-1 max-md:gap-1 max-md:py-4.5">
+          <div class="font-mono text-[11px] text-muted md:pt-1">
+            {e.year || "—"}
+          </div>
+          <h3 class="text-h3-sm m-0 text-foreground md:text-[1.375rem]">
+            {e.institution}
+          </h3>
+          <div class="font-mono text-xs text-foreground-light md:pt-1.5">
+            {e.credential}
+          </div>
         </div>
-        <p class="mt-2 leading-[1.5] text-foreground">{edu.credential}</p>
-      </div>
-    ))
-  }
+      ))
+    }
+  </div>
 </section>

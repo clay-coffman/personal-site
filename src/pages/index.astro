@@ -1,12 +1,16 @@
 ---
 import BaseLayout from "~/layouts/BaseLayout.astro";
-import PageLayout from "~/components/PageLayout.astro";
+import AmbientPlate from "~/components/AmbientPlate.astro";
 import HeroSection from "~/components/HeroSection.astro";
+import AboutSection from "~/components/AboutSection.astro";
 import ExperienceSection from "~/components/ExperienceSection.astro";
 import ProjectsSection from "~/components/ProjectsSection.astro";
 import SkillsSection from "~/components/SkillsSection.astro";
 import EducationSection from "~/components/EducationSection.astro";
-import Scrollspy from "~/components/Scrollspy.astro";
+import BooksSection from "~/components/BooksSection.astro";
+import PhotosSection from "~/components/PhotosSection.astro";
+import WritingSection from "~/components/WritingSection.astro";
+import HomeFooter from "~/components/HomeFooter.astro";
 import { profileData } from "~/data/profile";
 ---
 
@@ -14,12 +18,17 @@ import { profileData } from "~/data/profile";
   title="Clay Coffman"
   description="Clay Coffman — product leader, entrepreneur, and lifelong learner."
 >
-  <PageLayout>
+  <AmbientPlate />
+  <main class="relative z-[1]">
     <HeroSection profile={profileData} />
+    <AboutSection />
     <ExperienceSection experiences={profileData.experiences} />
     <ProjectsSection projects={profileData.projects} />
     <SkillsSection skills={profileData.skills} />
     <EducationSection education={profileData.education} />
-  </PageLayout>
-  <Scrollspy />
+    <BooksSection />
+    <PhotosSection />
+    <WritingSection />
+    <HomeFooter profile={profileData} />
+  </main>
 </BaseLayout>

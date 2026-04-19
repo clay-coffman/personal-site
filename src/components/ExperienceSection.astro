@@ -1,7 +1,5 @@
 ---
-import { cn } from "~/lib/cn";
-import SectionHeader from "./SectionHeader.astro";
-import Icon from "./Icon.astro";
+import NumberedSectionHeader from "./NumberedSectionHeader.astro";
 import type { Experience } from "~/data/profile";
 
 interface Props {
@@ -13,44 +11,32 @@ const { experiences } = Astro.props;
 
 <section
   id="experience"
-  class="scroll-mt-8 border-t border-background-alt py-16 max-md:py-12"
+  class="scroll-mt-8 border-t border-border px-16 py-30 max-md:px-5 max-md:py-16"
 >
-  <SectionHeader>Experience</SectionHeader>
-  <div class="flex flex-col gap-8">
+  <NumberedSectionHeader
+    num="02"
+    title="Experience"
+    kicker={`${experiences.length} roles`}
+  />
+  <div>
     {
-      experiences.map((exp, i) => (
-        <div
-          class={cn(
-            "pb-6",
-            i === 0 &&
-              "rounded-lg border-l-4 border-accent bg-background-alt p-6"
-          )}
-        >
-          <div class="mb-1 flex flex-wrap items-baseline justify-between gap-2 max-[480px]:flex-col max-[480px]:gap-1">
-            <h3 class="text-h3 m-0 text-foreground">
-              {exp.url ? (
-                <a
-                  href={exp.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="text-foreground hover:text-accent"
-                >
-                  {exp.company}{" "}
-                  <Icon name="external-link" size={12} class="opacity-50" />
-                </a>
-              ) : (
-                exp.company
-              )}
-            </h3>
-            {exp.period && (
-              <span class="text-body-xs italic text-muted">{exp.period}</span>
+      experiences.map((e) => (
+        <article class="grid items-baseline border-t border-border-soft py-7 md:grid-cols-[140px_minmax(0,1fr)_2fr] md:gap-10 max-md:grid-cols-1 max-md:gap-2 max-md:py-5">
+          <div class="font-mono text-[11px] uppercase tracking-[1px] text-muted md:pt-1.5">
+            {e.period}
+          </div>
+          <div>
+            <h3 class="text-h3 m-0 text-foreground">{e.company}</h3>
+            {e.role && (
+              <div class="mt-1.5 font-mono text-[11px] uppercase tracking-[1px] text-accent">
+                {e.role}
+              </div>
             )}
           </div>
-          {exp.role && (
-            <p class="my-1 text-body font-bold text-muted">{exp.role}</p>
-          )}
-          <p class="mt-2 leading-[1.5] text-foreground">{exp.description}</p>
-        </div>
+          <p class="m-0 leading-[1.6] text-foreground-light md:text-[15.5px] max-md:text-sm">
+            {e.description}
+          </p>
+        </article>
       ))
     }
   </div>
