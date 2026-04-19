@@ -1,1 +1,50 @@
-[]
+[
+  {
+    "id": 204,
+    "title": "Meditations",
+    "author": "Marcus Aurelius, Gregory Hays",
+    "authorSort": "Aurelius, Marcus & Hays, Gregory",
+    "tags": [
+      "Philosophy"
+    ],
+    "hasCover": true
+  },
+  {
+    "id": 218,
+    "title": "The Myth of Sisyphus",
+    "author": "Albert Camus",
+    "authorSort": "Camus, Albert",
+    "tags": [
+      "Philosophy"
+    ],
+    "hasCover": true
+  },
+  {
+    "id": 188,
+    "title": "Living an Examined Life",
+    "author": "James Hollis",
+    "authorSort": "Hollis, James",
+    "tags": [],
+    "hasCover": true
+  },
+  {
+    "id": 180,
+    "title": "Letters From a Stoic",
+    "author": "Seneca",
+    "authorSort": "Seneca",
+    "tags": [
+      "Philosophy"
+    ],
+    "hasCover": true
+  },
+  {
+    "id": 297,
+    "title": "The Story of Philosophy",
+    "author": "Will Durant",
+    "authorSort": "Will Durant",
+    "tags": [
+      "Philosophy"
+    ],
+    "hasCover": true
+  }
+]
