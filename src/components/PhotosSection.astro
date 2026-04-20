@@ -1,21 +1,8 @@
 ---
 import NumberedSectionHeader from "./NumberedSectionHeader.astro";
+import { photos } from "~/data/photos";
 
-interface Photo {
-  caption: string;
-  aspect: string;
-  tint: string;
-}
-
-const photos: Photo[] = [
-  { caption: "Wasatch, first snow", aspect: "4/5", tint: "#c2410c" },
-  { caption: "Sugar House, late afternoon", aspect: "3/2", tint: "#9a3412" },
-  { caption: "I-80, westbound", aspect: "3/4", tint: "#7c2d12" },
-  { caption: "Antelope Island, eastside", aspect: "1/1", tint: "#c2410c" },
-  { caption: "Little Cottonwood", aspect: "4/3", tint: "#9a3412" },
-  { caption: "Downtown, State & 200", aspect: "2/3", tint: "#7c2d12" },
-];
-
+const preview = photos.slice(0, 6);
 const pad4 = (n: number) => String(n).padStart(4, "0");
 ---
 
@@ -28,7 +15,7 @@ const pad4 = (n: number) => String(n).padStart(4, "0");
     class="grid gap-5 md:grid-cols-3 max-md:grid-cols-2 max-md:gap-2.5"
   >
     {
-      photos.map((ph, i) => (
+      preview.map((ph, i) => (
         <figure class="m-0">
           <div
             class="relative overflow-hidden border border-border bg-background-alt"
@@ -50,8 +37,13 @@ const pad4 = (n: number) => String(n).padStart(4, "0");
       ))
     }
   </div>
-  <div class="mt-7 font-mono text-xs uppercase tracking-[1px] text-accent max-md:mt-5">
-    see all photos →
+  <div class="mt-7 max-md:mt-5">
+    <a
+      href="/photos"
+      class="no-underline-anim font-mono text-xs uppercase tracking-[1px] text-accent hover:text-accent-dark"
+    >
+      all photos →
+    </a>
   </div>
 </section>
 

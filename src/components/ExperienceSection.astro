@@ -4,9 +4,12 @@ import type { Experience } from "~/data/profile";
 
 interface Props {
   experiences: Experience[];
+  previewCount?: number;
 }
 
-const { experiences } = Astro.props;
+const { experiences, previewCount = 4 } = Astro.props;
+const preview = experiences.slice(0, previewCount);
+const hasMore = experiences.length > preview.length;
 ---
 
 <section
@@ -20,7 +23,7 @@ const { experiences } = Astro.props;
   />
   <div>
     {
-      experiences.map((e) => (
+      preview.map((e) => (
         <article class="grid items-baseline border-t border-border-soft py-7 md:grid-cols-[140px_minmax(0,1fr)_2fr] md:gap-10 max-md:grid-cols-1 max-md:gap-2 max-md:py-5">
           <div class="font-mono text-[11px] uppercase tracking-[1px] text-muted md:pt-1.5">
             {e.period}
@@ -40,4 +43,16 @@ const { experiences } = Astro.props;
       ))
     }
   </div>
+  {
+    hasMore && (
+      <div class="mt-7 max-md:mt-5">
+        <a
+          href="/experience"
+          class="no-underline-anim font-mono text-xs uppercase tracking-[1px] text-accent hover:text-accent-dark"
+        >
+          full resume →
+        </a>
+      </div>
+    )
+  }
 </section>
