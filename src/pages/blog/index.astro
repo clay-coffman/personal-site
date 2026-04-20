@@ -1,7 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import BaseLayout from "~/layouts/BaseLayout.astro";
-import PageLayout from "~/components/PageLayout.astro";
+import Footer from "~/components/Footer.astro";
 
 const posts = (
   await getCollection("blog", ({ data }) => !data.draft || import.meta.env.DEV)
@@ -12,46 +12,43 @@ const posts = (
   title="Clay Coffman — Blog"
   description="Writing on software, systems, and whatever else I'm thinking about."
 >
-  <PageLayout>
-    <div class="py-12">
-      <h1 class="text-h2 mb-8">Blog</h1>
-      {
-        posts.length === 0 ? (
-          <p class="text-muted">Nothing here yet. Check back soon.</p>
-        ) : (
-          <ul class="flex flex-col gap-6">
-            {posts.map((post) => (
-              <li>
-                <a
-                  href={`/blog/${post.id}`}
-                  class="no-underline-anim group block"
-                >
-                  <h2 class="text-h3-sm text-foreground group-hover:text-accent">
-                    {post.data.title}
-                    {import.meta.env.DEV && post.data.draft && (
-                      <span class="ml-2 rounded bg-accent/10 px-2 py-0.5 align-middle text-body-2xs text-accent">
-                        DRAFT
-                      </span>
-                    )}
-                  </h2>
-                  <div class="mt-1 text-body-xs text-muted">
-                    <time datetime={post.data.pubDate.toISOString()}>
-                      {post.data.pubDate.toLocaleDateString("en-US", {
-                        year: "numeric",
-                        month: "long",
-                        day: "numeric",
-                      })}
-                    </time>
-                  </div>
-                  <p class="mt-2 text-body-sm text-foreground">
-                    {post.data.description}
-                  </p>
-                </a>
-              </li>
-            ))}
-          </ul>
-        )
-      }
-    </div>
-  </PageLayout>
+  <div data-nav-sentinel aria-hidden="true"></div>
+  <main class="px-16 py-16 max-md:px-5 max-md:py-12">
+    <h1 class="text-h2 mb-8">Blog</h1>
+    {
+      posts.length === 0 ? (
+        <p class="text-muted">Nothing here yet. Check back soon.</p>
+      ) : (
+        <ul class="flex flex-col gap-6">
+          {posts.map((post) => (
+            <li>
+              <a href={`/blog/${post.id}`} class="no-underline-anim group block">
+                <h2 class="text-h3-sm text-foreground group-hover:text-accent">
+                  {post.data.title}
+                  {import.meta.env.DEV && post.data.draft && (
+                    <span class="ml-2 rounded bg-accent-soft px-2 py-0.5 align-middle text-body-2xs text-accent">
+                      DRAFT
+                    </span>
+                  )}
+                </h2>
+                <div class="mt-1 text-body-xs text-muted">
+                  <time datetime={post.data.pubDate.toISOString()}>
+                    {post.data.pubDate.toLocaleDateString("en-US", {
+                      year: "numeric",
+                      month: "long",
+                      day: "numeric",
+                    })}
+                  </time>
+                </div>
+                <p class="mt-2 text-body-sm text-foreground">
+                  {post.data.description}
+                </p>
+              </a>
+            </li>
+          ))}
+        </ul>
+      )
+    }
+  </main>
+  <Footer />
 </BaseLayout>

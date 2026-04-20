@@ -3,7 +3,7 @@
 
 <script>
   const links = Array.from(
-    document.querySelectorAll<HTMLAnchorElement>("aside [data-section]")
+    document.querySelectorAll<HTMLAnchorElement>("[data-top-nav] [data-section]")
   );
   if (links.length) {
     const sections = links

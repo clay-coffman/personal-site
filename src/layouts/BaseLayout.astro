@@ -2,6 +2,7 @@
 import "@fontsource/bebas-neue";
 import "@fontsource-variable/atkinson-hyperlegible-mono";
 import "~/styles/app.css";
+import TopNav from "~/components/TopNav.astro";
 
 interface Props {
   title: string;
@@ -46,6 +47,7 @@ const ogImageUrl = ogImage
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   </head>
   <body>
+    <TopNav />
     <slot />
   </body>
 </html>

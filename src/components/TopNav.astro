@@ -1,0 +1,182 @@
+---
+const items = [
+  { label: "Experience", href: "/#experience", section: "experience" },
+  { label: "Projects", href: "/#projects", section: "projects" },
+  { label: "Photos", href: "/#photos", section: "photos" },
+  { label: "Writing", href: "/blog", section: "writing" },
+  { label: "Shelf", href: "/books", section: "books" },
+  { label: "About", href: "/#about", section: "about" },
+];
+---
+
+<nav
+  data-top-nav
+  class="top-nav fixed top-0 inset-x-0 z-50 border-b border-border flex items-baseline justify-between font-mono text-xs uppercase tracking-[1.5px] px-16 py-[18px] max-md:px-5 max-md:py-3.5"
+>
+  <a
+    href="/"
+    class="no-underline-anim text-foreground hover:text-accent transition-colors"
+    >Clay Coffman</a
+  >
+
+  <div class="flex gap-6 max-md:hidden">
+    {
+      items.map((item) => (
+        <a
+          href={item.href}
+          data-section={item.section}
+          class="no-underline-anim text-foreground-light hover:text-accent transition-colors"
+        >
+          {item.label}
+        </a>
+      ))
+    }
+  </div>
+
+  <button
+    type="button"
+    data-mobile-nav-open
+    aria-label="Open menu"
+    aria-expanded="false"
+    class="md:hidden flex h-8 w-8 flex-col items-center justify-center gap-1 border-none bg-transparent p-1"
+  >
+    <span class="block h-0.5 w-5 bg-foreground transition-all"></span>
+    <span class="block h-0.5 w-5 bg-foreground transition-all"></span>
+  </button>
+</nav>
+
+<!-- Mobile slide drawer -->
+<div
+  data-mobile-nav-overlay
+  class="invisible fixed inset-0 z-[998] bg-black/50 opacity-0 transition-all duration-300 data-[open]:visible data-[open]:opacity-100 md:hidden"
+>
+</div>
+
+<div
+  data-mobile-nav-menu
+  class="fixed right-0 top-0 z-[999] h-screen w-[300px] translate-x-full bg-background shadow-[-4px_0_20px_rgba(0,0,0,0.1)] transition-transform duration-300 data-[open]:translate-x-0 md:hidden"
+>
+  <button
+    type="button"
+    data-mobile-nav-close
+    aria-label="Close menu"
+    class="absolute right-5 top-5 flex h-10 w-10 items-center justify-center border-none bg-transparent text-3xl text-foreground hover:text-accent"
+  >
+    &times;
+  </button>
+  <ul class="list-none px-10 pt-20">
+    <li class="mb-6">
+      <a
+        href="/"
+        class="no-underline-anim text-nav-mobile text-foreground transition-colors hover:text-accent"
+        >Home</a
+      >
+    </li>
+    {
+      items.map((item) => (
+        <li class="mb-6">
+          <a
+            href={item.href}
+            class="no-underline-anim text-nav-mobile text-foreground transition-colors hover:text-accent"
+          >
+            {item.label}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</div>
+
+<style>
+  .top-nav {
+    background-color: rgba(245, 239, 226, 0.92);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    opacity: 0;
+    transform: translateY(-100%);
+    transition:
+      opacity 240ms ease-out,
+      transform 240ms ease-out;
+    pointer-events: none;
+  }
+
+  .top-nav[data-revealed] {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .top-nav {
+      background-color: rgba(26, 15, 8, 0.88);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .top-nav {
+      transition-duration: 0ms;
+      transform: none;
+    }
+  }
+</style>
+
+<script>
+  const nav = document.querySelector<HTMLElement>("[data-top-nav]");
+  const sentinel = document.querySelector<HTMLElement>("[data-nav-sentinel]");
+
+  function setRevealed(revealed: boolean) {
+    if (!nav) return;
+    if (revealed) nav.setAttribute("data-revealed", "");
+    else nav.removeAttribute("data-revealed");
+  }
+
+  if (nav && sentinel) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          // Reveal nav when sentinel exits the top of the viewport
+          setRevealed(!entry.isIntersecting);
+        }
+      },
+      { rootMargin: "0px 0px 0px 0px", threshold: 0 }
+    );
+    observer.observe(sentinel);
+  } else if (nav) {
+    // Fallback for pages without a sentinel: reveal after 100px scroll
+    const onScroll = () => setRevealed(window.scrollY > 100);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+  }
+
+  // Mobile drawer controls
+  const openBtn = document.querySelector<HTMLButtonElement>(
+    "[data-mobile-nav-open]"
+  );
+  const closeBtn = document.querySelector<HTMLButtonElement>(
+    "[data-mobile-nav-close]"
+  );
+  const overlay = document.querySelector<HTMLElement>(
+    "[data-mobile-nav-overlay]"
+  );
+  const menu = document.querySelector<HTMLElement>("[data-mobile-nav-menu]");
+  const menuLinks = menu?.querySelectorAll<HTMLAnchorElement>("a") ?? [];
+
+  function openDrawer() {
+    menu?.setAttribute("data-open", "");
+    overlay?.setAttribute("data-open", "");
+    openBtn?.setAttribute("aria-expanded", "true");
+    document.body.style.overflow = "hidden";
+  }
+
+  function closeDrawer() {
+    menu?.removeAttribute("data-open");
+    overlay?.removeAttribute("data-open");
+    openBtn?.setAttribute("aria-expanded", "false");
+    document.body.style.overflow = "";
+  }
+
+  openBtn?.addEventListener("click", openDrawer);
+  closeBtn?.addEventListener("click", closeDrawer);
+  overlay?.addEventListener("click", closeDrawer);
+  menuLinks.forEach((link) => link.addEventListener("click", closeDrawer));
+</script>
