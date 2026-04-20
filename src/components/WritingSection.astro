@@ -1,21 +1,27 @@
 ---
+import { getCollection } from "astro:content";
 import NumberedSectionHeader from "./NumberedSectionHeader.astro";
 
-const drafts = [
-  "On learning to solder at 32",
-  "What the trades taught me about software",
-  "A reading list for would-be founders",
-];
+const posts = (
+  await getCollection("blog", ({ data }) => !data.draft || import.meta.env.DEV)
+)
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 5);
+
+const fmtDate = (d: Date) =>
+  d.toLocaleDateString("en-US", { year: "2-digit", month: "short" });
 ---
 
 <section
   id="writing"
   class="scroll-mt-8 border-t border-border px-16 py-30 max-md:px-5 max-md:py-16"
 >
-  <NumberedSectionHeader num="08" title="Writing" kicker="soon" />
-  <div
-    class="grid gap-16 md:grid-cols-2 max-md:grid-cols-1 max-md:gap-8"
-  >
+  <NumberedSectionHeader
+    num="08"
+    title="Writing"
+    kicker={posts.length > 0 ? "recent" : "soon"}
+  />
+  <div class="grid gap-16 md:grid-cols-2 max-md:grid-cols-1 max-md:gap-8">
     <p
       class="font-heading text-[1.625rem] leading-[1.5] text-foreground-light font-normal m-0 max-md:text-xl"
     >
@@ -24,22 +30,31 @@ const drafts = [
       trades.
     </p>
     <div>
-      <div
-        class="mb-3.5 font-mono text-[11px] uppercase tracking-[2px] text-muted"
-      >
-        Drafts in progress
-      </div>
       {
-        drafts.map((t) => (
-          <div class="flex items-baseline justify-between border-t border-border-soft py-3">
-            <span class="font-heading text-[17px] tracking-[0.3px] text-foreground-light max-md:text-[15px]">
-              {t}
-            </span>
-            <span class="font-mono text-[10px] uppercase tracking-[1px] text-muted">
-              draft
-            </span>
+        posts.length === 0 ? (
+          <div class="font-mono text-[11px] uppercase tracking-[1px] text-muted">
+            first posts coming soon
           </div>
-        ))
+        ) : (
+          <>
+            <div class="mb-3.5 font-mono text-[11px] uppercase tracking-[2px] text-muted">
+              Recent
+            </div>
+            {posts.map((p) => (
+              <a
+                href={`/blog/${p.id}`}
+                class="group flex items-baseline justify-between border-t border-border-soft py-3 no-underline-anim text-foreground"
+              >
+                <span class="font-heading text-[17px] tracking-[0.3px] text-foreground-light transition-colors group-hover:text-foreground max-md:text-[15px]">
+                  {p.data.title}
+                </span>
+                <span class="font-mono text-[10px] uppercase tracking-[1px] text-muted">
+                  {fmtDate(p.data.pubDate)}
+                </span>
+              </a>
+            ))}
+          </>
+        )
       }
     </div>
   </div>

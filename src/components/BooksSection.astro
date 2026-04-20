@@ -1,43 +1,8 @@
 ---
 import NumberedSectionHeader from "./NumberedSectionHeader.astro";
+import { books } from "~/data/books";
 
-interface Book {
-  title: string;
-  author: string;
-  year: string;
-  note?: string;
-}
-
-const books: Book[] = [
-  {
-    title: "The Three-Body Problem",
-    author: "Liu Cixin",
-    year: "2026",
-    note: "currently reading",
-  },
-  {
-    title: "Shop Class as Soulcraft",
-    author: "Matthew Crawford",
-    year: "2025",
-    note: "a favorite",
-  },
-  {
-    title: "Seeing Like a State",
-    author: "James C. Scott",
-    year: "2025",
-  },
-  {
-    title: "The Dream Machine",
-    author: "M. Mitchell Waldrop",
-    year: "2024",
-  },
-  {
-    title: "Working in Public",
-    author: "Nadia Eghbal",
-    year: "2024",
-  },
-];
-
+const shelfPreview = books.slice(0, 5);
 const pad2 = (n: number) => String(n).padStart(2, "0");
 ---
 
@@ -46,29 +11,30 @@ const pad2 = (n: number) => String(n).padStart(2, "0");
   class="scroll-mt-8 border-t border-border px-16 py-30 max-md:px-5 max-md:py-16"
 >
   <NumberedSectionHeader num="06" title="Shelf" kicker="reading" />
-  <div>
-    {
-      books.map((b, i) => (
-        <div class="grid items-baseline border-t border-border-soft py-4.5 md:grid-cols-[60px_1fr_1fr_auto] md:gap-8 max-md:grid-cols-[36px_1fr_auto] max-md:gap-3.5 max-md:py-3.5">
-          <div class="font-mono text-[11px] text-muted">{pad2(i + 1)}</div>
-          <div class="font-heading text-[1.375rem] tracking-[0.5px] text-foreground font-normal max-md:text-[17px]">
-            {b.title}
+  {
+    shelfPreview.length === 0 ? (
+      <div class="font-mono text-[11px] uppercase tracking-[1px] text-muted">
+        shelf sync pending
+      </div>
+    ) : (
+      <div>
+        {shelfPreview.map((b, i) => (
+          <div class="grid items-baseline border-t border-border-soft py-4.5 md:grid-cols-[60px_1fr_1fr_auto] md:gap-8 max-md:grid-cols-[36px_1fr_auto] max-md:gap-3.5 max-md:py-3.5">
+            <div class="font-mono text-[11px] text-muted">{pad2(i + 1)}</div>
+            <div class="font-heading text-[1.375rem] tracking-[0.5px] text-foreground font-normal max-md:text-[17px]">
+              {b.title}
+            </div>
+            <div class="font-mono text-xs text-foreground-light max-md:hidden">
+              {b.author}
+            </div>
+            <div class="font-mono text-[11px] uppercase tracking-[1px] text-muted">
+              {b.tags[0] || "—"}
+            </div>
           </div>
-          <div class="font-mono text-xs text-foreground-light max-md:hidden">
-            {b.author}
-          </div>
-          <div
-            class:list={[
-              "font-mono text-[11px] uppercase tracking-[1px]",
-              b.note ? "text-accent" : "text-muted",
-            ]}
-          >
-            {b.note || b.year}
-          </div>
-        </div>
-      ))
-    }
-  </div>
+        ))}
+      </div>
+    )
+  }
   <div class="mt-7 max-md:mt-5">
     <a
       href="/books"
