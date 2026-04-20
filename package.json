@@ -10,7 +10,8 @@
     "preview": "astro preview",
     "astro": "astro",
     "build:icons": "node scripts/build-icons.mjs",
-    "sync-books": "node scripts/sync-books.mjs"
+    "sync-books": "node scripts/sync-books.mjs",
+    "sync-highlights": "node scripts/sync-highlights.mjs"
   },
   "dependencies": {
     "@astrojs/mdx": "^4.0.0",
