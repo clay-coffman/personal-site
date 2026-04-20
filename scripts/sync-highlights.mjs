@@ -20,13 +20,17 @@ import {
 } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
-import { execSync } from "node:child_process";
+import {
+  parseFlags,
+  prepareBranch,
+  commitAndPush,
+  pingKuma,
+} from "./lib/git-sync.mjs";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const repoRoot = join(__dirname, "..");
 
-const DRY_RUN = process.argv.includes("--dry-run");
-const NO_PUSH = process.argv.includes("--no-push");
+const { dryRun: DRY_RUN, noPush: NO_PUSH } = parseFlags(process.argv);
 const BRANCH = process.env.SYNC_BRANCH || "main";
 
 const PUBLISH_TAG = "publish";
@@ -37,14 +41,6 @@ const token = process.env.READWISE_TOKEN;
 if (!token) {
   console.error("error: READWISE_TOKEN is required");
   process.exit(1);
-}
-
-function run(cmd, opts = {}) {
-  return execSync(cmd, { cwd: repoRoot, stdio: "inherit", ...opts });
-}
-
-function runSilent(cmd) {
-  return execSync(cmd, { cwd: repoRoot }).toString();
 }
 
 async function fetchAllBooks() {
@@ -99,10 +95,7 @@ function extractHighlights(books) {
 }
 
 if (!DRY_RUN) {
-  console.log(`syncing git state from origin/${BRANCH}`);
-  run(`git fetch origin ${BRANCH}`);
-  run(`git checkout ${BRANCH}`);
-  run(`git reset --hard origin/${BRANCH}`);
+  prepareBranch({ branch: BRANCH, cwd: repoRoot });
 }
 
 console.log("fetching readwise export");
@@ -130,31 +123,16 @@ if (DRY_RUN) {
   process.exit(0);
 }
 
-const status = runSilent("git status --porcelain").trim();
-if (!status) {
-  console.log("no changes — exiting without commit");
-  process.exit(0);
-}
+commitAndPush({
+  paths: ["src/data/highlights.json"],
+  message: `sync highlights: ${highlights.length} entries`,
+  botName: BOT_NAME,
+  botEmail: BOT_EMAIL,
+  branch: BRANCH,
+  noPush: NO_PUSH,
+  cwd: repoRoot,
+});
 
-console.log("committing");
-run("git add src/data/highlights.json");
-run(
-  `git -c user.name="${BOT_NAME}" -c user.email="${BOT_EMAIL}" commit -m "sync highlights: ${highlights.length} entries"`,
-);
-
-if (NO_PUSH) {
-  console.log("--no-push: leaving commit local");
-  process.exit(0);
-}
-
-console.log(`pushing to origin/${BRANCH}`);
-try {
-  run(`git push origin ${BRANCH}`);
-} catch {
-  console.log(`push rejected — rebasing on origin/${BRANCH} and retrying`);
-  run(`git fetch origin ${BRANCH}`);
-  run(`git rebase origin/${BRANCH}`);
-  run(`git push origin ${BRANCH}`);
-}
+await pingKuma("KUMA_PUSH_SYNC_HIGHLIGHTS");
 
 console.log("done");
