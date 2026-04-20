@@ -34,3 +34,4 @@ secrets/
 # Reference screenshots
 *.png
 .playwright-mcp/
+blog_posts/

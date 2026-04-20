@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "./BaseLayout.astro";
 import Footer from "~/components/Footer.astro";
+import SubscribeForm from "~/components/SubscribeForm.astro";
 
 interface Props {
   title: string;
@@ -75,6 +76,10 @@ const formattedUpdatedDate = updatedDate?.toLocaleDateString("en-US", {
       </div>
     </article>
   </main>
+  <SubscribeForm
+    heading="Liked this? Get the next one in your inbox."
+    copy="One email per post. No drip, no filler. Unsubscribe anytime."
+  />
   <Footer />
 </BaseLayout>
 
