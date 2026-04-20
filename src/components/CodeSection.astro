@@ -4,19 +4,33 @@ import type { Project } from "~/data/profile";
 
 interface Props {
   projects: Project[];
+  skills: Record<string, string[]>;
 }
 
-const { projects } = Astro.props;
+const { projects, skills } = Astro.props;
+const stack = Object.values(skills).flat();
 ---
 
 <section
-  id="projects"
-  class="scroll-mt-8 border-t border-border px-16 py-30 max-md:px-5 max-md:py-16"
+  id="code"
+  class="scroll-mt-8 border-t border-border px-16 py-30 md:min-h-screen max-md:px-5 max-md:py-16"
 >
-  <NumberedSectionHeader num="03" title="Projects" kicker="repos" />
+  <NumberedSectionHeader num="02" title="Code" kicker="open source" />
+
   <div
-    class="grid gap-8 md:grid-cols-3 max-md:grid-cols-1 max-md:gap-5"
+    class="mb-12 flex flex-wrap items-baseline gap-x-3 gap-y-2 font-heading text-sm uppercase tracking-[1px] text-foreground-light max-md:mb-8 max-md:text-xs"
   >
+    {
+      stack.map((s, i) => (
+        <>
+          {i > 0 && <span class="text-muted">·</span>}
+          <span>{s}</span>
+        </>
+      ))
+    }
+  </div>
+
+  <div class="grid gap-8 md:grid-cols-3 max-md:grid-cols-1 max-md:gap-5">
     {
       projects.map((p) => (
         <a

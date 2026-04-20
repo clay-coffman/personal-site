@@ -7,8 +7,6 @@ interface Props {
 
 const { profile } = Astro.props;
 
-const skillCount = Object.values(profile.skills).flat().length;
-
 const rows = [
   {
     label: "Experience",
@@ -17,16 +15,10 @@ const rows = [
     href: "#experience",
   },
   {
-    label: "Projects",
+    label: "Code",
     count: profile.projects.length,
-    meta: "recent",
-    href: "#projects",
-  },
-  {
-    label: "Skills",
-    count: skillCount,
-    meta: "current stack",
-    href: "#skills",
+    meta: "open source",
+    href: "#code",
   },
   {
     label: "Education",
@@ -52,17 +44,17 @@ const pad2 = (n: number) => String(n).padStart(2, "0");
 
   <div class="max-w-[820px]">
     <p class="text-hero-lede m-0 text-foreground-light">
-      A quiet corner of the internet with my{" "}
-      <a href="#experience" class="link-noun hover:link-noun-hover">resume</a>,{" "}
-      a few <a href="#projects" class="link-noun hover:link-noun-hover"
-        >projects</a
-      >, the <a href="#skills" class="link-noun hover:link-noun-hover">tools</a
-      >{" "}
-      I reach for,{" "}
-      <a href="#education" class="link-noun hover:link-noun-hover"
-        >what I studied</a
-      >, and — before long — some{" "}
-      <a href="#writing" class="link-noun hover:link-noun-hover">writing</a>.
+      My corner of the internet where you can find{" "}
+      <a href="#experience" class="link-noun hover:link-noun-hover"
+        >what I've worked on</a
+      >,{" "}
+      <a href="#code" class="link-noun hover:link-noun-hover"
+        >what I'm working on</a
+      >, some of my favorite{" "}
+      <a href="/bookshelf" class="link-noun hover:link-noun-hover">books</a>,{" "}
+      <a href="#photos" class="link-noun hover:link-noun-hover">photos</a>, and
+      links, and — before long — some{" "}
+      <a href="/blog" class="link-noun hover:link-noun-hover">writing</a>.
     </p>
   </div>
 
@@ -94,7 +86,7 @@ const pad2 = (n: number) => String(n).padStart(2, "0");
     <span class="ml-auto opacity-70 max-md:ml-0">scroll ↓</span>
   </div>
 
-  <div class="mt-4 flex flex-col max-md:mt-2">
+  <div class="mt-4 flex max-w-[820px] flex-col max-md:mt-2">
     {
       rows.map((r, i) => (
         <a

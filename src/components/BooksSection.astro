@@ -8,9 +8,9 @@ const pad2 = (n: number) => String(n).padStart(2, "0");
 
 <section
   id="books"
-  class="scroll-mt-8 border-t border-border px-16 py-30 max-md:px-5 max-md:py-16"
+  class="scroll-mt-8 border-t border-border px-16 py-30 md:min-h-screen max-md:px-5 max-md:py-16"
 >
-  <NumberedSectionHeader num="06" title="Shelf" kicker="reading" />
+  <NumberedSectionHeader num="04" title="Bookshelf" kicker="reading" />
   {
     shelfPreview.length === 0 ? (
       <div class="font-mono text-[11px] uppercase tracking-[1px] text-muted">
@@ -37,7 +37,7 @@ const pad2 = (n: number) => String(n).padStart(2, "0");
   }
   <div class="mt-7 max-md:mt-5">
     <a
-      href="/books"
+      href="/bookshelf"
       class="no-underline-anim font-mono text-xs uppercase tracking-[1px] text-accent hover:text-accent-dark"
     >
       full shelf →

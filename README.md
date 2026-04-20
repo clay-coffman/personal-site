@@ -12,7 +12,7 @@ npm run build    # static output in dist/
 
 ## Sync books from Calibre
 
-The `/books` page reads `src/data/books.json`, populated from a Calibre library
+The `/bookshelf` page reads `src/data/books.json`, populated from a Calibre library
 by `scripts/sync-books.mjs`. This runs on the Hetzner host that has the library
 mounted — not locally, not in CF Pages build.
 
