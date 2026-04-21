@@ -1,0 +1,70 @@
+---
+import NumberedSectionHeader from "./NumberedSectionHeader.astro";
+import type { Project } from "~/data/profile";
+
+interface Props {
+  projects: Project[];
+  skills: Record<string, string[]>;
+}
+
+const { projects, skills } = Astro.props;
+const stack = Object.values(skills).flat();
+---
+
+<section
+  id="code"
+  class="scroll-mt-8 border-t border-border px-16 py-30 md:min-h-screen max-md:px-5 max-md:py-16"
+>
+  <NumberedSectionHeader num="02" title="Code" kicker="open source" />
+
+  <div
+    class="mb-12 flex flex-wrap items-baseline gap-x-3 gap-y-2 font-heading text-sm uppercase tracking-[1px] text-foreground-light max-md:mb-8 max-md:text-xs"
+  >
+    {
+      stack.map((s, i) => (
+        <>
+          {i > 0 && <span class="text-muted">·</span>}
+          <span>{s}</span>
+        </>
+      ))
+    }
+  </div>
+
+  <div class="grid gap-8 md:grid-cols-3 max-md:grid-cols-1 max-md:gap-5">
+    {
+      projects.map((p) => (
+        <a
+          href={p.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="group block border-t-2 border-accent py-6 no-underline-anim text-foreground max-md:py-5"
+        >
+          <div class="mb-3 flex items-baseline justify-between gap-3">
+            <h3 class="text-h3-sm m-0 text-foreground transition-colors group-hover:text-accent">
+              {p.title}
+            </h3>
+            {p.language && (
+              <span class="shrink-0 bg-accent-soft px-2 py-0.5 font-mono text-[10px] uppercase tracking-[1px] text-accent">
+                {p.language}
+              </span>
+            )}
+          </div>
+          <p class="m-0 text-[14.5px] leading-[1.55] text-foreground-light max-md:text-sm">
+            {p.description}
+          </p>
+          <div class="mt-3.5 font-mono text-[11px] uppercase tracking-[1px] text-accent">
+            view →
+          </div>
+        </a>
+      ))
+    }
+  </div>
+  <div class="mt-7 max-md:mt-5">
+    <a
+      href="/projects"
+      class="no-underline-anim font-mono text-xs uppercase tracking-[1px] text-accent hover:text-accent-dark"
+    >
+      all projects →
+    </a>
+  </div>
+</section>

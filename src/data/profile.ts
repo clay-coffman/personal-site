@@ -35,7 +35,7 @@ export interface ProfileData {
 
 export const profileData: ProfileData = {
   name: "Clay Coffman",
-  location: "Los Angeles, California",
+  location: "Salt Lake City, Utah",
   email: "contact@clay21.mozmail.com",
   experiences: [
     {

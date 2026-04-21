@@ -1,0 +1,58 @@
+---
+import BaseLayout from "~/layouts/BaseLayout.astro";
+import Footer from "~/components/Footer.astro";
+import { profileData } from "~/data/profile";
+
+const experiences = profileData.experiences;
+---
+
+<BaseLayout
+  title="Clay Coffman — Experience"
+  description="Work history: roles, companies, and what I did there."
+>
+  <div data-nav-sentinel aria-hidden="true"></div>
+  <main class="px-16 py-16 max-md:px-5 max-md:py-12">
+    <div class="mb-12 max-md:mb-8">
+      <div class="mb-3 font-mono text-[11px] uppercase tracking-[2px] text-accent">
+        resume · {experiences.length} roles
+      </div>
+      <h1 class="text-h1 m-0">Experience</h1>
+    </div>
+    <div>
+      {
+        experiences.map((e) => (
+          <article class="grid items-baseline border-t border-border-soft py-7 md:grid-cols-[140px_minmax(0,1fr)_2fr] md:gap-10 max-md:grid-cols-1 max-md:gap-2 max-md:py-5">
+            <div class="font-mono text-[11px] uppercase tracking-[1px] text-muted md:pt-1.5">
+              {e.period}
+            </div>
+            <div>
+              <h3 class="text-h3 m-0 text-foreground">
+                {e.url ? (
+                  <a
+                    href={e.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="text-foreground hover:text-accent"
+                  >
+                    {e.company}
+                  </a>
+                ) : (
+                  e.company
+                )}
+              </h3>
+              {e.role && (
+                <div class="mt-1.5 font-mono text-[11px] uppercase tracking-[1px] text-accent">
+                  {e.role}
+                </div>
+              )}
+            </div>
+            <p class="m-0 leading-[1.6] text-foreground-light md:text-[15.5px] max-md:text-sm">
+              {e.description}
+            </p>
+          </article>
+        ))
+      }
+    </div>
+  </main>
+  <Footer />
+</BaseLayout>

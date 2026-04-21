@@ -1,0 +1,64 @@
+---
+import NumberedSectionHeader from "./NumberedSectionHeader.astro";
+import { photos } from "~/data/photos";
+
+const preview = photos.slice(0, 3);
+const pad4 = (n: number) => String(n).padStart(4, "0");
+---
+
+<section
+  id="photos"
+  class="scroll-mt-8 border-t border-border px-16 py-30 md:min-h-screen max-md:px-5 max-md:py-16"
+>
+  <NumberedSectionHeader num="05" title="Photos" kicker="Utah" />
+  <div
+    class="grid gap-5 md:grid-cols-3 max-md:grid-cols-2 max-md:gap-2.5"
+  >
+    {
+      preview.map((ph, i) => (
+        <figure class="m-0">
+          <div
+            class="relative overflow-hidden border border-border bg-background-alt"
+            style={{
+              aspectRatio: ph.aspect,
+              backgroundImage: `linear-gradient(135deg, ${ph.tint}22, ${ph.tint}66)`,
+            }}
+          >
+            <div class="photo-dots absolute inset-0" />
+            <div class="photo-grain absolute inset-0" />
+            <div class="absolute bottom-2 left-2.5 font-mono text-[9px] uppercase tracking-[1px] text-[rgba(245,239,226,0.7)]">
+              IMG_{pad4(i + 1)}
+            </div>
+          </div>
+          <figcaption class="mt-2 font-mono text-[11px] tracking-[0.5px] text-muted">
+            {ph.caption}
+          </figcaption>
+        </figure>
+      ))
+    }
+  </div>
+  <div class="mt-7 max-md:mt-5">
+    <a
+      href="/photos"
+      class="no-underline-anim font-mono text-xs uppercase tracking-[1px] text-accent hover:text-accent-dark"
+    >
+      all photos →
+    </a>
+  </div>
+</section>
+
+<style>
+  .photo-dots {
+    background-image: radial-gradient(
+      rgba(30, 10, 0, 0.22) 1px,
+      transparent 1.3px
+    );
+    background-size: 3.5px 3.5px;
+    mix-blend-mode: multiply;
+  }
+  .photo-grain {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+    mix-blend-mode: multiply;
+    opacity: 0.18;
+  }
+</style>

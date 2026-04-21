@@ -1,20 +1,46 @@
 ---
-import SectionHeader from "./SectionHeader.astro";
-import BookGrid from "./BookGrid.astro";
+import NumberedSectionHeader from "./NumberedSectionHeader.astro";
 import { books } from "~/data/books";
 
-const featured = books.slice(0, 6);
+const shelfPreview = books.slice(0, 5);
+const pad2 = (n: number) => String(n).padStart(2, "0");
 ---
 
 <section
-  id="bookshelf"
-  class="scroll-mt-8 border-t border-background-alt py-16 max-md:py-12"
+  id="books"
+  class="scroll-mt-8 border-t border-border px-16 py-30 md:min-h-screen max-md:px-5 max-md:py-16"
 >
-  <SectionHeader>Bookshelf</SectionHeader>
-  <BookGrid books={featured} />
-  <div class="mt-6 text-right">
-    <a href="/books" class="text-body-sm text-muted hover:text-accent">
-      Full shelf &rarr;
+  <NumberedSectionHeader num="04" title="Bookshelf" kicker="reading" />
+  {
+    shelfPreview.length === 0 ? (
+      <div class="font-mono text-[11px] uppercase tracking-[1px] text-muted">
+        shelf sync pending
+      </div>
+    ) : (
+      <div>
+        {shelfPreview.map((b, i) => (
+          <div class="grid items-baseline border-t border-border-soft py-4.5 md:grid-cols-[60px_1fr_1fr_auto] md:gap-8 max-md:grid-cols-[36px_1fr_auto] max-md:gap-3.5 max-md:py-3.5">
+            <div class="font-mono text-[11px] text-muted">{pad2(i + 1)}</div>
+            <div class="font-heading text-[1.375rem] tracking-[0.5px] text-foreground font-normal max-md:text-[17px]">
+              {b.title}
+            </div>
+            <div class="font-mono text-xs text-foreground-light max-md:hidden">
+              {b.author}
+            </div>
+            <div class="font-mono text-[11px] uppercase tracking-[1px] text-muted">
+              {b.tags[0] || "—"}
+            </div>
+          </div>
+        ))}
+      </div>
+    )
+  }
+  <div class="mt-7 max-md:mt-5">
+    <a
+      href="/bookshelf"
+      class="no-underline-anim font-mono text-xs uppercase tracking-[1px] text-accent hover:text-accent-dark"
+    >
+      full shelf →
     </a>
   </div>
 </section>

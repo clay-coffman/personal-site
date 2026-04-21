@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "./BaseLayout.astro";
-import PageLayout from "~/components/PageLayout.astro";
+import Footer from "~/components/Footer.astro";
+import SubscribeForm from "~/components/SubscribeForm.astro";
 
 interface Props {
   title: string;
@@ -39,8 +40,9 @@ const formattedUpdatedDate = updatedDate?.toLocaleDateString("en-US", {
   description={description}
   ogImage={heroImage}
 >
-  <PageLayout>
-    <article class="mx-auto max-w-2xl py-12">
+  <div data-nav-sentinel aria-hidden="true"></div>
+  <main class="px-16 py-16 max-md:px-5 max-md:py-12">
+    <article class="mx-auto max-w-2xl">
       <header class="mb-8">
         <h1 class="text-h2 mb-3">{title}</h1>
         <div class="flex flex-wrap items-center gap-3 text-body-xs text-muted">
@@ -49,7 +51,10 @@ const formattedUpdatedDate = updatedDate?.toLocaleDateString("en-US", {
           {
             updatedDate && (
               <span>
-                · Updated <time datetime={updatedDate.toISOString()}>{formattedUpdatedDate}</time>
+                · Updated{" "}
+                <time datetime={updatedDate.toISOString()}>
+                  {formattedUpdatedDate}
+                </time>
               </span>
             )
           }
@@ -70,7 +75,12 @@ const formattedUpdatedDate = updatedDate?.toLocaleDateString("en-US", {
         <slot />
       </div>
     </article>
-  </PageLayout>
+  </main>
+  <SubscribeForm
+    heading="Liked this? Get the next one in your inbox."
+    copy="One email per post. No drip, no filler. Unsubscribe anytime."
+  />
+  <Footer />
 </BaseLayout>
 
 <style is:global>
@@ -132,7 +142,6 @@ const formattedUpdatedDate = updatedDate?.toLocaleDateString("en-US", {
     margin: 2em 0;
   }
 
-  /* Shiki dual-theme swap */
   @media (prefers-color-scheme: dark) {
     .prose pre.astro-code,
     .prose pre.astro-code span {

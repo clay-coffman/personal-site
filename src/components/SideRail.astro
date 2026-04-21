@@ -1,0 +1,162 @@
+---
+const items = [
+  { label: "Top", id: "hero" },
+  { label: "Experience", id: "experience" },
+  { label: "Code", id: "code" },
+  { label: "Education", id: "education" },
+  { label: "Bookshelf", id: "books" },
+  { label: "Photos", id: "photos" },
+  { label: "Writing", id: "writing" },
+];
+---
+
+<nav
+  data-side-rail
+  aria-label="Page sections"
+  class="side-rail fixed right-6 top-1/2 z-40 -translate-y-1/2 max-md:hidden"
+>
+  <ul class="m-0 flex list-none flex-col gap-3.5 p-0">
+    {
+      items.map((item) => (
+        <li class="flex items-center justify-end">
+          <a
+            href={`#${item.id}`}
+            data-section={item.id}
+            class="rail-link no-underline-anim flex items-center gap-3"
+            aria-label={item.label}
+          >
+            <span class="rail-label font-mono text-[11px] uppercase tracking-[1px] text-muted">
+              {item.label}
+            </span>
+            <span class="rail-dot" aria-hidden="true" />
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</nav>
+
+<style>
+  .side-rail {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 240ms ease-out;
+  }
+  .side-rail[data-revealed] {
+    opacity: 1;
+  }
+  .side-rail[data-revealed] .rail-link {
+    pointer-events: auto;
+  }
+
+  .rail-link {
+    padding: 4px 0;
+  }
+
+  .rail-dot {
+    display: block;
+    width: 6px;
+    height: 6px;
+    border-radius: 9999px;
+    background-color: var(--color-border);
+    transition:
+      transform 180ms ease-out,
+      background-color 180ms ease-out;
+  }
+
+  .rail-label {
+    opacity: 0;
+    transform: translateX(8px);
+    white-space: nowrap;
+    transition:
+      opacity 180ms ease-out,
+      transform 180ms ease-out,
+      color 180ms ease-out;
+  }
+
+  .rail-link:hover .rail-label,
+  .rail-link[aria-current="true"] .rail-label {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .rail-link:hover .rail-dot,
+  .rail-link[aria-current="true"] .rail-dot {
+    background-color: var(--color-accent);
+    transform: scale(1.6);
+  }
+
+  .rail-link[aria-current="true"] .rail-label {
+    color: var(--color-accent);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .side-rail,
+    .rail-dot,
+    .rail-label {
+      transition-duration: 0ms;
+    }
+  }
+</style>
+
+<script>
+  const rail = document.querySelector<HTMLElement>("[data-side-rail]");
+  if (rail) {
+    const sentinel = document.querySelector<HTMLElement>("[data-nav-sentinel]");
+    const setRevealed = (revealed: boolean) => {
+      if (revealed) rail.setAttribute("data-revealed", "");
+      else rail.removeAttribute("data-revealed");
+    };
+
+    if (sentinel) {
+      const revealObserver = new IntersectionObserver(
+        (entries) => {
+          for (const entry of entries) {
+            setRevealed(!entry.isIntersecting);
+          }
+        },
+        { rootMargin: "0px", threshold: 0 }
+      );
+      revealObserver.observe(sentinel);
+    } else {
+      setRevealed(true);
+    }
+
+    const links = Array.from(
+      rail.querySelectorAll<HTMLAnchorElement>("[data-section]")
+    );
+    const sections = links
+      .map((a) => {
+        const id = a.dataset.section;
+        return id ? document.getElementById(id) : null;
+      })
+      .filter((el): el is HTMLElement => el !== null);
+
+    const setActive = (id: string | null) => {
+      links.forEach((a) => {
+        if (id && a.dataset.section === id) {
+          a.setAttribute("aria-current", "true");
+        } else {
+          a.removeAttribute("aria-current");
+        }
+      });
+    };
+
+    if (sections.length) {
+      const spy = new IntersectionObserver(
+        (entries) => {
+          const visible = entries
+            .filter((e) => e.isIntersecting)
+            .map((e) => e.target as HTMLElement);
+          if (visible.length === 0) return;
+          const topmost = visible.reduce((prev, curr) =>
+            curr.offsetTop < prev.offsetTop ? curr : prev
+          );
+          setActive(topmost.id);
+        },
+        { rootMargin: "-20% 0px -60% 0px" }
+      );
+      sections.forEach((s) => spy.observe(s));
+    }
+  }
+</script>

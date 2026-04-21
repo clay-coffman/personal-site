@@ -1,39 +1,46 @@
 @import "tailwindcss";
 
 @theme {
-  /* Colors - Light mode defaults */
-  --color-background: #fff;
-  --color-background-alt: #f5f5f5;
-  --color-foreground: #1a1a1a;
-  --color-foreground-light: #333333;
-  --color-muted: #666;
-  --color-accent: #0077b6;
-  --color-accent-dark: #005a8c;
-  --color-border: #e5e5e5;
+  /* ---------- R5 Rust palette (light) ---------- */
+  --color-background: #f5efe2; /* paper */
+  --color-background-alt: #ede5d3; /* paperDeep */
+  --color-foreground: #1a0f08; /* ink */
+  --color-foreground-light: rgba(50, 35, 25, 0.72); /* inkSoft */
+  --color-muted: rgba(50, 35, 25, 0.5); /* inkMeta */
+  --color-border: rgba(50, 35, 25, 0.18); /* rule */
+  --color-border-soft: rgba(50, 35, 25, 0.1); /* ruleSoft */
+  --color-accent: #9a3412; /* rust */
+  --color-accent-dark: #7c2d12; /* rust-deeper for hover */
+  --color-accent-underline: rgba(154, 52, 18, 0.5);
+  --color-accent-soft: rgba(154, 52, 18, 0.12);
 
   /* Fonts */
-  --font-mono: "Atkinson Hyperlegible Mono", monospace;
-  --font-heading: "Bebas Neue", sans-serif;
+  --font-mono: "Atkinson Hyperlegible Mono", ui-monospace, SFMono-Regular,
+    Menlo, monospace;
+  --font-heading: "Bebas Neue", Impact, sans-serif;
 
   /* Sidebar */
   --sidebar-width: 180px;
 }
 
-/* Dark mode */
+/* Dark (rust) */
 @media (prefers-color-scheme: dark) {
   :root {
-    --color-background: #0a0a0a;
-    --color-background-alt: #1a1a1a;
-    --color-foreground: #ededed;
-    --color-foreground-light: #d4d4d4;
-    --color-muted: #a3a3a3;
-    --color-accent: #38bdf8;
-    --color-accent-dark: #0ea5e9;
-    --color-border: #2a2a2a;
+    --color-background: #1a0f08;
+    --color-background-alt: #261810;
+    --color-foreground: #f5efe2;
+    --color-foreground-light: rgba(245, 239, 226, 0.75);
+    --color-muted: rgba(245, 239, 226, 0.55);
+    --color-border: rgba(245, 239, 226, 0.18);
+    --color-border-soft: rgba(245, 239, 226, 0.1);
+    --color-accent: #c2410c;
+    --color-accent-dark: #9a3412;
+    --color-accent-underline: rgba(194, 65, 12, 0.55);
+    --color-accent-soft: rgba(194, 65, 12, 0.15);
   }
 }
 
-/* Base styles */
+/* Base */
 html,
 html body {
   scroll-behavior: smooth;
@@ -50,7 +57,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Heading typography */
 h1,
 h2,
 h3,
@@ -63,7 +69,7 @@ h6 {
   letter-spacing: 1px;
 }
 
-/* Link styles */
+/* Links — rust with underline animation */
 a {
   color: var(--color-accent);
   text-decoration: none;
@@ -81,7 +87,6 @@ a:hover {
   background-size: 100% 1px;
 }
 
-/* Disable underline animation and reset color for nav/special links */
 .no-underline-anim {
   background-image: none;
   color: inherit;
@@ -91,13 +96,23 @@ a:hover {
   color: inherit;
 }
 
-/* Custom text size utilities */
-@utility text-h1 {
+/* Text utilities */
+@utility text-display {
   font-family: var(--font-heading);
-  font-size: 6rem;
+  font-size: 5.5rem;
   line-height: 0.9;
   letter-spacing: 2px;
   font-weight: 400;
+  text-transform: uppercase;
+}
+
+@utility text-h1 {
+  font-family: var(--font-heading);
+  font-size: 3.75rem; /* ~60px — design section headers */
+  line-height: 1;
+  letter-spacing: 1px;
+  font-weight: 400;
+  text-transform: uppercase;
 }
 
 @utility text-h2 {
@@ -105,22 +120,34 @@ a:hover {
   font-size: 2rem;
   letter-spacing: 2px;
   font-weight: 400;
+  text-transform: uppercase;
 }
 
 @utility text-h3 {
   font-family: var(--font-heading);
-  font-size: 1.6rem;
+  font-size: 1.5rem; /* ~24px — experience company, education institution */
   letter-spacing: 1px;
   line-height: 1.1;
   font-weight: 400;
+  text-transform: uppercase;
 }
 
 @utility text-h3-sm {
   font-family: var(--font-heading);
-  font-size: 1.3rem;
+  font-size: 1.25rem;
   letter-spacing: 1px;
   line-height: 1.1;
   font-weight: 400;
+  text-transform: uppercase;
+}
+
+@utility text-hero-lede {
+  font-family: var(--font-heading);
+  font-size: 2.75rem; /* 44px desktop — hero sentence */
+  line-height: 1.25;
+  letter-spacing: 0.5px;
+  font-weight: 400;
+  text-transform: none;
 }
 
 @utility text-nav {
@@ -152,6 +179,21 @@ a:hover {
   font-size: 0.85rem;
 }
 
+@utility text-meta {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem; /* 11px */
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+@utility text-meta-sm {
+  font-family: var(--font-mono);
+  font-size: 0.625rem; /* 10px */
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
 @utility text-skill-label {
   font-family: var(--font-heading);
   font-size: 1.1rem;
@@ -172,7 +214,21 @@ a:hover {
   background-size: 100% 1px;
 }
 
-/* Active sidebar nav link (set by scrollspy via aria-current) */
+/* Rust-underlined noun links inside hero sentence */
+@utility link-noun {
+  color: var(--color-foreground);
+  border-bottom: 1px solid var(--color-accent-underline);
+  padding-bottom: 2px;
+  background-image: none;
+  transition: border-color 0.2s ease-out;
+}
+
+@utility link-noun-hover {
+  border-bottom-color: var(--color-accent);
+  color: var(--color-foreground);
+}
+
+/* Active sidebar nav link */
 [aria-current="true"] {
   color: var(--color-accent);
   opacity: 1;
@@ -180,14 +236,18 @@ a:hover {
 
 /* Responsive heading sizes */
 @media (max-width: 991px) {
-  .text-h1 {
+  .text-display {
     font-size: 4.5rem;
   }
 }
 
 @media (max-width: 768px) {
-  .text-h1 {
+  .text-display {
     font-size: 3.5rem;
+  }
+
+  .text-h1 {
+    font-size: 2.25rem; /* 36px — design mobile section */
   }
 
   .text-h2 {
@@ -195,16 +255,20 @@ a:hover {
   }
 
   .text-h3 {
-    font-size: 1.4rem;
+    font-size: 1.25rem;
   }
 
   .text-h3-sm {
-    font-size: 1.2rem;
+    font-size: 1.125rem;
+  }
+
+  .text-hero-lede {
+    font-size: 1.625rem; /* 26px mobile */
   }
 }
 
 @media (max-width: 480px) {
-  .text-h1 {
+  .text-display {
     font-size: 2.8rem;
   }
 }

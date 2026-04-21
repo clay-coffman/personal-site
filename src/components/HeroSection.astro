@@ -1,5 +1,4 @@
 ---
-import Icon from "./Icon.astro";
 import type { ProfileData } from "~/data/profile";
 
 interface Props {
@@ -7,49 +6,106 @@ interface Props {
 }
 
 const { profile } = Astro.props;
+
+const rows = [
+  {
+    label: "Experience",
+    count: profile.experiences.length,
+    meta: "since 2015",
+    href: "#experience",
+  },
+  {
+    label: "Code",
+    count: profile.projects.length,
+    meta: "open source",
+    href: "#code",
+  },
+  {
+    label: "Education",
+    count: profile.education.length,
+    meta: "",
+    href: "#education",
+  },
+];
+
+const pad2 = (n: number) => String(n).padStart(2, "0");
 ---
 
 <section
   id="hero"
-  class="flex min-h-screen items-center py-16 max-md:min-h-[80vh] max-md:pt-[60px]"
+  class="flex min-h-screen flex-col gap-14 px-16 pt-24 pb-18 md:gap-14 md:px-16 md:pt-24 md:pb-18 max-md:min-h-auto max-md:gap-9 max-md:px-5 max-md:pt-12 max-md:pb-12"
 >
-  <div class="max-w-[600px]">
-    <h1 class="text-h1 mb-8 text-foreground">
-      <span class="block">Clay</span>
-      <span class="block">Coffman</span>
-    </h1>
-
-    <p class="mb-8 text-body-sm text-muted">
-      <Icon name="map-marker" size={14} class="mr-1" />
-      {profile.location}
-    </p>
-
-    <div class="flex gap-6">
-      <a
-        href={`mailto:${profile.email}`}
-        class="no-underline-anim text-foreground transition-all hover:-translate-y-0.5 hover:text-accent"
-        aria-label="Send email"
-      >
-        <Icon name="envelope" size={20} />
-      </a>
-      <a
-        href={profile.social.linkedin}
-        target="_blank"
-        rel="noopener noreferrer"
-        class="no-underline-anim text-foreground transition-all hover:-translate-y-0.5 hover:text-accent"
-        aria-label="LinkedIn"
-      >
-        <Icon name="linkedin" size={20} />
-      </a>
-      <a
-        href={profile.social.github}
-        target="_blank"
-        rel="noopener noreferrer"
-        class="no-underline-anim text-foreground transition-all hover:-translate-y-0.5 hover:text-accent"
-        aria-label="GitHub"
-      >
-        <Icon name="github" size={20} />
-      </a>
-    </div>
+  <div
+    class="flex items-center justify-between font-mono text-[11px] uppercase tracking-[1px] text-muted"
+  >
+    <span>{profile.name}</span>
+    <span>40.76° N · 111.89° W</span>
   </div>
+
+  <div class="max-w-[820px]">
+    <p class="text-hero-lede m-0 text-foreground-light">
+      My corner of the internet where you can find{" "}
+      <a href="#experience" class="link-noun hover:link-noun-hover"
+        >what I've worked on</a
+      >,{" "}
+      <a href="#code" class="link-noun hover:link-noun-hover"
+        >what I'm working on</a
+      >, some of my favorite{" "}
+      <a href="/bookshelf" class="link-noun hover:link-noun-hover">books</a>,{" "}
+      <a href="#photos" class="link-noun hover:link-noun-hover">photos</a>, and
+      links, and — before long — some{" "}
+      <a href="/blog" class="link-noun hover:link-noun-hover">writing</a>.
+    </p>
+  </div>
+
+  <div
+    class="flex items-baseline gap-[18px] font-mono text-xs text-muted max-md:flex-wrap"
+  >
+    <a
+      href={`mailto:${profile.email}`}
+      class="no-underline-anim text-accent hover:text-accent-dark"
+    >
+      email
+    </a>
+    <a
+      href={profile.social.linkedin}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="no-underline-anim text-accent hover:text-accent-dark"
+    >
+      linkedin
+    </a>
+    <a
+      href={profile.social.github}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="no-underline-anim text-accent hover:text-accent-dark"
+    >
+      github
+    </a>
+    <span class="ml-auto opacity-70 max-md:ml-0">scroll ↓</span>
+  </div>
+
+  <div class="mt-4 flex max-w-[820px] flex-col max-md:mt-2">
+    {
+      rows.map((r, i) => (
+        <a
+          href={r.href}
+          class:list={[
+            "group flex items-baseline justify-between py-[18px] no-underline-anim text-foreground border-t border-border max-md:py-3.5",
+            i === rows.length - 1 && "border-b border-border",
+          ]}
+        >
+          <span class="font-heading text-[2.75rem] uppercase leading-none tracking-[1px] font-normal transition-colors group-hover:text-accent max-md:text-[1.75rem]">
+            {r.label}
+          </span>
+          <span class="flex items-baseline gap-4 font-mono text-xs text-muted">
+            {r.meta && <span>{r.meta}</span>}
+            <span class="text-accent">{pad2(r.count)}</span>
+          </span>
+        </a>
+      ))
+    }
+  </div>
+  <div data-nav-sentinel aria-hidden="true"></div>
 </section>

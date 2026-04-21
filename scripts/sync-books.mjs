@@ -1,135 +1,111 @@
 #!/usr/bin/env node
 /**
- * Syncs 5-star books from a Calibre library into src/data/books.json and
- * public/covers/. Intended to run on the Hetzner host that has the library
- * mounted, but also supports local dry-runs for iteration.
+ * Syncs the books in a named Hardcover list (e.g. "share-public") into
+ * src/data/books.json and downloads their covers into public/covers/.
+ * Replaces the previous Calibre-SQLite-based flow — the data source is now
+ * Hardcover's GraphQL API, and membership is curated manually in Hardcover.
  *
  * Flags:
  *   --dry-run    Write books.json + covers locally; do not touch git.
- *   --no-push    Commit but do not push (useful for review before pushing).
+ *   --no-push    Commit but do not push.
  *
  * Env:
- *   CALIBRE_LIBRARY   Path to Calibre library root (default: /calibre).
+ *   HARDCOVER_API_KEY   required; see scripts/lib/hardcover.mjs
+ *   HARDCOVER_LIST      required; slug of the user's list to render (e.g. "share-public")
+ *   SYNC_BRANCH         optional; git branch to sync against (default: main)
  */
 
-import Database from "better-sqlite3";
 import {
   existsSync,
   mkdirSync,
-  copyFileSync,
   readdirSync,
+  readFileSync,
+  renameSync,
   unlinkSync,
   writeFileSync,
-  readFileSync,
 } from "node:fs";
-import { join, dirname } from "node:path";
+import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
-import { execSync } from "node:child_process";
+import {
+  parseFlags,
+  prepareBranch,
+  commitAndPush,
+  pingKuma,
+} from "./lib/git-sync.mjs";
+import { findUserList, getList } from "./lib/hardcover.mjs";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const repoRoot = join(__dirname, "..");
 
-const CALIBRE_LIBRARY = process.env.CALIBRE_LIBRARY || "/calibre";
-const DRY_RUN = process.argv.includes("--dry-run");
-const NO_PUSH = process.argv.includes("--no-push");
+const { dryRun: DRY_RUN, noPush: NO_PUSH } = parseFlags(process.argv);
+const BRANCH = process.env.SYNC_BRANCH || "main";
+const LIST_SLUG = process.env.HARDCOVER_LIST;
 
-const BOT_NAME = "calibre-sync[bot]";
+const BOT_NAME = "hardcover-sync[bot]";
 const BOT_EMAIL = "noreply@about-clay.com";
 
-function run(cmd, opts = {}) {
-  return execSync(cmd, { cwd: repoRoot, stdio: "inherit", ...opts });
-}
-
-function runSilent(cmd) {
-  return execSync(cmd, { cwd: repoRoot }).toString();
-}
-
-function formatAuthors(authors) {
-  return authors
-    .split(",")
-    .map((a) => a.trim())
-    .map((a) => a.replace(/\s*\([^)]*\)/, ""))
-    .join(", ");
-}
-
-function parseAuthorSort(authorSort) {
-  if (!authorSort) return "";
-  if (authorSort.includes(", ")) {
-    const [last, first] = authorSort.split(", ", 2);
-    return `${first} ${last}`;
-  }
-  return authorSort;
-}
-
-const dbPath = join(CALIBRE_LIBRARY, "metadata.db");
-if (!existsSync(dbPath)) {
-  console.error(`error: ${dbPath} not found`);
-  console.error(`set CALIBRE_LIBRARY to the directory containing metadata.db`);
+if (!LIST_SLUG) {
+  console.error("error: HARDCOVER_LIST (slug of the Hardcover list) is required");
   process.exit(1);
 }
 
-if (!DRY_RUN) {
-  console.log("syncing git state from origin/main");
-  run("git fetch origin main");
-  run("git reset --hard origin/main");
+async function downloadCover(url, destPath) {
+  const res = await fetch(url);
+  if (!res.ok) {
+    console.warn(`  cover fetch ${url} → ${res.status}, skipping`);
+    return false;
+  }
+  const buf = Buffer.from(await res.arrayBuffer());
+  const tmpPath = `${destPath}.tmp`;
+  writeFileSync(tmpPath, buf);
+  renameSync(tmpPath, destPath);
+  return true;
 }
 
-console.log(`reading ${dbPath}`);
-const conn = new Database(dbPath, { readonly: true, fileMustExist: true });
-const rows = conn
-  .prepare(
-    `
-    SELECT
-      b.id,
-      b.title,
-      b.author_sort,
-      b.path,
-      b.has_cover,
-      GROUP_CONCAT(DISTINCT a.name) AS authors,
-      GROUP_CONCAT(DISTINCT t.name) AS tags
-    FROM books b
-    JOIN books_ratings_link br ON b.id = br.book
-    JOIN ratings r ON br.rating = r.id
-    LEFT JOIN books_authors_link ba ON b.id = ba.book
-    LEFT JOIN authors a ON ba.author = a.id
-    LEFT JOIN books_tags_link bt ON b.id = bt.book
-    LEFT JOIN tags t ON bt.tag = t.id
-    WHERE r.rating = 10
-    GROUP BY b.id
-    ORDER BY b.author_sort ASC
-    `,
-  )
-  .all();
-conn.close();
+if (!DRY_RUN) {
+  prepareBranch({ branch: BRANCH, cwd: repoRoot });
+}
+
+const list = await findUserList(LIST_SLUG);
+if (!list) {
+  console.error(`error: no Hardcover list found with slug "${LIST_SLUG}"`);
+  process.exit(1);
+}
+console.log(`reading list "${list.name}" (id=${list.id}, books_count=${list.books_count})`);
+
+const listBooks = await getList({ listId: list.id });
+console.log(`  ${listBooks.length} books in list`);
 
 const coversDir = join(repoRoot, "public", "covers");
 mkdirSync(coversDir, { recursive: true });
 
 const books = [];
-for (const row of rows) {
-  const coverSrc = join(CALIBRE_LIBRARY, row.path, "cover.jpg");
+for (const book of listBooks) {
   let hasCover = false;
-  if (row.has_cover && existsSync(coverSrc)) {
-    copyFileSync(coverSrc, join(coversDir, `${row.id}.jpg`));
-    hasCover = true;
+  if (book.imageUrl) {
+    try {
+      hasCover = await downloadCover(
+        book.imageUrl,
+        join(coversDir, `${book.id}.jpg`),
+      );
+    } catch (err) {
+      console.warn(`  cover fetch failed for ${book.id}: ${err.message}`);
+    }
   }
   books.push({
-    id: row.id,
-    title: row.title,
-    author: row.authors
-      ? formatAuthors(row.authors)
-      : parseAuthorSort(row.author_sort),
-    authorSort: row.author_sort,
-    tags: row.tags ? row.tags.split(",") : [],
+    id: book.id,
+    title: book.title,
+    author: book.author,
+    authorSort: book.authorSort,
+    tags: book.tags,
     hasCover,
   });
 }
 
-// Orphan cleanup: delete covers whose id is no longer in the 5-star list.
-const validIds = new Set(books.filter((b) => b.hasCover).map((b) => b.id));
+const validIds = new Set(books.filter((b) => b.hasCover).map((b) => String(b.id)));
 const existingCovers = readdirSync(coversDir).filter((f) => f.endsWith(".jpg"));
 for (const file of existingCovers) {
-  const id = Number(file.replace(/\.jpg$/, ""));
+  const id = file.replace(/\.jpg$/, "");
   if (!validIds.has(id)) {
     unlinkSync(join(coversDir, file));
     console.log(`  removed orphan cover: ${file}`);
@@ -158,31 +134,16 @@ if (DRY_RUN) {
   process.exit(0);
 }
 
-const status = runSilent("git status --porcelain").trim();
-if (!status) {
-  console.log("no changes — exiting without commit");
-  process.exit(0);
-}
+commitAndPush({
+  paths: ["src/data/books.json", "public/covers/"],
+  message: `sync books: ${books.length} entries`,
+  botName: BOT_NAME,
+  botEmail: BOT_EMAIL,
+  branch: BRANCH,
+  noPush: NO_PUSH,
+  cwd: repoRoot,
+});
 
-console.log("committing");
-run("git add src/data/books.json public/covers/");
-run(
-  `git -c user.name="${BOT_NAME}" -c user.email="${BOT_EMAIL}" commit -m "sync books: ${books.length} entries"`,
-);
-
-if (NO_PUSH) {
-  console.log("--no-push: leaving commit local");
-  process.exit(0);
-}
-
-console.log("pushing");
-try {
-  run("git push origin main");
-} catch {
-  console.log("push rejected — rebasing on origin/main and retrying");
-  run("git fetch origin main");
-  run("git rebase origin/main");
-  run("git push origin main");
-}
+await pingKuma("KUMA_PUSH_SYNC_BOOKS");
 
 console.log("done");
