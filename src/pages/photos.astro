@@ -2,8 +2,6 @@
 import BaseLayout from "~/layouts/BaseLayout.astro";
 import Footer from "~/components/Footer.astro";
 import { photos } from "~/data/photos";
-
-const pad4 = (n: number) => String(n).padStart(4, "0");
 ---
 
 <BaseLayout
@@ -16,33 +14,29 @@ const pad4 = (n: number) => String(n).padStart(4, "0");
       <div
         class="mb-3 font-mono text-[11px] uppercase tracking-[2px] text-accent"
       >
-        {photos.length} images · placeholder set
+        {photos.length} {photos.length === 1 ? "image" : "images"}
       </div>
       <h1 class="text-h1 m-0">Photos</h1>
       <p class="mt-4 max-w-xl text-muted">
-        Currently showing placeholder tiles. Once I wire up Immich I'll swap
-        these for the real archive, with a map view using the geoloc metadata.
+        Photos from Utah and wherever else I'm wandering. Synced from Immich.
       </p>
     </div>
     <div
       class="grid gap-5 md:grid-cols-4 max-md:grid-cols-2 max-md:gap-2.5"
     >
       {
-        photos.map((ph, i) => (
+        photos.map((ph) => (
           <figure class="m-0">
-            <div
-              class="relative overflow-hidden border border-border bg-background-alt"
-              style={{
-                aspectRatio: ph.aspect,
-                backgroundImage: `linear-gradient(135deg, ${ph.tint}22, ${ph.tint}66)`,
-              }}
-            >
-              <div class="photo-dots absolute inset-0" />
-              <div class="photo-grain absolute inset-0" />
-              <div class="absolute bottom-2 left-2.5 font-mono text-[9px] uppercase tracking-[1px] text-[rgba(245,239,226,0.7)]">
-                IMG_{pad4(i + 1)}
-              </div>
-            </div>
+            <img
+              src={ph.url}
+              alt={ph.caption}
+              width={ph.width}
+              height={ph.height}
+              loading="lazy"
+              decoding="async"
+              class="block w-full border border-border bg-background-alt"
+              style={`aspect-ratio: ${ph.width}/${ph.height}`}
+            />
             <figcaption class="mt-2 flex items-baseline justify-between gap-3 font-mono text-[11px] tracking-[0.5px] text-muted">
               <span>{ph.caption}</span>
               {ph.year && <span class="text-foreground-light">{ph.year}</span>}
@@ -54,19 +48,3 @@ const pad4 = (n: number) => String(n).padStart(4, "0");
   </main>
   <Footer />
 </BaseLayout>
-
-<style>
-  .photo-dots {
-    background-image: radial-gradient(
-      rgba(30, 10, 0, 0.22) 1px,
-      transparent 1.3px
-    );
-    background-size: 3.5px 3.5px;
-    mix-blend-mode: multiply;
-  }
-  .photo-grain {
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
-    mix-blend-mode: multiply;
-    opacity: 0.18;
-  }
-</style>

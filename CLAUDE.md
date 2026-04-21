@@ -19,7 +19,9 @@ npm run dev           # dev server on :4321 (regenerates sprite first)
 npm run build         # static output in dist/
 npm run preview       # serve dist/ locally
 npm run build:icons   # rebuild public/sprite.svg from icons/
-npm run sync-books    # populate src/data/books.json + public/covers/ from Calibre
+npm run sync-books    # populate src/data/books.json + public/covers/ from Hardcover
+npm run sync-highlights  # populate src/data/highlights.json from Readwise
+npm run sync-photos   # populate src/data/photos.json, mirror assets to R2
 ```
 
 ## Bookshelf data flow
@@ -45,6 +47,18 @@ On the server (`cloud-hil-1`), the script runs daily via
 at `/opt/personal-site`; push auth is a per-repo SSH deploy key at
 `/root/.ssh/personal_site_deploy` (write access) used via the
 `github-personal-site` Host alias in `/root/.ssh/config`.
+
+## Photos data flow
+
+The `/photos` page reads `src/data/photos.json`. Asset bytes are *not* committed —
+they live in R2 bucket `personal-site-photos`, served at `https://media.about-clay.com`.
+`scripts/sync-photos.mjs` fetches a curated Immich album (by UUID), mirrors new
+web-sized JPEGs to R2 via `rclone rcat`, orphan-cleans R2 objects no longer in the
+album, and writes the metadata JSON.
+
+Env vars on cloud-hil-1: `IMMICH_API_KEY`, `IMMICH_API_URL`, `IMMICH_ALBUM_ID`,
+`R2_PHOTOS_REMOTE`, `R2_PHOTOS_PUBLIC_URL`. Runs daily via
+`personal-site-sync-photos.timer`.
 
 ### Adding a new dynamic content source
 
