@@ -1,27 +1,24 @@
 #!/usr/bin/env node
 /**
  * Syncs the books in a named Hardcover list (e.g. "share-public") into
- * src/data/books.json and downloads their covers into public/covers/.
- * Replaces the previous Calibre-SQLite-based flow — the data source is now
- * Hardcover's GraphQL API, and membership is curated manually in Hardcover.
+ * src/data/books.json. Cover images are mirrored to the R2 bucket at
+ * R2_PHOTOS_PUBLIC_URL/covers/{id}.jpg; only the metadata JSON is committed.
  *
  * Flags:
- *   --dry-run    Write books.json + covers locally; do not touch git.
+ *   --dry-run    Write books.json locally; skip R2 uploads and git.
  *   --no-push    Commit but do not push.
  *
  * Env:
- *   HARDCOVER_API_KEY   required; see scripts/lib/hardcover.mjs
- *   HARDCOVER_LIST      required; slug of the user's list to render (e.g. "share-public")
- *   SYNC_BRANCH         optional; git branch to sync against (default: main)
+ *   HARDCOVER_API_KEY     required; see scripts/lib/hardcover.mjs
+ *   HARDCOVER_LIST        required; slug of the user's list to render (e.g. "share-public")
+ *   R2_PHOTOS_REMOTE      required; e.g. r2-photos:personal-site-photos
+ *   R2_PHOTOS_PUBLIC_URL  required; e.g. https://media.about-clay.com
+ *   SYNC_BRANCH           optional; git branch to sync against (default: main)
  */
 
 import {
   existsSync,
-  mkdirSync,
-  readdirSync,
   readFileSync,
-  renameSync,
-  unlinkSync,
   writeFileSync,
 } from "node:fs";
 import { dirname, join } from "node:path";
@@ -32,6 +29,11 @@ import {
   commitAndPush,
   pingKuma,
 } from "./lib/git-sync.mjs";
+import {
+  listR2Files,
+  uploadToR2,
+  deleteFromR2,
+} from "./lib/r2-sync.mjs";
 import { findUserList, getList } from "./lib/hardcover.mjs";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -39,26 +41,35 @@ const repoRoot = join(__dirname, "..");
 
 const { dryRun: DRY_RUN, noPush: NO_PUSH } = parseFlags(process.argv);
 const BRANCH = process.env.SYNC_BRANCH || "main";
-const LIST_SLUG = process.env.HARDCOVER_LIST;
 
 const BOT_NAME = "hardcover-sync[bot]";
 const BOT_EMAIL = "noreply@about-clay.com";
 
-if (!LIST_SLUG) {
-  console.error("error: HARDCOVER_LIST (slug of the Hardcover list) is required");
-  process.exit(1);
+const LIST_SLUG = process.env.HARDCOVER_LIST;
+const R2_REMOTE = process.env.R2_PHOTOS_REMOTE;
+const R2_PUBLIC_URL = process.env.R2_PHOTOS_PUBLIC_URL;
+
+for (const [name, value] of Object.entries({
+  HARDCOVER_LIST: LIST_SLUG,
+  R2_PHOTOS_REMOTE: R2_REMOTE,
+  R2_PHOTOS_PUBLIC_URL: R2_PUBLIC_URL,
+})) {
+  if (!value) {
+    console.error(`error: ${name} is required`);
+    process.exit(1);
+  }
 }
 
-async function downloadCover(url, destPath) {
-  const res = await fetch(url);
+const PUBLIC_COVERS = `${R2_PUBLIC_URL.replace(/\/$/, "")}/covers`;
+
+async function uploadCoverToR2(imageUrl, filename) {
+  const res = await fetch(imageUrl);
   if (!res.ok) {
-    console.warn(`  cover fetch ${url} → ${res.status}, skipping`);
+    console.warn(`  cover fetch ${imageUrl} → ${res.status}, skipping`);
     return false;
   }
   const buf = Buffer.from(await res.arrayBuffer());
-  const tmpPath = `${destPath}.tmp`;
-  writeFileSync(tmpPath, buf);
-  renameSync(tmpPath, destPath);
+  uploadToR2(R2_REMOTE, `covers/${filename}`, buf);
   return true;
 }
 
@@ -71,25 +82,34 @@ if (!list) {
   console.error(`error: no Hardcover list found with slug "${LIST_SLUG}"`);
   process.exit(1);
 }
-console.log(`reading list "${list.name}" (id=${list.id}, books_count=${list.books_count})`);
+console.log(
+  `reading list "${list.name}" (id=${list.id}, books_count=${list.books_count})`,
+);
 
 const listBooks = await getList({ listId: list.id });
 console.log(`  ${listBooks.length} books in list`);
 
-const coversDir = join(repoRoot, "public", "covers");
-mkdirSync(coversDir, { recursive: true });
+let existingR2 = new Set();
+if (!DRY_RUN) {
+  existingR2 = listR2Files(R2_REMOTE, "covers/");
+  console.log(`  ${existingR2.size} existing covers in R2`);
+}
 
 const books = [];
 for (const book of listBooks) {
-  let hasCover = false;
+  const filename = `${book.id}.jpg`;
+  let coverUrl = null;
   if (book.imageUrl) {
-    try {
-      hasCover = await downloadCover(
-        book.imageUrl,
-        join(coversDir, `${book.id}.jpg`),
-      );
-    } catch (err) {
-      console.warn(`  cover fetch failed for ${book.id}: ${err.message}`);
+    coverUrl = `${PUBLIC_COVERS}/${filename}`;
+    if (!DRY_RUN && !existingR2.has(filename)) {
+      console.log(`  uploading cover ${filename}`);
+      try {
+        const uploaded = await uploadCoverToR2(book.imageUrl, filename);
+        if (!uploaded) coverUrl = null;
+      } catch (err) {
+        console.warn(`  cover upload failed for ${book.id}: ${err.message}`);
+        coverUrl = null;
+      }
     }
   }
   books.push({
@@ -98,17 +118,19 @@ for (const book of listBooks) {
     author: book.author,
     authorSort: book.authorSort,
     tags: book.tags,
-    hasCover,
+    coverUrl,
   });
 }
 
-const validIds = new Set(books.filter((b) => b.hasCover).map((b) => String(b.id)));
-const existingCovers = readdirSync(coversDir).filter((f) => f.endsWith(".jpg"));
-for (const file of existingCovers) {
-  const id = file.replace(/\.jpg$/, "");
-  if (!validIds.has(id)) {
-    unlinkSync(join(coversDir, file));
-    console.log(`  removed orphan cover: ${file}`);
+if (!DRY_RUN) {
+  const validKeys = new Set(
+    books.filter((b) => b.coverUrl).map((b) => `${b.id}.jpg`),
+  );
+  for (const existing of existingR2) {
+    if (!validKeys.has(existing)) {
+      console.log(`  removing orphan cover from R2: ${existing}`);
+      deleteFromR2(R2_REMOTE, `covers/${existing}`);
+    }
   }
 }
 
@@ -124,8 +146,8 @@ if (newJson !== existingJson) {
 
 console.log(`wrote ${books.length} books to src/data/books.json`);
 console.log(
-  `  with covers: ${books.filter((b) => b.hasCover).length}, without: ${
-    books.filter((b) => !b.hasCover).length
+  `  with covers: ${books.filter((b) => b.coverUrl).length}, without: ${
+    books.filter((b) => !b.coverUrl).length
   }`,
 );
 
@@ -135,7 +157,7 @@ if (DRY_RUN) {
 }
 
 commitAndPush({
-  paths: ["src/data/books.json", "public/covers/"],
+  paths: ["src/data/books.json"],
   message: `sync books: ${books.length} entries`,
   botName: BOT_NAME,
   botEmail: BOT_EMAIL,

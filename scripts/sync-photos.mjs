@@ -25,13 +25,17 @@ import {
 } from "node:fs";
 import { basename, dirname, extname, join } from "node:path";
 import { fileURLToPath } from "node:url";
-import { spawnSync } from "node:child_process";
 import {
   parseFlags,
   prepareBranch,
   commitAndPush,
   pingKuma,
 } from "./lib/git-sync.mjs";
+import {
+  listR2Files,
+  uploadToR2,
+  deleteFromR2,
+} from "./lib/r2-sync.mjs";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const repoRoot = join(__dirname, "..");
@@ -64,8 +68,7 @@ for (const [name, value] of Object.entries({
 }
 
 const IMMICH_BASE = IMMICH_API_URL.replace(/\/$/, "");
-const R2_PHOTOS_PATH = `${R2_PHOTOS_REMOTE}/photos`;
-const PUBLIC_BASE = `${R2_PHOTOS_PUBLIC_URL.replace(/\/$/, "")}/photos`;
+const PUBLIC_PHOTOS = `${R2_PHOTOS_PUBLIC_URL.replace(/\/$/, "")}/photos`;
 
 async function fetchAlbum() {
   const url = `${IMMICH_BASE}/api/albums/${IMMICH_ALBUM_ID}`;
@@ -80,22 +83,6 @@ async function fetchAlbum() {
   return res.json();
 }
 
-function listR2Photos() {
-  const res = spawnSync(
-    "rclone",
-    ["lsf", "--files-only", `${R2_PHOTOS_PATH}/`],
-    { encoding: "utf-8" },
-  );
-  const err = (res.stderr || "").trim();
-  if (res.status !== 0) {
-    if (/directory not found|does not exist|404/i.test(err)) return new Set();
-    throw new Error(`rclone lsf failed: ${err || res.stdout}`);
-  }
-  return new Set(
-    res.stdout.split("\n").map((l) => l.trim()).filter(Boolean),
-  );
-}
-
 async function uploadAssetToR2(assetId, filename) {
   const url = `${IMMICH_BASE}/api/assets/${assetId}/thumbnail?size=preview`;
   const res = await fetch(url, { headers: { "x-api-key": IMMICH_API_KEY } });
@@ -105,29 +92,7 @@ async function uploadAssetToR2(assetId, filename) {
     );
   }
   const buf = Buffer.from(await res.arrayBuffer());
-  const up = spawnSync(
-    "rclone",
-    ["rcat", `${R2_PHOTOS_PATH}/${filename}`],
-    { input: buf },
-  );
-  if (up.status !== 0) {
-    throw new Error(
-      `rclone rcat ${filename}: ${(up.stderr || "").toString().trim()}`,
-    );
-  }
-}
-
-function deleteFromR2(filename) {
-  const res = spawnSync(
-    "rclone",
-    ["deletefile", `${R2_PHOTOS_PATH}/${filename}`],
-    { encoding: "utf-8" },
-  );
-  if (res.status !== 0) {
-    console.warn(
-      `rclone deletefile ${filename} failed: ${res.stderr || res.stdout}`,
-    );
-  }
+  uploadToR2(R2_PHOTOS_REMOTE, `photos/${filename}`, buf);
 }
 
 function captionFor(asset) {
@@ -153,7 +118,7 @@ console.log(
 
 let existingR2 = new Set();
 if (!DRY_RUN) {
-  existingR2 = listR2Photos();
+  existingR2 = listR2Files(R2_PHOTOS_REMOTE, "photos/");
   console.log(`  ${existingR2.size} existing photos in R2`);
 }
 
@@ -183,7 +148,7 @@ for (const asset of albumAssets) {
 
   photos.push({
     id: asset.id,
-    url: `${PUBLIC_BASE}/${filename}`,
+    url: `${PUBLIC_PHOTOS}/${filename}`,
     caption: captionFor(asset),
     width,
     height,
@@ -200,7 +165,7 @@ if (!DRY_RUN) {
   for (const existing of existingR2) {
     if (!validIds.has(existing)) {
       console.log(`  removing orphan from R2: ${existing}`);
-      deleteFromR2(existing);
+      deleteFromR2(R2_PHOTOS_REMOTE, `photos/${existing}`);
     }
   }
 }

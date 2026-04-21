@@ -6,7 +6,7 @@ export interface Book {
   author: string;
   authorSort: string;
   tags: string[];
-  hasCover: boolean;
+  coverUrl: string | null;
 }
 
 export const books: Book[] = booksData as Book[];
