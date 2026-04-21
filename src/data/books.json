@@ -1,49 +1,842 @@
 [
   {
-    "id": 204,
-    "title": "Meditations",
-    "author": "Marcus Aurelius, Gregory Hays",
-    "authorSort": "Aurelius, Marcus & Hays, Gregory",
-    "tags": [
-      "Philosophy"
-    ],
-    "hasCover": true
-  },
-  {
-    "id": 218,
-    "title": "The Myth of Sisyphus",
-    "author": "Albert Camus",
-    "authorSort": "Camus, Albert",
-    "tags": [
-      "Philosophy"
-    ],
-    "hasCover": true
-  },
-  {
-    "id": 188,
-    "title": "Living an Examined Life",
-    "author": "James Hollis",
-    "authorSort": "Hollis, James",
+    "id": 793489,
+    "title": "Wherever You Go, There You Are",
+    "author": "Jon Kabat-Zinn",
+    "authorSort": "Jon Kabat-Zinn",
     "tags": [],
     "hasCover": true
   },
   {
-    "id": 180,
-    "title": "Letters From a Stoic",
-    "author": "Seneca",
-    "authorSort": "Seneca",
+    "id": 381825,
+    "title": "When Breath Becomes Air",
+    "author": "Paul Kalanithi",
+    "authorSort": "Paul Kalanithi",
     "tags": [
+      "Nonfiction",
+      "General",
+      "Biography",
+      "Husband and wife",
+      "Biographies & Memoirs",
+      "Health & Wellness",
+      "Fiction",
+      "Politics & Social Sciences"
+    ],
+    "hasCover": true
+  },
+  {
+    "id": 674541,
+    "title": "Walden",
+    "author": "Henry David Thoreau",
+    "authorSort": "Henry David Thoreau",
+    "tags": [
+      "Philosophy",
+      "Nonfiction",
+      "Fiction",
+      "Literature",
+      "Electronic books",
+      "Biography",
+      "Young Adult",
+      "Literary Collections",
+      "literary criticism",
+      "Biography & Autobiography"
+    ],
+    "hasCover": true
+  },
+  {
+    "id": 441457,
+    "title": "Until the End of Time: Mind, Matter, and Our Search for Meaning in an Evolving Universe",
+    "author": "Brian Greene",
+    "authorSort": "Brian Greene",
+    "tags": [
+      "Space",
+      "Cosmology",
+      "Science",
       "Philosophy"
     ],
     "hasCover": true
   },
   {
-    "id": 297,
+    "id": 382934,
+    "title": "Travels with Charley",
+    "author": "John Steinbeck",
+    "authorSort": "John Steinbeck",
+    "tags": [
+      "Nonfiction",
+      "Classics",
+      "General",
+      "Biography",
+      "Authors",
+      "Memoir",
+      "United States",
+      "Adventure"
+    ],
+    "hasCover": true
+  },
+  {
+    "id": 242841,
+    "title": "Thinking, Fast and Slow",
+    "author": "Daniel Kahneman",
+    "authorSort": "Daniel Kahneman",
+    "tags": [
+      "Nonfiction",
+      "Psychology",
+      "Business",
+      "Decision making",
+      "Self-Help",
+      "Career Success",
+      "Philosophy",
+      "Business & Careers",
+      "Cognition",
+      "Medical"
+    ],
+    "hasCover": true
+  },
+  {
+    "id": 208339,
+    "title": "The Three-Body Problem",
+    "author": "Cixin Liu",
+    "authorSort": "Cixin Liu",
+    "tags": [
+      "Science Fiction",
+      "Fiction",
+      "Aliens",
+      "Fantasy",
+      "Human-alien encounters",
+      "China",
+      "First contact",
+      "21st Century; Alien Contact; China; FICTION; Fiction; Hard Science Fiction; Science Fiction; World Literature",
+      "Science Fiction & Fantasy",
+      "公众号：古德猫宁李"
+    ],
+    "hasCover": true
+  },
+  {
+    "id": 444538,
+    "title": "The Story of the Human Body: Evolution, Health, and Disease",
+    "author": "Daniel E. Lieberman",
+    "authorSort": "Daniel E. Lieberman",
+    "tags": [],
+    "hasCover": true
+  },
+  {
+    "id": 482571,
     "title": "The Story of Philosophy",
     "author": "Will Durant",
     "authorSort": "Will Durant",
     "tags": [
+      "Philosophy",
+      "Biography & Autobiography",
+      "Classics",
+      "History",
+      "Biography"
+    ],
+    "hasCover": true
+  },
+  {
+    "id": 64605,
+    "title": "The Silk Roads: A New History of the World",
+    "author": "Peter Frankopan",
+    "authorSort": "Peter Frankopan",
+    "tags": [
+      "History",
+      "Young Adult",
+      "Nonfiction",
+      "War"
+    ],
+    "hasCover": true
+  },
+  {
+    "id": 100774,
+    "title": "The Righteous Mind: Why Good People Are Divided by Politics and Religion",
+    "author": "Jonathan Haidt",
+    "authorSort": "Jonathan Haidt",
+    "tags": [
+      "Psychology",
+      "Philosophy",
+      "Religion",
+      "Sociology",
+      "English",
+      "Political Ideologies",
+      "Psychology of Religion",
+      "General",
+      "political science",
+      "Social psychology"
+    ],
+    "hasCover": true
+  },
+  {
+    "id": 440283,
+    "title": "The Right Stuff",
+    "author": "Tom Wolfe",
+    "authorSort": "Tom Wolfe",
+    "tags": [
+      "Classics",
+      "Adventure",
+      "Space",
+      "History"
+    ],
+    "hasCover": true
+  },
+  {
+    "id": 234421,
+    "title": "The Rise of Theodore Roosevelt",
+    "author": "Edmund Morris",
+    "authorSort": "Edmund Morris",
+    "tags": [
+      "Biography",
+      "Nonfiction",
+      "War",
+      "Classics",
+      "Biography & Autobiography",
+      "Politics",
+      "History"
+    ],
+    "hasCover": true
+  },
+  {
+    "id": 129102,
+    "title": "The Path Between the Seas: The Creation of the Panama Canal 1870-1914",
+    "author": "David McCullough",
+    "authorSort": "David McCullough",
+    "tags": [
+      "History",
+      "Adventure",
+      "General",
+      "Nonfiction"
+    ],
+    "hasCover": true
+  },
+  {
+    "id": 243129,
+    "title": "The Overstory",
+    "author": "Richard Powers",
+    "authorSort": "Richard Powers",
+    "tags": [
+      "Fantasy",
+      "Fiction",
+      "War",
+      "Deforestation",
+      "Literary Collections",
+      "Nature stories"
+    ],
+    "hasCover": true
+  },
+  {
+    "id": 432438,
+    "title": "The Order of Time",
+    "author": "Carlo Rovelli",
+    "authorSort": "Carlo Rovelli",
+    "tags": [
+      "Science",
+      "Nonfiction",
+      "Space",
+      "social science",
+      "Audiobook"
+    ],
+    "hasCover": true
+  },
+  {
+    "id": 464952,
+    "title": "The Myth of Sisyphus",
+    "author": "Albert Camus",
+    "authorSort": "Albert Camus",
+    "tags": [
+      "Literary Collections",
+      "Philosophy",
+      "General",
+      "French essays",
+      "Das Absurde",
+      "Education",
+      "Absurd (Philosophy)",
+      "Philosophie",
+      "Classique",
+      "russian"
+    ],
+    "hasCover": true
+  },
+  {
+    "id": 327048,
+    "title": "The Lessons of History",
+    "author": "Will Durant, Ariel Durant",
+    "authorSort": "Will Durant",
+    "tags": [
+      "Classics",
+      "Philosophy",
+      "History"
+    ],
+    "hasCover": true
+  },
+  {
+    "id": 431954,
+    "title": "The Hard Thing About Hard Things: Building a Business When There Are No Easy Answers",
+    "author": "Ben Horowitz",
+    "authorSort": "Ben Horowitz",
+    "tags": [
+      "Business & Economics",
+      "Business",
+      "Nonfiction",
+      "Personal Development",
+      "Business & Careers"
+    ],
+    "hasCover": true
+  },
+  {
+    "id": 433085,
+    "title": "The Divine Within",
+    "author": "Aldous Huxley",
+    "authorSort": "Aldous Huxley",
+    "tags": [],
+    "hasCover": true
+  },
+  {
+    "id": 369140,
+    "title": "The Crossing",
+    "author": "Cormac McCarthy",
+    "authorSort": "Cormac McCarthy",
+    "tags": [
+      "Classics",
+      "Adventure",
+      "Fiction",
+      "General",
+      "Boys",
+      "Western",
+      "American fiction"
+    ],
+    "hasCover": true
+  },
+  {
+    "id": 253369,
+    "title": "The Conquest of Happiness",
+    "author": "Bertrand Russell",
+    "authorSort": "Bertrand Russell",
+    "tags": [
+      "Happiness",
+      "Classics"
+    ],
+    "hasCover": true
+  },
+  {
+    "id": 485999,
+    "title": "The beginning of infinity explanations that transform the world",
+    "author": "David Deutsch",
+    "authorSort": "David Deutsch",
+    "tags": [
+      "Philosophy",
+      "Science"
+    ],
+    "hasCover": true
+  },
+  {
+    "id": 442622,
+    "title": "The 42nd Parallel",
+    "author": "John Dos Passos",
+    "authorSort": "John Dos Passos",
+    "tags": [
+      "Classics"
+    ],
+    "hasCover": true
+  },
+  {
+    "id": 221025,
+    "title": "Lonesome Dove",
+    "author": "Larry McMurtry",
+    "authorSort": "Larry McMurtry",
+    "tags": [
+      "Western",
+      "Adventure",
+      "Fiction",
+      "Romance",
+      "General",
+      "Call",
+      "Fiction historique",
+      "Classique",
+      "Aventure",
+      "Classics"
+    ],
+    "hasCover": true
+  },
+  {
+    "id": 375634,
+    "title": "Sapiens: A Brief History of Humankind",
+    "author": "Yuval Noah Harari",
+    "authorSort": "Yuval Noah Harari",
+    "tags": [
+      "History",
+      "Nonfiction",
+      "Science",
+      "World",
+      "Young Adult",
+      " Historical",
+      "Psychology",
+      "Comics",
+      "Histoire",
+      "General"
+    ],
+    "hasCover": true
+  },
+  {
+    "id": 443055,
+    "title": "Reality is Not What it Seems",
+    "author": "Carlo Rovelli",
+    "authorSort": "Carlo Rovelli",
+    "tags": [
+      "Science",
+      "Space",
+      "non-fiction",
+      "Nonfiction",
+      "Matter"
+    ],
+    "hasCover": true
+  },
+  {
+    "id": 2093561,
+    "title": "Poor Charlie's Almanack: The Wit and Wisdom of Charles T. Munger, Expanded Third Edition",
+    "author": "Peter D. Kaufman",
+    "authorSort": "Peter D. Kaufman",
+    "tags": [
+      "Classics"
+    ],
+    "hasCover": false
+  },
+  {
+    "id": 427414,
+    "title": "On the Shortness of Life",
+    "author": "Seneca",
+    "authorSort": "Seneca",
+    "tags": [
+      "Classics"
+    ],
+    "hasCover": true
+  },
+  {
+    "id": 306900,
+    "title": "Mortality",
+    "author": "Christopher Hitchens",
+    "authorSort": "Christopher Hitchens",
+    "tags": [],
+    "hasCover": true
+  },
+  {
+    "id": 157096,
+    "title": "Meditations",
+    "author": "Marcus Aurelius",
+    "authorSort": "Marcus Aurelius",
+    "tags": [
+      "Philosophy",
+      "Classics",
+      "Nonfiction",
+      "Stoicism",
+      " Mind & Spirit",
+      "History",
+      "Religion",
+      "literary criticism",
+      " Ancient",
+      "Conduct of life"
+    ],
+    "hasCover": true
+  },
+  {
+    "id": 432858,
+    "title": "Liar's Poker",
+    "author": "Michael Lewis",
+    "authorSort": "Michael Lewis",
+    "tags": [
+      "Bonds"
+    ],
+    "hasCover": true
+  },
+  {
+    "id": 427412,
+    "title": "Letters from a Stoic",
+    "author": "Seneca",
+    "authorSort": "Seneca",
+    "tags": [
+      "Philosophy",
+      "Classics",
+      "History",
+      "Stoicism"
+    ],
+    "hasCover": true
+  },
+  {
+    "id": 88703,
+    "title": "Island",
+    "author": "Aldous Huxley",
+    "authorSort": "Aldous Huxley",
+    "tags": [
+      "Fiction in English",
+      "Fantasy",
+      "Fiction",
+      "Science Fiction",
+      "Dystopian",
+      "Islands > Fiction",
+      "Journalists > Fiction",
+      "Classics",
+      "classic"
+    ],
+    "hasCover": true
+  },
+  {
+    "id": 427440,
+    "title": "Guns, Germs and Steel: A Short History of Everybody for the Last 13,000 Years",
+    "author": "Jared Diamond",
+    "authorSort": "Jared Diamond",
+    "tags": [
+      "Essay",
+      "Nonfiction",
+      "War",
+      "Civilization",
+      "History",
+      "Technology & Engineering",
+      "Kontinent - Gesellschaft - Entwicklung - Umweltfaktor - Vor- und Frühgeschichte",
+      "Science",
+      "General",
+      "reference"
+    ],
+    "hasCover": true
+  },
+  {
+    "id": 429919,
+    "title": "Freedom",
+    "author": "Jonathan Franzen",
+    "authorSort": "Jonathan Franzen",
+    "tags": [
+      "Fiction"
+    ],
+    "hasCover": true
+  },
+  {
+    "id": 427701,
+    "title": "Flash Boys",
+    "author": "Michael Lewis",
+    "authorSort": "Michael Lewis",
+    "tags": [
+      "political science"
+    ],
+    "hasCover": true
+  },
+  {
+    "id": 611333,
+    "title": "Finding Meaning in the Second Half of Life: How to Finally, Really Grow Up",
+    "author": "James Hollis",
+    "authorSort": "James Hollis",
+    "tags": [],
+    "hasCover": false
+  },
+  {
+    "id": 504747,
+    "title": "Fallen Leaves",
+    "author": "Will Durant",
+    "authorSort": "Will Durant",
+    "tags": [],
+    "hasCover": true
+  },
+  {
+    "id": 478691,
+    "title": "Existentialism is a Humanism",
+    "author": "Jean-Paul Sartre",
+    "authorSort": "Jean-Paul Sartre",
+    "tags": [
+      "Classics",
+      "Philosophy",
+      "General"
+    ],
+    "hasCover": true
+  },
+  {
+    "id": 556431,
+    "title": "Empires of Light: Edison, Tesla, Westinghouse, and the Race to Electrify the World",
+    "author": "Jill Jonnes",
+    "authorSort": "Jill Jonnes",
+    "tags": [
+      "History"
+    ],
+    "hasCover": true
+  },
+  {
+    "id": 338117,
+    "title": "East of Eden",
+    "author": "John Steinbeck",
+    "authorSort": "John Steinbeck",
+    "tags": [
+      "Classics",
+      "Fiction",
+      "General",
+      "Murder",
+      "Literature",
+      "History",
+      "Authors",
+      "Sagas",
+      "California",
+      " American"
+    ],
+    "hasCover": true
+  },
+  {
+    "id": 312460,
+    "title": "Dune",
+    "author": "Frank Herbert",
+    "authorSort": "Frank Herbert",
+    "tags": [
+      "Science Fiction",
+      "Fiction",
+      "Fantasy",
+      "Classics",
+      "Adventure",
+      "Dystopian",
+      "Space",
+      "Science Fiction & Fantasy",
+      "Space Opera",
+      "Hard Science Fiction"
+    ],
+    "hasCover": true
+  },
+  {
+    "id": 485494,
+    "title": "Dialogues",
+    "author": "Seneca",
+    "authorSort": "Seneca",
+    "tags": [],
+    "hasCover": false
+  },
+  {
+    "id": 437192,
+    "title": "Crossroads",
+    "author": "Jonathan Franzen",
+    "authorSort": "Jonathan Franzen",
+    "tags": [
+      "Fiction",
+      "Families"
+    ],
+    "hasCover": true
+  },
+  {
+    "id": 432664,
+    "title": "Cloud Cuckoo Land",
+    "author": "Anthony Doerr",
+    "authorSort": "Anthony Doerr",
+    "tags": [
+      "Fiction",
+      "Adventure",
+      "Science Fiction",
+      "War",
+      "Dystopian",
+      "Literary",
+      "Historical",
+      "General",
+      "Fantasy",
+      "Fate and fatalism"
+    ],
+    "hasCover": true
+  },
+  {
+    "id": 470416,
+    "title": "Cities of the Plain",
+    "author": "Cormac McCarthy",
+    "authorSort": "Cormac McCarthy",
+    "tags": [
+      "Classics",
+      "Adventure",
+      "Fiction",
+      "New Mexico",
+      "Cowboys",
+      "Western"
+    ],
+    "hasCover": true
+  },
+  {
+    "id": 439624,
+    "title": "Buffalo for the Broken Heart: Restoring Life to a Black Hills Ranch",
+    "author": "Dan O'Brien",
+    "authorSort": "Dan O'Brien",
+    "tags": [],
+    "hasCover": true
+  },
+  {
+    "id": 1363747,
+    "title": "Blood Meridian: Or the Evening Redness in the West",
+    "author": "Cormac McCarthy",
+    "authorSort": "Cormac McCarthy",
+    "tags": [
+      "Fiction",
+      "Historical",
+      "Classics",
+      "Literary Fiction",
+      "Historical Fiction",
+      "Fiction / Historical / General",
+      "Fiction / Westerns",
+      "Literature",
+      "Novels",
+      "Horror"
+    ],
+    "hasCover": true
+  },
+  {
+    "id": 261915,
+    "title": "Being Mortal: Medicine and What Matters in the End",
+    "author": "Atul Gawande",
+    "authorSort": "Atul Gawande",
+    "tags": [
+      "Philosophy",
+      "Nonfiction",
+      "Aging",
+      "social science",
+      "Medical",
+      "Science",
+      "Death",
+      "Family & Relationships",
+      "Medical care",
+      "Self-Help"
+    ],
+    "hasCover": true
+  },
+  {
+    "id": 436575,
+    "title": "Barbarian Days: A Surfing Life",
+    "author": "William Finnegan",
+    "authorSort": "William Finnegan",
+    "tags": [
+      "Adventure",
+      "Nonfiction",
+      "Biography",
+      "Memoir"
+    ],
+    "hasCover": true
+  },
+  {
+    "id": 428023,
+    "title": "Atomic habits: An Easy & Proven Way to Build Good Habits & Break Bad Ones",
+    "author": "James Clear",
+    "authorSort": "James Clear",
+    "tags": [
+      "Nonfiction",
+      "Self-Help",
+      "Personal Development",
+      "Business",
+      "Business & Economics",
+      "Psychology",
+      "Workplace & Organizational Behavior",
+      "Design",
+      "Health",
+      "Leadership"
+    ],
+    "hasCover": true
+  },
+  {
+    "id": 357434,
+    "title": "A Supposedly Fun Thing I'll Never Do Again: Essays and Arguments",
+    "author": "David Foster Wallace",
+    "authorSort": "David Foster Wallace",
+    "tags": [
+      "Classics",
+      "Fiction",
+      "Travel Writing & Commentary",
+      "Authors",
+      "non-fiction",
+      "Popular culture",
+      "Literary Collections"
+    ],
+    "hasCover": true
+  },
+  {
+    "id": 488920,
+    "title": "Arguably",
+    "author": "Christopher Hitchens",
+    "authorSort": "Christopher Hitchens",
+    "tags": [
+      "Essays",
+      "social science",
+      "Literary Collections",
+      "Electronic books"
+    ],
+    "hasCover": true
+  },
+  {
+    "id": 1088652,
+    "title": "A Man on the Moon: The Voyages of the Apollo Astronauts",
+    "author": "Andrew Chaikin",
+    "authorSort": "Andrew Chaikin",
+    "tags": [
+      "Space",
+      "Adventure",
+      "History",
+      "Science"
+    ],
+    "hasCover": true
+  },
+  {
+    "id": 427452,
+    "title": "A Man in Full",
+    "author": "Tom Wolfe",
+    "authorSort": "Tom Wolfe",
+    "tags": [
+      "Classics",
+      "Fiction",
+      "African Americans",
+      "History",
+      "Politics"
+    ],
+    "hasCover": true
+  },
+  {
+    "id": 137927,
+    "title": "All The Pretty Horses",
+    "author": "Cormac McCarthy",
+    "authorSort": "Cormac McCarthy",
+    "tags": [
+      "Fiction",
+      "Adventure",
+      "Classics",
+      "Western",
+      "Cowboys",
+      "Mexican-American Border Region",
+      "General",
+      "Juvenile Nonfiction",
+      "Travel",
+      "Romance"
+    ],
+    "hasCover": true
+  },
+  {
+    "id": 478556,
+    "title": "All the Light We Cannot See",
+    "author": "Anthony Doerr",
+    "authorSort": "Anthony Doerr",
+    "tags": [
+      "Fiction",
+      "Historical Fiction",
+      "War",
+      "Literary Fiction",
+      "History",
+      "Friendship",
+      "Historical",
+      "Military",
+      "Literature & Fiction",
+      "Genre Fiction"
+    ],
+    "hasCover": true
+  },
+  {
+    "id": 427340,
+    "title": "A Guide to the Good Life",
+    "author": "William B. Irvine",
+    "authorSort": "William B. Irvine",
+    "tags": [
+      "Classics",
       "Philosophy"
+    ],
+    "hasCover": true
+  },
+  {
+    "id": 295243,
+    "title": "1776",
+    "author": "David McCullough",
+    "authorSort": "David McCullough",
+    "tags": [
+      "Classics",
+      "War",
+      "History"
     ],
     "hasCover": true
   }
