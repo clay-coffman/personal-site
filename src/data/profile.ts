@@ -11,6 +11,12 @@ export interface Project {
   description: string;
   url: string;
   language?: string;
+  eyebrow?: string;
+  featured?: boolean;
+  metadata?: string[];
+  status?: string;
+  quote?: string;
+  terminal?: string;
 }
 
 export interface Education {
@@ -50,7 +56,7 @@ export const profileData: ProfileData = {
       role: "",
       period: "2022 - Present",
       description:
-        "I have helped venture funds and other investors evalute potential investments.",
+        "I have helped venture funds and other investors evaluate potential investments.",
     },
     {
       company: "Angel Investing",
@@ -77,7 +83,7 @@ export const profileData: ProfileData = {
       role: "Director of Product Management",
       period: "May 2019 - July 2020",
       description:
-        'Rolled over as a Director of Product Management after Zego was acquired by PayLease. Was in charge of running the Resident Experience products post-acquisition. PayLease was rebranded as Zego after our acquistion... hence "Zego (Powered by PayLease)".',
+        'Rolled over as a Director of Product Management after Zego was acquired by PayLease. Was in charge of running the Resident Experience products post-acquisition. PayLease was rebranded as Zego after our acquisition... hence "Zego (Powered by PayLease)".',
     },
     {
       company: "Zego",
@@ -112,21 +118,40 @@ export const profileData: ProfileData = {
     {
       title: "cc-notify",
       description:
-        "Desktop notifications for Claude Code -- know when any instance needs your attention",
+        "Desktop notifications for Claude Code hooks, built for running multiple agents across tmux windows and git worktrees.",
       url: "https://github.com/clay-coffman/cc-notify",
       language: "Shell",
+      eyebrow: "featured / workflow tool",
+      featured: true,
+      metadata: ["Shell", "Claude Code hooks", "Linux/KDE", "notify-send", "jq"],
+      status: "in use",
+      quote: "I wanted more context than terminal notifications could provide.",
+      terminal: `~/projects/cc-notify
+$ claude-code --worktree feature-x
+
+[permission required] → desktop notification
+[idle]                → desktop notification
+[done]                → ✅ Claude Finished`,
     },
     {
       title: "dotfiles",
-      description: "new dotfiles repo",
+      description:
+        "Portable Fedora/dev-server environment managed with chezmoi, covering shell, editor, terminal, tmux, and remote host config.",
       url: "https://github.com/clay-coffman/dotfiles",
       language: "Lua",
+      eyebrow: "dev environment",
+      metadata: ["Lua", "chezmoi", "tmux", "neovim", "Fedora"],
+      status: "in use",
     },
     {
       title: "personal-site",
-      description: "about-clay.com",
+      description:
+        "A static Astro site for essays, books, photos, and personal notes — with a Calibre-powered bookshelf pipeline.",
       url: "https://github.com/clay-coffman/personal-site",
       language: "TypeScript",
+      eyebrow: "site infrastructure",
+      metadata: ["Astro", "TypeScript", "Cloudflare Pages", "Calibre"],
+      status: "in use",
     },
   ],
   education: [
@@ -158,9 +183,9 @@ export const profileData: ProfileData = {
     },
   ],
   skills: {
-    Languages: ["Python", "Java/TypeScript", "C/C++"],
-    Backend: ["Flask", "Node.js", "Bun", "Express", "PostgreSQL", "MongoDB"],
-    Other: ["Linux", "Docker"],
+    Languages: ["Python", "TypeScript", "C/C++"],
+    Web: ["Astro", "Flask", "Node", "PostgreSQL"],
+    "Systems & tools": ["Linux", "Docker", "Shell", "tmux"],
   },
   social: {
     linkedin: "https://www.linkedin.com/in/claymcoffman/",
