@@ -4,6 +4,9 @@ import Footer from "~/components/Footer.astro";
 import { profileData } from "~/data/profile";
 
 const experiences = profileData.experiences;
+const chronological = experiences.filter((e) => !e.ongoing);
+const ongoing = experiences.filter((e) => e.ongoing);
+const education = profileData.education;
 ---
 
 <BaseLayout
@@ -20,7 +23,7 @@ const experiences = profileData.experiences;
     </div>
     <div>
       {
-        experiences.map((e) => (
+        chronological.map((e) => (
           <article class="grid items-baseline border-t border-border-soft py-7 md:grid-cols-[140px_minmax(0,1fr)_2fr] md:gap-10 max-md:grid-cols-1 max-md:gap-2 max-md:py-5">
             <div class="font-mono text-[11px] uppercase tracking-[1px] text-muted md:pt-1.5">
               {e.period}
@@ -53,6 +56,76 @@ const experiences = profileData.experiences;
         ))
       }
     </div>
+
+    {
+      ongoing.length > 0 && (
+        <div class="mt-16 max-md:mt-10">
+          <div class="mb-3 font-mono text-[11px] uppercase tracking-[2px] text-accent">
+            ongoing
+          </div>
+          <h2 class="text-h2 m-0 mb-6 max-md:mb-4">Other ongoing work</h2>
+          <div>
+            {ongoing.map((e) => (
+              <article class="grid items-baseline border-t border-border-soft py-7 md:grid-cols-[140px_minmax(0,1fr)_2fr] md:gap-10 max-md:grid-cols-1 max-md:gap-2 max-md:py-5">
+                <div class="font-mono text-[11px] uppercase tracking-[1px] text-muted md:pt-1.5">
+                  {e.period}
+                </div>
+                <div>
+                  <h3 class="text-h3 m-0 text-foreground">
+                    {e.url ? (
+                      <a
+                        href={e.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="text-foreground hover:text-accent"
+                      >
+                        {e.company}
+                      </a>
+                    ) : (
+                      e.company
+                    )}
+                  </h3>
+                  {e.role && (
+                    <div class="mt-1.5 font-mono text-[11px] uppercase tracking-[1px] text-accent">
+                      {e.role}
+                    </div>
+                  )}
+                </div>
+                <p class="m-0 leading-[1.6] text-foreground-light md:text-[15.5px] max-md:text-sm">
+                  {e.description}
+                </p>
+              </article>
+            ))}
+          </div>
+        </div>
+      )
+    }
+
+    {
+      education.length > 0 && (
+        <div class="mt-16 max-md:mt-10">
+          <div class="mb-3 font-mono text-[11px] uppercase tracking-[2px] text-accent">
+            education
+          </div>
+          <h2 class="text-h2 m-0 mb-6 max-md:mb-4">Education</h2>
+          <div>
+            {education.map((e) => (
+              <div class="grid items-baseline border-t border-border-soft py-6 md:grid-cols-[140px_minmax(0,1fr)_2fr] md:gap-10 max-md:grid-cols-1 max-md:gap-1 max-md:py-4.5">
+                <div class="font-mono text-[11px] uppercase tracking-[1px] text-muted md:pt-1.5">
+                  {e.year || "—"}
+                </div>
+                <h3 class="text-h3-sm m-0 text-foreground md:text-[1.375rem]">
+                  {e.institution}
+                </h3>
+                <div class="font-mono text-xs text-foreground-light md:pt-1.5">
+                  {e.credential}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )
+    }
   </main>
   <Footer />
 </BaseLayout>
