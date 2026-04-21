@@ -13,9 +13,9 @@ const { book } = Astro.props;
   class="overflow-hidden rounded-lg border border-border bg-background shadow-sm"
 >
   {
-    book.hasCover ? (
+    book.coverUrl ? (
       <img
-        src={`/covers/${book.id}.jpg`}
+        src={book.coverUrl}
         alt={book.title}
         class="h-[280px] w-full object-cover"
         loading="lazy"
