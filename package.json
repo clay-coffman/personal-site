@@ -12,6 +12,7 @@
     "build:icons": "node scripts/build-icons.mjs",
     "sync-books": "node scripts/sync-books.mjs",
     "sync-highlights": "node scripts/sync-highlights.mjs",
+    "sync-photos": "node scripts/sync-photos.mjs",
     "sync-cwa-to-hardcover": "node scripts/sync-cwa-to-hardcover.mjs",
     "import-physical-books": "node scripts/import-physical-books.mjs"
   },
