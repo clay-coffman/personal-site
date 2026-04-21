@@ -4,6 +4,7 @@ export interface Experience {
   period: string;
   description: string;
   url?: string;
+  ongoing?: boolean;
 }
 
 export interface Project {
@@ -45,6 +46,13 @@ export const profileData: ProfileData = {
   email: "contact@clay21.mozmail.com",
   experiences: [
     {
+      company: "Steady Grade Studios",
+      role: "Founder/Engineer",
+      period: "2025 - Present",
+      description:
+        "Steady Grade Studios builds and operates software products. Our first project, PrePA Navigator, launched in March 2026. More coming soon.",
+    },
+    {
       company: "Student",
       role: "",
       period: "Fall 2024 - Present",
@@ -57,12 +65,14 @@ export const profileData: ProfileData = {
       period: "2022 - Present",
       description:
         "I have helped venture funds and other investors evaluate potential investments.",
+      ongoing: true,
     },
     {
       company: "Angel Investing",
       role: "",
       period: "2022 - Present",
       description: "CarePilot, Harmony.ai, ReNFT, Cabin Labs",
+      ongoing: true,
     },
     {
       company: "TradeFoundry",

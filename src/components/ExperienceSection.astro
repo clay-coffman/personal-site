@@ -8,7 +8,8 @@ interface Props {
 }
 
 const { experiences, previewCount = 4 } = Astro.props;
-const preview = experiences.slice(0, previewCount);
+const chronological = experiences.filter((e) => !e.ongoing);
+const preview = chronological.slice(0, previewCount);
 const hasMore = experiences.length > preview.length;
 ---
 
