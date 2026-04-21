@@ -40,6 +40,25 @@ The script orphan-cleans covers whose book IDs are no longer 5-star, compares
 new JSON against committed JSON before committing, and pushes with a bot
 identity.
 
+On the server (`cloud-hil-1`), the script runs daily via
+`personal-site-sync-books.timer` (see `hetzner/SERVER.md`). The repo is cloned
+at `/opt/personal-site`; push auth is a per-repo SSH deploy key at
+`/root/.ssh/personal_site_deploy` (write access) used via the
+`github-personal-site` Host alias in `/root/.ssh/config`.
+
+### Adding a new dynamic content source
+
+To add another external content source (e.g., photos from Immich, podcasts):
+
+1. Add `scripts/sync-X.mjs` modeled on `sync-books.mjs`: fetch from source →
+   write `src/data/X.json` (+ assets in `public/X/` if applicable).
+2. Diff new JSON against the committed copy before writing; orphan-clean
+   assets whose IDs are no longer in the new set.
+3. Commit as a bot identity; push with rebase-on-conflict retry.
+4. Wire it to a `personal-site-sync-X.{service,timer}` pair on the host where
+   the data source lives (typically `cloud-hil-1`). See the books timer for
+   the unit file shape.
+
 ## File structure
 
 ```
