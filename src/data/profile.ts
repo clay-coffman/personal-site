@@ -51,6 +51,7 @@ export const profileData: ProfileData = {
       period: "2025 - Present",
       description:
         "Steady Grade Studios builds and operates software products. Our first project, PrePA Navigator, launched in March 2026. More coming soon.",
+      url: "https://steadygrade.studio",
     },
     {
       company: "Student",

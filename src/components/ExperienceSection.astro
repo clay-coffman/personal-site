@@ -30,7 +30,20 @@ const hasMore = experiences.length > preview.length;
             {e.period}
           </div>
           <div>
-            <h3 class="text-h3 m-0 text-foreground">{e.company}</h3>
+            <h3 class="text-h3 m-0 text-foreground">
+              {e.url ? (
+                <a
+                  href={e.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="text-foreground hover:text-accent"
+                >
+                  {e.company}
+                </a>
+              ) : (
+                e.company
+              )}
+            </h3>
             {e.role && (
               <div class="mt-1.5 font-mono text-[11px] uppercase tracking-[1px] text-accent">
                 {e.role}
