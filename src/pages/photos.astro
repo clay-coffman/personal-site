@@ -18,18 +18,16 @@ import { photos } from "~/data/photos";
       </div>
       <h1 class="text-h1 m-0">Photos</h1>
       <p class="mt-4 max-w-xl text-muted">
-        Photos from Utah and wherever else I'm wandering. Synced from Immich.
+        Photos from Utah and wherever else I'm wandering.
       </p>
     </div>
-    <div
-      class="grid gap-5 md:grid-cols-4 max-md:grid-cols-2 max-md:gap-2.5"
-    >
+    <div class="grid gap-5 md:grid-cols-4 max-md:grid-cols-2 max-md:gap-2.5">
       {
         photos.map((ph) => (
           <figure class="m-0">
             <img
               src={ph.url}
-              alt={ph.caption}
+              alt={ph.caption ?? (ph.year ? `Photo from ${ph.year}` : "Photo")}
               width={ph.width}
               height={ph.height}
               loading="lazy"
@@ -37,10 +35,12 @@ import { photos } from "~/data/photos";
               class="block w-full border border-border bg-background-alt"
               style={`aspect-ratio: ${ph.width}/${ph.height}`}
             />
-            <figcaption class="mt-2 flex items-baseline justify-between gap-3 font-mono text-[11px] tracking-[0.5px] text-muted">
-              <span>{ph.caption}</span>
-              {ph.year && <span class="text-foreground-light">{ph.year}</span>}
-            </figcaption>
+            {(ph.caption || ph.year) && (
+              <figcaption class="mt-2 flex items-baseline justify-between gap-3 font-mono text-[11px] tracking-[0.5px] text-muted">
+                <span>{ph.caption ?? ""}</span>
+                {ph.year && <span class="text-foreground-light">{ph.year}</span>}
+              </figcaption>
+            )}
           </figure>
         ))
       }

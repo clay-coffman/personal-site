@@ -3,7 +3,7 @@ import photosData from "./photos.json";
 export interface Photo {
   id: string;
   url: string;
-  caption: string;
+  caption: string | null;
   width: number;
   height: number;
   takenAt: string | null;

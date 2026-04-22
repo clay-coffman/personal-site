@@ -23,7 +23,7 @@ import {
   readFileSync,
   writeFileSync,
 } from "node:fs";
-import { basename, dirname, extname, join } from "node:path";
+import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import {
   parseFlags,
@@ -97,10 +97,7 @@ async function uploadAssetToR2(assetId, filename) {
 
 function captionFor(asset) {
   const desc = asset.exifInfo?.description?.trim();
-  if (desc) return desc;
-  const name = asset.originalFileName || asset.fileName || "";
-  const ext = extname(name);
-  return basename(name, ext) || "Untitled";
+  return desc || null;
 }
 
 if (!DRY_RUN) {
@@ -159,6 +156,15 @@ for (const asset of albumAssets) {
       : {}),
   });
 }
+
+photos.sort((a, b) => {
+  const at = a.takenAt ? Date.parse(a.takenAt) : null;
+  const bt = b.takenAt ? Date.parse(b.takenAt) : null;
+  if (at == null && bt == null) return 0;
+  if (at == null) return 1;
+  if (bt == null) return -1;
+  return bt - at;
+});
 
 if (!DRY_RUN) {
   const validIds = new Set(photos.map((p) => `${p.id}.jpg`));

@@ -23,7 +23,7 @@ const preview = photos.slice(0, 3);
         <figure class="m-0">
           <img
             src={ph.url}
-            alt={ph.caption}
+            alt={ph.caption ?? (ph.year ? `Photo from ${ph.year}` : "Photo")}
             width={ph.width}
             height={ph.height}
             loading="lazy"
@@ -31,9 +31,11 @@ const preview = photos.slice(0, 3);
             class="block w-full border border-border bg-background-alt"
             style={`aspect-ratio: ${ph.width}/${ph.height}`}
           />
-          <figcaption class="mt-2 font-mono text-[11px] tracking-[0.5px] text-muted">
-            {ph.caption}
-          </figcaption>
+          {ph.caption && (
+            <figcaption class="mt-2 font-mono text-[11px] tracking-[0.5px] text-muted">
+              {ph.caption}
+            </figcaption>
+          )}
         </figure>
       ))
     }
