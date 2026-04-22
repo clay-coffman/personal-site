@@ -1,8 +1,11 @@
 ---
 import NumberedSectionHeader from "./NumberedSectionHeader.astro";
 import { photos } from "~/data/photos";
+import { cdnImage, cdnSrcset } from "~/lib/cdnImage";
 
 const preview = photos.slice(0, 3);
+const PREVIEW_WIDTHS = [400, 800];
+const PREVIEW_SIZES = "(max-width: 768px) 50vw, 33vw";
 ---
 
 <section
@@ -26,7 +29,9 @@ const preview = photos.slice(0, 3);
       preview.map((ph) => (
         <figure class="m-0">
           <img
-            src={ph.url}
+            src={cdnImage(ph.url, { width: 400 })}
+            srcset={cdnSrcset(ph.url, PREVIEW_WIDTHS)}
+            sizes={PREVIEW_SIZES}
             alt={ph.year ? `Photo from ${ph.year}` : "Photo"}
             width={ph.width}
             height={ph.height}
