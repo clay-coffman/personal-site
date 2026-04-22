@@ -21,30 +21,54 @@ import { photos } from "~/data/photos";
         Photos from Utah and wherever else I'm wandering.
       </p>
     </div>
-    <div class="grid gap-5 md:grid-cols-4 max-md:grid-cols-2 max-md:gap-2.5">
+    <div class="photo-gallery">
       {
         photos.map((ph) => (
-          <figure class="m-0">
+          <figure
+            class="photo-item"
+            style={`--aspect: ${ph.width / ph.height};`}
+          >
             <img
               src={ph.url}
-              alt={ph.caption ?? (ph.year ? `Photo from ${ph.year}` : "Photo")}
+              alt={ph.year ? `Photo from ${ph.year}` : "Photo"}
               width={ph.width}
               height={ph.height}
               loading="lazy"
               decoding="async"
-              class="block w-full border border-border bg-background-alt"
-              style={`aspect-ratio: ${ph.width}/${ph.height}`}
             />
-            {(ph.caption || ph.year) && (
-              <figcaption class="mt-2 flex items-baseline justify-between gap-3 font-mono text-[11px] tracking-[0.5px] text-muted">
-                <span>{ph.caption ?? ""}</span>
-                {ph.year && <span class="text-foreground-light">{ph.year}</span>}
-              </figcaption>
-            )}
           </figure>
         ))
       }
     </div>
+
+    <style>
+      .photo-gallery {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .photo-item {
+        flex-grow: var(--aspect);
+        flex-basis: calc(var(--aspect) * 240px);
+        margin: 0;
+        min-width: 0;
+        background: var(--color-background-alt);
+        border: 1px solid var(--color-border);
+      }
+      .photo-item img {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+      @media (max-width: 768px) {
+        .photo-gallery {
+          gap: 6px;
+        }
+        .photo-item {
+          flex-basis: calc(var(--aspect) * 160px);
+        }
+      }
+    </style>
   </main>
   <Footer />
 </BaseLayout>
