@@ -115,6 +115,7 @@ for (const book of listBooks) {
   books.push({
     id: book.id,
     title: book.title,
+    slug: book.slug || null,
     author: book.author,
     authorSort: book.authorSort,
     tags: book.tags,

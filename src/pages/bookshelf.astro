@@ -11,19 +11,17 @@ import { books } from "~/data/books";
 >
   <div data-nav-sentinel aria-hidden="true"></div>
   <main class="px-16 py-16 max-md:px-5 max-md:py-12">
-    <div class="mb-8">
-      <h1 class="text-h2 mb-3">Bookshelf</h1>
-      <p class="text-muted">
-        These are books that I either enjoyed enough to want to read them
-        again, or had a profound impact on my life (or both, in some
-        cases).
-      </p>
-      <p class="text-muted">
-        <em
-          >Curated from my library on <a href="https://hardcover.app/@clayc210"
-            >Hardcover</a
-          >.</em
-        >
+    <div class="mb-12 max-md:mb-8">
+      <div
+        class="mb-3 font-mono text-[11px] uppercase tracking-[2px] text-accent"
+      >
+        {books.length} {books.length === 1 ? "book" : "books"}
+      </div>
+      <h1 class="text-h1 m-0">Bookshelf</h1>
+      <p class="mt-4 max-w-xl text-muted">
+        Books that I either enjoyed enough to want to read them again, or that
+        had a profound impact on my life (or both, in some cases). Curated from
+        my library on <a href="https://hardcover.app/@clayc210">Hardcover</a>.
       </p>
     </div>
     <BookGrid books={books} />

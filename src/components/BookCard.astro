@@ -1,5 +1,4 @@
 ---
-import Badge from "./Badge.astro";
 import type { Book } from "~/data/books";
 
 interface Props {
@@ -7,40 +6,62 @@ interface Props {
 }
 
 const { book } = Astro.props;
+
+const href = book.slug ? `https://hardcover.app/books/${book.slug}` : null;
+const alt = book.author ? `${book.title} by ${book.author}` : book.title;
 ---
 
-<div
-  class="overflow-hidden rounded-lg border border-border bg-background shadow-sm"
->
+<figure class="m-0">
   {
-    book.coverUrl ? (
+    href ? (
+      <a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="no-underline-anim block transition-opacity hover:opacity-85"
+      >
+        {book.coverUrl ? (
+          <img
+            src={book.coverUrl}
+            alt={alt}
+            loading="lazy"
+            decoding="async"
+            class="block aspect-[2/3] w-full border border-border-soft bg-background-alt object-cover"
+          />
+        ) : (
+          <div class="flex aspect-[2/3] w-full items-center justify-center border border-border-soft bg-background-alt p-4 text-center">
+            <span class="font-mono text-[11px] uppercase tracking-[1px] text-muted">
+              No cover
+            </span>
+          </div>
+        )}
+      </a>
+    ) : book.coverUrl ? (
       <img
         src={book.coverUrl}
-        alt={book.title}
-        class="h-[280px] w-full object-cover"
+        alt={alt}
         loading="lazy"
+        decoding="async"
+        class="block aspect-[2/3] w-full border border-border-soft bg-background-alt object-cover"
       />
     ) : (
-      <div class="flex h-[280px] items-center justify-center bg-background-alt">
-        <span class="text-muted/50">No Cover</span>
+      <div class="flex aspect-[2/3] w-full items-center justify-center border border-border-soft bg-background-alt p-4 text-center">
+        <span class="font-mono text-[11px] uppercase tracking-[1px] text-muted">
+          No cover
+        </span>
       </div>
     )
   }
-  <div class="p-4">
-    <h3
-      class="mb-1 text-body-sm font-semibold leading-tight text-foreground"
+  <figcaption class="mt-3">
+    <div
+      class="font-heading text-[17px] leading-[1.2] tracking-[0.5px] text-foreground"
     >
       {book.title}
-    </h3>
-    <p class="mb-2 text-body-2xs text-muted">{book.author}</p>
-    {
-      book.tags.length > 0 && (
-        <div class="flex flex-wrap gap-1">
-          {book.tags.slice(0, 2).map((tag) => (
-            <Badge>{tag}</Badge>
-          ))}
-        </div>
-      )
-    }
-  </div>
-</div>
+    </div>
+    <div
+      class="mt-1 font-mono text-[11px] uppercase tracking-[1px] text-muted"
+    >
+      {book.author}
+    </div>
+  </figcaption>
+</figure>
