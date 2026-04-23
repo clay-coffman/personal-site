@@ -1,32 +1,5 @@
 [
   {
-    "id": "f8c03d14-a4b4-427e-94f4-1e3fd38cc597",
-    "url": "https://media.about-clay.com/photos/f8c03d14-a4b4-427e-94f4-1e3fd38cc597.jpg",
-    "caption": "IMG_8061",
-    "width": 6240,
-    "height": 4160,
-    "takenAt": "2023-10-28T11:17:13.4+00:00",
-    "year": 2023
-  },
-  {
-    "id": "33910304-f5f4-4155-96b6-bc18990ae07d",
-    "url": "https://media.about-clay.com/photos/33910304-f5f4-4155-96b6-bc18990ae07d.jpg",
-    "caption": "IMG_8022",
-    "width": 6240,
-    "height": 4160,
-    "takenAt": "2023-10-28T06:56:33.1+00:00",
-    "year": 2023
-  },
-  {
-    "id": "d3abcd0e-9f3b-4e91-9af6-cf90bdea16a1",
-    "url": "https://media.about-clay.com/photos/d3abcd0e-9f3b-4e91-9af6-cf90bdea16a1.jpg",
-    "caption": "IMG_8016",
-    "width": 6240,
-    "height": 4160,
-    "takenAt": "2023-10-28T06:42:28.89+00:00",
-    "year": 2023
-  },
-  {
     "id": "03eb376d-21d2-4466-a751-c03354b7a597",
     "url": "https://media.about-clay.com/photos/03eb376d-21d2-4466-a751-c03354b7a597.jpg",
     "caption": "IMG_7962",
@@ -42,24 +15,6 @@
     "width": 6240,
     "height": 4160,
     "takenAt": "2023-09-17T01:09:23.54+00:00",
-    "year": 2023
-  },
-  {
-    "id": "5cc2ab4f-918c-4bdd-8475-6807e92449ff",
-    "url": "https://media.about-clay.com/photos/5cc2ab4f-918c-4bdd-8475-6807e92449ff.jpg",
-    "caption": "IMG_7931",
-    "width": 6240,
-    "height": 4160,
-    "takenAt": "2023-09-17T01:01:35.91+00:00",
-    "year": 2023
-  },
-  {
-    "id": "2701041b-b519-4fd0-8183-2f6457eb0f6b",
-    "url": "https://media.about-clay.com/photos/2701041b-b519-4fd0-8183-2f6457eb0f6b.jpg",
-    "caption": "IMG_7917",
-    "width": 6240,
-    "height": 4160,
-    "takenAt": "2023-09-16T08:06:43.05+00:00",
     "year": 2023
   },
   {
@@ -96,15 +51,6 @@
     "width": 6240,
     "height": 4160,
     "takenAt": "2023-09-02T11:35:29.25+00:00",
-    "year": 2023
-  },
-  {
-    "id": "19febce9-8f03-4070-84c6-21dd32e3fe2b",
-    "url": "https://media.about-clay.com/photos/19febce9-8f03-4070-84c6-21dd32e3fe2b.jpg",
-    "caption": "IMG_7724",
-    "width": 6240,
-    "height": 4160,
-    "takenAt": "2023-05-29T05:07:39.91+00:00",
     "year": 2023
   },
   {
@@ -258,15 +204,6 @@
     "width": 2048,
     "height": 1365,
     "takenAt": "2022-05-28T08:12:44+00:00",
-    "year": 2022
-  },
-  {
-    "id": "cc268580-2810-4638-8dab-8507a2dd690d",
-    "url": "https://media.about-clay.com/photos/cc268580-2810-4638-8dab-8507a2dd690d.jpg",
-    "caption": "78-IMG_7068",
-    "width": 2048,
-    "height": 1365,
-    "takenAt": "2022-05-28T05:39:18+00:00",
     "year": 2022
   },
   {
@@ -432,39 +369,12 @@
     "year": 2020
   },
   {
-    "id": "c8955834-f2a7-40ab-8ed5-73e3c8eac965",
-    "url": "https://media.about-clay.com/photos/c8955834-f2a7-40ab-8ed5-73e3c8eac965.jpg",
-    "caption": "IMG_6055",
-    "width": 6240,
-    "height": 4160,
-    "takenAt": "2020-10-19T08:50:03.97+00:00",
-    "year": 2020
-  },
-  {
     "id": "d1e3292d-b1d9-4d39-82f0-e48d55e0e300",
     "url": "https://media.about-clay.com/photos/d1e3292d-b1d9-4d39-82f0-e48d55e0e300.jpg",
     "caption": "20201019-IMG_6019",
     "width": 2912,
     "height": 2912,
     "takenAt": "2020-10-19T08:31:26.37+00:00",
-    "year": 2020
-  },
-  {
-    "id": "891bd1e4-5d51-4d8d-bb71-3b5f0228450b",
-    "url": "https://media.about-clay.com/photos/891bd1e4-5d51-4d8d-bb71-3b5f0228450b.jpg",
-    "caption": "IMG_6018",
-    "width": 6240,
-    "height": 4160,
-    "takenAt": "2020-10-19T08:31:08.53+00:00",
-    "year": 2020
-  },
-  {
-    "id": "725e28b0-8cc5-498a-a589-bbbcf37cf80d",
-    "url": "https://media.about-clay.com/photos/725e28b0-8cc5-498a-a589-bbbcf37cf80d.jpg",
-    "caption": "IMG_6013",
-    "width": 6240,
-    "height": 4160,
-    "takenAt": "2020-10-19T08:30:38.26+00:00",
     "year": 2020
   },
   {
@@ -531,30 +441,12 @@
     "year": 2020
   },
   {
-    "id": "aa0644c9-194b-4c11-8700-a3e6b994f65a",
-    "url": "https://media.about-clay.com/photos/aa0644c9-194b-4c11-8700-a3e6b994f65a.jpg",
-    "caption": "IMG_5583-2",
-    "width": 6240,
-    "height": 4160,
-    "takenAt": "2020-10-14T07:00:10.72+00:00",
-    "year": 2020
-  },
-  {
     "id": "76742c50-7435-46bd-b002-4f8caecab406",
     "url": "https://media.about-clay.com/photos/76742c50-7435-46bd-b002-4f8caecab406.jpg",
     "caption": "IMG_5492",
     "width": 6240,
     "height": 4160,
     "takenAt": "2020-10-13T07:37:30.62+00:00",
-    "year": 2020
-  },
-  {
-    "id": "9b5d0611-b874-4cb4-bdcf-3c117aec74e2",
-    "url": "https://media.about-clay.com/photos/9b5d0611-b874-4cb4-bdcf-3c117aec74e2.jpg",
-    "caption": "IMG_5296",
-    "width": 6240,
-    "height": 4160,
-    "takenAt": "2020-06-06T13:10:06.3+00:00",
     "year": 2020
   },
   {
@@ -592,33 +484,6 @@
     "height": 3510,
     "takenAt": "2020-05-23T11:02:13.06+00:00",
     "year": 2020
-  },
-  {
-    "id": "dccc59bf-783f-40c4-8eb4-6cdb14bd416b",
-    "url": "https://media.about-clay.com/photos/dccc59bf-783f-40c4-8eb4-6cdb14bd416b.jpg",
-    "caption": "IMG_5043",
-    "width": 6240,
-    "height": 4160,
-    "takenAt": "2020-05-22T12:49:25+00:00",
-    "year": 2020
-  },
-  {
-    "id": "f55433c0-2ae9-41c4-bff7-51b381e905c2",
-    "url": "https://media.about-clay.com/photos/f55433c0-2ae9-41c4-bff7-51b381e905c2.jpg",
-    "caption": "IMG_4798",
-    "width": 6240,
-    "height": 4160,
-    "takenAt": "2019-11-24T05:28:08.86+00:00",
-    "year": 2019
-  },
-  {
-    "id": "2f0f85db-b400-487b-8c7d-01b8e6fde243",
-    "url": "https://media.about-clay.com/photos/2f0f85db-b400-487b-8c7d-01b8e6fde243.jpg",
-    "caption": "IMG_4713",
-    "width": 6240,
-    "height": 4160,
-    "takenAt": "2019-11-23T10:55:17.84+00:00",
-    "year": 2019
   },
   {
     "id": "2f1ae3b4-4781-439f-9e33-f088d0529c7a",
@@ -735,24 +600,6 @@
     "width": 5344,
     "height": 3516,
     "takenAt": "2014-04-11T13:27:27+00:00",
-    "year": 2014
-  },
-  {
-    "id": "ae6ccf9f-45f9-4a7f-9777-f08a19f7e8f5",
-    "url": "https://media.about-clay.com/photos/ae6ccf9f-45f9-4a7f-9777-f08a19f7e8f5.jpg",
-    "caption": "IMG_3253-Enhanced-NR",
-    "width": 5344,
-    "height": 3516,
-    "takenAt": "2014-04-10T19:13:07.27+00:00",
-    "year": 2014
-  },
-  {
-    "id": "8f9b7ffa-315f-4573-af0c-b55feb8c1382",
-    "url": "https://media.about-clay.com/photos/8f9b7ffa-315f-4573-af0c-b55feb8c1382.jpg",
-    "caption": "IMG_3233-Enhanced-NR",
-    "width": 5344,
-    "height": 3516,
-    "takenAt": "2014-04-10T04:39:36.73+00:00",
     "year": 2014
   },
   {
