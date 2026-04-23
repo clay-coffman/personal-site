@@ -5,8 +5,10 @@
  * R2_PHOTOS_PUBLIC_URL/covers/{id}.jpg; only the metadata JSON is committed.
  *
  * Flags:
- *   --dry-run    Write books.json locally; skip R2 uploads and git.
- *   --no-push    Commit but do not push.
+ *   --dry-run        Write books.json locally; skip R2 uploads and git.
+ *   --no-push        Commit but do not push.
+ *   --force-covers   Re-upload all covers to R2 even if already present
+ *                    (use when the sync logic has changed what source it picks).
  *
  * Env:
  *   HARDCOVER_API_KEY     required; see scripts/lib/hardcover.mjs
@@ -39,7 +41,11 @@ import { findUserList, getList } from "./lib/hardcover.mjs";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const repoRoot = join(__dirname, "..");
 
-const { dryRun: DRY_RUN, noPush: NO_PUSH } = parseFlags(process.argv);
+const {
+  dryRun: DRY_RUN,
+  noPush: NO_PUSH,
+  forceCovers: FORCE_COVERS,
+} = parseFlags(process.argv);
 const BRANCH = process.env.SYNC_BRANCH || "main";
 
 const BOT_NAME = "hardcover-sync[bot]";
@@ -101,7 +107,7 @@ for (const book of listBooks) {
   let coverUrl = null;
   if (book.imageUrl) {
     coverUrl = `${PUBLIC_COVERS}/${filename}`;
-    if (!DRY_RUN && !existingR2.has(filename)) {
+    if (!DRY_RUN && (!existingR2.has(filename) || FORCE_COVERS)) {
       console.log(`  uploading cover ${filename}`);
       try {
         const uploaded = await uploadCoverToR2(book.imageUrl, filename);
