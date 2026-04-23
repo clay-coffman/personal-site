@@ -1,0 +1,26 @@
+[
+  {
+    "name": "Immich",
+    "description": "Self-hosted photo & video library with mobile apps that back up my phone's camera roll. The curated album behind this site's /photos page lives here.",
+    "url": "",
+    "upstream": "https://immich.app",
+    "category": "Media",
+    "tags": ["Docker", "PostgreSQL"]
+  },
+  {
+    "name": "Calibre-web-automated",
+    "description": "Ebook library and reader — drop a file in the ingest folder and it gets parsed, tagged, and shelved. Pairs with my Hardcover list to feed this site's /bookshelf.",
+    "url": "",
+    "upstream": "https://github.com/crocodilestick/Calibre-Web-Automated",
+    "category": "Media",
+    "tags": ["Docker", "Calibre"]
+  },
+  {
+    "name": "Nextcloud",
+    "description": "Files, calendar, and contacts for the household. Replaces the bits of iCloud/Google I'd rather keep at home.",
+    "url": "",
+    "upstream": "https://nextcloud.com",
+    "category": "Files",
+    "tags": ["Docker", "PostgreSQL"]
+  }
+]
