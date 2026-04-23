@@ -8,6 +8,7 @@ dist/
 # Environment
 .env
 .env.*
+personal-site-sync.env
 
 # Editor
 .vscode/

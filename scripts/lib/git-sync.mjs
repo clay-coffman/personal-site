@@ -12,6 +12,7 @@ export function parseFlags(argv) {
   return {
     dryRun: argv.includes("--dry-run"),
     noPush: argv.includes("--no-push"),
+    forceCovers: argv.includes("--force-covers"),
   };
 }
 

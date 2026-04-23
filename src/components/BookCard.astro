@@ -1,5 +1,6 @@
 ---
 import type { Book } from "~/data/books";
+import { cdnImage, cdnSrcset } from "~/lib/cdnImage";
 
 interface Props {
   book: Book;
@@ -9,6 +10,15 @@ const { book } = Astro.props;
 
 const href = book.slug ? `https://hardcover.app/books/${book.slug}` : null;
 const alt = book.author ? `${book.title} by ${book.author}` : book.title;
+
+const COVER_WIDTHS = [160, 240, 320, 480];
+const COVER_SIZES =
+  "(max-width: 768px) 33vw, (max-width: 1024px) 20vw, 16vw";
+
+const imgClass =
+  "block aspect-[2/3] w-full border border-border-soft bg-background-alt object-cover";
+const placeholderClass =
+  "flex aspect-[2/3] w-full items-center justify-center border border-border-soft bg-background-alt p-4 text-center";
 ---
 
 <figure class="m-0">
@@ -18,18 +28,20 @@ const alt = book.author ? `${book.title} by ${book.author}` : book.title;
         href={href}
         target="_blank"
         rel="noopener noreferrer"
-        class="no-underline-anim block transition-opacity hover:opacity-85"
+        class="no-underline-anim block transition-all duration-200 ease-out hover:-translate-y-0.5 hover:brightness-110 hover:drop-shadow-lg"
       >
         {book.coverUrl ? (
           <img
-            src={book.coverUrl}
+            src={cdnImage(book.coverUrl, { width: 240 })}
+            srcset={cdnSrcset(book.coverUrl, COVER_WIDTHS)}
+            sizes={COVER_SIZES}
             alt={alt}
             loading="lazy"
             decoding="async"
-            class="block aspect-[2/3] w-full border border-border-soft bg-background-alt object-cover"
+            class={imgClass}
           />
         ) : (
-          <div class="flex aspect-[2/3] w-full items-center justify-center border border-border-soft bg-background-alt p-4 text-center">
+          <div class={placeholderClass}>
             <span class="font-mono text-[11px] uppercase tracking-[1px] text-muted">
               No cover
             </span>
@@ -38,14 +50,16 @@ const alt = book.author ? `${book.title} by ${book.author}` : book.title;
       </a>
     ) : book.coverUrl ? (
       <img
-        src={book.coverUrl}
+        src={cdnImage(book.coverUrl, { width: 240 })}
+        srcset={cdnSrcset(book.coverUrl, COVER_WIDTHS)}
+        sizes={COVER_SIZES}
         alt={alt}
         loading="lazy"
         decoding="async"
-        class="block aspect-[2/3] w-full border border-border-soft bg-background-alt object-cover"
+        class={imgClass}
       />
     ) : (
-      <div class="flex aspect-[2/3] w-full items-center justify-center border border-border-soft bg-background-alt p-4 text-center">
+      <div class={placeholderClass}>
         <span class="font-mono text-[11px] uppercase tracking-[1px] text-muted">
           No cover
         </span>
@@ -54,12 +68,12 @@ const alt = book.author ? `${book.title} by ${book.author}` : book.title;
   }
   <figcaption class="mt-3">
     <div
-      class="font-heading text-[17px] leading-[1.2] tracking-[0.5px] text-foreground"
+      class="font-heading text-[14px] leading-[1.25] tracking-[0.3px] text-foreground"
     >
       {book.title}
     </div>
     <div
-      class="mt-1 font-mono text-[11px] uppercase tracking-[1px] text-muted"
+      class="mt-0.5 font-mono text-[10px] uppercase tracking-[1px] text-muted"
     >
       {book.author}
     </div>

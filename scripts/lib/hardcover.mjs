@@ -282,6 +282,11 @@ export async function addToList({ bookId, listId, editionId = null }) {
 /**
  * Fetch all books in a list, ordered by position. Returns a projection
  * compatible with the site's Book interface (id/title/author/tags/hasCover).
+ *
+ * For covers, pulls the book-level `image` plus all English editions with
+ * images, then picks the largest (by area). The book-level `cached_image` is
+ * often a low-res thumbnail imported from a third-party feed (~98×142), while
+ * editions frequently carry 300×500+ covers uploaded to Hardcover's own CDN.
  */
 export async function getList({ listId }) {
   const data = await gql(
@@ -297,9 +302,19 @@ export async function getList({ listId }) {
           title
           slug
           release_year
-          cached_image
           cached_tags
           cached_contributors
+          image { url width height }
+          editions(
+            limit: 20,
+            order_by: [{users_count: desc_nulls_last}, {id: asc}],
+            where: {
+              image: {url: {_is_null: false}},
+              language_id: {_eq: 1}
+            }
+          ) {
+            image { url width height }
+          }
         }
       }
     }`,
@@ -316,10 +331,26 @@ export async function getList({ listId }) {
       author: authors.join(", "),
       authorSort: authors[0] || "",
       tags: extractGenres(b.cached_tags),
-      imageUrl: b.cached_image?.url || null,
+      imageUrl: pickBestCover(b),
       releaseYear: b.release_year,
     };
   });
+}
+
+function pickBestCover(book) {
+  let bestUrl = null;
+  let bestArea = 0;
+  const consider = (img) => {
+    if (!img?.url || !img.width || !img.height) return;
+    const area = img.width * img.height;
+    if (area > bestArea) {
+      bestUrl = img.url;
+      bestArea = area;
+    }
+  };
+  consider(book.image);
+  for (const ed of book.editions ?? []) consider(ed.image);
+  return bestUrl;
 }
 
 // -- scoring & extraction helpers --
