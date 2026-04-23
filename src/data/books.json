@@ -2,6 +2,7 @@
   {
     "id": 793489,
     "title": "Wherever You Go, There You Are",
+    "slug": "wherever-you-go-there-you-are-1994",
     "author": "Jon Kabat-Zinn",
     "authorSort": "Jon Kabat-Zinn",
     "tags": [],
@@ -10,6 +11,7 @@
   {
     "id": 381825,
     "title": "When Breath Becomes Air",
+    "slug": "when-breath-becomes-air",
     "author": "Paul Kalanithi",
     "authorSort": "Paul Kalanithi",
     "tags": [
@@ -27,6 +29,7 @@
   {
     "id": 674541,
     "title": "Walden",
+    "slug": "walden",
     "author": "Henry David Thoreau",
     "authorSort": "Henry David Thoreau",
     "tags": [
@@ -46,6 +49,7 @@
   {
     "id": 441457,
     "title": "Until the End of Time: Mind, Matter, and Our Search for Meaning in an Evolving Universe",
+    "slug": "until-the-end-of-time",
     "author": "Brian Greene",
     "authorSort": "Brian Greene",
     "tags": [
@@ -59,6 +63,7 @@
   {
     "id": 382934,
     "title": "Travels with Charley",
+    "slug": "travels-with-charley",
     "author": "John Steinbeck",
     "authorSort": "John Steinbeck",
     "tags": [
@@ -76,6 +81,7 @@
   {
     "id": 242841,
     "title": "Thinking, Fast and Slow",
+    "slug": "thinking-fast-and-slow",
     "author": "Daniel Kahneman",
     "authorSort": "Daniel Kahneman",
     "tags": [
@@ -95,6 +101,7 @@
   {
     "id": 208339,
     "title": "The Three-Body Problem",
+    "slug": "the-three-body-problem",
     "author": "Cixin Liu",
     "authorSort": "Cixin Liu",
     "tags": [
@@ -114,6 +121,7 @@
   {
     "id": 444538,
     "title": "The Story of the Human Body: Evolution, Health, and Disease",
+    "slug": "the-story-of-the-human-body-evolution-health-and-disease",
     "author": "Daniel E. Lieberman",
     "authorSort": "Daniel E. Lieberman",
     "tags": [],
@@ -122,6 +130,7 @@
   {
     "id": 482571,
     "title": "The Story of Philosophy",
+    "slug": "the-story-of-philosophy-1926",
     "author": "Will Durant",
     "authorSort": "Will Durant",
     "tags": [
@@ -136,6 +145,7 @@
   {
     "id": 64605,
     "title": "The Silk Roads: A New History of the World",
+    "slug": "the-silk-roads",
     "author": "Peter Frankopan",
     "authorSort": "Peter Frankopan",
     "tags": [
@@ -149,6 +159,7 @@
   {
     "id": 100774,
     "title": "The Righteous Mind: Why Good People Are Divided by Politics and Religion",
+    "slug": "the-righteous-mind",
     "author": "Jonathan Haidt",
     "authorSort": "Jonathan Haidt",
     "tags": [
@@ -168,6 +179,7 @@
   {
     "id": 440283,
     "title": "The Right Stuff",
+    "slug": "the-right-stuff",
     "author": "Tom Wolfe",
     "authorSort": "Tom Wolfe",
     "tags": [
@@ -181,6 +193,7 @@
   {
     "id": 234421,
     "title": "The Rise of Theodore Roosevelt",
+    "slug": "the-rise-of-theodore-roosevelt",
     "author": "Edmund Morris",
     "authorSort": "Edmund Morris",
     "tags": [
@@ -197,6 +210,7 @@
   {
     "id": 129102,
     "title": "The Path Between the Seas: The Creation of the Panama Canal 1870-1914",
+    "slug": "the-path-between-the-seas",
     "author": "David McCullough",
     "authorSort": "David McCullough",
     "tags": [
@@ -210,6 +224,7 @@
   {
     "id": 243129,
     "title": "The Overstory",
+    "slug": "the-overstory",
     "author": "Richard Powers",
     "authorSort": "Richard Powers",
     "tags": [
@@ -225,6 +240,7 @@
   {
     "id": 432438,
     "title": "The Order of Time",
+    "slug": "the-order-of-time",
     "author": "Carlo Rovelli",
     "authorSort": "Carlo Rovelli",
     "tags": [
@@ -239,6 +255,7 @@
   {
     "id": 464952,
     "title": "The Myth of Sisyphus",
+    "slug": "the-myth-of-sisyphus",
     "author": "Albert Camus",
     "authorSort": "Albert Camus",
     "tags": [
@@ -258,6 +275,7 @@
   {
     "id": 327048,
     "title": "The Lessons of History",
+    "slug": "the-lessons-of-history",
     "author": "Will Durant, Ariel Durant",
     "authorSort": "Will Durant",
     "tags": [
@@ -270,6 +288,7 @@
   {
     "id": 431954,
     "title": "The Hard Thing About Hard Things: Building a Business When There Are No Easy Answers",
+    "slug": "the-hard-thing-about-hard-things",
     "author": "Ben Horowitz",
     "authorSort": "Ben Horowitz",
     "tags": [
@@ -284,6 +303,7 @@
   {
     "id": 433085,
     "title": "The Divine Within",
+    "slug": "the-divine-within",
     "author": "Aldous Huxley",
     "authorSort": "Aldous Huxley",
     "tags": [],
@@ -292,6 +312,7 @@
   {
     "id": 369140,
     "title": "The Crossing",
+    "slug": "the-crossing-1994",
     "author": "Cormac McCarthy",
     "authorSort": "Cormac McCarthy",
     "tags": [
@@ -308,6 +329,7 @@
   {
     "id": 253369,
     "title": "The Conquest of Happiness",
+    "slug": "the-conquest-of-happiness",
     "author": "Bertrand Russell",
     "authorSort": "Bertrand Russell",
     "tags": [
@@ -319,6 +341,7 @@
   {
     "id": 485999,
     "title": "The beginning of infinity explanations that transform the world",
+    "slug": "the-beginning-of-infinity-explanations-that-transform-the-world-2011",
     "author": "David Deutsch",
     "authorSort": "David Deutsch",
     "tags": [
@@ -330,6 +353,7 @@
   {
     "id": 442622,
     "title": "The 42nd Parallel",
+    "slug": "the-42nd-parallel",
     "author": "John Dos Passos",
     "authorSort": "John Dos Passos",
     "tags": [
@@ -340,6 +364,7 @@
   {
     "id": 221025,
     "title": "Lonesome Dove",
+    "slug": "lonesome-dove",
     "author": "Larry McMurtry",
     "authorSort": "Larry McMurtry",
     "tags": [
@@ -359,6 +384,7 @@
   {
     "id": 375634,
     "title": "Sapiens: A Brief History of Humankind",
+    "slug": "sapiens",
     "author": "Yuval Noah Harari",
     "authorSort": "Yuval Noah Harari",
     "tags": [
@@ -378,6 +404,7 @@
   {
     "id": 443055,
     "title": "Reality is Not What it Seems",
+    "slug": "reality-is-not-what-it-seems",
     "author": "Carlo Rovelli",
     "authorSort": "Carlo Rovelli",
     "tags": [
@@ -392,6 +419,7 @@
   {
     "id": 2093561,
     "title": "Poor Charlie's Almanack: The Wit and Wisdom of Charles T. Munger, Expanded Third Edition",
+    "slug": "poor-charlies-almanack-the-wit-and-wisdom-of-charles-t-munger-expanded-third-edition",
     "author": "Peter D. Kaufman",
     "authorSort": "Peter D. Kaufman",
     "tags": [
@@ -402,6 +430,7 @@
   {
     "id": 427414,
     "title": "On the Shortness of Life",
+    "slug": "on-the-shortness-of-life",
     "author": "Seneca",
     "authorSort": "Seneca",
     "tags": [
@@ -412,6 +441,7 @@
   {
     "id": 306900,
     "title": "Mortality",
+    "slug": "mortality",
     "author": "Christopher Hitchens",
     "authorSort": "Christopher Hitchens",
     "tags": [],
@@ -420,6 +450,7 @@
   {
     "id": 157096,
     "title": "Meditations",
+    "slug": "meditations",
     "author": "Marcus Aurelius",
     "authorSort": "Marcus Aurelius",
     "tags": [
@@ -439,6 +470,7 @@
   {
     "id": 432858,
     "title": "Liar's Poker",
+    "slug": "liars-poker",
     "author": "Michael Lewis",
     "authorSort": "Michael Lewis",
     "tags": [
@@ -449,6 +481,7 @@
   {
     "id": 427412,
     "title": "Letters from a Stoic",
+    "slug": "letters-from-a-stoic",
     "author": "Seneca",
     "authorSort": "Seneca",
     "tags": [
@@ -462,6 +495,7 @@
   {
     "id": 88703,
     "title": "Island",
+    "slug": "island",
     "author": "Aldous Huxley",
     "authorSort": "Aldous Huxley",
     "tags": [
@@ -480,6 +514,7 @@
   {
     "id": 427440,
     "title": "Guns, Germs and Steel: A Short History of Everybody for the Last 13,000 Years",
+    "slug": "guns-germs-and-steel",
     "author": "Jared Diamond",
     "authorSort": "Jared Diamond",
     "tags": [
@@ -499,6 +534,7 @@
   {
     "id": 429919,
     "title": "Freedom",
+    "slug": "freedom",
     "author": "Jonathan Franzen",
     "authorSort": "Jonathan Franzen",
     "tags": [
@@ -509,6 +545,7 @@
   {
     "id": 427701,
     "title": "Flash Boys",
+    "slug": "flash-boys",
     "author": "Michael Lewis",
     "authorSort": "Michael Lewis",
     "tags": [
@@ -519,6 +556,7 @@
   {
     "id": 611333,
     "title": "Finding Meaning in the Second Half of Life: How to Finally, Really Grow Up",
+    "slug": "finding-meaning-in-the-second-half-of-life",
     "author": "James Hollis",
     "authorSort": "James Hollis",
     "tags": [],
@@ -527,6 +565,7 @@
   {
     "id": 504747,
     "title": "Fallen Leaves",
+    "slug": "fallen-leaves",
     "author": "Will Durant",
     "authorSort": "Will Durant",
     "tags": [],
@@ -535,6 +574,7 @@
   {
     "id": 478691,
     "title": "Existentialism is a Humanism",
+    "slug": "existentialism-is-a-humanism",
     "author": "Jean-Paul Sartre",
     "authorSort": "Jean-Paul Sartre",
     "tags": [
@@ -547,6 +587,7 @@
   {
     "id": 556431,
     "title": "Empires of Light: Edison, Tesla, Westinghouse, and the Race to Electrify the World",
+    "slug": "empires-of-light",
     "author": "Jill Jonnes",
     "authorSort": "Jill Jonnes",
     "tags": [
@@ -557,6 +598,7 @@
   {
     "id": 338117,
     "title": "East of Eden",
+    "slug": "east-of-eden",
     "author": "John Steinbeck",
     "authorSort": "John Steinbeck",
     "tags": [
@@ -576,6 +618,7 @@
   {
     "id": 312460,
     "title": "Dune",
+    "slug": "dune",
     "author": "Frank Herbert",
     "authorSort": "Frank Herbert",
     "tags": [
@@ -584,10 +627,10 @@
       "Fantasy",
       "Classics",
       "Adventure",
-      "Dystopian",
-      "Space",
       "Science Fiction & Fantasy",
+      "Dystopian",
       "Space Opera",
+      "Space",
       "Hard Science Fiction"
     ],
     "coverUrl": "https://media.about-clay.com/covers/312460.jpg"
@@ -595,6 +638,7 @@
   {
     "id": 485494,
     "title": "Dialogues",
+    "slug": "dialogues-63",
     "author": "Seneca",
     "authorSort": "Seneca",
     "tags": [],
@@ -603,6 +647,7 @@
   {
     "id": 437192,
     "title": "Crossroads",
+    "slug": "crossroads",
     "author": "Jonathan Franzen",
     "authorSort": "Jonathan Franzen",
     "tags": [
@@ -614,6 +659,7 @@
   {
     "id": 432664,
     "title": "Cloud Cuckoo Land",
+    "slug": "cloud-cuckoo-land",
     "author": "Anthony Doerr",
     "authorSort": "Anthony Doerr",
     "tags": [
@@ -633,6 +679,7 @@
   {
     "id": 470416,
     "title": "Cities of the Plain",
+    "slug": "cities-of-the-plain",
     "author": "Cormac McCarthy",
     "authorSort": "Cormac McCarthy",
     "tags": [
@@ -648,6 +695,7 @@
   {
     "id": 439624,
     "title": "Buffalo for the Broken Heart: Restoring Life to a Black Hills Ranch",
+    "slug": "buffalo-for-the-broken-heart",
     "author": "Dan O'Brien",
     "authorSort": "Dan O'Brien",
     "tags": [],
@@ -656,6 +704,7 @@
   {
     "id": 1363747,
     "title": "Blood Meridian: Or the Evening Redness in the West",
+    "slug": "blood-meridian",
     "author": "Cormac McCarthy",
     "authorSort": "Cormac McCarthy",
     "tags": [
@@ -675,6 +724,7 @@
   {
     "id": 261915,
     "title": "Being Mortal: Medicine and What Matters in the End",
+    "slug": "being-mortal-medicine-and-what-matters-in-the-end",
     "author": "Atul Gawande",
     "authorSort": "Atul Gawande",
     "tags": [
@@ -694,6 +744,7 @@
   {
     "id": 436575,
     "title": "Barbarian Days: A Surfing Life",
+    "slug": "barbarian-days",
     "author": "William Finnegan",
     "authorSort": "William Finnegan",
     "tags": [
@@ -707,6 +758,7 @@
   {
     "id": 428023,
     "title": "Atomic habits: An Easy & Proven Way to Build Good Habits & Break Bad Ones",
+    "slug": "atomic-habits",
     "author": "James Clear",
     "authorSort": "James Clear",
     "tags": [
@@ -726,6 +778,7 @@
   {
     "id": 357434,
     "title": "A Supposedly Fun Thing I'll Never Do Again: Essays and Arguments",
+    "slug": "a-supposedly-fun-thing-ill-never-do-again",
     "author": "David Foster Wallace",
     "authorSort": "David Foster Wallace",
     "tags": [
@@ -742,6 +795,7 @@
   {
     "id": 488920,
     "title": "Arguably",
+    "slug": "arguably",
     "author": "Christopher Hitchens",
     "authorSort": "Christopher Hitchens",
     "tags": [
@@ -755,6 +809,7 @@
   {
     "id": 1088652,
     "title": "A Man on the Moon: The Voyages of the Apollo Astronauts",
+    "slug": "a-man-on-the-moon-the-voyages-of-the-apollo-astronauts",
     "author": "Andrew Chaikin",
     "authorSort": "Andrew Chaikin",
     "tags": [
@@ -768,6 +823,7 @@
   {
     "id": 427452,
     "title": "A Man in Full",
+    "slug": "a-man-in-full",
     "author": "Tom Wolfe",
     "authorSort": "Tom Wolfe",
     "tags": [
@@ -782,6 +838,7 @@
   {
     "id": 137927,
     "title": "All The Pretty Horses",
+    "slug": "all-the-pretty-horses",
     "author": "Cormac McCarthy",
     "authorSort": "Cormac McCarthy",
     "tags": [
@@ -801,6 +858,7 @@
   {
     "id": 478556,
     "title": "All the Light We Cannot See",
+    "slug": "all-the-light-we-cannot-see",
     "author": "Anthony Doerr",
     "authorSort": "Anthony Doerr",
     "tags": [
@@ -820,6 +878,7 @@
   {
     "id": 427340,
     "title": "A Guide to the Good Life",
+    "slug": "a-guide-to-the-good-life-2008",
     "author": "William B. Irvine",
     "authorSort": "William B. Irvine",
     "tags": [
@@ -831,6 +890,7 @@
   {
     "id": 295243,
     "title": "1776",
+    "slug": "1776",
     "author": "David McCullough",
     "authorSort": "David McCullough",
     "tags": [
