@@ -6,10 +6,15 @@ const items = [
   { label: "Writing", href: "/blog", section: "writing" },
   { label: "Bookshelf", href: "/bookshelf", section: "books" },
 ];
+
+// Home reveals nav on scroll past the hero (preserves the clean landing
+// aesthetic). Every other page shows it immediately.
+const isHome = Astro.url.pathname === "/";
 ---
 
 <nav
   data-top-nav
+  data-revealed={isHome ? undefined : ""}
   class="top-nav fixed top-0 inset-x-0 z-50 border-b border-border flex items-baseline justify-between font-mono text-xs uppercase tracking-[1.5px] px-16 py-[18px] max-md:px-5 max-md:py-3.5"
 >
   <a
@@ -140,12 +145,8 @@ const items = [
       { rootMargin: "0px 0px 0px 0px", threshold: 0 }
     );
     observer.observe(sentinel);
-  } else if (nav) {
-    // Fallback for pages without a sentinel: reveal after 100px scroll
-    const onScroll = () => setRevealed(window.scrollY > 100);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    onScroll();
   }
+  // Non-home pages have data-revealed set from the server — no script needed.
 
   // Mobile drawer controls
   const openBtn = document.querySelector<HTMLButtonElement>(
