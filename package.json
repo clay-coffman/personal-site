@@ -13,6 +13,7 @@
     "sync-books": "node scripts/sync-books.mjs",
     "sync-highlights": "node scripts/sync-highlights.mjs",
     "sync-photos": "node scripts/sync-photos.mjs",
+    "sync-homelab": "node scripts/sync-homelab.mjs",
     "sync-cwa-to-hardcover": "node scripts/sync-cwa-to-hardcover.mjs",
     "import-physical-books": "node scripts/import-physical-books.mjs"
   },
@@ -32,6 +33,7 @@
   "devDependencies": {
     "@types/node": "^22.10.5",
     "better-sqlite3": "^11.7.0",
+    "js-yaml": "^4.1.1",
     "typescript": "^5.7.3"
   }
 }

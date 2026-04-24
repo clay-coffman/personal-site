@@ -22,6 +22,7 @@ npm run build:icons   # rebuild public/sprite.svg from icons/
 npm run sync-books    # populate src/data/books.json, mirror covers to R2
 npm run sync-highlights  # populate src/data/highlights.json from Readwise
 npm run sync-photos   # populate src/data/photos.json, mirror photos to R2
+npm run sync-homelab  # populate src/data/homelab.json from Homepage services.yaml
 ```
 
 ## Bookshelf data flow
@@ -61,6 +62,22 @@ album, and writes the metadata JSON.
 Env vars on cloud-hil-1: `IMMICH_API_KEY`, `IMMICH_API_URL`, `IMMICH_ALBUM_ID`,
 `R2_PHOTOS_REMOTE`, `R2_PHOTOS_PUBLIC_URL`. Runs daily via
 `personal-site-sync-photos.timer`.
+
+## Homelab data flow
+
+The `/homelab` page reads `src/data/homelab.json` (services list) plus static
+meta (`host`, `blurb`) hard-coded in `src/data/homelab.ts`.
+`scripts/sync-homelab.mjs` parses the Homepage dashboard's `services.yaml`
+(at `$HOMEPAGE_CONFIG_DIR/services.yaml` on cloud-hil-1) and writes the JSON.
+
+Only services explicitly flagged `public: true` in the YAML are exported to
+the site — default is to stay private. The sync also honors two custom keys
+Homepage itself ignores: `upstream: <url>` (shown as a secondary "upstream →"
+link) and `tags: [..]` (rendered as a tech-stack row). Sections become
+`category`.
+
+Env on cloud-hil-1: `HOMEPAGE_CONFIG_DIR` (required). Expected to run daily
+via `personal-site-sync-homelab.timer`.
 
 ### Adding a new dynamic content source
 

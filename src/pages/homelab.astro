@@ -1,0 +1,102 @@
+---
+import BaseLayout from "~/layouts/BaseLayout.astro";
+import Footer from "~/components/Footer.astro";
+import Icon from "~/components/Icon.astro";
+import { homelab } from "~/data/homelab";
+
+const { host, blurb, services } = homelab;
+
+// Group by category, preserving first-seen order.
+const categories: { name: string; services: typeof services }[] = [];
+for (const service of services) {
+  let bucket = categories.find((c) => c.name === service.category);
+  if (!bucket) {
+    bucket = { name: service.category, services: [] };
+    categories.push(bucket);
+  }
+  bucket.services.push(service);
+}
+---
+
+<BaseLayout
+  title="Clay Coffman — Homelab"
+  description="Services I self-host on my home/cloud server."
+>
+  <main class="px-16 py-16 max-md:px-5 max-md:py-12">
+    <div class="mb-12 max-md:mb-8">
+      <div
+        class="mb-3 font-mono text-[11px] uppercase tracking-[2px] text-accent"
+      >
+        {services.length} {services.length === 1 ? "service" : "services"} ·
+        host <span class="text-foreground-light">{host}</span>
+      </div>
+      <h1 class="text-h1 m-0">Homelab</h1>
+      <p class="mt-4 max-w-xl text-muted">
+        {blurb}
+      </p>
+    </div>
+
+    {
+      categories.map((category) => (
+        <section class="mb-12 max-md:mb-8">
+          <div class="mb-5 border-b border-border-soft pb-2 font-mono text-[11px] uppercase tracking-[2px] text-accent">
+            {category.name}
+          </div>
+          <div class="grid gap-8 md:grid-cols-3 max-md:grid-cols-1 max-md:gap-5">
+            {category.services.map((s) => (
+              <article class="border-t-2 border-accent py-6 text-foreground max-md:py-5">
+                <div class="mb-3 flex items-baseline justify-between gap-3">
+                  <h3 class="text-h3-sm m-0">{s.name}</h3>
+                  {!s.url && (
+                    <span class="shrink-0 bg-accent-soft px-2 py-0.5 font-mono text-[10px] uppercase tracking-[1px] text-accent">
+                      internal
+                    </span>
+                  )}
+                </div>
+                <p class="m-0 text-[14.5px] leading-[1.55] text-foreground-light max-md:text-sm">
+                  {s.description}
+                </p>
+                {s.tags && s.tags.length > 0 && (
+                  <div class="mt-3 flex flex-wrap items-baseline gap-x-2 gap-y-1 font-mono text-[10px] uppercase tracking-[1px] text-muted">
+                    {s.tags.map((t, i) => (
+                      <>
+                        {i > 0 && <span>·</span>}
+                        <span>{t}</span>
+                      </>
+                    ))}
+                  </div>
+                )}
+                <div class="mt-4 flex items-center justify-between gap-3 font-mono text-[11px] uppercase tracking-[1px]">
+                  {s.url ? (
+                    <a
+                      href={s.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="no-underline-anim flex items-center gap-1 text-accent hover:text-accent-dark"
+                    >
+                      <span>open</span>
+                      <Icon name="external-link" size={11} class="opacity-60" />
+                    </a>
+                  ) : (
+                    <span class="text-muted">no public url</span>
+                  )}
+                  {s.upstream && (
+                    <a
+                      href={s.upstream}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="no-underline-anim text-muted hover:text-accent"
+                    >
+                      upstream →
+                    </a>
+                  )}
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+      ))
+    }
+  </main>
+  <Footer />
+</BaseLayout>
