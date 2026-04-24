@@ -5,8 +5,8 @@
   --color-background: #f5efe2; /* paper */
   --color-background-alt: #ede5d3; /* paperDeep */
   --color-foreground: #1a0f08; /* ink */
-  --color-foreground-light: rgba(50, 35, 25, 0.72); /* inkSoft */
-  --color-muted: rgba(50, 35, 25, 0.5); /* inkMeta */
+  --color-foreground-light: rgba(42, 28, 18, 0.88); /* inkSoft */
+  --color-muted: rgba(42, 28, 18, 0.68); /* inkMeta */
   --color-border: rgba(50, 35, 25, 0.18); /* rule */
   --color-border-soft: rgba(50, 35, 25, 0.1); /* ruleSoft */
   --color-accent: #9a3412; /* rust */
