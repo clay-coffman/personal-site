@@ -6,19 +6,19 @@ interface Props {
 }
 
 const {
-  heading = "Get new posts by email",
-  copy = "Infrequent — one email per post, zero filler. Unsubscribe anytime.",
+  heading ="Get new posts by email",
+  copy ="Infrequent — one email per post, zero filler. Unsubscribe anytime.",
   compact = false,
 } = Astro.props;
 
 // Listmonk instance + list UUID. Update LISTMONK_URL if the subdomain differs.
-const LISTMONK_URL = "https://listmonk.about-clay.com";
-const LIST_UUID = "a584d0cd-9989-4a42-a405-a89ca71213da";
+const LISTMONK_URL ="https://listmonk.about-clay.com";
+const LIST_UUID ="a584d0cd-9989-4a42-a405-a89ca71213da";
 ---
 
 <section
   class:list={[
-    "border-t border-border",
+"border-t border-border",
     compact
       ? "px-0 py-10 max-md:py-8"
       : "px-16 py-16 max-md:px-5 max-md:py-12",
@@ -26,12 +26,12 @@ const LIST_UUID = "a584d0cd-9989-4a42-a405-a89ca71213da";
 >
   <div class="mx-auto max-w-xl">
     <div
-      class="mb-3 font-mono text-[11px] uppercase tracking-[2px] text-accent"
+      class="mb-3 font-mono text-label uppercase tracking-[2px] text-accent"
     >
       subscribe
     </div>
     <h2 class="text-h3 mb-3 text-foreground">{heading}</h2>
-    <p class="mb-6 text-body-sm text-foreground-light">{copy}</p>
+    <p class="mb-6 text-detail text-foreground-light">{copy}</p>
     <form
       action={`${LISTMONK_URL}/subscription/form`}
       method="POST"
@@ -46,11 +46,11 @@ const LIST_UUID = "a584d0cd-9989-4a42-a405-a89ca71213da";
         placeholder="you@example.com"
         required
         autocomplete="email"
-        class="flex-1 border border-border bg-background px-4 py-3 font-mono text-sm text-foreground placeholder:text-muted focus:border-accent focus:outline-none"
+        class="text-detail flex-1 border border-border bg-background px-4 py-3 font-mono text-foreground placeholder:text-muted focus:border-accent focus:outline-none"
       />
       <button
         type="submit"
-        class="bg-accent px-6 py-3 font-mono text-xs uppercase tracking-[1.5px] text-background transition-colors hover:bg-accent-dark"
+        class="bg-accent px-6 py-3 font-mono text-caption uppercase tracking-[1.5px] text-background transition-colors hover:bg-accent-dark"
       >
         Subscribe →
       </button>

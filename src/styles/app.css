@@ -150,6 +150,33 @@ a:hover {
   text-transform: none;
 }
 
+@utility text-section-lede {
+  font-family: var(--font-heading);
+  font-size: 1.625rem; /* 26px */
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+@utility text-section-copy {
+  font-family: var(--font-heading);
+  font-size: 1.25rem; /* 20px */
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+@utility text-list-title {
+  font-family: var(--font-heading);
+  font-size: 17px;
+  letter-spacing: 0.3px;
+}
+
+@utility text-card-title {
+  font-family: var(--font-heading);
+  font-size: 16px;
+  line-height: 1.25;
+  letter-spacing: 0.3px;
+}
+
 @utility text-nav {
   font-family: var(--font-heading);
   font-size: 1.1rem;
@@ -167,31 +194,21 @@ a:hover {
   line-height: 1.6;
 }
 
-@utility text-body-sm {
-  font-size: 0.95rem;
+@utility text-detail {
+  font-size: 14.5px;
+  line-height: 1.55;
 }
 
-@utility text-body-xs {
-  font-size: 0.9rem;
+@utility text-label {
+  font-size: 11px;
 }
 
-@utility text-body-2xs {
-  font-size: 0.85rem;
+@utility text-label-xs {
+  font-size: 10px;
 }
 
-@utility text-meta {
-  font-family: var(--font-mono);
-  font-size: 0.6875rem; /* 11px */
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--color-muted);
-}
-
-@utility text-meta-sm {
-  font-family: var(--font-mono);
-  font-size: 0.625rem; /* 10px */
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
+@utility text-caption {
+  font-size: 12px;
 }
 
 @utility text-skill-label {
@@ -264,6 +281,22 @@ a:hover {
 
   .text-hero-lede {
     font-size: 1.625rem; /* 26px mobile */
+  }
+
+  .text-section-lede {
+    font-size: 1.25rem; /* 20px */
+  }
+
+  .text-section-copy {
+    font-size: 1rem; /* 16px */
+  }
+
+  .text-list-title {
+    font-size: 15px;
+  }
+
+  .text-detail {
+    font-size: 13.5px;
   }
 }
 

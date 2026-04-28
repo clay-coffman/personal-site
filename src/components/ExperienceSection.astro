@@ -15,7 +15,7 @@ const hasMore = experiences.length > preview.length;
 
 <section
   id="experience"
-  class="scroll-mt-8 border-t border-border px-16 py-30 md:min-h-screen max-md:px-5 max-md:py-16"
+  class="scroll-mt-8 min-h-[100svh] border-t border-border px-16 py-30 md:min-h-screen max-md:px-5 max-md:py-16"
 >
   <NumberedSectionHeader
     num="01"
@@ -26,7 +26,7 @@ const hasMore = experiences.length > preview.length;
     {
       preview.map((e) => (
         <article class="grid items-baseline border-t border-border-soft py-7 md:grid-cols-[140px_minmax(0,1fr)_2fr] md:gap-10 max-md:grid-cols-1 max-md:gap-2 max-md:py-5">
-          <div class="font-mono text-[11px] uppercase tracking-[1px] text-muted md:pt-1.5">
+          <div class="font-mono text-label uppercase tracking-[1px] text-muted md:pt-1.5">
             {e.period}
           </div>
           <div>
@@ -45,12 +45,12 @@ const hasMore = experiences.length > preview.length;
               )}
             </h3>
             {e.role && (
-              <div class="mt-1.5 font-mono text-[11px] uppercase tracking-[1px] text-accent">
+              <div class="mt-1.5 font-mono text-label uppercase tracking-[1px] text-accent">
                 {e.role}
               </div>
             )}
           </div>
-          <p class="m-0 leading-[1.6] text-foreground-light md:text-[15.5px] max-md:text-sm">
+          <p class="m-0 text-detail text-foreground-light">
             {e.description}
           </p>
         </article>
@@ -62,7 +62,7 @@ const hasMore = experiences.length > preview.length;
       <div class="mt-7 max-md:mt-5">
         <a
           href="/experience"
-          class="no-underline-anim font-mono text-xs uppercase tracking-[1px] text-accent hover:text-accent-dark"
+          class="no-underline-anim font-mono text-caption uppercase tracking-[1px] text-accent hover:text-accent-dark"
         >
           full resume →
         </a>

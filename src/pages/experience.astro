@@ -15,7 +15,7 @@ const education = profileData.education;
 >
   <main class="px-16 py-16 max-md:px-5 max-md:py-12">
     <div class="mb-12 max-md:mb-8">
-      <div class="mb-3 font-mono text-[11px] uppercase tracking-[2px] text-accent">
+      <div class="mb-3 font-mono text-label uppercase tracking-[2px] text-accent">
         resume · {experiences.length} roles
       </div>
       <h1 class="text-h1 m-0">Experience</h1>
@@ -24,7 +24,7 @@ const education = profileData.education;
       {
         chronological.map((e) => (
           <article class="grid items-baseline border-t border-border-soft py-7 md:grid-cols-[140px_minmax(0,1fr)_2fr] md:gap-10 max-md:grid-cols-1 max-md:gap-2 max-md:py-5">
-            <div class="font-mono text-[11px] uppercase tracking-[1px] text-muted md:pt-1.5">
+            <div class="font-mono text-label uppercase tracking-[1px] text-muted md:pt-1.5">
               {e.period}
             </div>
             <div>
@@ -43,12 +43,12 @@ const education = profileData.education;
                 )}
               </h3>
               {e.role && (
-                <div class="mt-1.5 font-mono text-[11px] uppercase tracking-[1px] text-accent">
+                <div class="mt-1.5 font-mono text-label uppercase tracking-[1px] text-accent">
                   {e.role}
                 </div>
               )}
             </div>
-            <p class="m-0 leading-[1.6] text-foreground-light md:text-[15.5px] max-md:text-sm">
+            <p class="m-0 leading-[1.6] text-foreground-light text-detail">
               {e.description}
             </p>
           </article>
@@ -59,14 +59,14 @@ const education = profileData.education;
     {
       ongoing.length > 0 && (
         <div class="mt-16 max-md:mt-10">
-          <div class="mb-3 font-mono text-[11px] uppercase tracking-[2px] text-accent">
+          <div class="mb-3 font-mono text-label uppercase tracking-[2px] text-accent">
             ongoing
           </div>
           <h2 class="text-h2 m-0 mb-6 max-md:mb-4">Other ongoing work</h2>
           <div>
             {ongoing.map((e) => (
               <article class="grid items-baseline border-t border-border-soft py-7 md:grid-cols-[140px_minmax(0,1fr)_2fr] md:gap-10 max-md:grid-cols-1 max-md:gap-2 max-md:py-5">
-                <div class="font-mono text-[11px] uppercase tracking-[1px] text-muted md:pt-1.5">
+                <div class="font-mono text-label uppercase tracking-[1px] text-muted md:pt-1.5">
                   {e.period}
                 </div>
                 <div>
@@ -85,12 +85,12 @@ const education = profileData.education;
                     )}
                   </h3>
                   {e.role && (
-                    <div class="mt-1.5 font-mono text-[11px] uppercase tracking-[1px] text-accent">
+                    <div class="mt-1.5 font-mono text-label uppercase tracking-[1px] text-accent">
                       {e.role}
                     </div>
                   )}
                 </div>
-                <p class="m-0 leading-[1.6] text-foreground-light md:text-[15.5px] max-md:text-sm">
+                <p class="m-0 leading-[1.6] text-foreground-light text-detail">
                   {e.description}
                 </p>
               </article>
@@ -103,20 +103,20 @@ const education = profileData.education;
     {
       education.length > 0 && (
         <div class="mt-16 max-md:mt-10">
-          <div class="mb-3 font-mono text-[11px] uppercase tracking-[2px] text-accent">
+          <div class="mb-3 font-mono text-label uppercase tracking-[2px] text-accent">
             education
           </div>
           <h2 class="text-h2 m-0 mb-6 max-md:mb-4">Education</h2>
           <div>
             {education.map((e) => (
               <div class="grid items-baseline border-t border-border-soft py-6 md:grid-cols-[140px_minmax(0,1fr)_2fr] md:gap-10 max-md:grid-cols-1 max-md:gap-1 max-md:py-4.5">
-                <div class="font-mono text-[11px] uppercase tracking-[1px] text-muted md:pt-1.5">
+                <div class="font-mono text-label uppercase tracking-[1px] text-muted md:pt-1.5">
                   {e.year || "—"}
                 </div>
-                <h3 class="text-h3-sm m-0 text-foreground md:text-[1.375rem]">
+                <h3 class="text-h3-sm m-0 text-foreground">
                   {e.institution}
                 </h3>
-                <div class="font-mono text-xs text-foreground-light md:pt-1.5">
+                <div class="font-mono text-caption text-foreground-light md:pt-1.5">
                   {e.credential}
                 </div>
               </div>

@@ -28,13 +28,13 @@ const formattedDate = highlight.highlightedAt
   </blockquote>
   {
     highlight.note && (
-      <p class="mb-4 text-body-sm text-muted">
+      <p class="mb-4 text-detail text-muted">
         <span class="font-semibold">Note:</span> {highlight.note}
       </p>
     )
   }
   <div class="flex flex-wrap items-baseline justify-between gap-2">
-    <p class="text-body-sm text-muted">
+    <p class="text-detail text-muted">
       —{" "}
       <a
         href={sourceHref}
@@ -46,7 +46,7 @@ const formattedDate = highlight.highlightedAt
         {highlight.bookAuthor && <>, {highlight.bookAuthor}</>}
       </a>
     </p>
-    {formattedDate && <time class="text-body-2xs text-muted">{formattedDate}</time>}
+    {formattedDate && <time class="text-label-xs text-muted">{formattedDate}</time>}
   </div>
   {
     highlight.tags.length > 0 && (

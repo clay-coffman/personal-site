@@ -13,12 +13,12 @@ const alt = book.author ? `${book.title} by ${book.author}` : book.title;
 
 const COVER_WIDTHS = [160, 240, 320, 480];
 const COVER_SIZES =
-  "(max-width: 768px) 33vw, (max-width: 1024px) 20vw, 16vw";
+"(max-width: 768px) 33vw, (max-width: 1024px) 20vw, 16vw";
 
 const imgClass =
-  "block aspect-[2/3] w-full border border-border-soft bg-background-alt object-cover";
+"block aspect-[2/3] w-full border border-border-soft bg-background-alt object-cover";
 const placeholderClass =
-  "flex aspect-[2/3] w-full items-center justify-center border border-border-soft bg-background-alt p-4 text-center";
+"flex aspect-[2/3] w-full items-center justify-center border border-border-soft bg-background-alt p-4 text-center";
 ---
 
 <figure class="m-0">
@@ -42,7 +42,7 @@ const placeholderClass =
           />
         ) : (
           <div class={placeholderClass}>
-            <span class="font-mono text-[11px] uppercase tracking-[1px] text-muted">
+            <span class="font-mono text-label uppercase tracking-[1px] text-muted">
               No cover
             </span>
           </div>
@@ -60,7 +60,7 @@ const placeholderClass =
       />
     ) : (
       <div class={placeholderClass}>
-        <span class="font-mono text-[11px] uppercase tracking-[1px] text-muted">
+        <span class="font-mono text-label uppercase tracking-[1px] text-muted">
           No cover
         </span>
       </div>
@@ -68,12 +68,12 @@ const placeholderClass =
   }
   <figcaption class="mt-4">
     <div
-      class="font-heading text-[16px] leading-[1.25] tracking-[0.3px] text-foreground"
+      class="text-card-title text-foreground"
     >
       {book.title}
     </div>
     <div
-      class="mt-1.5 font-mono text-[11px] uppercase tracking-[1px] text-muted"
+      class="mt-1.5 font-mono text-label uppercase tracking-[1px] text-muted"
     >
       {book.author}
     </div>

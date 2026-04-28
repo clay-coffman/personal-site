@@ -11,41 +11,45 @@ const { profile } = Astro.props;
 
 <section
   id="hero"
-  class="flex min-h-screen flex-col gap-14 px-16 pt-24 pb-18 md:gap-14 md:px-16 md:pt-24 md:pb-18 max-md:min-h-auto max-md:gap-9 max-md:px-5 max-md:pt-12 max-md:pb-12"
+  class="flex min-h-[100svh] flex-col gap-14 px-16 pt-24 pb-18 md:min-h-screen md:gap-14 md:px-16 md:pt-24 md:pb-18 max-md:gap-9 max-md:px-5 max-md:pt-12 max-md:pb-12"
 >
   <div
-    class="flex font-mono text-[11px] uppercase tracking-[1px] text-muted md:items-center md:justify-between max-md:flex-col max-md:items-start max-md:gap-1.5"
+    class="flex font-mono text-label uppercase tracking-[1px] text-muted md:items-center md:justify-between max-md:flex-col max-md:items-start max-md:gap-1.5"
   >
     <span>{profile.name}</span>
-    <span>Salt Lake City, UT, USA · 40.76° N · 111.89° W</span>
+    <span class="max-md:flex max-md:flex-col max-md:gap-1">
+      <span>Salt Lake City, UT, USA</span>
+      <span class="md:hidden">40.76° N · 111.89° W</span>
+      <span class="max-md:hidden">· 40.76° N · 111.89° W</span>
+    </span>
   </div>
 
-  <div class="max-w-[820px]">
+  <div class="max-w-[820px] max-md:max-w-[74vw]">
     <p class="text-hero-lede m-0 text-foreground-light">
-      My corner of the internet for{" "}
+      My corner of the internet for{""}
       <a href="#experience" class="link-noun hover:link-noun-hover"
         >what I've built</a
-      >,{" "}
+      >,{""}
       <a href="#code" class="link-noun hover:link-noun-hover"
         >what I'm learning</a
-      >,{" "}
+      >,{""}
       <a href="#books" class="link-noun hover:link-noun-hover">books</a> I
-      keep coming back to,{" "}
+      keep coming back to,{""}
       <a href="#photos" class="link-noun hover:link-noun-hover">photos</a>,
-      links, and occasional{" "}
+      links, and occasional{""}
       <a href="/blog" class="link-noun hover:link-noun-hover">writing</a>.
     </p>
   </div>
 
   <div
-    class="flex items-center gap-5 font-mono text-xs text-muted max-md:flex-wrap"
+    class="flex items-center gap-5 font-mono text-caption text-muted max-md:flex-wrap"
   >
     <a
       href={`mailto:${profile.email}`}
       aria-label="Email"
       class="no-underline-anim text-accent hover:text-accent-dark"
     >
-      <Icon name="envelope" size={20} />
+      <Icon name="envelope" size={20} class="max-md:h-[18px] max-md:w-[18px]" />
     </a>
     <a
       href={profile.social.linkedin}
@@ -54,7 +58,7 @@ const { profile } = Astro.props;
       aria-label="LinkedIn"
       class="no-underline-anim text-accent hover:text-accent-dark"
     >
-      <Icon name="linkedin" size={20} />
+      <Icon name="linkedin" size={20} class="max-md:h-[18px] max-md:w-[18px]" />
     </a>
     <a
       href={profile.social.github}
@@ -63,36 +67,43 @@ const { profile } = Astro.props;
       aria-label="GitHub"
       class="no-underline-anim text-accent hover:text-accent-dark"
     >
-      <Icon name="github" size={20} />
+      <Icon name="github" size={20} class="max-md:h-[18px] max-md:w-[18px]" />
     </a>
-    <span class="ml-auto uppercase tracking-[1px] opacity-70 max-md:ml-0">
+    <span class="ml-auto uppercase tracking-[1px] opacity-70 max-md:hidden">
       scroll ↓
     </span>
   </div>
 
-  <div class="mt-auto flex max-w-[820px] flex-col gap-3 max-md:mt-0">
-    <div
-      class="font-mono text-[11px] uppercase tracking-[2px] text-accent"
-    >
-      now
+  <div class="mt-auto flex items-end justify-between gap-6">
+    <div class="flex max-w-[820px] flex-col gap-3">
+      <div
+        class="font-mono text-label uppercase tracking-[2px] text-accent"
+      >
+        now
+      </div>
+      <dl
+        class="m-0 grid gap-x-6 gap-y-2 font-mono text-caption text-foreground-light md:grid-cols-[120px_1fr] max-md:grid-cols-1 max-md:gap-y-1"
+      >
+        <dt class="uppercase tracking-[1.5px] text-muted">Building</dt>
+        <dd class="m-0">
+          <a
+            href="https://steadygrade.studio"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-foreground-light hover:text-accent"
+          >
+            Steady Grade Studios
+          </a>
+        </dd>
+        <dt class="uppercase tracking-[1.5px] text-muted">Studying</dt>
+        <dd class="m-0">CS @ Oregon State</dd>
+      </dl>
     </div>
-    <dl
-      class="m-0 grid gap-x-6 gap-y-2 font-mono text-xs text-foreground-light md:grid-cols-[120px_1fr] max-md:grid-cols-1 max-md:gap-y-1 max-md:text-[11px]"
+    <span
+      class="hidden shrink-0 pb-0.5 font-mono text-caption uppercase tracking-[1px] text-muted opacity-70 max-md:block"
     >
-      <dt class="uppercase tracking-[1.5px] text-muted">Building</dt>
-      <dd class="m-0">
-        <a
-          href="https://steadygrade.studio"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="text-foreground-light hover:text-accent"
-        >
-          Steady Grade Studios
-        </a>
-      </dd>
-      <dt class="uppercase tracking-[1.5px] text-muted">Studying</dt>
-      <dd class="m-0">CS @ Oregon State</dd>
-    </dl>
+      scroll ↓
+    </span>
   </div>
 
   <div data-nav-sentinel aria-hidden="true"></div>

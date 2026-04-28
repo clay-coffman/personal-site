@@ -4,50 +4,75 @@ import { photos } from "~/data/photos";
 import { cdnImage, cdnSrcset } from "~/lib/cdnImage";
 
 const preview = photos.slice(0, 3);
+const [lead, ...supporting] = preview;
 const PREVIEW_WIDTHS = [400, 800];
-const PREVIEW_SIZES = "(max-width: 768px) 50vw, 33vw";
+const LEAD_WIDTHS = [800, 1200, 1600];
+const PREVIEW_SIZES ="(max-width: 768px) 50vw, 33vw";
+const LEAD_SIZES ="(max-width: 768px) 100vw, 66vw";
 ---
 
 <section
   id="photos"
-  class="scroll-mt-8 border-t border-border px-16 py-30 md:min-h-screen max-md:px-5 max-md:py-16"
+  class="scroll-mt-8 min-h-[100svh] border-t border-border px-16 py-30 md:min-h-screen max-md:px-5 max-md:py-16"
 >
   <NumberedSectionHeader
     num="04"
     title="Photos"
     kicker={`${photos.length} images`}
   />
-  <p
-    class="mb-10 max-w-[820px] font-heading text-[1.25rem] leading-[1.5] text-foreground-light font-normal max-md:mb-7 max-md:text-base"
-  >
+  <p class="text-section-copy mb-10 max-w-[820px] text-foreground-light max-md:mb-7">
     Photos from Utah and wherever else I'm wandering.
   </p>
-  <div
-    class="grid gap-5 md:grid-cols-3 max-md:grid-cols-2 max-md:gap-2.5"
-  >
-    {
-      preview.map((ph) => (
-        <figure class="m-0">
+  {
+    lead && (
+      <div class="grid gap-5 md:grid-cols-[2fr_1fr] max-md:gap-2.5">
+        <figure class="group relative m-0">
           <img
-            src={cdnImage(ph.url, { width: 400 })}
-            srcset={cdnSrcset(ph.url, PREVIEW_WIDTHS)}
-            sizes={PREVIEW_SIZES}
-            alt={ph.year ? `Photo from ${ph.year}` : "Photo"}
-            width={ph.width}
-            height={ph.height}
+            src={cdnImage(lead.url, { width: 800 })}
+            srcset={cdnSrcset(lead.url, LEAD_WIDTHS)}
+            sizes={LEAD_SIZES}
+            alt={lead.year ? `Photo from ${lead.year}` : "Photo"}
+            width={lead.width}
+            height={lead.height}
             loading="lazy"
             decoding="async"
-            class="block w-full border border-border bg-background-alt"
-            style={`aspect-ratio: ${ph.width}/${ph.height}`}
+            class="block aspect-[4/3] w-full border border-border bg-background-alt object-cover"
           />
+          {lead.year && (
+            <figcaption class="mt-2 font-mono text-label-xs uppercase tracking-[1px] text-muted">
+              {lead.year}
+            </figcaption>
+          )}
         </figure>
-      ))
-    }
-  </div>
+        <div class="grid gap-5 max-md:grid-cols-2 max-md:gap-2.5">
+          {supporting.map((ph) => (
+            <figure class="m-0">
+              <img
+                src={cdnImage(ph.url, { width: 400 })}
+                srcset={cdnSrcset(ph.url, PREVIEW_WIDTHS)}
+                sizes={PREVIEW_SIZES}
+                alt={ph.year ? `Photo from ${ph.year}` : "Photo"}
+                width={ph.width}
+                height={ph.height}
+                loading="lazy"
+                decoding="async"
+                class="block aspect-[4/3] w-full border border-border bg-background-alt object-cover md:aspect-[4/5]"
+              />
+              {ph.year && (
+                <figcaption class="mt-2 font-mono text-label-xs uppercase tracking-[1px] text-muted max-md:mt-1.5">
+                  {ph.year}
+                </figcaption>
+              )}
+            </figure>
+          ))}
+        </div>
+      </div>
+    )
+  }
   <div class="mt-7 max-md:mt-5">
     <a
       href="/photos"
-      class="no-underline-anim font-mono text-xs uppercase tracking-[1px] text-accent hover:text-accent-dark"
+      class="no-underline-anim font-mono text-caption uppercase tracking-[1px] text-accent hover:text-accent-dark"
     >
       all photos →
     </a>

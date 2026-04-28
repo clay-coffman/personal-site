@@ -14,7 +14,7 @@ const fmtDate = (d: Date) =>
 
 <section
   id="writing"
-  class="scroll-mt-8 border-t border-border px-16 py-30 md:min-h-screen max-md:px-5 max-md:py-16"
+  class="scroll-mt-8 min-h-[100svh] border-t border-border px-16 py-30 md:min-h-screen max-md:px-5 max-md:py-16"
 >
   <NumberedSectionHeader
     num="05"
@@ -22,9 +22,7 @@ const fmtDate = (d: Date) =>
     kicker={posts.length > 0 ? "recent" : "soon"}
   />
   <div class="grid gap-16 md:grid-cols-2 max-md:grid-cols-1 max-md:gap-8">
-    <p
-      class="font-heading text-[1.625rem] leading-[1.5] text-foreground-light font-normal m-0 max-md:text-xl"
-    >
+    <p class="text-section-lede m-0 text-foreground-light">
       I'm working on a few essays. First batch will be notes on hardware, some
       reflections from building companies, and a long thing about skilled
       trades.
@@ -32,12 +30,12 @@ const fmtDate = (d: Date) =>
     <div>
       {
         posts.length === 0 ? (
-          <div class="font-mono text-[11px] uppercase tracking-[1px] text-muted">
+          <div class="font-mono text-label uppercase tracking-[1px] text-muted">
             first posts coming soon
           </div>
         ) : (
           <>
-            <div class="mb-3.5 font-mono text-[11px] uppercase tracking-[2px] text-muted">
+            <div class="mb-3.5 font-mono text-label uppercase tracking-[2px] text-muted">
               Recent
             </div>
             {posts.map((p) => (
@@ -45,10 +43,10 @@ const fmtDate = (d: Date) =>
                 href={`/blog/${p.id}`}
                 class="group flex items-baseline justify-between border-t border-border-soft py-3 no-underline-anim text-foreground"
               >
-                <span class="font-heading text-[17px] tracking-[0.3px] text-foreground-light transition-colors group-hover:text-foreground max-md:text-[15px]">
+                <span class="text-list-title text-foreground-light transition-colors group-hover:text-foreground">
                   {p.data.title}
                 </span>
-                <span class="font-mono text-[10px] uppercase tracking-[1px] text-muted">
+                <span class="font-mono text-label-xs uppercase tracking-[1px] text-muted">
                   {fmtDate(p.data.pubDate)}
                 </span>
               </a>
@@ -61,7 +59,7 @@ const fmtDate = (d: Date) =>
   <div class="mt-7 max-md:mt-5">
     <a
       href="/blog"
-      class="no-underline-anim font-mono text-xs uppercase tracking-[1px] text-accent hover:text-accent-dark"
+      class="no-underline-anim font-mono text-caption uppercase tracking-[1px] text-accent hover:text-accent-dark"
     >
       all writing →
     </a>

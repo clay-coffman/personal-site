@@ -13,14 +13,14 @@ const year = new Date().getFullYear();
   class="flex items-baseline gap-10 border-t-2 border-accent px-16 pt-20 pb-12 md:flex-row max-md:flex-col max-md:items-start max-md:gap-5 max-md:px-5 max-md:pt-12 max-md:pb-9"
 >
   <div
-    class="font-heading text-[2rem] uppercase tracking-[1px] text-foreground font-normal max-md:text-2xl"
+    class="text-h2 text-foreground"
   >
     {profile.name}
   </div>
-  <div class="font-mono text-xs tracking-[1px] text-muted">
+  <div class="font-mono text-caption tracking-[1px] text-muted">
     Salt Lake City · © {year}
   </div>
-  <div class="ml-auto flex gap-[18px] font-mono text-xs max-md:ml-0">
+  <div class="ml-auto flex gap-[18px] font-mono text-caption max-md:ml-0">
     <a
       href={`mailto:${profile.email}`}
       class="no-underline-anim text-accent hover:text-accent-dark"
