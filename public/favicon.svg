@@ -1,14 +1,48 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <rect width="64" height="64" rx="12" fill="#0077b6" />
+  <style>
+    .paper { fill: #f5efe2; }
+    .ink { fill: #1a0f08; }
+    .rust { fill: #9a3412; }
+    .rule { stroke: rgba(50, 35, 25, 0.2); }
+    .dot { fill: rgba(50, 35, 25, 0.16); }
+
+    @media (prefers-color-scheme: dark) {
+      .paper { fill: #1a0f08; }
+      .ink { fill: #f5efe2; }
+      .rust { fill: #c2410c; }
+      .rule { stroke: rgba(245, 239, 226, 0.2); }
+      .dot { fill: rgba(245, 239, 226, 0.14); }
+    }
+  </style>
+
+  <defs>
+    <pattern id="dots" width="6" height="6" patternUnits="userSpaceOnUse">
+      <circle class="dot" cx="1.5" cy="1.5" r="0.8" />
+    </pattern>
+  </defs>
+
+  <rect class="paper" width="64" height="64" rx="8" />
+  <rect width="64" height="64" rx="8" fill="url(#dots)" />
+  <circle class="rust" cx="47" cy="47" r="18" opacity="0.42" />
+  <rect
+    x="4"
+    y="4"
+    width="56"
+    height="56"
+    rx="5"
+    fill="none"
+    class="rule"
+    stroke-width="2"
+  />
   <text
-    x="50%"
-    y="50%"
+    class="ink"
+    x="31"
+    y="34"
     text-anchor="middle"
     dominant-baseline="central"
-    font-family="'Bebas Neue', 'Arial Narrow', Arial, sans-serif"
-    font-size="40"
+    font-family="Impact, 'Arial Narrow', sans-serif"
+    font-size="46"
     font-weight="400"
-    letter-spacing="2"
-    fill="#ffffff"
-  >CC</text>
+    letter-spacing="0"
+  >C</text>
 </svg>
