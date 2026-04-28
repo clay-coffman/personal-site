@@ -6,19 +6,19 @@ interface Props {
 }
 
 const {
-  heading ="Get new posts by email",
-  copy ="Infrequent — one email per post, zero filler. Unsubscribe anytime.",
+  heading = "Get new posts by email",
+  copy = "Infrequent — one email per post, zero filler. Unsubscribe anytime.",
   compact = false,
 } = Astro.props;
 
 // Listmonk instance + list UUID. Update LISTMONK_URL if the subdomain differs.
-const LISTMONK_URL ="https://listmonk.about-clay.com";
-const LIST_UUID ="a584d0cd-9989-4a42-a405-a89ca71213da";
+const LISTMONK_URL = "https://listmonk.about-clay.com";
+const LIST_UUID = "a584d0cd-9989-4a42-a405-a89ca71213da";
 ---
 
 <section
   class:list={[
-"border-t border-border",
+    "border-t border-border",
     compact
       ? "px-0 py-10 max-md:py-8"
       : "px-16 py-16 max-md:px-5 max-md:py-12",
