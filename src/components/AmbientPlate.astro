@@ -11,24 +11,23 @@
 
 <style>
   .ambient-plate {
-    position: sticky;
-    top: 0;
-    height: 0;
+    position: fixed;
+    inset: 0;
+    height: 100vh;
     z-index: 0;
+    overflow: hidden;
     pointer-events: none;
     --orb-x: 72%;
     --orb-y: 72%;
     --orb-size: 780px;
     --orb-size-mobile: 460px;
+    --orb-drift-x: 0px;
+    --orb-drift-y: 0px;
   }
 
   .ambient-plate__viewport {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    overflow: hidden;
+    inset: 0;
   }
 
   .ambient-plate__orb {
@@ -37,7 +36,11 @@
     top: var(--orb-y);
     width: var(--orb-size);
     height: var(--orb-size);
-    transform: translate(-50%, -50%);
+    transform: translate3d(
+      calc(-50% + var(--orb-drift-x)),
+      calc(-50% + var(--orb-drift-y)),
+      0
+    );
     border-radius: 50%;
     background: radial-gradient(
       circle at 40% 40%,
@@ -47,6 +50,7 @@
     filter: blur(34px);
     mix-blend-mode: multiply;
     opacity: 0.6;
+    will-change: transform, width, height;
   }
 
   .ambient-plate__dots {
@@ -130,6 +134,8 @@
       plate.style.setProperty("--orb-x", `${lerp(72, 18)}%`);
       plate.style.setProperty("--orb-y", `${lerp(72, 22)}%`);
       plate.style.setProperty("--orb-size", `${lerp(780, 520)}px`);
+      plate.style.setProperty("--orb-drift-x", `${lerp(0, -96)}px`);
+      plate.style.setProperty("--orb-drift-y", `${lerp(0, -72)}px`);
       plate.style.setProperty(
         "--orb-size-mobile",
         `${lerp(460, 300)}px`
