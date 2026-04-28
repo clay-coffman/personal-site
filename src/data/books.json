@@ -85,16 +85,16 @@
     "author": "Daniel Kahneman",
     "authorSort": "Daniel Kahneman",
     "tags": [
-      "Nonfiction",
       "Psychology",
+      "Nonfiction",
       "Business",
-      "Decision making",
-      "Self-Help",
-      "Career Success",
       "Philosophy",
-      "Business & Careers",
-      "Cognition",
-      "Medical"
+      "Business & Economics",
+      "Decision-Making & Problem Solving",
+      "Self-Help",
+      "Cognitive Psychology & Cognition",
+      "Education",
+      "Emotions"
     ],
     "coverUrl": "https://media.about-clay.com/covers/242841.jpg"
   },
@@ -109,12 +109,12 @@
       "Fiction",
       "Aliens",
       "Fantasy",
-      "Human-alien encounters",
-      "China",
+      "General",
+      "公众号：古德猫宁李",
       "First contact",
-      "21st Century; Alien Contact; China; FICTION; Fiction; Hard Science Fiction; Science Fiction; World Literature",
-      "Science Fiction & Fantasy",
-      "公众号：古德猫宁李"
+      "Human-alien encounters",
+      "History",
+      "21st Century; Alien Contact; China; FICTION; Fiction; Hard Science Fiction; Science Fiction; World Literature"
     ],
     "coverUrl": "https://media.about-clay.com/covers/208339.jpg"
   },
@@ -628,10 +628,10 @@
       "Classics",
       "Adventure",
       "Science Fiction & Fantasy",
-      "Dystopian",
       "Space Opera",
+      "Dystopian",
       "Space",
-      "Hard Science Fiction"
+      "Literature & Fiction"
     ],
     "coverUrl": "https://media.about-clay.com/covers/312460.jpg"
   },
@@ -728,16 +728,16 @@
     "author": "Atul Gawande",
     "authorSort": "Atul Gawande",
     "tags": [
-      "Philosophy",
-      "Nonfiction",
-      "Aging",
       "social science",
-      "Medical",
       "Science",
+      "Medical",
+      "Self-Help",
+      "Aging",
       "Death",
+      "Philosophy",
       "Family & Relationships",
-      "Medical care",
-      "Self-Help"
+      "Diagnosis",
+      "Bereavement"
     ],
     "coverUrl": "https://media.about-clay.com/covers/261915.jpg"
   },
