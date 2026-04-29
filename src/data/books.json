@@ -110,11 +110,11 @@
       "Aliens",
       "Fantasy",
       "General",
-      "公众号：古德猫宁李",
+      "China",
       "First contact",
-      "Human-alien encounters",
-      "History",
-      "21st Century; Alien Contact; China; FICTION; Fiction; Hard Science Fiction; Science Fiction; World Literature"
+      "21st Century; Alien Contact; China; FICTION; Fiction; Hard Science Fiction; Science Fiction; World Literature",
+      "Alien Contact",
+      "Hard Science Fiction"
     ],
     "coverUrl": "https://media.about-clay.com/covers/208339.jpg"
   },
@@ -128,19 +128,18 @@
     "coverUrl": "https://media.about-clay.com/covers/444538.jpg"
   },
   {
-    "id": 482571,
-    "title": "The Story of Philosophy",
-    "slug": "the-story-of-philosophy-1926",
+    "id": 1467344,
+    "title": "The Story of Philosophy: The Lives and Opinions of the World's Greatest Philosophers",
+    "slug": "the-story-of-philosophy",
     "author": "Will Durant",
     "authorSort": "Will Durant",
     "tags": [
       "Philosophy",
-      "Biography & Autobiography",
-      "Classics",
       "History",
-      "Biography"
+      "Classics",
+      "Biography & Autobiography"
     ],
-    "coverUrl": "https://media.about-clay.com/covers/482571.jpg"
+    "coverUrl": "https://media.about-clay.com/covers/1467344.jpg"
   },
   {
     "id": 64605,
