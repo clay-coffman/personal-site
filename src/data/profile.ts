@@ -127,22 +127,37 @@ export const profileData: ProfileData = {
   ],
   projects: [
     {
+      title: "cctop",
+      description:
+        "btop-style terminal dashboard for monitoring Claude Code instances across tmux sessions in real time. Hooks capture lifecycle events into SQLite; the TUI polls and renders a live feed.",
+      url: "https://github.com/clay-coffman/cctop",
+      language: "TypeScript",
+      eyebrow: "featured / workflow tool",
+      featured: true,
+      metadata: ["TypeScript", "Bun", "Python", "SQLite (WAL)", "tmux"],
+      status: "in use",
+      terminal: `┌─ cctop ─── Active: 3 │ Sessions: 12 │ Rate: 42/min ─────┐
+├─ Activity (5m) ─────────────── 847 events  peak: 18/min ┤
+│ ▁▂▃▅█▇▃▁▂▄▇█▅▃▂▁▂▃▅▇█▇▅▃▂▁▂▃▄▅▆▇▆▅▃▂▁▂▃▄▅▆▇▆▅▃▂▁▂▃▅▆▇█ │
+├─ Sessions ──────────────────────────────────────────────┤
+│▸ ● dev:0.1   ~/pa-apply   running: Bash    12m 30s   2s │
+│  ● work:1.0  ~/cctop      ran: Write        5m 12s  15s │
+│  ○ api:2.1   ~/backend    idle              1h 5m    3m │
+├─ Event Feed ────────────────────────────────────────────┤
+│ 14:32:05  🔧 abc12345  Bash    npm test                 │
+│ 14:32:08  💬 def45678  —       "Refactor the auth..."   │
+│ 14:32:12  🛑 ghi90123  —       reason: exit             │
+└─────────────────────────────────────────────────────────┘`,
+    },
+    {
       title: "cc-notify",
       description:
         "Desktop notifications for Claude Code hooks, built for running multiple agents across tmux windows and git worktrees.",
       url: "https://github.com/clay-coffman/cc-notify",
       language: "Shell",
-      eyebrow: "featured / workflow tool",
-      featured: true,
+      eyebrow: "workflow tool",
       metadata: ["Shell", "Claude Code hooks", "Linux/KDE", "notify-send", "jq"],
       status: "in use",
-      quote: "I wanted more context than terminal notifications could provide.",
-      terminal: `~/projects/cc-notify
-$ claude-code --worktree feature-x
-
-[permission required] → desktop notification
-[idle]                → desktop notification
-[done]                → ✅ Claude Finished`,
     },
     {
       title: "dotfiles",
