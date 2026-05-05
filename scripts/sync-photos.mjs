@@ -104,13 +104,27 @@ if (!DRY_RUN) {
   prepareBranch({ branch: BRANCH, cwd: repoRoot });
 }
 
+const RAW_EXTENSIONS = new Set([
+  "cr2", "cr3", "nef", "arw", "dng", "raf", "orf", "rw2", "pef", "srw", "x3f",
+]);
+
+function isRawAsset(asset) {
+  const ext = (asset.originalFileName || "").split(".").pop()?.toLowerCase();
+  if (ext && RAW_EXTENSIONS.has(ext)) return true;
+  const mime = (asset.originalMimeType || "").toLowerCase();
+  return mime.startsWith("image/x-");
+}
+
 console.log(`fetching album ${IMMICH_ALBUM_ID}`);
 const album = await fetchAlbum();
-const albumAssets = (album.assets || []).filter(
+const allImages = (album.assets || []).filter(
   (a) => String(a.type).toUpperCase() === "IMAGE",
 );
+const albumAssets = allImages.filter((a) => !isRawAsset(a));
+const skippedRaw = allImages.length - albumAssets.length;
 console.log(
-  `  album "${album.albumName}" → ${albumAssets.length} image assets`,
+  `  album "${album.albumName}" → ${albumAssets.length} image assets` +
+    (skippedRaw ? ` (skipped ${skippedRaw} RAW)` : ""),
 );
 
 let existingR2 = new Set();
