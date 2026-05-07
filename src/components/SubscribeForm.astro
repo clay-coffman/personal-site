@@ -3,12 +3,14 @@ interface Props {
   heading?: string;
   copy?: string;
   compact?: boolean;
+  bare?: boolean;
 }
 
 const {
   heading = "Get new posts by email",
   copy = "Infrequent — one email per post, zero filler. Unsubscribe anytime.",
   compact = false,
+  bare = false,
 } = Astro.props;
 
 // Listmonk instance + list UUID. Update LISTMONK_URL if the subdomain differs.
@@ -18,20 +20,26 @@ const LIST_UUID = "a584d0cd-9989-4a42-a405-a89ca71213da";
 
 <section
   class:list={[
-    "border-t border-border",
-    compact
-      ? "px-0 py-10 max-md:py-8"
-      : "px-16 py-16 max-md:px-5 max-md:py-12",
+    !bare && "border-t border-border",
+    bare
+      ? "px-0 py-0"
+      : compact
+        ? "px-0 py-10 max-md:py-8"
+        : "px-16 py-16 max-md:px-5 max-md:py-12",
   ]}
 >
   <div class="mx-auto max-w-xl">
-    <div
-      class="mb-3 font-mono text-label uppercase tracking-[2px] text-accent"
-    >
-      subscribe
-    </div>
-    <h2 class="text-h3 mb-3 text-foreground">{heading}</h2>
-    <p class="mb-6 text-detail text-foreground-light">{copy}</p>
+    {!bare && (
+      <>
+        <div
+          class="mb-3 font-mono text-label uppercase tracking-[2px] text-accent"
+        >
+          subscribe
+        </div>
+        <h2 class="text-h3 mb-3 text-foreground">{heading}</h2>
+        <p class="mb-6 text-detail text-foreground-light">{copy}</p>
+      </>
+    )}
     <form
       action={`${LISTMONK_URL}/subscription/form`}
       method="POST"

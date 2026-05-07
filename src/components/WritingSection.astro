@@ -23,9 +23,9 @@ const fmtDate = (d: Date) =>
   />
   <div class="grid gap-16 md:grid-cols-2 max-md:grid-cols-1 max-md:gap-8">
     <p class="text-section-lede m-0 text-foreground-light">
-      I'm working on a few essays. First batch will be notes on hardware, some
-      reflections from building companies, and a long thing about skilled
-      trades.
+      Occasional notes on software, AI coding workflows, hardware/systems work
+      I'm picking up in school, and reflections from past companies. Sporadic —
+      I post when I have something worth saying.
     </p>
     <div>
       {
@@ -40,7 +40,7 @@ const fmtDate = (d: Date) =>
             </div>
             {posts.map((p) => (
               <a
-                href={`/blog/${p.id}`}
+                href={`/writing/${p.id}`}
                 class="group flex items-baseline justify-between border-t border-border-soft py-3 no-underline-anim text-foreground"
               >
                 <span class="text-list-title text-foreground-light transition-colors group-hover:text-foreground">
@@ -58,7 +58,7 @@ const fmtDate = (d: Date) =>
   </div>
   <div class="mt-7 max-md:mt-5">
     <a
-      href="/blog"
+      href="/writing"
       class="no-underline-anim font-mono text-caption uppercase tracking-[1px] text-accent hover:text-accent-dark"
     >
       all writing →

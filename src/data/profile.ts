@@ -172,11 +172,11 @@ export const profileData: ProfileData = {
     {
       title: "personal-site",
       description:
-        "A static Astro site for essays, books, photos, and personal notes — with a Calibre-powered bookshelf pipeline.",
+        "Static Astro site for essays, books, photos, and notes. Bookshelf syncs from Hardcover, photos from an Immich album, with assets mirrored to R2.",
       url: "https://github.com/clay-coffman/personal-site",
       language: "TypeScript",
       eyebrow: "site infrastructure",
-      metadata: ["Astro", "TypeScript", "Cloudflare Pages", "Calibre"],
+      metadata: ["Astro", "TypeScript", "Cloudflare Pages", "R2"],
       status: "in use",
     },
   ],
@@ -209,9 +209,18 @@ export const profileData: ProfileData = {
     },
   ],
   skills: {
-    Languages: ["Python", "TypeScript", "C/C++"],
-    Web: ["Astro", "Flask", "Node", "PostgreSQL"],
-    "Systems & tools": ["Linux", "Docker", "Shell", "tmux"],
+    Languages: ["Python", "TypeScript", "C/C++", "Lua"],
+    Web: ["Astro", "Node", "PostgreSQL", "Cloudflare"],
+    Systems: [
+      "Linux",
+      "Docker",
+      "Bun",
+      "SQLite",
+      "tmux",
+      "Neovim",
+      "chezmoi",
+    ],
+    "AI workflows": ["Claude Code", "git worktrees", "hooks"],
   },
   social: {
     linkedin: "https://www.linkedin.com/in/claymcoffman/",

@@ -19,32 +19,26 @@ const displayTag = (tags: string[]) =>
   class="scroll-mt-8 min-h-[100svh] border-t border-border px-16 py-30 md:min-h-screen max-md:px-5 max-md:py-16"
 >
   <NumberedSectionHeader num="03" title="Bookshelf" kicker="reading" />
-  {
-    shelfPreview.length === 0 ? (
-      <div class="font-mono text-label uppercase tracking-[1px] text-muted">
-        shelf sync pending
-      </div>
-    ) : (
-      <div>
-        {shelfPreview.map((b, i) => (
-          <div class="grid items-baseline border-t border-border-soft py-4.5 md:grid-cols-[60px_1fr_1fr_auto] md:gap-8 max-md:grid-cols-[34px_minmax(0,1fr)] max-md:gap-x-3 max-md:gap-y-1 max-md:py-4">
-            <div class="font-mono text-label text-muted max-md:pt-1">
-              {pad2(i + 1)}
-            </div>
-            <div class="text-h3-sm text-foreground max-md:leading-[1.2]">
-              {b.title}
-            </div>
-            <div class="font-mono text-caption text-foreground-light max-md:col-start-2 max-md:text-label">
-              {b.author}
-            </div>
-            <div class="font-mono text-label uppercase tracking-[1px] text-muted max-md:col-start-2 max-md:text-label-xs">
-              {displayTag(b.tags)}
-            </div>
+  <div>
+    {
+      shelfPreview.map((b, i) => (
+        <div class="grid items-baseline border-t border-border-soft py-4.5 md:grid-cols-[60px_1fr_1fr_auto] md:gap-8 max-md:grid-cols-[34px_minmax(0,1fr)] max-md:gap-x-3 max-md:gap-y-1 max-md:py-4">
+          <div class="font-mono text-label text-muted max-md:pt-1">
+            {pad2(i + 1)}
           </div>
-        ))}
-      </div>
-    )
-  }
+          <div class="text-h3-sm text-foreground max-md:leading-[1.2]">
+            {b.title}
+          </div>
+          <div class="font-mono text-caption text-foreground-light max-md:col-start-2 max-md:text-label">
+            {b.author}
+          </div>
+          <div class="font-mono text-label uppercase tracking-[1px] text-muted max-md:col-start-2 max-md:text-label-xs">
+            {displayTag(b.tags)}
+          </div>
+        </div>
+      ))
+    }
+  </div>
   <div class="mt-7 max-md:mt-5">
     <a
       href="/bookshelf"

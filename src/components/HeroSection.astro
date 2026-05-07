@@ -18,7 +18,7 @@ const { profile } = Astro.props;
   >
     <span>{profile.name}</span>
     <span class="max-md:flex max-md:flex-col max-md:gap-1">
-      <span>Salt Lake City, UT, USA</span>
+      <span>{profile.location}</span>
       <span class="md:hidden">40.76° N · 111.89° W</span>
       <span class="max-md:hidden">· 40.76° N · 111.89° W</span>
     </span>
@@ -37,7 +37,7 @@ const { profile } = Astro.props;
       keep coming back to,{""}
       <a href="#photos" class="link-noun hover:link-noun-hover">photos</a>,
       links, and occasional{""}
-      <a href="/blog" class="link-noun hover:link-noun-hover">writing</a>.
+      <a href="/writing" class="link-noun hover:link-noun-hover">writing</a>.
     </p>
   </div>
 
