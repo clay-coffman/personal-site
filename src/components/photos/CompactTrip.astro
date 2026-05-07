@@ -1,0 +1,93 @@
+---
+import { cdnImage, cdnSrcset } from "~/lib/cdnImage";
+import type { Trip } from "~/data/photos";
+
+interface Props {
+  trip: Trip;
+  index: number;
+}
+
+const { trip, index } = Astro.props;
+const cover = trip.cover;
+const others = trip.photos.filter((p) => p.id !== cover.id).slice(0, 3);
+const thumbs = [cover, ...others];
+
+const triggerData = (
+  url: string,
+  width: number,
+  height: number,
+) =>
+  JSON.stringify({
+    full: cdnImage(url, { width: 1600 }),
+    alt: trip.title,
+    w: width,
+    h: height,
+    tripTitle: trip.title,
+    region: trip.region,
+    year: trip.year,
+  });
+---
+
+<article
+  id={`trip-${trip.id}`}
+  class="grid items-center gap-4 border-b border-border-soft py-3.5 max-md:gap-2.5"
+  style="grid-template-columns: 40px 220px 1fr 200px;"
+>
+  <span class="font-mono text-label tracking-[1.5px] text-accent">
+    {String(index).padStart(2, "0")}
+  </span>
+  <button
+    type="button"
+    class="cursor-zoom-in p-0 border-0 bg-transparent block text-left max-md:col-span-2"
+    data-lightbox-photo={triggerData(cover.url, cover.width, cover.height)}
+    data-lightbox-trip-id={trip.id}
+    data-lightbox-photo-id={cover.id}
+  >
+    <div
+      class="font-heading text-[22px] tracking-[1px] uppercase leading-none"
+    >
+      {trip.title}
+    </div>
+    <div
+      class="mt-1 font-mono text-label-xs tracking-[1px] text-muted uppercase"
+    >
+      {trip.region && <>{trip.region} · </>}{trip.month} · {trip.count} ph
+    </div>
+  </button>
+  <div
+    class="grid items-center gap-1"
+    style={`grid-template-columns: repeat(${thumbs.length}, 1fr);`}
+  >
+    {thumbs.map((p) => (
+      <button
+        type="button"
+        class="m-0 cursor-zoom-in p-0 border-0 bg-transparent block"
+        data-lightbox-photo={triggerData(p.url, p.width, p.height)}
+        data-lightbox-trip-id={trip.id}
+        data-lightbox-photo-id={p.id}
+      >
+        <img
+          src={cdnImage(p.url, { width: 300 })}
+          srcset={cdnSrcset(p.url, [200, 400])}
+          sizes="120px"
+          alt={trip.title}
+          width={p.width}
+          height={p.height}
+          loading="lazy"
+          decoding="async"
+          class="block w-full bg-background-alt aspect-[3/2] object-cover"
+        />
+      </button>
+    ))}
+  </div>
+  {trip.lat != null && trip.lng != null && (
+    <div
+      class="font-mono text-label-xs tracking-[1px] text-muted uppercase text-right max-md:hidden"
+    >
+      {trip.lat.toFixed(1)}°, {trip.lng.toFixed(1)}°
+    </div>
+  )}
+  {(trip.lat == null || trip.lng == null) && (
+    <div class="max-md:hidden" />
+  )}
+</article>

@@ -1,0 +1,97 @@
+---
+import { cdnImage, cdnSrcset } from "~/lib/cdnImage";
+import type { Trip } from "~/data/photos";
+
+interface Props {
+  trip: Trip;
+  index: number;
+}
+
+const { trip, index } = Astro.props;
+const cover = trip.cover;
+const others = trip.photos.filter((p) => p.id !== cover.id).slice(0, 4);
+
+const triggerData = (
+  url: string,
+  width: number,
+  height: number,
+) =>
+  JSON.stringify({
+    full: cdnImage(url, { width: 1600 }),
+    alt: trip.title,
+    w: width,
+    h: height,
+    tripTitle: trip.title,
+    region: trip.region,
+    year: trip.year,
+  });
+---
+
+<article
+  id={`trip-${trip.id}`}
+  class="mb-10 pb-8 border-b border-border-soft"
+>
+  <header class="mb-3.5 flex items-baseline gap-4 max-md:flex-wrap">
+    <span class="font-mono text-label tracking-[1.5px] text-accent">
+      {String(index).padStart(2, "0")}
+    </span>
+    <h3
+      class="text-h2 m-0 leading-none"
+    >
+      {trip.title}
+    </h3>
+    <div class="flex-1 h-px bg-border-soft max-md:hidden" />
+    <div
+      class="font-mono text-label tracking-[1px] text-muted uppercase"
+    >
+      {trip.region && <>{trip.region} · </>}{trip.month} {trip.year} · {trip.count} ph
+    </div>
+  </header>
+
+  <div
+    class="grid gap-1.5 max-md:grid-cols-2"
+    style="grid-template-columns: 2fr 1fr 1fr 1fr 1fr;"
+  >
+    <button
+      type="button"
+      class="m-0 cursor-zoom-in p-0 border-0 bg-transparent block max-md:col-span-2"
+      data-lightbox-photo={triggerData(cover.url, cover.width, cover.height)}
+      data-lightbox-trip-id={trip.id}
+      data-lightbox-photo-id={cover.id}
+    >
+      <img
+        src={cdnImage(cover.url, { width: 1000 })}
+        srcset={cdnSrcset(cover.url, [600, 1000, 1400])}
+        sizes="(max-width: 900px) 100vw, 40vw"
+        alt={trip.title}
+        width={cover.width}
+        height={cover.height}
+        loading="lazy"
+        decoding="async"
+        class="block w-full bg-background-alt"
+        style={`aspect-ratio: ${cover.aspect.ratio}; object-fit: cover;`}
+      />
+    </button>
+    {others.map((p) => (
+      <button
+        type="button"
+        class="m-0 cursor-zoom-in p-0 border-0 bg-transparent block"
+        data-lightbox-photo={triggerData(p.url, p.width, p.height)}
+        data-lightbox-trip-id={trip.id}
+        data-lightbox-photo-id={p.id}
+      >
+        <img
+          src={cdnImage(p.url, { width: 400 })}
+          srcset={cdnSrcset(p.url, [300, 500])}
+          sizes="(max-width: 900px) 50vw, 12vw"
+          alt={trip.title}
+          width={p.width}
+          height={p.height}
+          loading="lazy"
+          decoding="async"
+          class="block w-full bg-background-alt aspect-[4/3] object-cover"
+        />
+      </button>
+    ))}
+  </div>
+</article>

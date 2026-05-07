@@ -1,12 +1,42 @@
 ---
 import BaseLayout from "~/layouts/BaseLayout.astro";
 import Footer from "~/components/Footer.astro";
-import { photos } from "~/data/photos";
-import { cdnImage, cdnSrcset } from "~/lib/cdnImage";
+import PhotoLightbox from "~/components/PhotoLightbox.astro";
+import YearSection from "~/components/photos/YearSection.astro";
+import TripMap from "~/components/photos/TripMap.astro";
+import { trips, photos } from "~/data/photos";
 
-const GALLERY_WIDTHS = [400, 800, 1200, 1600];
-const GALLERY_SIZES =
-"(max-width: 600px) 100vw, (max-width: 900px) 50vw, 33vw";
+const totalPhotos = photos.length;
+const totalTrips = trips.length;
+const regions = new Set(
+  trips.map((t) => t.region).filter((r): r is string => Boolean(r)),
+);
+const years = trips.map((t) => t.year).filter((y): y is number => y != null);
+const yearMin = years.length ? Math.min(...years) : null;
+const yearMax = years.length ? Math.max(...years) : null;
+
+// Group trips by year, descending; within each year keep their existing order
+// (sync writes them desc by endDate).
+const byYearMap = new Map<number, typeof trips>();
+for (const trip of trips) {
+  if (trip.year == null) continue;
+  const arr = byYearMap.get(trip.year) ?? [];
+  arr.push(trip);
+  byYearMap.set(trip.year, arr);
+}
+const byYear = [...byYearMap.entries()].sort((a, b) => b[0] - a[0]);
+
+// Pre-compute the running index for each year so list-view trips get sequential
+// numbering even when later years are collapsed. Closer to the design intent
+// (the index follows the visible trip order), simple to render in Astro.
+let cumulative = 0;
+const yearSections = byYear.map(([year, ts]) => {
+  const indexStart = cumulative;
+  cumulative += ts.length;
+  return { year, trips: ts, indexStart };
+});
+
+const recentYear = byYear.length ? byYear[0][0] : null;
 ---
 
 <BaseLayout
@@ -14,171 +44,158 @@ const GALLERY_SIZES =
   description="Photos from Utah and wherever else I'm wandering."
 >
   <main class="px-16 py-16 max-md:px-5 max-md:py-12">
-    <div class="mb-12 max-md:mb-8">
+    <div class="mb-6 max-md:mb-4">
       <div
         class="mb-3 font-mono text-label uppercase tracking-[2px] text-accent"
       >
-        {photos.length} {photos.length === 1 ? "image" : "images"}
+        {totalPhotos} photos · {totalTrips} trips · {regions.size} {regions.size === 1 ? "region" : "regions"}
+        {yearMin != null && yearMax != null && (
+          yearMin === yearMax
+            ? <> · {yearMin}</>
+            : <> · {yearMin}–{yearMax}</>
+        )}
       </div>
-      <h1 class="text-h1 m-0">Photos</h1>
-      <p class="mt-4 max-w-xl text-muted">
-        Photos from Utah and wherever else I'm wandering.
-      </p>
-    </div>
-    <div class="photo-gallery">
-      {
-        photos.map((ph) => {
-          const alt = ph.year ? `Photo from ${ph.year}` : "Photo";
-          return (
-            <figure class="photo-item">
-              <button
-                type="button"
-                class="photo-button"
-                data-full={cdnImage(ph.url, { width: 1600 })}
-                data-alt={alt}
-                data-w={ph.width}
-                data-h={ph.height}
-                aria-label={`Open ${alt.toLowerCase()} in lightbox`}
-              >
-                <img
-                  src={cdnImage(ph.url, { width: 800 })}
-                  srcset={cdnSrcset(ph.url, GALLERY_WIDTHS)}
-                  sizes={GALLERY_SIZES}
-                  alt={alt}
-                  width={ph.width}
-                  height={ph.height}
-                  loading="lazy"
-                  decoding="async"
-                />
-              </button>
-            </figure>
-          );
-        })
-      }
+      <h1 class="text-display m-0">Photos</h1>
     </div>
 
-    <dialog id="photo-lightbox" class="lightbox" aria-label="Photo viewer">
-      <img id="lightbox-img" alt="" />
-    </dialog>
+    <div
+      id="view-toggle"
+      class="flex items-baseline gap-4 border-b border-border pt-2 pb-6"
+    >
+      <button
+        type="button"
+        class="view-tab font-heading text-[26px] tracking-[1.5px] uppercase cursor-pointer border-0 bg-transparent py-2 px-0"
+        data-view="list"
+        aria-pressed="true"
+      >
+        List
+      </button>
+      <button
+        type="button"
+        class="view-tab font-heading text-[26px] tracking-[1.5px] uppercase cursor-pointer border-0 bg-transparent py-2 px-0"
+        data-view="map"
+        aria-pressed="false"
+      >
+        Map
+      </button>
+      <div class="flex-1" />
+      <div
+        id="view-helper"
+        class="font-mono text-label tracking-[1px] uppercase text-muted max-md:hidden"
+      >
+        Grouped by year · click year to expand
+      </div>
+    </div>
+
+    <section data-view-target="list" class="pt-8">
+      {yearSections.map(({ year, trips: ts, indexStart }) => (
+        <YearSection
+          year={year}
+          trips={ts}
+          expanded={year === recentYear}
+          indexStart={indexStart}
+        />
+      ))}
+      {yearSections.length === 0 && (
+        <p class="font-mono text-label uppercase text-muted">
+          No trips yet — sync to populate.
+        </p>
+      )}
+    </section>
+
+    <section data-view-target="map" class="pt-8" hidden>
+      {trips.length > 0 ? (
+        <TripMap trips={trips} />
+      ) : (
+        <p class="font-mono text-label uppercase text-muted">
+          No geotagged trips to show.
+        </p>
+      )}
+      <p class="mt-4 font-mono text-label text-muted leading-[1.5]">
+        Pins drawn from each trip's geocoded centroid. Numbered pins cluster overlapping trips —
+        click to zoom in. Single pins open the trip cover.
+      </p>
+    </section>
+
+    {/* Trip photo registries — keyed by trip ID, used by the lightbox for arrow-key nav. */}
+    {trips.map((trip) => (
+      <script
+        type="application/json"
+        data-lightbox-trip={trip.id}
+        set:html={JSON.stringify(
+          trip.photos.map((p) => ({
+            id: p.id,
+            url: p.url,
+            width: p.width,
+            height: p.height,
+          })),
+        )}
+      />
+    ))}
+
+    <PhotoLightbox />
 
     <script>
-      const dialog = document.getElementById(
-"photo-lightbox",
-      ) as HTMLDialogElement | null;
-      const img = document.getElementById(
-"lightbox-img",
-      ) as HTMLImageElement | null;
+      // View toggle: switch between list/map, sync URL with ?view=map.
+      const params = new URLSearchParams(window.location.search);
+      let currentView = params.get("view") === "map" ? "map" : "list";
 
-      if (dialog && img) {
-        document.querySelectorAll<HTMLButtonElement>(".photo-button").forEach(
-          (btn) => {
-            btn.addEventListener("click", () => {
-              const full = btn.dataset.full;
-              if (!full) return;
-              img.src = full;
-              img.alt = btn.dataset.alt ?? "";
-              const w = btn.dataset.w;
-              const h = btn.dataset.h;
-              if (w) img.width = Number(w);
-              if (h) img.height = Number(h);
-              dialog.showModal();
-            });
-          },
-        );
+      const tabs = document.querySelectorAll<HTMLButtonElement>(".view-tab");
+      const targets = document.querySelectorAll<HTMLElement>(
+        "[data-view-target]",
+      );
+      const helper = document.getElementById("view-helper");
 
-        dialog.addEventListener("click", (e) => {
-          if (e.target === dialog) dialog.close();
+      const setView = (next: string) => {
+        currentView = next;
+        for (const t of tabs) {
+          const active = t.dataset.view === next;
+          t.setAttribute("aria-pressed", active ? "true" : "false");
+          t.classList.toggle("active", active);
+        }
+        for (const tgt of targets) {
+          tgt.hidden = tgt.dataset.viewTarget !== next;
+        }
+        if (helper) helper.hidden = next !== "list";
+
+        const url = new URL(window.location.href);
+        if (next === "map") url.searchParams.set("view", "map");
+        else url.searchParams.delete("view");
+        history.replaceState(null, "", url.toString());
+      };
+
+      tabs.forEach((t) => {
+        t.addEventListener("click", () => setView(t.dataset.view || "list"));
+      });
+
+      setView(currentView);
+
+      // Year toggle.
+      document
+        .querySelectorAll<HTMLElement>(".year-section")
+        .forEach((sec) => {
+          const header = sec.querySelector(".year-header");
+          const body = sec.querySelector<HTMLElement>(".year-body");
+          const toggle = sec.querySelector(".year-toggle");
+          if (!header || !body || !toggle) return;
+          header.addEventListener("click", () => {
+            const expanded = sec.dataset.expanded === "true";
+            const next = !expanded;
+            sec.dataset.expanded = next ? "true" : "false";
+            body.hidden = !next;
+            toggle.textContent = next ? "— collapse" : "+ expand";
+          });
         });
-
-        dialog.addEventListener("close", () => {
-          img.removeAttribute("src");
-        });
-      }
     </script>
 
     <style>
-      .photo-gallery {
-        column-count: 3;
-        column-gap: 1rem;
+      .view-tab {
+        color: var(--color-muted);
+        border-bottom: 2px solid transparent;
       }
-      .photo-item {
-        margin: 0 0 1rem;
-        break-inside: avoid;
-        background: var(--color-background-alt);
-        border: 1px solid var(--color-border);
-      }
-      .photo-button {
-        display: block;
-        width: 100%;
-        padding: 0;
-        margin: 0;
-        border: 0;
-        background: none;
-        cursor: zoom-in;
-        color: inherit;
-        font: inherit;
-      }
-      .photo-button img {
-        display: block;
-        width: 100%;
-        height: auto;
-        transition:
-          opacity 180ms ease-out,
-          filter 180ms ease-out;
-      }
-      .photo-button:hover img,
-      .photo-button:focus-visible img {
-        opacity: 0.9;
-        filter: brightness(1.05);
-      }
-      .photo-button:focus-visible {
-        outline: 2px solid var(--color-accent, currentColor);
-        outline-offset: 2px;
-      }
-      @media (max-width: 900px) {
-        .photo-gallery {
-          column-count: 2;
-          column-gap: 0.75rem;
-        }
-        .photo-item {
-          margin-bottom: 0.75rem;
-        }
-      }
-      @media (max-width: 600px) {
-        .photo-gallery {
-          column-count: 1;
-        }
-      }
-
-      .lightbox {
-        padding: 0;
-        border: 0;
-        background: transparent;
-        max-width: 100vw;
-        max-height: 100vh;
-        width: 100vw;
-        height: 100vh;
-        margin: 0;
-        overflow: hidden;
-      }
-      .lightbox::backdrop {
-        background: rgba(10, 8, 5, 0.88);
-        backdrop-filter: blur(4px);
-      }
-      .lightbox[open] {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: zoom-out;
-      }
-      .lightbox img {
-        max-width: 90vw;
-        max-height: 90vh;
-        width: auto;
-        height: auto;
-        object-fit: contain;
-        box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
-        cursor: default;
+      .view-tab.active {
+        color: var(--color-accent);
+        border-bottom-color: var(--color-accent);
       }
     </style>
   </main>

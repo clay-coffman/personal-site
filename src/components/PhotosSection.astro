@@ -1,14 +1,33 @@
 ---
 import NumberedSectionHeader from "./NumberedSectionHeader.astro";
-import { photos } from "~/data/photos";
+import PhotoLightbox from "./PhotoLightbox.astro";
+import { trips, photos } from "~/data/photos";
 import { cdnImage, cdnSrcset } from "~/lib/cdnImage";
 
-const preview = photos.slice(0, 3);
-const [lead, ...supporting] = preview;
-const PREVIEW_WIDTHS = [400, 800];
-const LEAD_WIDTHS = [800, 1200, 1600];
-const PREVIEW_SIZES = "(max-width: 768px) 50vw, 33vw";
-const LEAD_SIZES = "(max-width: 768px) 100vw, 66vw";
+const totalPhotos = photos.length;
+const totalTrips = trips.length;
+const featured = trips[0];
+const earlier = trips.slice(1, 5);
+
+const STRIP_WIDTHS = [400, 600, 900];
+const HERO_WIDTHS = [800, 1200, 1800, 2400];
+
+const triggerData = (
+  full: string,
+  alt: string,
+  w: number,
+  h: number,
+  trip: (typeof trips)[number],
+) =>
+  JSON.stringify({
+    full,
+    alt,
+    w,
+    h,
+    tripTitle: trip.title,
+    region: trip.region,
+    year: trip.year,
+  });
 ---
 
 <section
@@ -18,63 +37,190 @@ const LEAD_SIZES = "(max-width: 768px) 100vw, 66vw";
   <NumberedSectionHeader
     num="04"
     title="Photos"
-    kicker={`${photos.length} images`}
+    kicker={`${totalPhotos} photos · ${totalTrips} trips`}
   />
-  <p class="text-section-copy mb-10 max-w-[820px] text-foreground-light max-md:mb-7">
-    Photos from Utah and wherever else I'm wandering.
+  <p
+    class="text-section-copy mb-10 max-w-[820px] text-foreground-light max-md:mb-7"
+  >
+    Photos from Utah and wherever else I'm wandering. Pulled in from Immich;
+    grouped automatically into trips by date and location.
   </p>
-  {
-    lead && (
-      <div class="grid gap-5 md:grid-cols-[2fr_1fr] max-md:gap-2.5">
-        <figure class="group relative m-0">
-          <img
-            src={cdnImage(lead.url, { width: 800 })}
-            srcset={cdnSrcset(lead.url, LEAD_WIDTHS)}
-            sizes={LEAD_SIZES}
-            alt={lead.year ? `Photo from ${lead.year}` : "Photo"}
-            width={lead.width}
-            height={lead.height}
-            loading="lazy"
-            decoding="async"
-            class="block aspect-[4/3] w-full border border-border bg-background-alt object-cover"
-          />
-          {lead.year && (
-            <figcaption class="mt-2 font-mono text-label-xs uppercase tracking-[1px] text-muted">
-              {lead.year}
-            </figcaption>
-          )}
-        </figure>
-        <div class="grid gap-5 max-md:grid-cols-2 max-md:gap-2.5">
-          {supporting.map((ph) => (
-            <figure class="m-0">
-              <img
-                src={cdnImage(ph.url, { width: 400 })}
-                srcset={cdnSrcset(ph.url, PREVIEW_WIDTHS)}
-                sizes={PREVIEW_SIZES}
-                alt={ph.year ? `Photo from ${ph.year}` : "Photo"}
-                width={ph.width}
-                height={ph.height}
-                loading="lazy"
-                decoding="async"
-                class="block aspect-[4/3] w-full border border-border bg-background-alt object-cover md:aspect-[4/5]"
-              />
-              {ph.year && (
-                <figcaption class="mt-2 font-mono text-label-xs uppercase tracking-[1px] text-muted max-md:mt-1.5">
-                  {ph.year}
-                </figcaption>
-              )}
-            </figure>
-          ))}
+
+  {featured && (
+    <button
+      type="button"
+      class="relative w-full bg-background-alt overflow-hidden cursor-zoom-in p-0 border-0 mb-4 block"
+      style="display: flex; justify-content: center; max-height: 720px;"
+      data-lightbox-photo={triggerData(
+        cdnImage(featured.cover.url, { width: 1600 }),
+        featured.title,
+        featured.cover.width,
+        featured.cover.height,
+        featured,
+      )}
+      data-lightbox-trip-id={featured.id}
+      data-lightbox-photo-id={featured.cover.id}
+      aria-label={`Open ${featured.title}`}
+    >
+      <img
+        src={cdnImage(featured.cover.url, { width: 1800 })}
+        srcset={cdnSrcset(featured.cover.url, HERO_WIDTHS)}
+        sizes="(max-width: 900px) 100vw, 90vw"
+        alt={featured.title}
+        width={featured.cover.width}
+        height={featured.cover.height}
+        loading="lazy"
+        decoding="async"
+        style={`aspect-ratio: ${featured.cover.aspect.ratio}; max-height: 720px; width: auto; height: auto; object-fit: contain; display: block;`}
+      />
+      <div
+        class="absolute top-4 left-4 inline-flex items-center gap-2 px-2.5 py-1.5 font-mono text-[10px] tracking-[2px] uppercase text-[#f5efe2]"
+        style="background: rgba(10,8,5,0.55); backdrop-filter: blur(6px);"
+      >
+        <span
+          class="rounded-full"
+          style="width: 6px; height: 6px; background: #f5efe2;"
+        />
+        Most recent
+      </div>
+      <div
+        class="absolute inset-x-0 bottom-0 flex items-end justify-between gap-6 px-7 pt-20 pb-5 text-[#f5efe2] text-left max-md:flex-col max-md:items-start max-md:gap-2 max-md:px-4 max-md:pt-12 max-md:pb-3"
+        style="background: linear-gradient(to top, rgba(10,8,5,0.75), transparent);"
+      >
+        <div class="min-w-0">
+          <div
+            class="font-heading text-[56px] tracking-[1px] uppercase leading-[0.95] mb-1.5 max-md:text-[36px]"
+          >
+            {featured.title}
+          </div>
+          <div
+            class="font-mono text-label tracking-[1.5px] uppercase opacity-90"
+          >
+            {featured.region && <>{featured.region} · </>}{featured.month} {featured.year} · {featured.count} photos
+          </div>
+        </div>
+        <div
+          class="font-mono text-label-xs tracking-[1px] uppercase opacity-75 text-right max-md:text-left"
+        >
+          {featured.days}-day trip
+          <br />
+          <span style="opacity: 0.6;">open →</span>
         </div>
       </div>
-    )
-  }
-  <div class="mt-7 max-md:mt-5">
-    <a
-      href="/photos"
-      class="no-underline-anim font-mono text-caption uppercase tracking-[1px] text-accent hover:text-accent-dark"
-    >
-      all photos →
-    </a>
-  </div>
+    </button>
+  )}
+
+  {earlier.length > 0 && (
+    <div class="mt-8">
+      <div
+        class="mb-3.5 flex items-baseline justify-between border-b border-border-soft pb-2.5"
+      >
+        <div
+          class="font-mono text-label tracking-[2px] uppercase text-muted"
+        >
+          Earlier trips
+        </div>
+        <a
+          href="/photos"
+          class="no-underline-anim font-mono text-label tracking-[1px] uppercase text-accent hover:text-accent-dark"
+        >
+          view all {totalTrips} →
+        </a>
+      </div>
+      <div
+        class="grid grid-cols-2 gap-3 md:gap-3 max-md:gap-2.5"
+        style={`--strip-cols: ${earlier.length};`}
+        data-strip-grid
+      >
+        {earlier.map((trip) => (
+          <button
+            type="button"
+            class="trip-card group block w-full text-left p-0 border-0 bg-transparent cursor-zoom-in"
+            data-lightbox-photo={triggerData(
+              cdnImage(trip.cover.url, { width: 1600 }),
+              trip.title,
+              trip.cover.width,
+              trip.cover.height,
+              trip,
+            )}
+            data-lightbox-trip-id={trip.id}
+            data-lightbox-photo-id={trip.cover.id}
+          >
+            <div class="relative overflow-hidden">
+              <img
+                src={cdnImage(trip.cover.url, { width: 600 })}
+                srcset={cdnSrcset(trip.cover.url, STRIP_WIDTHS)}
+                sizes="(max-width: 768px) 50vw, 23vw"
+                alt={trip.title}
+                width={trip.cover.width}
+                height={trip.cover.height}
+                loading="lazy"
+                decoding="async"
+                class="block w-full aspect-[4/5] object-cover bg-background-alt transition-transform duration-[400ms] ease-out group-hover:scale-[1.03]"
+              />
+            </div>
+            <div class="mt-2">
+              <div
+                class="font-heading text-[18px] tracking-[1px] uppercase leading-[1.05] text-foreground"
+              >
+                {trip.title}
+              </div>
+              <div
+                class="mt-1 flex justify-between font-mono text-label-xs tracking-[1.2px] uppercase text-muted"
+              >
+                <span>{trip.month} {trip.year}</span>
+                <span>{trip.count} ph</span>
+              </div>
+            </div>
+          </button>
+        ))}
+      </div>
+    </div>
+  )}
+
+  {!featured && (
+    <p class="font-mono text-label uppercase text-muted">
+      No trips yet — sync to populate.
+    </p>
+  )}
+
+  {/* Trip photo registry for lightbox intra-trip nav. */}
+  {featured && (
+    <script
+      type="application/json"
+      data-lightbox-trip={featured.id}
+      set:html={JSON.stringify(
+        featured.photos.map((p) => ({
+          id: p.id,
+          url: p.url,
+          width: p.width,
+          height: p.height,
+        })),
+      )}
+    />
+  )}
+  {earlier.map((trip) => (
+    <script
+      type="application/json"
+      data-lightbox-trip={trip.id}
+      set:html={JSON.stringify(
+        trip.photos.map((p) => ({
+          id: p.id,
+          url: p.url,
+          width: p.width,
+          height: p.height,
+        })),
+      )}
+    />
+  ))}
+
+  <PhotoLightbox />
+
+  <style>
+    @media (min-width: 768px) {
+      [data-strip-grid] {
+        grid-template-columns: repeat(var(--strip-cols, 4), 1fr);
+      }
+    }
+  </style>
 </section>

@@ -25,6 +25,9 @@ Thumbs.db
 *.log
 logs/
 
+# Sync-script caches (geocode, trip-name)
+scripts/.cache/
+
 # Secrets
 *.key
 *.pem

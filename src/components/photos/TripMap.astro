@@ -1,0 +1,327 @@
+---
+import { cdnImage } from "~/lib/cdnImage";
+import type { Trip } from "~/data/photos";
+
+interface Props {
+  trips: Trip[];
+}
+
+const { trips } = Astro.props;
+const geoTrips = trips.filter((t) => t.lat != null && t.lng != null);
+
+// Region tally for the side panel.
+const regionCounts: Record<string, number> = {};
+for (const t of trips) {
+  const r = t.region || "Unknown";
+  regionCounts[r] = (regionCounts[r] || 0) + 1;
+}
+const regions = Object.entries(regionCounts).sort((a, b) => b[1] - a[1]);
+
+// Lightweight payload the client script reads to build markers + side-panel
+// hover state. JSON-encoded into a script tag so we don't pay for serialization
+// per render.
+const tripsPayload = geoTrips.map((t) => ({
+  id: t.id,
+  title: t.title,
+  region: t.region,
+  year: t.year,
+  month: t.month,
+  count: t.count,
+  days: t.days,
+  lat: t.lat,
+  lng: t.lng,
+  cover: cdnImage(t.cover.url, { width: 600 }),
+  coverFull: cdnImage(t.cover.url, { width: 1600 }),
+  coverW: t.cover.width,
+  coverH: t.cover.height,
+}));
+---
+
+<div
+  id="trip-map-shell"
+  class="grid border border-border bg-background-alt max-md:grid-cols-1"
+  style="grid-template-columns: 1fr 280px; height: 620px;"
+>
+  <div id="trip-map" class="w-full h-full bg-background-alt" />
+  <aside
+    class="border-l border-border bg-background overflow-y-auto p-5 max-md:border-l-0 max-md:border-t"
+    style="max-height: 620px;"
+  >
+    <div
+      class="font-mono text-[10px] tracking-[2px] uppercase text-muted mb-2"
+    >
+      By region
+    </div>
+    <div
+      class="font-mono text-label leading-[1.7] text-foreground mb-6"
+    >
+      {regions.map(([region, count]) => (
+        <div
+          class="flex justify-between border-b border-dashed border-border-soft py-1"
+        >
+          <span>{region}</span>
+          <span class="text-muted">{count}</span>
+        </div>
+      ))}
+    </div>
+    <div
+      id="trip-map-hover-heading"
+      class="font-mono text-[10px] tracking-[2px] uppercase text-muted mb-2"
+    >
+      Hover a pin
+    </div>
+    <div id="trip-map-hover-empty" class="font-mono text-label text-muted leading-[1.5]">
+      Click a pin to open the trip. Numbered pins are clusters — click to zoom in.
+    </div>
+    <div id="trip-map-hover-detail" hidden>
+      <div
+        id="trip-map-hover-title"
+        class="font-heading text-[26px] tracking-[1px] uppercase leading-none"
+      ></div>
+      <div
+        id="trip-map-hover-meta"
+        class="mt-2 font-mono text-label tracking-[1px] uppercase text-muted"
+      ></div>
+      <img
+        id="trip-map-hover-cover"
+        alt=""
+        class="mt-3 w-full aspect-[4/3] object-cover border border-border"
+      />
+    </div>
+  </aside>
+</div>
+
+<script id="trip-map-data" type="application/json" set:html={JSON.stringify(tripsPayload)} />
+
+<script>
+  type MapTrip = {
+    id: string;
+    title: string;
+    region: string | null;
+    year: number | null;
+    month: string | null;
+    count: number;
+    days: number;
+    lat: number;
+    lng: number;
+    cover: string;
+    coverFull: string;
+    coverW: number;
+    coverH: number;
+  };
+
+  const dataNode = document.getElementById("trip-map-data");
+  const container = document.getElementById("trip-map");
+  const heading = document.getElementById("trip-map-hover-heading");
+  const empty = document.getElementById("trip-map-hover-empty");
+  const detail = document.getElementById("trip-map-hover-detail");
+  const titleEl = document.getElementById("trip-map-hover-title");
+  const metaEl = document.getElementById("trip-map-hover-meta");
+  const coverEl = document.getElementById(
+    "trip-map-hover-cover",
+  ) as HTMLImageElement | null;
+
+  if (!dataNode || !container || !heading || !empty || !detail || !titleEl || !metaEl || !coverEl) {
+    // Map markup not present on this page.
+  } else {
+    let trips: MapTrip[] = [];
+    try {
+      trips = JSON.parse(dataNode.textContent || "[]");
+    } catch {
+      trips = [];
+    }
+
+    const showHover = (t: MapTrip | null) => {
+      if (t) {
+        heading.textContent = "Pinned";
+        empty.hidden = true;
+        detail.hidden = false;
+        titleEl.textContent = t.title;
+        const metaParts: string[] = [];
+        if (t.region) metaParts.push(t.region);
+        metaParts.push(`${t.month ?? ""} ${t.year ?? ""}`.trim());
+        metaParts.push(`${t.count} photos · ${t.days} days`);
+        metaEl.textContent = metaParts.filter(Boolean).join(" · ");
+        coverEl.src = t.cover;
+        coverEl.alt = t.title;
+      } else {
+        heading.textContent = "Hover a pin";
+        empty.hidden = false;
+        detail.hidden = true;
+      }
+    };
+
+    let leafletReady: Promise<typeof import("leaflet")> | null = null;
+    const loadLeaflet = () => {
+      if (leafletReady) return leafletReady;
+      leafletReady = new Promise((resolve, reject) => {
+        const link = document.createElement("link");
+        link.rel = "stylesheet";
+        link.href = "https://unpkg.com/leaflet@1.9.4/dist/leaflet.css";
+        document.head.appendChild(link);
+
+        const script = document.createElement("script");
+        script.src = "https://unpkg.com/leaflet@1.9.4/dist/leaflet.js";
+        script.onload = () => resolve((window as any).L);
+        script.onerror = () => reject(new Error("leaflet failed to load"));
+        document.head.appendChild(script);
+      });
+      return leafletReady;
+    };
+
+    const openTripInLightbox = (t: MapTrip) => {
+      const trigger = document.createElement("span");
+      trigger.dataset.lightboxPhoto = JSON.stringify({
+        full: t.coverFull,
+        alt: t.title,
+        w: t.coverW,
+        h: t.coverH,
+        tripTitle: t.title,
+        region: t.region,
+        year: t.year,
+      });
+      trigger.dataset.lightboxTripId = t.id;
+      trigger.dataset.lightboxPhotoId = t.id;
+      trigger.style.display = "none";
+      document.body.appendChild(trigger);
+      trigger.click();
+      document.body.removeChild(trigger);
+    };
+
+    const initMap = async () => {
+      const L = await loadLeaflet();
+
+      const map = L.map(container, {
+        zoomControl: false,
+        attributionControl: false,
+        worldCopyJump: true,
+      });
+
+      L.tileLayer(
+        "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
+        { maxZoom: 19, subdomains: "abcd" },
+      ).addTo(map);
+
+      L.control.zoom({ position: "bottomright" }).addTo(map);
+
+      // Cluster nearby trips into single numbered pins (~0.6° buckets).
+      const clusters: { lat: number; lng: number; trips: MapTrip[] }[] = [];
+      const eps = 0.6;
+      for (const t of trips) {
+        const c = clusters.find(
+          (cl) => Math.hypot(cl.lat - t.lat, cl.lng - t.lng) < eps,
+        );
+        if (c) {
+          c.trips.push(t);
+          c.lat =
+            (c.lat * (c.trips.length - 1) + t.lat) / c.trips.length;
+          c.lng =
+            (c.lng * (c.trips.length - 1) + t.lng) / c.trips.length;
+        } else {
+          clusters.push({ lat: t.lat, lng: t.lng, trips: [t] });
+        }
+      }
+
+      const makeIcon = (count: number) =>
+        L.divIcon({
+          html: `<div class="trip-pin" data-count="${count}">
+                   <div class="trip-pin-dot"></div>
+                   ${count > 1 ? `<div class="trip-pin-count">${count}</div>` : ""}
+                 </div>`,
+          className: "trip-pin-wrap",
+          iconSize: [count > 1 ? 32 : 16, count > 1 ? 32 : 16],
+          iconAnchor: [count > 1 ? 16 : 8, count > 1 ? 16 : 8],
+        });
+
+      const allPoints: [number, number][] = [];
+      for (const cl of clusters) {
+        allPoints.push([cl.lat, cl.lng]);
+        const marker = L.marker([cl.lat, cl.lng], {
+          icon: makeIcon(cl.trips.length),
+        }).addTo(map);
+        marker.on("click", () => {
+          if (cl.trips.length === 1) {
+            openTripInLightbox(cl.trips[0]);
+          } else {
+            const bounds = L.latLngBounds(
+              cl.trips.map((t) => [t.lat, t.lng] as [number, number]),
+            );
+            map.fitBounds(bounds.pad(0.5), { maxZoom: 8 });
+          }
+        });
+        marker.on("mouseover", () => showHover(cl.trips[0]));
+        marker.on("mouseout", () => showHover(null));
+      }
+
+      if (allPoints.length) {
+        map.fitBounds(L.latLngBounds(allPoints), { padding: [40, 40] });
+      } else {
+        map.setView([40, -100], 3);
+      }
+    };
+
+    // Lazy-init the first time the map view is shown.
+    let inited = false;
+    const onShow = () => {
+      if (inited) return;
+      inited = true;
+      initMap();
+    };
+
+    // The page wraps us in a [data-view-target="map"] container that toggles
+    // `hidden`. Watch for that to flip and init then.
+    const view = document.querySelector('[data-view-target="map"]');
+    if (view) {
+      const obs = new MutationObserver(() => {
+        if (!(view as HTMLElement).hidden) onShow();
+      });
+      obs.observe(view, { attributes: true, attributeFilter: ["hidden"] });
+      if (!(view as HTMLElement).hidden) onShow();
+    } else {
+      onShow();
+    }
+  }
+</script>
+
+<style is:global>
+  .trip-pin-wrap {
+    background: transparent;
+    border: 0;
+  }
+  .trip-pin {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+  }
+  .trip-pin-dot {
+    width: 12px;
+    height: 12px;
+    background: #9a3412;
+    border: 2px solid #f5efe2;
+    border-radius: 50%;
+    box-shadow: 0 2px 6px rgba(10, 8, 5, 0.35);
+  }
+  .trip-pin[data-count="1"] .trip-pin-dot {
+    width: 12px;
+    height: 12px;
+  }
+  .trip-pin:not([data-count="1"]) .trip-pin-dot {
+    width: 28px;
+    height: 28px;
+  }
+  .trip-pin-count {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #f5efe2;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 700;
+    pointer-events: none;
+  }
+</style>

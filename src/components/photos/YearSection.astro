@@ -1,0 +1,55 @@
+---
+import type { Trip } from "~/data/photos";
+import FeaturedTrip from "./FeaturedTrip.astro";
+import StandardTrip from "./StandardTrip.astro";
+import CompactTrip from "./CompactTrip.astro";
+
+interface Props {
+  year: number;
+  trips: Trip[];
+  expanded: boolean;
+  indexStart: number;
+}
+
+const { year, trips, expanded, indexStart } = Astro.props;
+const totalPhotos = trips.reduce((s, t) => s + t.count, 0);
+---
+
+<section
+  class="year-section mb-16 max-md:mb-8"
+  data-year={year}
+  data-expanded={expanded ? "true" : "false"}
+>
+  <header
+    class="year-header sticky top-0 z-10 flex items-baseline gap-6 border-b border-border bg-background py-3.5 cursor-pointer max-md:gap-3"
+  >
+    <h2
+      class="font-heading text-[80px] tracking-[2px] leading-[0.85] m-0 max-md:text-[56px]"
+    >
+      {year}
+    </h2>
+    <div
+      class="font-mono text-label tracking-[1.5px] uppercase text-muted max-md:text-label-xs"
+    >
+      {trips.length} trips · {totalPhotos} photos
+    </div>
+    <div class="flex-1" />
+    <div
+      class="year-toggle font-mono text-label tracking-[2px] uppercase text-accent"
+    >
+      {expanded ? "— collapse" : "+ expand"}
+    </div>
+  </header>
+  <div class="year-body" hidden={!expanded}>
+    <div class="mt-8">
+      {trips.map((trip, i) => {
+        const idx = indexStart + i + 1;
+        if (trip.tier === "featured")
+          return <FeaturedTrip trip={trip} index={idx} />;
+        if (trip.tier === "compact")
+          return <CompactTrip trip={trip} index={idx} />;
+        return <StandardTrip trip={trip} index={idx} />;
+      })}
+    </div>
+  </div>
+</section>

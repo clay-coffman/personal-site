@@ -1,0 +1,124 @@
+---
+import { cdnImage, cdnSrcset } from "~/lib/cdnImage";
+import type { Trip } from "~/data/photos";
+
+interface Props {
+  trip: Trip;
+  index: number;
+}
+
+const { trip, index } = Astro.props;
+const cover = trip.cover;
+const others = trip.photos.filter((p) => p.id !== cover.id).slice(0, 6);
+
+const triggerData = (
+  photoId: string,
+  url: string,
+  width: number,
+  height: number,
+) =>
+  JSON.stringify({
+    full: cdnImage(url, { width: 1600 }),
+    alt: trip.title,
+    w: width,
+    h: height,
+    tripTitle: trip.title,
+    region: trip.region,
+    year: trip.year,
+  });
+---
+
+<article id={`trip-${trip.id}`} class="mb-16 max-md:mb-10">
+  <header class="mb-5 grid grid-cols-[auto_1fr_auto] items-baseline gap-8 max-md:grid-cols-[auto_1fr] max-md:gap-4">
+    <div
+      class="font-heading text-[84px] tracking-[2px] leading-[0.85] text-accent max-md:text-[56px]"
+    >
+      {String(index).padStart(2, "0")}
+    </div>
+    <div>
+      <h2
+        class="text-h1 m-0 max-md:text-[2.25rem] leading-[0.95]"
+      >
+        {trip.title}
+      </h2>
+      <div
+        class="mt-2 flex flex-wrap gap-x-3 gap-y-1 font-mono text-label uppercase tracking-[1.5px] text-muted"
+      >
+        {trip.region && <span>{trip.region}</span>}
+        {trip.region && <span>·</span>}
+        <span>{trip.month} {trip.year}</span>
+        <span>·</span>
+        <span>{trip.days}d</span>
+        <span>·</span>
+        <span>{trip.count} frames</span>
+      </div>
+    </div>
+    {trip.lat != null && trip.lng != null && (
+      <div
+        class="font-mono text-label-xs tracking-[1px] text-muted text-right max-md:col-span-2 max-md:text-left"
+      >
+        {trip.lat.toFixed(2)}°, {trip.lng.toFixed(2)}°
+      </div>
+    )}
+  </header>
+
+  <button
+    type="button"
+    class="block w-full bg-background-alt overflow-hidden cursor-zoom-in"
+    style={`max-height: 720px; display: flex; justify-content: center;`}
+    data-lightbox-photo={triggerData(cover.id, cover.url, cover.width, cover.height)}
+    data-lightbox-trip-id={trip.id}
+    data-lightbox-photo-id={cover.id}
+    aria-label={`Open ${trip.title} in lightbox`}
+  >
+    <img
+      src={cdnImage(cover.url, { width: 1800 })}
+      srcset={cdnSrcset(cover.url, [800, 1200, 1800])}
+      sizes="(max-width: 900px) 100vw, 90vw"
+      alt={trip.title}
+      width={cover.width}
+      height={cover.height}
+      loading="lazy"
+      decoding="async"
+      style={`aspect-ratio: ${cover.aspect.ratio}; max-height: 720px; width: auto; height: auto; object-fit: contain; display: block;`}
+    />
+  </button>
+
+  {others.length > 0 && (
+    <div
+      class="mt-1.5 grid grid-cols-6 gap-1.5 max-md:grid-cols-3"
+    >
+      {others.map((p) => {
+        const span =
+          p.aspect.kind === "tall" ||
+          p.aspect.kind === "portrait" ||
+          p.aspect.kind === "square"
+            ? 2
+            : 3;
+        return (
+          <button
+            type="button"
+            class="m-0 cursor-zoom-in p-0 border-0 bg-transparent block"
+            style={`grid-column: span ${span};`}
+            data-lightbox-photo={triggerData(p.id, p.url, p.width, p.height)}
+            data-lightbox-trip-id={trip.id}
+            data-lightbox-photo-id={p.id}
+          >
+            <img
+              src={cdnImage(p.url, { width: 700 })}
+              srcset={cdnSrcset(p.url, [400, 700, 1000])}
+              sizes="(max-width: 900px) 33vw, 16vw"
+              alt={trip.title}
+              width={p.width}
+              height={p.height}
+              loading="lazy"
+              decoding="async"
+              class="block w-full bg-background-alt"
+              style={`aspect-ratio: ${p.aspect.ratio}; object-fit: cover;`}
+            />
+          </button>
+        );
+      })}
+    </div>
+  )}
+</article>

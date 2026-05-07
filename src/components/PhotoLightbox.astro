@@ -1,0 +1,267 @@
+---
+// A reusable photo lightbox. Mount once per page; trigger from any element
+// with `data-lightbox-photo` (JSON-encoded {full, alt, w, h, tripTitle, region, year}).
+// If the trigger also carries `data-lightbox-trip-id`, the lightbox will let
+// the user step through that trip's photos with arrow keys / on-screen arrows
+// (the trip's photo array is read from a sibling `data-lightbox-trip` element
+// keyed by id, mounted on the same page).
+---
+
+<dialog id="photo-lightbox" class="lightbox" aria-label="Photo viewer">
+  <button
+    type="button"
+    class="lightbox-nav lightbox-prev"
+    aria-label="Previous photo"
+    hidden
+  >
+    ‹
+  </button>
+  <img id="lightbox-img" alt="" />
+  <button
+    type="button"
+    class="lightbox-nav lightbox-next"
+    aria-label="Next photo"
+    hidden
+  >
+    ›
+  </button>
+  <div id="lightbox-caption" class="lightbox-caption"></div>
+</dialog>
+
+<script>
+  type Trigger = {
+    full: string;
+    alt: string;
+    w?: number;
+    h?: number;
+    tripTitle?: string;
+    region?: string | null;
+    year?: number | null;
+  };
+  type TripPhoto = {
+    id: string;
+    url: string;
+    width: number;
+    height: number;
+  };
+
+  const dialog = document.getElementById(
+    "photo-lightbox",
+  ) as HTMLDialogElement | null;
+  const img = document.getElementById(
+    "lightbox-img",
+  ) as HTMLImageElement | null;
+  const caption = document.getElementById("lightbox-caption");
+  const prevBtn = dialog?.querySelector<HTMLButtonElement>(".lightbox-prev");
+  const nextBtn = dialog?.querySelector<HTMLButtonElement>(".lightbox-next");
+
+  if (!dialog || !img || !caption || !prevBtn || !nextBtn) {
+    // Lightbox markup missing — bail.
+  } else {
+    let activeTripPhotos: TripPhoto[] = [];
+    let activeIndex = 0;
+    let activeMeta: {
+      tripTitle?: string;
+      region?: string | null;
+      year?: number | null;
+    } = {};
+
+    const cdn = (url: string, w: number) => {
+      const u = new URL(url);
+      return `${u.origin}/cdn-cgi/image/width=${w},format=auto,quality=82${u.pathname}`;
+    };
+
+    const setCaption = () => {
+      const parts: string[] = [];
+      if (activeMeta.tripTitle) parts.push(activeMeta.tripTitle);
+      if (activeMeta.region) parts.push(activeMeta.region);
+      if (activeMeta.year != null) parts.push(String(activeMeta.year));
+      caption.textContent = parts.join(" · ");
+    };
+
+    const showAt = (i: number) => {
+      const total = activeTripPhotos.length;
+      if (!total) return;
+      activeIndex = (i + total) % total;
+      const p = activeTripPhotos[activeIndex];
+      img.src = cdn(p.url, 1600);
+      img.alt = activeMeta.tripTitle
+        ? `${activeMeta.tripTitle} (${activeIndex + 1}/${total})`
+        : "";
+      img.width = p.width;
+      img.height = p.height;
+    };
+
+    const findTripPhotos = (tripId: string): TripPhoto[] => {
+      const el = document.querySelector(`[data-lightbox-trip="${tripId}"]`);
+      if (!el) return [];
+      try {
+        return JSON.parse(el.textContent || "[]");
+      } catch {
+        return [];
+      }
+    };
+
+    const openFromTrigger = (trigger: HTMLElement) => {
+      const raw = trigger.dataset.lightboxPhoto;
+      if (!raw) return;
+      let data: Trigger;
+      try {
+        data = JSON.parse(raw);
+      } catch {
+        return;
+      }
+
+      activeMeta = {
+        tripTitle: data.tripTitle,
+        region: data.region,
+        year: data.year,
+      };
+
+      const tripId = trigger.dataset.lightboxTripId;
+      if (tripId) {
+        activeTripPhotos = findTripPhotos(tripId);
+      } else {
+        activeTripPhotos = [];
+      }
+
+      // If we have trip photos, find this photo in them and open at that idx.
+      const idHint = trigger.dataset.lightboxPhotoId;
+      const startIdx = idHint
+        ? Math.max(
+            0,
+            activeTripPhotos.findIndex((p) => p.id === idHint),
+          )
+        : 0;
+
+      const showNav = activeTripPhotos.length > 1;
+      prevBtn.hidden = !showNav;
+      nextBtn.hidden = !showNav;
+
+      if (activeTripPhotos.length) {
+        showAt(startIdx);
+      } else {
+        // Single-photo fallback — the trigger carries everything we need.
+        img.src = data.full;
+        img.alt = data.alt;
+        if (data.w) img.width = data.w;
+        if (data.h) img.height = data.h;
+      }
+
+      setCaption();
+      dialog.showModal();
+    };
+
+    document.addEventListener("click", (e) => {
+      const trigger = (e.target as HTMLElement).closest<HTMLElement>(
+        "[data-lightbox-photo]",
+      );
+      if (!trigger) return;
+      e.preventDefault();
+      openFromTrigger(trigger);
+    });
+
+    prevBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      showAt(activeIndex - 1);
+    });
+    nextBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      showAt(activeIndex + 1);
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (!dialog.open) return;
+      if (e.key === "ArrowLeft" && activeTripPhotos.length > 1) {
+        showAt(activeIndex - 1);
+      } else if (e.key === "ArrowRight" && activeTripPhotos.length > 1) {
+        showAt(activeIndex + 1);
+      }
+    });
+
+    dialog.addEventListener("click", (e) => {
+      if (e.target === dialog) dialog.close();
+    });
+
+    dialog.addEventListener("close", () => {
+      img.removeAttribute("src");
+      activeTripPhotos = [];
+      activeMeta = {};
+    });
+  }
+</script>
+
+<style>
+  .lightbox {
+    padding: 0;
+    border: 0;
+    background: transparent;
+    max-width: 100vw;
+    max-height: 100vh;
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
+  }
+  .lightbox::backdrop {
+    background: rgba(10, 8, 5, 0.92);
+    backdrop-filter: blur(4px);
+  }
+  .lightbox[open] {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: zoom-out;
+  }
+  .lightbox img {
+    max-width: 90vw;
+    max-height: 85vh;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+    cursor: default;
+  }
+  .lightbox-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(10, 8, 5, 0.55);
+    backdrop-filter: blur(6px);
+    color: #f5efe2;
+    border: 0;
+    width: 48px;
+    height: 64px;
+    font-size: 28px;
+    cursor: pointer;
+    transition: background 150ms ease;
+  }
+  .lightbox-nav:hover {
+    background: rgba(10, 8, 5, 0.75);
+  }
+  .lightbox-prev {
+    left: 24px;
+  }
+  .lightbox-next {
+    right: 24px;
+  }
+  .lightbox-caption {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #f5efe2;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    opacity: 0.85;
+    text-align: center;
+    padding: 6px 14px;
+    background: rgba(10, 8, 5, 0.45);
+    backdrop-filter: blur(6px);
+  }
+  .lightbox-caption:empty {
+    display: none;
+  }
+</style>
