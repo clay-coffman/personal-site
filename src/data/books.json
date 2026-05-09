@@ -35,14 +35,14 @@
     "tags": [
       "Philosophy",
       "Nonfiction",
+      "Classics",
       "Fiction",
       "Literature",
-      "Electronic books",
-      "Biography",
       "Young Adult",
+      "Electronic books",
       "Literary Collections",
       "literary criticism",
-      "Biography & Autobiography"
+      "Biography"
     ],
     "coverUrl": "https://media.about-clay.com/covers/674541.jpg"
   },
@@ -228,9 +228,10 @@
     "authorSort": "Richard Powers",
     "tags": [
       "Fiction",
-      "Fantasy",
       "War",
       "Deforestation",
+      "Fantasy",
+      "Literary Fiction",
       "Literary Collections",
       "Nature stories"
     ],
@@ -258,9 +259,9 @@
     "author": "Albert Camus",
     "authorSort": "Albert Camus",
     "tags": [
-      "Literary Collections",
       "Philosophy",
       "General",
+      "Literary Collections",
       "French essays",
       "Das Absurde",
       "Education",
@@ -785,6 +786,7 @@
       "Fiction",
       "Travel Writing & Commentary",
       "Authors",
+      "Essays",
       "non-fiction",
       "Popular culture",
       "Literary Collections"
