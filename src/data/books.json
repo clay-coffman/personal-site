@@ -109,8 +109,8 @@
       "Fiction",
       "Aliens",
       "Fantasy",
+      "Sci-fi",
       "General",
-      "China",
       "First contact",
       "21st Century; Alien Contact; China; FICTION; Fiction; Hard Science Fiction; Science Fiction; World Literature",
       "Alien Contact",
@@ -260,9 +260,9 @@
     "authorSort": "Albert Camus",
     "tags": [
       "Philosophy",
-      "General",
       "Literary Collections",
-      "French essays",
+      "General",
+      "Classics",
       "Das Absurde",
       "Education",
       "Absurd (Philosophy)",
@@ -629,9 +629,9 @@
       "Adventure",
       "Science Fiction & Fantasy",
       "Space Opera",
+      "Sci-fi",
       "Dystopian",
-      "Space",
-      "Literature & Fiction"
+      "Space"
     ],
     "coverUrl": "https://media.about-clay.com/covers/312460.jpg"
   },
@@ -709,15 +709,15 @@
     "authorSort": "Cormac McCarthy",
     "tags": [
       "Fiction",
-      "Historical",
       "Classics",
-      "Literary Fiction",
       "Historical Fiction",
+      "Historical",
+      "Literary Fiction",
+      "Fiction / Literary",
       "Fiction / Historical / General",
       "Fiction / Westerns",
       "Literature",
-      "Novels",
-      "Horror"
+      "Novels"
     ],
     "coverUrl": "https://media.about-clay.com/covers/1363747.jpg"
   },
@@ -863,8 +863,8 @@
     "author": "Anthony Doerr",
     "authorSort": "Anthony Doerr",
     "tags": [
-      "Fiction",
       "Historical Fiction",
+      "Fiction",
       "War",
       "Literary Fiction",
       "History",
