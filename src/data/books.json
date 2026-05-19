@@ -88,13 +88,13 @@
       "Psychology",
       "Nonfiction",
       "Business",
-      "Philosophy",
-      "Business & Economics",
       "Decision-Making & Problem Solving",
+      "Business & Economics",
       "Self-Help",
-      "Cognitive Psychology & Cognition",
-      "Education",
-      "Emotions"
+      "Philosophy",
+      "Emotions",
+      "General",
+      "Personal Growth"
     ],
     "coverUrl": "https://media.about-clay.com/covers/242841.jpg"
   },
@@ -629,8 +629,8 @@
       "Adventure",
       "Science Fiction & Fantasy",
       "Space Opera",
-      "Sci-fi",
       "Dystopian",
+      "Sci-fi",
       "Space"
     ],
     "coverUrl": "https://media.about-clay.com/covers/312460.jpg"
@@ -869,10 +869,10 @@
       "Literary Fiction",
       "History",
       "Friendship",
-      "Historical",
+      "Adventure",
       "Military",
-      "Literature & Fiction",
-      "Genre Fiction"
+      "Historical",
+      "General"
     ],
     "coverUrl": "https://media.about-clay.com/covers/478556.jpg"
   },
