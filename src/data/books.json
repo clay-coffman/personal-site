@@ -417,15 +417,18 @@
     "coverUrl": "https://media.about-clay.com/covers/443055.jpg"
   },
   {
-    "id": 2093561,
-    "title": "Poor Charlie's Almanack: The Wit and Wisdom of Charles T. Munger, Expanded Third Edition",
-    "slug": "poor-charlies-almanack-the-wit-and-wisdom-of-charles-t-munger-expanded-third-edition",
-    "author": "Peter D. Kaufman",
-    "authorSort": "Peter D. Kaufman",
+    "id": 431858,
+    "title": "Poor Charlie's Almanack: The Wit and Wisdom of Charles T. Munger",
+    "slug": "poor-charlies-almanack",
+    "author": "Charles T. Munger",
+    "authorSort": "Charles T. Munger",
     "tags": [
-      "Classics"
+      "Finance",
+      "Classics",
+      "History",
+      "Investments"
     ],
-    "coverUrl": null
+    "coverUrl": "https://media.about-clay.com/covers/431858.jpg"
   },
   {
     "id": 427414,
@@ -489,8 +492,7 @@
       "Classics",
       "History",
       "Stoicism",
-      "Literary Collections",
-      "Self-Help"
+      "Literary Collections"
     ],
     "coverUrl": "https://media.about-clay.com/covers/427412.jpg"
   },
