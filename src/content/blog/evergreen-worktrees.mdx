@@ -1,209 +1,271 @@
 ---
-title: "Evergreen worktrees: running multiple AI coding agents on one repo"
-description: "A git worktree pattern for running multiple Claude Code instances in parallel on the same repo: long-lived worktrees, deterministic ports, symlinked env."
-pubDate: 2026-04-20
-draft: false
-tags: ["claude-code", "git", "workflow"]
+title: "Evergreen Worktrees for Coding Agents"
+status: draft
+audience: Hacker News
 ---
 
-I run 2–4 Claude Code instances in parallel on the same codebase most days —
-different features, different branches, sometimes the same branch with the agent
-trying two approaches. It works because of a git worktree pattern I've settled
-on: "evergreen" worktrees that live indefinitely rather than getting spun up and
-torn down per task.
+# Evergreen Worktrees for Coding Agents
 
-This post is the setup, the tradeoffs, and the security stuff I had to think
-through.
+Claude Code has good support for git worktrees. You can start a session with
+`claude --worktree feature-auth`, and it will create an isolated checkout under
+`.claude/worktrees/<name>` on its own branch. The docs also cover copying
+gitignored files with `.worktreeinclude`, isolating subagents in temporary
+worktrees, and cleaning them up when they are no longer needed.
 
-## The problem
+That solves the file-collision problem. It does not solve the full-stack
+environment problem.
 
-Out of the box, running two Claude Code instances on the same repo is painful:
+My app is a TypeScript React Router app with an Express server, Prisma,
+Postgres, Docker Compose, Mailpit for local email, and MinIO for S3-compatible
+storage. A fresh checkout is not immediately useful. It needs dependencies,
+generated Prisma clients, migrations, seed data, service containers, local
+ports, and usually a browser session pointed at the right server.
 
-- Both want port 3000 for the dev server
-- Both want 5434 for Postgres
-- Both edit the same .env, the same node_modules, the same migrations directory
-- They trip over each other's uncommitted changes
-- They generate merge conflicts inside generated type directories for no useful
-  reason
+When an AI coding agent creates a new worktree from scratch, it can spend a
+surprising amount of the session rediscovering that environment. Worse, two
+agents that both try to run "the app" will usually fight over `localhost:3000`,
+Postgres, Mailpit, or whatever the project assumes is globally unique.
 
-Git worktrees solve some of this — each worktree is a separate checkout with its
-own branch — but the naive version still has all the runtime collisions. Same
-ports, same Docker containers, same database.
+So I stopped treating worktrees as disposable checkouts and started treating
+them as a small pool of long-lived dev environments.
 
-## What didn't work
+I call them evergreen worktrees.
 
-First attempt: spin up a fresh worktree per task and tear it down when done.
-This is what Claude Code's built-in isolation: "worktree" gives you. Fine for
-one-shot tasks, terrible as a daily driver:
+## What I mean by evergreen
 
-- 30–60s dependency install per creation
-- 20–30s database seed
-- Dev server cold start every time
-- No way to peek at what the other agent is doing without disturbing it
+My checkout looks roughly like this:
 
-Second attempt: one worktree per branch. Closer, but the churn of
-creating/deleting worktrees matched the churn of branches. Constantly re-running
-install/seed.
-
-What actually stuck: a fixed, small set of long-lived worktrees. I keep three:
-main, wt1, wt2. They never go away. Branches move through them.
-
-## The setup
-
-Each worktree has its own isolated runtime, but derives its config from a
-deterministic formula based on the worktree index N:
-
-```
-┌───────────────────┬──────────┬──────┬──────┬──────┐
-│ Variable          │ Formula  │ main │ wt1  │ wt2  │
-├───────────────────┼──────────┼──────┼──────┼──────┤
-│ PORT              │ 3000 + N │ 3000 │ 3001 │ 3002 │
-├───────────────────┼──────────┼──────┼──────┼──────┤
-│ DB_PORT           │ 5434 + N │ 5434 │ 5435 │ 5436 │
-├───────────────────┼──────────┼──────┼──────┼──────┤
-│ MAILPIT_SMTP_PORT │ 1025 + N │ 1025 │ 1026 │ 1027 │
-├───────────────────┼──────────┼──────┼──────┼──────┤
-│ MAILPIT_UI_PORT   │ 8025 + N │ 8025 │ 8026 │ 8027 │
-└───────────────────┴──────────┴──────┴──────┴──────┘
+```text
+prepa-nav-web/
+prepa-nav-web-wt1/
+prepa-nav-web-wt2/
+prepa-nav-web-wt3/
+prepa-nav-web-wt4/
+prepa-nav-web-wt5/
 ```
 
-The index is just parsed out of the directory name (myproject-wt1 → 1). No
-configuration, no registry, no coordination service. Two agents can never
-collide because their worktree paths determine their ports.
+These are ordinary git worktrees. There is no magic there. The difference is
+that each one is expected to stick around across sessions. It has its own
+branch, its own local `.env.local`, its own Docker Compose project state, its
+own Postgres volume, its own MinIO volume, and its own assigned ports.
 
-## The env trick
+The port assignment is deterministic. The main checkout is index `0`; sibling
+worktrees are named `prepa-nav-web-wtN`.
 
-.env has shared stuff: API keys, feature flags, a staging database URL. I want
-those to propagate to all worktrees instantly — when I rotate a key, I don't
-want to remember to update three files.
-
-.env.local has the five lines of per-worktree port overrides.
-
-In each worktree, .env is a symlink back to the main repo's .env. .env.local is
-a real file, worktree-specific, never synced.
-
-```
-myproject/                    # main worktree
-├── .env                      # real file
-└── .env.local                # PORT=3000, DB_PORT=5434, ...
-
-myproject-wt1/
-├── .env -> ../myproject/.env
-└── .env.local                # PORT=3001, DB_PORT=5435, ...
+```text
+PORT               = 3000 + N
+DB_PORT            = 5434 + N
+MAILPIT_SMTP_PORT  = 1025 + N
+MAILPIT_UI_PORT    = 8025 + N
+MINIO_PORT         = 9000 + N
+MINIO_CONSOLE_PORT = 9100 + N
 ```
 
-Node loads .env.local first, then .env. Since dotenv won't override already-set
-values, the port overrides always win.
+So `wt2` gets the app on `3002`, Postgres on `5436`, Mailpit UI on `8027`, and
+MinIO on `9002`. The exact numbers do not matter. What matters is that no agent
+has to invent them, and no two worktrees claim the same resources.
 
-Docker Compose picks them up the same way:
+Each worktree has a local file like this:
 
+```dotenv
+PORT=3002
+DB_PORT=5436
+MAILPIT_SMTP_PORT=1027
+MAILPIT_UI_PORT=8027
+MINIO_PORT=9002
+MINIO_CONSOLE_PORT=9102
+DATABASE_URL="postgresql://pa_apply:pa_apply@localhost:5436/pa_apply?schema=public"
+TEST_DATABASE_URL="postgresql://pa_apply:pa_apply@localhost:5436/pa_apply_test?schema=public"
+AWS_ENDPOINT_URL_S3="http://localhost:9002"
+BUCKET_NAME=pa-apply-local
+AWS_ACCESS_KEY_ID=localdev
+AWS_SECRET_ACCESS_KEY=localdev
 ```
-docker compose --env-file .env --env-file .env.local up
+
+This file is not a secrets file. It is a collision-avoidance file. It contains
+local ports, local database URLs, and fake local object-storage credentials.
+
+The app's dev command then brings up services for that worktree and starts the
+server:
+
+```sh
+doppler run -- docker compose --env-file .env.local up -d --wait
+doppler run -- cross-env NODE_ENV=development MOCKS=true node ./server/dev-server.js
 ```
 
-## The skills
+In practice that is wrapped as `npm run dev`, but the important detail is that
+Docker Compose reads the per-worktree `.env.local`, while shared application
+configuration is injected separately through an allowlisted project command.
 
-I wrap the lifecycle in three Claude Code skills — effectively shell scripts the
-agent itself can invoke:
+## Why this helps agents
 
-- /create-worktree — picks the next free index, creates the worktree, symlinks
-  .env, writes .env.local, installs deps, creates/seeds the isolated DB
-- /refresh-worktrees — re-syncs config files across worktrees after a shared-env
-  change or a rebase. Idempotent.
-- /validate-worktrees — read-only health check: port conflicts, env integrity,
-  Docker state, migration status
+The most obvious benefit is parallelism. I can have one agent working on a
+program details page in `wt4`, another debugging an extraction script in `wt2`,
+and another running browser checks against `wt1`. They can each start the app,
+send OTP emails to their own Mailpit instance, upload files to their own MinIO
+bucket, and run database-backed tests without trampling each other.
 
-The key decision was making /create-worktree do the expensive setup once. After
-that, the worktree is "evergreen" — it persists, and I switch branches inside it
-as needed.
+The less obvious benefit is that the environment becomes boring.
 
-## A failure mode I hit
+I do not want the agent spending attention on questions like:
 
-Early on, I had .env as a copy, not a symlink, in each worktree. Rotated an API
-key, updated the main .env, forgot the others. An agent in wt2 kept hitting the
-stale key for three days. The key was a test-mode credential so nothing broke,
-but it was a "why is staging acting weird" week I didn't need.
+- Which port should I use?
+- Is Postgres already running?
+- Did this worktree get seeded?
+- Where is Mailpit for this checkout?
+- Is this `.env` file real or stale?
+- Did another agent just kill my dev server?
 
-Moving to symlinks fixed it forever. A secret rotation in one place reaches
-every worktree instantly — and these days I pull rotations from Doppler into the
-main .env rather than editing it by hand, which closes the last gap (me
-forgetting to rotate at all).
+Those are not interesting software engineering questions. They are local
+plumbing. If the agent has to solve them repeatedly, I have made the project
+harder for the agent than it needs to be.
 
-The flip side: a compromised agent in any worktree can modify the shared .env
-and the change propagates everywhere. More on this below.
+Evergreen worktrees turn that plumbing into a small convention:
 
-## Security, honestly
+- `wtN` implies a fixed set of ports.
+- `.env.local` contains only values that must differ per worktree.
+- Docker services are local to the worktree.
+- The database can be migrated and seeded once, then reused.
+- Browser automation gets a session name derived from the worktree.
 
-This is the part I wish more "here's my AI setup" posts talked about, so let me
-be specific about what's actually in the shared .env and what the real blast
-radius is.
+This also makes handoff easier. If I say "use `wt3` for this", that means a
+branch, a server port, a database, an email UI, an object store, and a browser
+session namespace. It is more like handing someone a small VM than handing them
+a copy of the source tree.
 
-Everything in my shared .env points at dev or staging: Stripe test keys, a
-staging database, a local SMTP server, feature flags. Nothing in it can touch
-production. That's not an accident — it's the invariant that makes symlinking
-.env across N concurrent agents tolerable in the first place. Production secrets
-live in Doppler and get injected at deploy time; they never materialize to a
-file on my laptop. I also use Doppler as the source of truth for the dev/staging
-keys that do live in .env — rotation means pulling from Doppler into the main
-.env, and the symlinks fan it out to every worktree.
+## The boring part is the product
 
-If you're going to adopt this pattern, the real question isn't "is the symlink
-safe?" — it's "are any of the secrets in your .env capable of doing real damage
-if an agent misbehaves?" If yes, get them out of .env before you scale up
-concurrency, not after. This is good hygiene regardless of worktrees; parallel
-agents just make it urgent.
+The useful piece is not just "use git worktrees." It is the runbook around them.
 
-The pattern-level caveats still exist and are worth naming:
+I have agent-readable skills for three operations:
 
-Blast radius scales with worktree count. Claude Code with auto-approved tool
-calls in N worktrees is N× the surface area for a prompt injection to do
-something bad — run a destructive shell command, exfiltrate a file from the
-repo, open a malicious PR. This is true even with scoped secrets; the filesystem
-and network are still reachable.
+- `create-worktree`: create `../prepa-nav-web-wtN` from `dev`, bind it to the
+  agent-safe dev secret config, write `.env.local`, install dependencies,
+  generate Prisma, start Docker, run migrations, and seed data.
+- `validate-worktrees`: read-only health check across all worktrees: branches,
+  Doppler binding, `.env.local`, port uniqueness, symlinks, and Docker status.
+- `refresh-worktrees`: repair local config drift, backfill missing local keys,
+  re-run dependency install, and avoid destructive branch or database resets
+  unless explicitly requested.
 
-Symlinked .env propagates edits instantly. A malicious write to .env in one
-worktree hits every worktree on the next process start. For me that's fine
-because the worst-case payload is a broken staging key. If your .env had
-prod-capable creds, this property would be a nightmare — which is another reason
-to keep them out.
+This is the part I would copy into another serious project. The scripts are not
+complicated, but the policy matters:
 
-**Practical advice:**
+- Worktree creation is sequential, because port assignment has a race.
+- Branches start from `dev`, not whatever branch the main checkout happens to be
+  on.
+- `.env.local` is never synced wholesale across worktrees.
+- Existing local overrides are reported instead of overwritten.
+- Destructive branch resets and database reseeds require explicit human intent.
 
-- Keep .env to dev/staging credentials as an explicit invariant, not a happy
-  accident
-- Production secrets belong in a secret manager (I use Doppler), injected at
-  deploy time, never checked into local files
-- Scope auto-approved tool permissions per project — Claude Code allows this,
-  use it
-- validate-worktrees is a good place to grep .env for patterns that look like
-  prod values and fail loudly
+Agents are pretty good at following local conventions when those conventions are
+written down in the repo. They are much worse when the convention only exists in
+my head.
 
-## What this isn't
+## The security trap
 
-Not revolutionary. Git worktrees have been around since 2015. Deterministic port
-allocation is the kind of thing you reinvent the second you try running two dev
-servers. Symlinks for shared config are standard dotfile technique.
+The easy version of this setup is dangerous.
 
-What's useful is the combination, aimed specifically at parallel AI agents:
-long-lived worktrees with deterministic infrastructure, shared-but-safe env, and
-a small set of lifecycle skills the agents themselves can call. The pattern is
-tool-agnostic — nothing here is Claude Code–specific beyond the skill wrappers.
+Claude Code's worktree docs mention `.worktreeinclude` for copying gitignored
+files such as `.env` into fresh worktrees. That is convenient, but it is the
+wrong shape for my threat model. I do not want secret-bearing files copied into
+agent worktrees at all.
 
-If you're running one agent at a time, you don't need any of this. If you're
-running many, this setup has held up across a few hundred hours of agent work
-without a single port collision or database crosswire.
+I use Doppler for shared configuration. That is better than checking in `.env`,
+but it does not automatically make agent execution safe. If an agent can run
+arbitrary Doppler CLI commands with my personal auth, it can ask Doppler to
+print secrets. If an agent can run `doppler run -- env`, it can dump everything
+the app would receive. A hook that says "Doppler commands are approved" is not a
+security boundary.
 
-## Would I do this at a larger org?
+The setup I use for agent-accessible worktrees is stricter:
 
-Probably not exactly like this. The .env symlink is the load-bearing trick, and
-it assumes one developer on one machine. In a team context you'd want:
+- Human shells use my normal Doppler login. Agent shells do not.
+- Agents only get access to a separate `agent-dev` config with fake or
+  low-blast-radius values.
+- That config is exposed to the command runner through a read-only Doppler
+  service token scoped to a single project/config, not through my personal CLI
+  token.
+- The token is not enough by itself. The command surface is also restricted:
+  agents can run allowlisted project commands like `npm run dev`, `npm test`,
+  and `npm run seed`, but not `doppler secrets get`, `doppler secrets download`,
+  token management commands, or arbitrary shells under `doppler run`.
+- No staging or production secrets are available from agent worktrees.
+- `.env.local` remains local plumbing only: ports, local DB URLs, Mailpit, and
+  fake MinIO credentials.
 
-- Secrets out of files entirely — I get away with plaintext .env because
-  everything in mine is scoped to dev/staging, but a team multiplies both the
-  credential surface and the trust surface, and the invariant gets harder to
-  enforce
-- A config registry instead of "derive from directory name"
-- Per-agent permission profiles, not "every agent can do everything"
+The key distinction is that "the app can receive secrets at runtime" and "the
+agent can inspect secrets" are different capabilities. A read-only service token
+narrows the blast radius, but it does not prevent exfiltration if the agent can
+freely choose the command being wrapped. You need both least-privilege values
+and a narrow execution interface.
 
-For solo dev with multiple concurrent agents, evergreen worktrees are the
-highest-leverage setup change I've made in the last year.
+I would expect this paragraph to be the first thing people poke at, and they
+should. If your agent can run arbitrary shell commands with your normal cloud
+credentials, worktree isolation is not doing much for you.
+
+## What gets worse
+
+Evergreen worktrees are not free.
+
+They use more disk. They use more Docker resources. They can accumulate stale
+branches. Their databases can drift from seed state. A bug can disappear because
+`wt2` happens to have old rows that `wt4` does not. Node dependencies can fall
+behind after a package-lock change. If you are not careful, the whole thing
+turns into local snowflake infrastructure.
+
+The mitigation is to make drift visible.
+
+That is why I have a read-only validation command. It checks whether each
+worktree has the expected Doppler binding, expected ports, no stray `.env`,
+valid symlinks for local agent config, and Docker services in the expected
+state. The refresh command repairs additive drift, but it does not wipe local
+branches or databases unless I explicitly ask it to.
+
+I still rely on CI. I still expect final validation on a clean-ish branch. The
+evergreen worktree is not an authority. It is a warm place for exploratory and
+implementation work.
+
+## When I would not do this
+
+I would not bother with this for a library, a static site, or a small app where
+`npm install && npm test` is the whole environment.
+
+I also would not use it if the team already has cheap disposable cloud dev
+environments. A per-PR environment with real isolation, automatic teardown, and
+safe secret injection is better than a pile of local folders if the cost and
+latency are acceptable.
+
+Evergreen worktrees make sense when:
+
+- the app is stateful enough that setup time matters;
+- multiple agent sessions often run at once;
+- local Docker services are part of normal development;
+- browser checks need a stable URL;
+- the project has enough conventions that agents benefit from a prepared
+  workspace.
+
+The pattern is basically "pet dev environments for disposable branches." That
+sounds backwards, but it matches how I actually use coding agents. The task is
+temporary. The environment does not have to be.
+
+## The punchline
+
+The thing that made AI coding agents more useful for me was not a clever prompt.
+It was reducing the amount of local environment discovery they had to do.
+
+Git worktrees gave me file isolation. Evergreen worktrees gave me environment
+isolation with names I can remember, ports that do not collide, seeded databases
+that are already warm, and runbooks the agents can read.
+
+This is probably overkill for many projects. It is also not a substitute for
+real sandboxing or CI. But for a stateful full-stack app, it has made agents
+less expensive to supervise.
+
+That is a good enough reason for me to keep the worktrees alive.
+
+## References
+
+- Claude Code docs:
+  [Run parallel sessions with worktrees](https://code.claude.com/docs/en/worktrees)
+- Doppler docs: [Service Tokens](https://docs.doppler.com/docs/service-tokens)
