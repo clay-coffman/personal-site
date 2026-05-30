@@ -35,14 +35,14 @@
     "tags": [
       "Philosophy",
       "Nonfiction",
+      "Biography",
       "Classics",
-      "Fiction",
-      "Literature",
-      "Young Adult",
       "Electronic books",
-      "Literary Collections",
+      "Young Adult",
+      "Fiction",
       "literary criticism",
-      "Biography"
+      "Nature",
+      "Literary Collections"
     ],
     "coverUrl": "https://media.about-clay.com/covers/674541.jpg"
   },
@@ -511,8 +511,7 @@
       "Literature",
       "Islands > Fiction",
       "Journalists > Fiction",
-      "Fiction in English",
-      "classic"
+      "Fiction in English"
     ],
     "coverUrl": "https://media.about-clay.com/covers/88703.jpg"
   },
@@ -853,12 +852,12 @@
       "Adventure",
       "Classics",
       "Western",
-      "Cowboys",
-      "Mexican-American Border Region",
-      "General",
-      "Juvenile Nonfiction",
       "Travel",
-      "Romance"
+      "Romance",
+      "Historical Fiction",
+      "Mexican-American Border Region",
+      "Juvenile Fiction",
+      "Americans"
     ],
     "coverUrl": "https://media.about-clay.com/covers/137927.jpg"
   },
@@ -890,7 +889,9 @@
     "authorSort": "William B. Irvine",
     "tags": [
       "Classics",
-      "Philosophy"
+      "Philosophy",
+      "Religion",
+      "Psychology"
     ],
     "coverUrl": "https://media.about-clay.com/covers/427340.jpg"
   },
