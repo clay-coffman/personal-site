@@ -391,13 +391,13 @@
       "History",
       "Nonfiction",
       "Science",
+      "Evolution",
       "World",
-      "Young Adult",
+      "Civilization",
       " Historical",
-      "Psychology",
       "Comics",
-      "Histoire",
-      "General"
+      "Comics & Graphic Novels",
+      "Histoire"
     ],
     "coverUrl": "https://media.about-clay.com/covers/375634.jpg"
   },
@@ -437,7 +437,8 @@
     "author": "Seneca",
     "authorSort": "Seneca",
     "tags": [
-      "Classics"
+      "Classics",
+      "Literary Collections"
     ],
     "coverUrl": "https://media.about-clay.com/covers/427414.jpg"
   },
@@ -632,9 +633,9 @@
       "Fantasy",
       "Classics",
       "Adventure",
-      "Science Fiction & Fantasy",
       "Space Opera",
       "Sci-fi",
+      "Science Fiction & Fantasy",
       "Audiobook",
       "Dystopian"
     ],
@@ -773,10 +774,10 @@
       "Business",
       "Business & Economics",
       "Psychology",
-      "Autoaxuda",
+      "Ensaio",
       "Business & Careers",
-      "Workplace & Organizational Behavior",
-      "Health"
+      "Habits",
+      "Autoaxuda"
     ],
     "coverUrl": "https://media.about-clay.com/covers/428023.jpg"
   },
