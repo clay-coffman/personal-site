@@ -46,19 +46,27 @@ export const profileData: ProfileData = {
   email: "contact@clay21.mozmail.com",
   experiences: [
     {
+      company: "CarePilot",
+      role: "Principal Product Engineer, AI",
+      period: "May 2026 - Present",
+      description:
+        "Building AI-native clinical workflow software at CarePilot, focused on the AI clinician co-worker product.",
+      url: "https://www.carepilot.com",
+    },
+    {
       company: "Steady Grade Studios",
       role: "Founder/Engineer",
-      period: "2025 - Present",
+      period: "Jan 2026 - Present",
       description:
-        "Steady Grade Studios builds and operates software products. Our first project, PrePA Navigator, launched in March 2026. More coming soon.",
+        "Steady Grade builds and operates SaaS companies. Also doing some occasional consulting/contract work. Our first project, PrePA Navigator, launched in March 2026.",
       url: "https://steadygrade.studio",
     },
     {
       company: "Student",
       role: "",
-      period: "Fall 2024 - Present",
+      period: "Fall 2024 - Spring 2026",
       description:
-        "Always wanted to go back and learn more about hardware/low-level systems and take more math and physics. Doing a second degree in CS at Oregon State. Current focus is hardware/systems-programming and networking.",
+        "Always wanted to go back and learn more about hardware/low-level systems and take more math and physics. Did a second degree in CS at Oregon State, focused on hardware/systems-programming and networking.",
     },
     {
       company: "Due Diligence Consulting",
