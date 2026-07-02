@@ -87,14 +87,14 @@
     "tags": [
       "Psychology",
       "Nonfiction",
+      "Philosophy",
       "Business",
       "Decision-Making & Problem Solving",
       "Business & Economics",
+      "Cognitive Psychology & Cognition",
       "Self-Help",
-      "Philosophy",
-      "Emotions",
-      "General",
-      "Personal Growth"
+      "Education",
+      "Emotions"
     ],
     "coverUrl": "https://media.about-clay.com/covers/242841.jpg"
   },
@@ -369,15 +369,15 @@
     "authorSort": "Larry McMurtry",
     "tags": [
       "Western",
-      "Adventure",
-      "Fiction",
       "Romance",
-      "General",
-      "Call",
+      "Historical Fiction",
+      "Fiction",
       "Fiction historique",
-      "Classique",
+      "Classics",
       "Aventure",
-      "Classics"
+      "Westerns",
+      "Pulitzer Prize winning novel",
+      "Classique"
     ],
     "coverUrl": "https://media.about-clay.com/covers/221025.jpg"
   },
@@ -409,9 +409,9 @@
     "authorSort": "Carlo Rovelli",
     "tags": [
       "Science",
+      "Nonfiction",
       "Space",
       "non-fiction",
-      "Nonfiction",
       "Matter"
     ],
     "coverUrl": "https://media.about-clay.com/covers/443055.jpg"
@@ -460,14 +460,14 @@
     "tags": [
       "Philosophy",
       "Classics",
+      "History",
       "Nonfiction",
+      "General",
+      "Literary Collections",
+      "Biography & Autobiography",
       "Stoicism",
       " Mind & Spirit",
-      "History",
-      "Religion",
-      "literary criticism",
-      " Ancient",
-      "Conduct of life"
+      "Body"
     ],
     "coverUrl": "https://media.about-clay.com/covers/157096.jpg"
   },
@@ -610,14 +610,14 @@
     "tags": [
       "Classics",
       "Fiction",
+      "Sagas",
       "General",
-      "Murder",
-      "Literature",
       "History",
       "Authors",
-      "Sagas",
+      "Literature",
       "California",
-      " American"
+      " American",
+      "Murder"
     ],
     "coverUrl": "https://media.about-clay.com/covers/338117.jpg"
   },
@@ -716,14 +716,14 @@
     "tags": [
       "Fiction",
       "Classics",
-      "Historical Fiction",
       "Historical",
+      "Westerns",
       "Literary Fiction",
+      "Historical Fiction",
+      "General",
+      "American",
       "Fiction / Literary",
-      "Fiction / Historical / General",
-      "Fiction / Westerns",
-      "Literature",
-      "Novels"
+      "Fiction / Historical / General"
     ],
     "coverUrl": "https://media.about-clay.com/covers/1363747.jpg"
   },
@@ -794,6 +794,7 @@
       "Authors",
       "Essays",
       "non-fiction",
+      "Nonfiction",
       "Popular culture",
       "Literary Collections"
     ],
