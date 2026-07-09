@@ -321,6 +321,7 @@
       "Fiction",
       "General",
       "Boys",
+      "General fiction",
       "Western",
       "American fiction"
     ],
@@ -369,8 +370,8 @@
     "authorSort": "Larry McMurtry",
     "tags": [
       "Western",
-      "Romance",
       "Historical Fiction",
+      "Romance",
       "Fiction",
       "Fiction historique",
       "Classics",
@@ -448,7 +449,9 @@
     "slug": "mortality",
     "author": "Christopher Hitchens",
     "authorSort": "Christopher Hitchens",
-    "tags": [],
+    "tags": [
+      "Philosophy"
+    ],
     "coverUrl": "https://media.about-clay.com/covers/306900.jpg"
   },
   {
@@ -489,11 +492,12 @@
     "author": "Seneca",
     "authorSort": "Seneca",
     "tags": [
-      "Classics",
       "Philosophy",
+      "Classics",
       "History",
       "Stoicism",
-      "Literary Collections"
+      "Literary Collections",
+      "Self-Help"
     ],
     "coverUrl": "https://media.about-clay.com/covers/427412.jpg"
   },
@@ -694,6 +698,7 @@
       "Fiction",
       "New Mexico",
       "Cowboys",
+      "General fiction",
       "Western"
     ],
     "coverUrl": "https://media.about-clay.com/covers/470416.jpg"
@@ -717,13 +722,13 @@
       "Fiction",
       "Classics",
       "Historical",
-      "Westerns",
       "Literary Fiction",
       "Historical Fiction",
       "General",
+      "Westerns",
+      "Horror",
       "American",
-      "Fiction / Literary",
-      "Fiction / Historical / General"
+      "Fiction / Literary"
     ],
     "coverUrl": "https://media.about-clay.com/covers/1363747.jpg"
   },
@@ -854,11 +859,11 @@
       "Adventure",
       "Classics",
       "Western",
-      "Travel",
-      "Romance",
       "Historical Fiction",
       "Mexican-American Border Region",
-      "Juvenile Fiction",
+      "Romance",
+      "Travel",
+      "General fiction",
       "Americans"
     ],
     "coverUrl": "https://media.about-clay.com/covers/137927.jpg"
