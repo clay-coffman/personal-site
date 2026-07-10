@@ -16,13 +16,15 @@
     "authorSort": "Paul Kalanithi",
     "tags": [
       "Nonfiction",
-      "General",
+      "Memoir",
       "Biography",
       "Husband and wife",
       "Biographies & Memoirs",
       "Health & Wellness",
-      "Fiction",
-      "Politics & Social Sciences"
+      "Politics & Social Sciences",
+      "non-fiction",
+      "Medicine",
+      "Read Next 2024"
     ],
     "coverUrl": "https://media.about-clay.com/covers/381825.jpg"
   },
@@ -109,12 +111,12 @@
       "Fiction",
       "Aliens",
       "Fantasy",
-      "Sci-fi",
       "First contact",
       "Science Fiction & Fantasy",
-      "General",
       "Hard Science Fiction",
-      "China"
+      "General",
+      "Sci-fi",
+      "Space"
     ],
     "coverUrl": "https://media.about-clay.com/covers/208339.jpg"
   },
@@ -162,16 +164,16 @@
     "author": "Jonathan Haidt",
     "authorSort": "Jonathan Haidt",
     "tags": [
-      "Psychology",
       "Philosophy",
+      "Psychology",
       "Religion",
-      "Sociology",
-      "English",
+      "Politics",
       "Political Ideologies",
       "Psychology of Religion",
-      "General",
+      "Conservatism & Liberalism",
       "political science",
-      "Social psychology"
+      "Social psychology",
+      "Ethics & Moral Philosophy"
     ],
     "coverUrl": "https://media.about-clay.com/covers/100774.jpg"
   },
@@ -228,10 +230,13 @@
     "authorSort": "Richard Powers",
     "tags": [
       "Fiction",
-      "War",
+      "Literary Fiction",
       "Deforestation",
       "Fantasy",
-      "Literary Fiction",
+      "War",
+      "Environment",
+      "Pulitzer Prize",
+      "Nature",
       "Literary Collections",
       "Nature stories"
     ],
@@ -316,13 +321,14 @@
     "author": "Cormac McCarthy",
     "authorSort": "Cormac McCarthy",
     "tags": [
-      "Classics",
-      "Adventure",
       "Fiction",
+      "Western",
       "General",
       "Boys",
+      "Historical Fiction",
       "General fiction",
-      "Western",
+      "Classics",
+      "Adventure",
       "American fiction"
     ],
     "coverUrl": "https://media.about-clay.com/covers/369140.jpg"
@@ -347,7 +353,10 @@
     "authorSort": "David Deutsch",
     "tags": [
       "Philosophy",
-      "Science"
+      "Science",
+      "non-fiction",
+      "Maths",
+      "Physics"
     ],
     "coverUrl": "https://media.about-clay.com/covers/485999.jpg"
   },
@@ -369,16 +378,16 @@
     "author": "Larry McMurtry",
     "authorSort": "Larry McMurtry",
     "tags": [
-      "Western",
       "Historical Fiction",
-      "Romance",
+      "Western",
       "Fiction",
-      "Fiction historique",
+      "Adventure",
+      "Romance",
       "Classics",
-      "Aventure",
+      "Pulitzer Prize",
+      "Read Next 2026",
       "Westerns",
-      "Pulitzer Prize winning novel",
-      "Classique"
+      "Pulitzer Prize winning novel"
     ],
     "coverUrl": "https://media.about-clay.com/covers/221025.jpg"
   },
@@ -481,7 +490,13 @@
     "author": "Michael Lewis",
     "authorSort": "Michael Lewis",
     "tags": [
-      "Bonds"
+      "Bonds",
+      "non-fiction",
+      "Economics",
+      "Business",
+      "Politics",
+      "History",
+      "Journalism"
     ],
     "coverUrl": "https://media.about-clay.com/covers/432858.jpg"
   },
@@ -640,8 +655,8 @@
       "Sci-fi",
       "Space Opera",
       "Science Fiction & Fantasy",
-      "Audiobook",
-      "Dystopian"
+      "Dystopian",
+      "Audiobook"
     ],
     "coverUrl": "https://media.about-clay.com/covers/312460.jpg"
   },
@@ -681,8 +696,8 @@
       "Literary",
       "Historical",
       "General",
-      "Fantasy",
-      "Fate and fatalism"
+      "Fate and fatalism",
+      "Historical Fiction"
     ],
     "coverUrl": "https://media.about-clay.com/covers/432664.jpg"
   },
@@ -720,15 +735,15 @@
     "authorSort": "Cormac McCarthy",
     "tags": [
       "Fiction",
+      "Historical Fiction",
       "Classics",
       "Historical",
-      "Literary Fiction",
-      "Historical Fiction",
-      "General",
-      "Westerns",
+      "Western",
       "Horror",
-      "American",
-      "Fiction / Literary"
+      "General",
+      "Literary Fiction",
+      "Westerns",
+      "Fiction / Westerns"
     ],
     "coverUrl": "https://media.about-clay.com/covers/1363747.jpg"
   },
@@ -856,15 +871,15 @@
     "authorSort": "Cormac McCarthy",
     "tags": [
       "Fiction",
-      "Adventure",
-      "Classics",
       "Western",
       "Historical Fiction",
-      "Mexican-American Border Region",
+      "Classics",
+      "Adventure",
+      "Read Next 2024",
       "Romance",
-      "Travel",
       "General fiction",
-      "Americans"
+      "Mexican-American Border Region",
+      "Travel"
     ],
     "coverUrl": "https://media.about-clay.com/covers/137927.jpg"
   },
@@ -879,12 +894,12 @@
       "Fiction",
       "Literary Fiction",
       "War",
-      "War & Military",
-      "20th Century",
+      "Pulitzer Prize",
       "Literature & Fiction",
+      "War & Military",
       "Genre Fiction",
-      "Friendship",
-      "History"
+      "20th Century",
+      "Friendship"
     ],
     "coverUrl": "https://media.about-clay.com/covers/478556.jpg"
   },
