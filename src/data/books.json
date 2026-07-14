@@ -266,8 +266,8 @@
     "tags": [
       "Philosophy",
       "Literary Collections",
-      "Essays",
       "General",
+      "Essays",
       "Classics",
       "Absurd (Philosophy)",
       "Philosophie",
@@ -663,11 +663,13 @@
   {
     "id": 485494,
     "title": "Dialogues",
-    "slug": "dialogues-63",
+    "slug": "dialogues-2016",
     "author": "Seneca",
     "authorSort": "Seneca",
-    "tags": [],
-    "coverUrl": null
+    "tags": [
+      "Classics"
+    ],
+    "coverUrl": "https://media.about-clay.com/covers/485494.jpg"
   },
   {
     "id": 437192,
