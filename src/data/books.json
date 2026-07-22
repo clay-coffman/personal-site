@@ -15,16 +15,16 @@
     "author": "Paul Kalanithi",
     "authorSort": "Paul Kalanithi",
     "tags": [
-      "Nonfiction",
-      "Memoir",
       "Biography",
-      "Husband and wife",
+      "Memoir",
+      "Nonfiction",
       "Biographies & Memoirs",
       "Health & Wellness",
       "Politics & Social Sciences",
       "non-fiction",
       "Medicine",
-      "Read Next 2024"
+      "Read Next 2024",
+      "Sad"
     ],
     "coverUrl": "https://media.about-clay.com/covers/381825.jpg"
   },
@@ -266,9 +266,9 @@
     "tags": [
       "Philosophy",
       "Literary Collections",
+      "Classics",
       "General",
       "Essays",
-      "Classics",
       "Absurd (Philosophy)",
       "Philosophie",
       "Classique",
@@ -401,13 +401,13 @@
       "History",
       "Science",
       "Nonfiction",
-      "Evolution",
       "Civilization",
       "World",
-      "Evolution & Genetics",
+      "Evolution",
       "Biological sciences",
+      "social science",
       "Comics & Graphic Novels",
-      " Historical"
+      "Evolution & Genetics"
     ],
     "coverUrl": "https://media.about-clay.com/covers/375634.jpg"
   },
@@ -447,8 +447,7 @@
     "author": "Seneca",
     "authorSort": "Seneca",
     "tags": [
-      "Classics",
-      "Literary Collections"
+      "Classics"
     ],
     "coverUrl": "https://media.about-clay.com/covers/427414.jpg"
   },
@@ -474,12 +473,12 @@
       "Classics",
       "History",
       "Nonfiction",
-      "General",
-      "Literary Collections",
-      "Biography & Autobiography",
       "Stoicism",
-      " Mind & Spirit",
-      "Body"
+      "General",
+      "Ancient & Classical",
+      " Ancient",
+      "Travel",
+      "Psychology"
     ],
     "coverUrl": "https://media.about-clay.com/covers/157096.jpg"
   },
@@ -529,7 +528,7 @@
       "Classics",
       "Islands > Fiction",
       "Journalists > Fiction",
-      "classic",
+      "Fairy tales",
       "Dystopian"
     ],
     "coverUrl": "https://media.about-clay.com/covers/88703.jpg"
@@ -737,14 +736,14 @@
     "tags": [
       "Fiction",
       "Historical Fiction",
-      "Historical",
       "Classics",
+      "Historical",
       "Western",
-      "Horror",
-      "General",
-      "Literary Fiction",
       "Westerns",
-      "Fiction / Westerns"
+      "General",
+      "Horror",
+      "Literary Fiction",
+      "American"
     ],
     "coverUrl": "https://media.about-clay.com/covers/1363747.jpg"
   },
@@ -791,14 +790,14 @@
     "tags": [
       "Nonfiction",
       "Self-Help",
-      "Psychology",
       "Business",
+      "Psychology",
       "Personal Development",
+      "Productivity",
       "Business & Economics",
       "Personal Growth",
-      "Applied Psychology",
-      "Inspirational",
-      "Psicoloxía"
+      "Self help",
+      "Applied Psychology"
     ],
     "coverUrl": "https://media.about-clay.com/covers/428023.jpg"
   },
@@ -876,11 +875,11 @@
       "Historical Fiction",
       "Classics",
       "Adventure",
-      "Read Next 2024",
       "Romance",
       "General fiction",
-      "Mexican-American Border Region",
-      "Travel"
+      "Travel",
+      "Read Next 2024",
+      "Cowboys"
     ],
     "coverUrl": "https://media.about-clay.com/covers/137927.jpg"
   },
@@ -911,10 +910,11 @@
     "author": "William B. Irvine",
     "authorSort": "William B. Irvine",
     "tags": [
-      "Classics",
       "Philosophy",
+      "Classics",
       "Religion",
-      "Psychology"
+      "Psychology",
+      "Spirituality"
     ],
     "coverUrl": "https://media.about-clay.com/covers/427340.jpg"
   },
