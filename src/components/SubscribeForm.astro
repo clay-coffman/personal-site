@@ -43,25 +43,37 @@ const LIST_UUID = "a584d0cd-9989-4a42-a405-a89ca71213da";
     <form
       action={`${LISTMONK_URL}/subscription/form`}
       method="POST"
-      class="flex flex-col gap-3 sm:flex-row"
+      class="flex flex-col gap-3"
     >
       <input type="hidden" name="l" value={LIST_UUID} />
-      <label for="subscribe-email" class="sr-only">Email address</label>
-      <input
-        id="subscribe-email"
-        type="email"
-        name="email"
-        placeholder="you@example.com"
-        required
-        autocomplete="email"
-        class="text-detail flex-1 border border-border bg-background px-4 py-3 font-mono text-foreground placeholder:text-muted focus:border-accent focus:outline-none"
-      />
-      <button
-        type="submit"
-        class="bg-accent px-6 py-3 font-mono text-caption uppercase tracking-[1.5px] text-background transition-colors hover:bg-accent-dark"
-      >
-        Subscribe →
-      </button>
+      <div class="flex flex-col gap-3 sm:flex-row">
+        <label for="subscribe-email" class="sr-only">Email address</label>
+        <input
+          id="subscribe-email"
+          type="email"
+          name="email"
+          placeholder="you@example.com"
+          required
+          autocomplete="email"
+          class="text-detail flex-1 border border-border bg-background px-4 py-3 font-mono text-foreground placeholder:text-muted focus:border-accent focus:outline-none"
+        />
+        <button
+          type="submit"
+          class="bg-accent px-6 py-3 font-mono text-caption uppercase tracking-[1.5px] text-background transition-colors hover:bg-accent-dark"
+        >
+          Subscribe →
+        </button>
+      </div>
+      {/* Anti-bot proof-of-work; listmonk rejects submissions without a solved `altcha` field. */}
+      <altcha-widget
+        challengeurl={`${LISTMONK_URL}/api/public/captcha/altcha`}
+      ></altcha-widget>
     </form>
+    <script
+      is:inline
+      type="module"
+      src={`${LISTMONK_URL}/public/static/altcha.umd.js`}
+      async
+      defer></script>
   </div>
 </section>
