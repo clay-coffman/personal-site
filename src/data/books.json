@@ -88,15 +88,15 @@
     "authorSort": "Daniel Kahneman",
     "tags": [
       "Psychology",
-      "Nonfiction",
       "Business",
+      "Nonfiction",
       "Business & Economics",
-      "Self-Help",
       "Philosophy",
       "Decision-Making & Problem Solving",
-      "Emotions",
+      "Self-Help",
       "Cognitive Psychology & Cognition",
-      "General"
+      "Education",
+      "Emotions"
     ],
     "coverUrl": "https://media.about-clay.com/covers/242841.jpg"
   },
@@ -401,13 +401,13 @@
       "History",
       "Science",
       "Nonfiction",
-      "Civilization",
-      "World",
       "Evolution",
+      "World",
+      "Civilization",
+      "Philosophy",
       "Biological sciences",
-      "social science",
       "Comics & Graphic Novels",
-      "Evolution & Genetics"
+      "social science"
     ],
     "coverUrl": "https://media.about-clay.com/covers/375634.jpg"
   },
@@ -507,10 +507,12 @@
     "authorSort": "Seneca",
     "tags": [
       "Philosophy",
-      "Classics",
       "History",
+      "Classics",
+      "Philosophy & Stoicism",
       "Stoicism",
-      "Literary Collections"
+      "Literary Collections",
+      "fake_interest"
     ],
     "coverUrl": "https://media.about-clay.com/covers/427412.jpg"
   },
