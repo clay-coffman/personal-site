@@ -126,7 +126,13 @@
     "slug": "the-story-of-the-human-body-evolution-health-and-disease",
     "author": "Daniel E. Lieberman",
     "authorSort": "Daniel E. Lieberman",
-    "tags": [],
+    "tags": [
+      "Diets",
+      " Nutrition & Healthy Eating",
+      "Physical Illness & Disease",
+      "Evolution",
+      "Anatomy & Physiology"
+    ],
     "coverUrl": "https://media.about-clay.com/covers/444538.jpg"
   },
   {
@@ -745,7 +751,7 @@
       "General",
       "Horror",
       "Literary Fiction",
-      "American"
+      "Survival"
     ],
     "coverUrl": "https://media.about-clay.com/covers/1363747.jpg"
   },
