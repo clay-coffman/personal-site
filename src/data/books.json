@@ -658,8 +658,8 @@
       "Fantasy",
       "Classics",
       "Adventure",
-      "Sci-fi",
       "Space Opera",
+      "Sci-fi",
       "Science Fiction & Fantasy",
       "Dystopian",
       "Audiobook"
@@ -797,13 +797,13 @@
     "authorSort": "James Clear",
     "tags": [
       "Nonfiction",
-      "Self-Help",
       "Psychology",
+      "Self-Help",
       "Business",
       "Personal Development",
       "Self help",
-      "Business & Economics",
       "Productivity",
+      "Business & Economics",
       "Personal Growth",
       "Audiobook"
     ],
