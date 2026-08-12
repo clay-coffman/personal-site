@@ -101,12 +101,12 @@
       "Science Fiction",
       "Fiction",
       "Aliens",
+      "Sci-fi",
       "Fantasy",
       "First contact",
       "Science Fiction & Fantasy",
       "Hard Science Fiction",
       "General",
-      "Sci-fi",
       "Space"
     ],
     "coverUrl": "https://media.about-clay.com/covers/208339.jpg"
@@ -444,7 +444,8 @@
     "author": "Seneca",
     "authorSort": "Seneca",
     "tags": [
-      "Classics"
+      "Classics",
+      "Personal Growth"
     ],
     "coverUrl": "https://media.about-clay.com/covers/427414.jpg"
   },
@@ -790,15 +791,15 @@
     "authorSort": "James Clear",
     "tags": [
       "Nonfiction",
-      "Self-Help",
       "Psychology",
+      "Self-Help",
       "Business",
       "Personal Development",
       "Self help",
+      "Personal Growth",
       "Business & Economics",
       "Productivity",
-      "Self-Help / Personal Growth / General",
-      "Personal Growth"
+      "Self-Help / Personal Growth / General"
     ],
     "coverUrl": "https://media.about-clay.com/covers/428023.jpg"
   },
