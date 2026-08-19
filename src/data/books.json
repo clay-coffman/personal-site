@@ -378,13 +378,13 @@
       "Historical Fiction",
       "Western",
       "Fiction",
-      "Adventure",
       "Romance",
       "Classics",
-      "Pulitzer Prize",
-      "Read Next 2026",
+      "Adventure",
+      "General",
       "Westerns",
-      "Pulitzer Prize winning novel"
+      "Classique",
+      "Fiction historique"
     ],
     "coverUrl": "https://media.about-clay.com/covers/221025.jpg"
   },
@@ -781,9 +781,9 @@
     "author": "James Clear",
     "authorSort": "James Clear",
     "tags": [
+      "Self-Help",
       "Nonfiction",
       "Psychology",
-      "Self-Help",
       "Business",
       "Personal Development",
       "Self help",
