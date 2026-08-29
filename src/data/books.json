@@ -60,14 +60,13 @@
     "author": "John Steinbeck",
     "authorSort": "John Steinbeck",
     "tags": [
-      "Nonfiction",
       "Classics",
+      "Adventure",
       "General",
       "Biography",
       "Authors",
       "Memoir",
-      "United States",
-      "Adventure"
+      "United States"
     ],
     "coverUrl": "https://media.about-clay.com/covers/382934.jpg"
   },
@@ -99,15 +98,15 @@
     "authorSort": "Cixin Liu",
     "tags": [
       "Science Fiction",
-      "Fiction",
       "Aliens",
-      "Sci-fi",
       "Fantasy",
+      "Sci-fi",
       "First contact",
-      "Science Fiction & Fantasy",
-      "Hard Science Fiction",
+      "Space",
       "General",
-      "Space"
+      "Hard Science Fiction",
+      "Science Fiction & Fantasy",
+      "History"
     ],
     "coverUrl": "https://media.about-clay.com/covers/208339.jpg"
   },
@@ -196,12 +195,11 @@
     "authorSort": "Edmund Morris",
     "tags": [
       "Biography",
-      "Nonfiction",
-      "War",
       "Classics",
+      "War",
+      "History",
       "Biography & Autobiography",
-      "Politics",
-      "History"
+      "Politics"
     ],
     "coverUrl": "https://media.about-clay.com/covers/234421.jpg"
   },
@@ -397,14 +395,14 @@
     "tags": [
       "History",
       "Science",
-      "Nonfiction",
-      "Evolution",
       "World",
+      "Evolution",
       "Civilization",
-      "Philosophy",
       "Biological sciences",
+      "Evolution & Genetics",
       "Comics & Graphic Novels",
-      "social science"
+      "Anthropology",
+      "Psychology"
     ],
     "coverUrl": "https://media.about-clay.com/covers/375634.jpg"
   },
@@ -445,6 +443,7 @@
     "authorSort": "Seneca",
     "tags": [
       "Classics",
+      "Philosophy",
       "Personal Growth"
     ],
     "coverUrl": "https://media.about-clay.com/covers/427414.jpg"
@@ -628,15 +627,15 @@
     "authorSort": "John Steinbeck",
     "tags": [
       "Classics",
-      "Fiction",
       "Sagas",
       "General",
+      "Literature",
       "History",
       "Authors",
-      "Literature",
       "California",
+      "Murder",
       " American",
-      "Murder"
+      "Romance"
     ],
     "coverUrl": "https://media.about-clay.com/covers/338117.jpg"
   },
@@ -767,10 +766,9 @@
     "author": "William Finnegan",
     "authorSort": "William Finnegan",
     "tags": [
-      "Adventure",
-      "Nonfiction",
       "Biography",
-      "Memoir"
+      "Memoir",
+      "Adventure"
     ],
     "coverUrl": "https://media.about-clay.com/covers/436575.jpg"
   },
@@ -906,10 +904,13 @@
     "authorSort": "William B. Irvine",
     "tags": [
       "Philosophy",
-      "Classics",
-      "Religion",
       "Psychology",
-      "Spirituality"
+      "Audiobook",
+      "Self help",
+      "Personal Development",
+      "Classics",
+      "Spirituality",
+      "Religion"
     ],
     "coverUrl": "https://media.about-clay.com/covers/427340.jpg"
   },
