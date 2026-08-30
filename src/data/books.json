@@ -80,13 +80,13 @@
       "Psychology",
       "Business",
       "Business & Economics",
-      "Nonfiction",
       "Philosophy",
       "Self-Help",
       "Decision-Making & Problem Solving",
       "Cognitive Psychology & Cognition",
       "General",
-      "Education"
+      "Education",
+      "Emotions"
     ],
     "coverUrl": "https://media.about-clay.com/covers/242841.jpg"
   },
@@ -148,7 +148,6 @@
     "tags": [
       "History",
       "Young Adult",
-      "Nonfiction",
       "War"
     ],
     "coverUrl": "https://media.about-clay.com/covers/64605.jpg"
@@ -294,7 +293,6 @@
     "tags": [
       "Business & Economics",
       "Business",
-      "Nonfiction",
       "Personal Development",
       "Business & Careers"
     ],
@@ -540,7 +538,6 @@
     "authorSort": "Jared Diamond",
     "tags": [
       "anthropology; non-fiction",
-      "Nonfiction",
       "War",
       "Civilization",
       "History",
@@ -548,7 +545,8 @@
       "Kontinent - Gesellschaft - Entwicklung - Umweltfaktor - Vor- und Frühgeschichte",
       "Science",
       "General",
-      "reference"
+      "reference",
+      "Classics"
     ],
     "coverUrl": "https://media.about-clay.com/covers/427440.jpg"
   },
@@ -750,12 +748,12 @@
       "Science",
       "Medical",
       "Self-Help",
-      "Aging",
-      "Death",
       "Philosophy",
+      "Death",
       "Family & Relationships",
-      "Diagnosis",
-      "Bereavement"
+      "Aging",
+      "Ethics",
+      "Diagnosis"
     ],
     "coverUrl": "https://media.about-clay.com/covers/261915.jpg"
   },
@@ -780,15 +778,15 @@
     "authorSort": "James Clear",
     "tags": [
       "Self-Help",
-      "Nonfiction",
       "Psychology",
       "Business",
       "Personal Development",
       "Self help",
       "Personal Growth",
-      "Business & Economics",
       "Productivity",
-      "Self-Help / Personal Growth / General"
+      "Business & Economics",
+      "Organizational behavior",
+      "Psychology / Social Psychology"
     ],
     "coverUrl": "https://media.about-clay.com/covers/428023.jpg"
   },
