@@ -261,8 +261,8 @@
       "Philosophy",
       "Literary Collections",
       "Classics",
-      "Essays",
       "General",
+      "Essays",
       "Absurd (Philosophy)",
       "Philosophie",
       "Classique",
@@ -626,14 +626,14 @@
     "tags": [
       "Classics",
       "Sagas",
+      "Literary",
       "General",
-      "Literature",
       "History",
       "Authors",
+      "Literature",
       "California",
-      "Murder",
       " American",
-      "Romance"
+      "Murder"
     ],
     "coverUrl": "https://media.about-clay.com/covers/338117.jpg"
   },
@@ -700,10 +700,11 @@
     "tags": [
       "Classics",
       "Adventure",
-      "Fiction",
       "New Mexico",
       "Cowboys",
       "General fiction",
+      "Literary Fiction",
+      "Genre Fiction",
       "Western"
     ],
     "coverUrl": "https://media.about-clay.com/covers/470416.jpg"
@@ -882,15 +883,15 @@
     "authorSort": "Anthony Doerr",
     "tags": [
       "Historical Fiction",
-      "Fiction",
-      "Literary Fiction",
       "War",
+      "Literary Fiction",
       "Pulitzer Prize",
-      "Literature & Fiction",
       "War & Military",
-      "Genre Fiction",
       "20th Century",
-      "Friendship"
+      "Literature & Fiction",
+      "Genre Fiction",
+      "Friendship",
+      "History"
     ],
     "coverUrl": "https://media.about-clay.com/covers/478556.jpg"
   },
