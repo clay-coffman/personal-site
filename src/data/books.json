@@ -84,9 +84,9 @@
       "Self-Help",
       "Decision-Making & Problem Solving",
       "Cognitive Psychology & Cognition",
-      "General",
-      "Education",
-      "Emotions"
+      "Emotions",
+      "Career Success",
+      "Education"
     ],
     "coverUrl": "https://media.about-clay.com/covers/242841.jpg"
   },
@@ -102,11 +102,11 @@
       "Fantasy",
       "Sci-fi",
       "First contact",
-      "Space",
+      "Science Fiction & Fantasy",
       "General",
       "Hard Science Fiction",
-      "Science Fiction & Fantasy",
-      "History"
+      "World Literature",
+      "Space"
     ],
     "coverUrl": "https://media.about-clay.com/covers/208339.jpg"
   },
@@ -725,16 +725,16 @@
     "author": "Cormac McCarthy",
     "authorSort": "Cormac McCarthy",
     "tags": [
-      "Fiction",
       "Historical Fiction",
       "Classics",
       "Historical",
       "Western",
+      "Literary Fiction",
       "Westerns",
       "General",
       "Horror",
-      "Literary Fiction",
-      "Survival"
+      "Genre Fiction",
+      "American"
     ],
     "coverUrl": "https://media.about-clay.com/covers/1363747.jpg"
   },
