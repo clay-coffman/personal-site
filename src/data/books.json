@@ -163,12 +163,12 @@
       "Psychology",
       "Religion",
       "Politics",
-      "Political Ideologies",
-      "Psychology of Religion",
-      "Conservatism & Liberalism",
-      "political science",
+      "Sociology",
+      "Science",
       "Social psychology",
-      "Ethics & Moral Philosophy"
+      "Ethics & Moral Philosophy",
+      "non-fiction",
+      "Essay"
     ],
     "coverUrl": "https://media.about-clay.com/covers/100774.jpg"
   },
@@ -479,18 +479,21 @@
   },
   {
     "id": 432858,
-    "title": "Liar's Poker",
+    "title": "Liar's Poker: Rising Through the Wreckage on Wall Street",
     "slug": "liars-poker",
     "author": "Michael Lewis",
     "authorSort": "Michael Lewis",
     "tags": [
-      "Bonds",
+      "Business",
       "non-fiction",
       "Economics",
-      "Business",
       "Politics",
       "History",
-      "Journalism"
+      "Journalism",
+      "General",
+      "Brokers",
+      "Biography & Autobiography",
+      "Bonds"
     ],
     "coverUrl": "https://media.about-clay.com/covers/432858.jpg"
   },
@@ -571,7 +574,8 @@
       "political science",
       "Politics",
       "Finance",
-      "History"
+      "History",
+      "Business & Economics"
     ],
     "coverUrl": "https://media.about-clay.com/covers/427701.jpg"
   },
