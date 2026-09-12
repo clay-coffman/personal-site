@@ -452,7 +452,10 @@
     "author": "Christopher Hitchens",
     "authorSort": "Christopher Hitchens",
     "tags": [
-      "Philosophy"
+      "Philosophy",
+      "non-fiction",
+      "Memoir",
+      "Biography"
     ],
     "coverUrl": "https://media.about-clay.com/covers/306900.jpg"
   },
@@ -669,8 +672,10 @@
     "author": "Jonathan Franzen",
     "authorSort": "Jonathan Franzen",
     "tags": [
-      "Fiction",
-      "Families"
+      "Families",
+      "physical-tbr",
+      "historical-fiction",
+      "did-not-finish"
     ],
     "coverUrl": "https://media.about-clay.com/covers/437192.jpg"
   },
@@ -871,8 +876,8 @@
       "Classics",
       "Travel",
       "Romance",
-      "General",
-      "General fiction",
+      "historical-fiction",
+      "did-not-finish",
       "Read Next 2024",
       "Cowboys"
     ],
@@ -923,9 +928,12 @@
     "author": "David McCullough",
     "authorSort": "David McCullough",
     "tags": [
+      "History",
       "Classics",
       "War",
-      "History"
+      "american-history",
+      "non-fiction",
+      "Historical"
     ],
     "coverUrl": "https://media.about-clay.com/covers/295243.jpg"
   }
