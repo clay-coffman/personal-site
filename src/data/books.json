@@ -1,12 +1,17 @@
 [
   {
-    "id": 793489,
-    "title": "Wherever You Go, There You Are",
-    "slug": "wherever-you-go-there-you-are-1994",
+    "id": 117535,
+    "title": "Wherever You Go, There You Are: Mindfulness Meditation in Everyday Life",
+    "slug": "wherever-you-go-there-you-are",
     "author": "Jon Kabat-Zinn",
     "authorSort": "Jon Kabat-Zinn",
-    "tags": [],
-    "coverUrl": "https://media.about-clay.com/covers/793489.jpg"
+    "tags": [
+      "General",
+      "Body",
+      " Mind & Spirit",
+      "Psychology"
+    ],
+    "coverUrl": "https://media.about-clay.com/covers/117535.jpg"
   },
   {
     "id": 381825,
@@ -373,12 +378,12 @@
       "Historical Fiction",
       "Western",
       "Romance",
-      "Classics",
-      "Adventure",
       "General",
+      "Classics",
       "Westerns",
+      "Adventure",
       "Classique",
-      "Fiction historique",
+      "Americana",
       "Pulitzer Prize"
     ],
     "coverUrl": "https://media.about-clay.com/covers/221025.jpg"
