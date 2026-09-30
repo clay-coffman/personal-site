@@ -321,12 +321,11 @@
     "tags": [
       "Western",
       "Adventure",
-      "General",
       "Boys",
-      "Historical Fiction",
-      "General fiction",
       "Classics",
-      "American fiction"
+      "General fiction",
+      "American fiction",
+      "Historical Fiction"
     ],
     "coverUrl": "https://media.about-clay.com/covers/369140.jpg"
   },
@@ -718,6 +717,7 @@
       "New Mexico",
       "Cowboys",
       "General fiction",
+      "American fiction",
       "Literary Fiction",
       "Genre Fiction",
       "Western"
@@ -798,11 +798,11 @@
       "Business",
       "Personal Development",
       "Self help",
-      "Business & Economics",
-      "Productivity",
       "Personal Growth",
-      "Self-Help / Personal Growth / General",
-      "Psychology / Social Psychology"
+      "Productivity",
+      "Business & Economics",
+      "Organizational behavior",
+      "Business & Careers"
     ],
     "coverUrl": "https://media.about-clay.com/covers/428023.jpg"
   },
@@ -882,10 +882,10 @@
       "Classics",
       "Travel",
       "Romance",
-      "historical-fiction",
-      "did-not-finish",
+      "Americans",
       "Read Next 2024",
-      "Cowboys"
+      "Cowboys",
+      "General"
     ],
     "coverUrl": "https://media.about-clay.com/covers/137927.jpg"
   },
