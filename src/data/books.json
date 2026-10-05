@@ -87,10 +87,10 @@
       "Business & Economics",
       "Philosophy",
       "Career Success",
+      "Business & Careers",
       "Decision-Making & Problem Solving",
       "Self-Help",
       "Cognitive Psychology & Cognition",
-      "Business & Careers",
       "Education"
     ],
     "coverUrl": "https://media.about-clay.com/covers/242841.jpg"
@@ -103,15 +103,15 @@
     "authorSort": "Cixin Liu",
     "tags": [
       "Science Fiction",
-      "Aliens",
-      "World Literature",
-      "Sci-fi",
       "Fantasy",
-      "First contact",
       "Literature & Fiction",
+      "Sci-fi",
+      "World Literature",
+      "Aliens",
+      "Science Fiction & Fantasy",
+      "First contact",
       "General",
-      "Hard Science Fiction",
-      "Science Fiction & Fantasy"
+      "Hard Science Fiction"
     ],
     "coverUrl": "https://media.about-clay.com/covers/208339.jpg"
   },
@@ -322,10 +322,11 @@
       "Western",
       "Adventure",
       "Boys",
-      "Classics",
+      "Historical Fiction",
       "General fiction",
-      "American fiction",
-      "Historical Fiction"
+      "Literature & Fiction",
+      "Classics",
+      "American fiction"
     ],
     "coverUrl": "https://media.about-clay.com/covers/369140.jpg"
   },
@@ -719,6 +720,7 @@
       "American fiction",
       "Literary Fiction",
       "Genre Fiction",
+      "Literature & Fiction",
       "Western"
     ],
     "coverUrl": "https://media.about-clay.com/covers/470416.jpg"
@@ -739,16 +741,16 @@
     "author": "Cormac McCarthy",
     "authorSort": "Cormac McCarthy",
     "tags": [
-      "Historical Fiction",
-      "Historical",
       "Classics",
+      "Historical",
+      "Historical Fiction",
       "Western",
-      "Horror",
-      "General",
-      "Genre Fiction",
       "Literary Fiction",
       "Westerns",
-      "Survival"
+      "Genre Fiction",
+      "Literature & Fiction",
+      "General",
+      "Horror"
     ],
     "coverUrl": "https://media.about-clay.com/covers/1363747.jpg"
   },
@@ -797,11 +799,11 @@
       "Business",
       "Personal Development",
       "Self help",
-      "Personal Growth",
       "Productivity",
+      "Personal Growth",
+      "Business & Careers",
       "Business & Economics",
-      "Organizational behavior",
-      "Business & Careers"
+      "Organizational behavior"
     ],
     "coverUrl": "https://media.about-clay.com/covers/428023.jpg"
   },
