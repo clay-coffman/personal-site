@@ -682,7 +682,8 @@
       "Families",
       "physical-tbr",
       "historical-fiction",
-      "did-not-finish"
+      "did-not-finish",
+      "Literary Fiction"
     ],
     "coverUrl": "https://media.about-clay.com/covers/437192.jpg"
   },
@@ -742,16 +743,16 @@
     "author": "Cormac McCarthy",
     "authorSort": "Cormac McCarthy",
     "tags": [
-      "Classics",
-      "Historical",
-      "Historical Fiction",
       "Western",
       "Literary Fiction",
-      "Westerns",
-      "Genre Fiction",
+      "Historical Fiction",
+      "Classics",
+      "Historical",
+      "Horror",
       "Literature & Fiction",
       "General",
-      "Horror"
+      "Genre Fiction",
+      "Westerns"
     ],
     "coverUrl": "https://media.about-clay.com/covers/1363747.jpg"
   },
@@ -864,10 +865,10 @@
     "authorSort": "Tom Wolfe",
     "tags": [
       "Classics",
-      "Fiction",
       "African Americans",
       "History",
-      "Politics"
+      "Politics",
+      "Literary Fiction"
     ],
     "coverUrl": "https://media.about-clay.com/covers/427452.jpg"
   },
@@ -899,13 +900,13 @@
     "authorSort": "Anthony Doerr",
     "tags": [
       "Historical Fiction",
-      "War",
       "Literary Fiction",
+      "War",
+      "20th Century",
+      "Genre Fiction",
       "Pulitzer Prize",
       "War & Military",
-      "20th Century",
       "Literature & Fiction",
-      "Genre Fiction",
       "Friendship",
       "History"
     ],
