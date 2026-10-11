@@ -299,7 +299,8 @@
       "Business & Economics",
       "Business",
       "Personal Development",
-      "Business & Careers"
+      "Business & Careers",
+      "Management & Leadership"
     ],
     "coverUrl": "https://media.about-clay.com/covers/431954.jpg"
   },
@@ -325,6 +326,7 @@
       "Historical Fiction",
       "General fiction",
       "Literature & Fiction",
+      "Literary Fiction",
       "Classics",
       "American fiction"
     ],
@@ -683,7 +685,11 @@
       "physical-tbr",
       "historical-fiction",
       "did-not-finish",
-      "Literary Fiction"
+      "Literary Fiction",
+      "[\"Fiction\"",
+      "\"historical-fiction\"",
+      "\"did-not-finish\"",
+      "\"physical-tbr\"]"
     ],
     "coverUrl": "https://media.about-clay.com/covers/437192.jpg"
   },
@@ -801,11 +807,11 @@
       "Business",
       "Personal Development",
       "Self help",
-      "Productivity",
+      "Organizational behavior",
       "Personal Growth",
       "Business & Careers",
       "Business & Economics",
-      "Organizational behavior"
+      "Productivity"
     ],
     "coverUrl": "https://media.about-clay.com/covers/428023.jpg"
   },
@@ -938,11 +944,15 @@
     "authorSort": "David McCullough",
     "tags": [
       "History",
-      "Classics",
       "War",
       "american-history",
       "non-fiction",
-      "Historical"
+      "Historical",
+      "[\"History\"",
+      "\"non-fiction\"",
+      "\"american-history\"",
+      "Classics",
+      "\"Historical\"]"
     ],
     "coverUrl": "https://media.about-clay.com/covers/295243.jpg"
   }
