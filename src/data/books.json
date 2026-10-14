@@ -187,7 +187,10 @@
       "Classics",
       "Adventure",
       "Space",
-      "History"
+      "History",
+      "Science",
+      "Biography",
+      "Astronautics"
     ],
     "coverUrl": "https://media.about-clay.com/covers/440283.jpg"
   },
@@ -217,7 +220,8 @@
       "History",
       "Adventure",
       "General",
-      "Nonfiction"
+      "Political history",
+      "United States History"
     ],
     "coverUrl": "https://media.about-clay.com/covers/129102.jpg"
   },
