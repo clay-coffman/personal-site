@@ -483,12 +483,12 @@
       "Classics",
       "History",
       "General",
-      "Ancient & Classical",
+      "Biography & Autobiography",
       "Stoicism",
+      "Ancient & Classical",
       " Ancient",
       "Literature",
-      "religious",
-      "Travel"
+      "religious"
     ],
     "coverUrl": "https://media.about-clay.com/covers/157096.jpg"
   },
@@ -811,11 +811,11 @@
       "Business",
       "Personal Development",
       "Self help",
-      "Organizational behavior",
-      "Personal Growth",
+      "Productivity",
       "Business & Careers",
+      "Personal Growth",
       "Business & Economics",
-      "Productivity"
+      "Organizational behavior"
     ],
     "coverUrl": "https://media.about-clay.com/covers/428023.jpg"
   },
@@ -895,10 +895,10 @@
       "Classics",
       "Travel",
       "Romance",
-      "Americans",
       "Read Next 2024",
-      "Cowboys",
-      "General"
+      "General",
+      "General fiction",
+      "historical-fiction"
     ],
     "coverUrl": "https://media.about-clay.com/covers/137927.jpg"
   },
@@ -934,8 +934,9 @@
       "Audiobook",
       "Self help",
       "Personal Development",
-      "Classics",
       "Spirituality",
+      "Classics",
+      "Politics & Social Sciences",
       "Religion"
     ],
     "coverUrl": "https://media.about-clay.com/covers/427340.jpg"
