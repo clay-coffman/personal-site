@@ -235,13 +235,13 @@
       "Literary Fiction",
       "War",
       "Deforestation",
+      "Nature stories",
       "Fantasy",
-      "Pulitzer Prize",
-      "speculative fiction",
       "Nature",
       "Environment",
-      "Literary Collections",
-      "Nature stories"
+      "Pulitzer Prize",
+      "speculative fiction",
+      "Literary Collections"
     ],
     "coverUrl": "https://media.about-clay.com/covers/243129.jpg"
   },
@@ -252,7 +252,6 @@
     "author": "Carlo Rovelli",
     "authorSort": "Carlo Rovelli",
     "tags": [
-      "Nonfiction",
       "Science",
       "Space",
       "social science",
@@ -355,12 +354,12 @@
     "author": "David Deutsch",
     "authorSort": "David Deutsch",
     "tags": [
-      "Philosophy",
       "Science",
-      "Physics",
+      "Philosophy",
+      "Maths",
       "History",
       "World",
-      "Maths",
+      "Physics",
       "non-fiction"
     ],
     "coverUrl": "https://media.about-clay.com/covers/485999.jpg"
@@ -454,6 +453,7 @@
       "Classics",
       "Philosophy",
       "Personal Growth",
+      "Biography & Autobiography",
       "Literary Collections"
     ],
     "coverUrl": "https://media.about-clay.com/covers/427414.jpg"
@@ -465,10 +465,14 @@
     "author": "Christopher Hitchens",
     "authorSort": "Christopher Hitchens",
     "tags": [
-      "Philosophy",
       "Biography",
-      "non-fiction",
-      "Memoir"
+      "Philosophy",
+      "Memoir",
+      "[\"non-fiction\"",
+      "\"Philosophy\"",
+      "\"Memoir\"",
+      "\"Biography\"]",
+      "non-fiction"
     ],
     "coverUrl": "https://media.about-clay.com/covers/306900.jpg"
   },
@@ -543,7 +547,6 @@
       "Classics",
       "Journalists > Fiction",
       "Fairy tales",
-      "classic",
       "Islands > Fiction"
     ],
     "coverUrl": "https://media.about-clay.com/covers/88703.jpg"
@@ -574,9 +577,7 @@
     "slug": "freedom",
     "author": "Jonathan Franzen",
     "authorSort": "Jonathan Franzen",
-    "tags": [
-      "Fiction"
-    ],
+    "tags": [],
     "coverUrl": "https://media.about-clay.com/covers/429919.jpg"
   },
   {
@@ -704,16 +705,16 @@
     "author": "Anthony Doerr",
     "authorSort": "Anthony Doerr",
     "tags": [
-      "Science Fiction",
       "Historical Fiction",
+      "Science Fiction",
+      "Literary Fiction",
       "Fantasy",
-      "Dystopian",
       "Literary",
       "Historical",
       "General",
-      "Fate and fatalism",
       "science-fiction",
-      "Literary Fiction"
+      "Contemporary",
+      "Adventure"
     ],
     "coverUrl": "https://media.about-clay.com/covers/432664.jpg"
   },
@@ -729,7 +730,6 @@
       "New Mexico",
       "Cowboys",
       "General fiction",
-      "American fiction",
       "Literary Fiction",
       "Genre Fiction",
       "Literature & Fiction",
@@ -847,9 +847,9 @@
       "Essays",
       "social science",
       "Literary Collections",
+      "Electronic books",
       "Conservatism & Liberalism",
-      "political science",
-      "Electronic books"
+      "political science"
     ],
     "coverUrl": "https://media.about-clay.com/covers/488920.jpg"
   },
