@@ -487,12 +487,12 @@
       "Classics",
       "History",
       "General",
-      "Biography & Autobiography",
-      "Stoicism",
       "Ancient & Classical",
+      "Stoicism",
       " Ancient",
       "Literature",
-      "religious"
+      "religious",
+      "Travel"
     ],
     "coverUrl": "https://media.about-clay.com/covers/157096.jpg"
   },
@@ -753,15 +753,15 @@
     "author": "Cormac McCarthy",
     "authorSort": "Cormac McCarthy",
     "tags": [
-      "Western",
-      "Literary Fiction",
-      "Historical Fiction",
       "Classics",
       "Historical",
-      "Horror",
-      "Literature & Fiction",
+      "Literary Fiction",
+      "Historical Fiction",
+      "Western",
       "General",
+      "Horror",
       "Genre Fiction",
+      "Literature & Fiction",
       "Westerns"
     ],
     "coverUrl": "https://media.about-clay.com/covers/1363747.jpg"
