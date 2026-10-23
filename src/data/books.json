@@ -578,7 +578,9 @@
     "slug": "freedom",
     "author": "Jonathan Franzen",
     "authorSort": "Jonathan Franzen",
-    "tags": [],
+    "tags": [
+      "City and town life"
+    ],
     "coverUrl": "https://media.about-clay.com/covers/429919.jpg"
   },
   {
@@ -733,6 +735,7 @@
       "Literary Fiction",
       "Genre Fiction",
       "Literature & Fiction",
+      "American fiction",
       "Western"
     ],
     "coverUrl": "https://media.about-clay.com/covers/470416.jpg"
