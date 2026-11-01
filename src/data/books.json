@@ -255,6 +255,7 @@
       "Science",
       "Space",
       "social science",
+      "Physics",
       "Audiobook"
     ],
     "coverUrl": "https://media.about-clay.com/covers/432438.jpg"
@@ -324,13 +325,14 @@
     "authorSort": "Cormac McCarthy",
     "tags": [
       "Western",
-      "Adventure",
+      "Classics",
       "Boys",
+      "Historical",
+      "Contemporary",
       "Historical Fiction",
       "General fiction",
       "Literature & Fiction",
       "Literary Fiction",
-      "Classics",
       "American fiction"
     ],
     "coverUrl": "https://media.about-clay.com/covers/369140.jpg"
@@ -385,13 +387,13 @@
       "Historical Fiction",
       "Western",
       "Romance",
-      "General",
-      "Classics",
-      "Westerns",
       "Adventure",
+      "Classics",
+      "General",
+      "Westerns",
+      "Fiction historique",
       "Classique",
-      "Literary Fiction",
-      "Pulitzer Prize"
+      "Aventure"
     ],
     "coverUrl": "https://media.about-clay.com/covers/221025.jpg"
   },
@@ -560,15 +562,15 @@
     "authorSort": "Jared Diamond",
     "tags": [
       "History",
-      "Sociology",
-      "War",
       "Civilization",
+      "War",
       "Technology & Engineering",
       "Kontinent - Gesellschaft - Entwicklung - Umweltfaktor - Vor- und Frühgeschichte",
       "Science",
       "General",
       "reference",
-      "anthropology; non-fiction"
+      "anthropology; non-fiction",
+      "Sociology"
     ],
     "coverUrl": "https://media.about-clay.com/covers/427440.jpg"
   },
@@ -579,7 +581,8 @@
     "author": "Jonathan Franzen",
     "authorSort": "Jonathan Franzen",
     "tags": [
-      "City and town life"
+      "City and town life",
+      "Family"
     ],
     "coverUrl": "https://media.about-clay.com/covers/429919.jpg"
   },
@@ -654,9 +657,9 @@
       "History",
       "Authors",
       "General",
-      " American",
+      "Juvenile Nonfiction",
       "Literature",
-      "California"
+      " American"
     ],
     "coverUrl": "https://media.about-clay.com/covers/338117.jpg"
   },
@@ -756,16 +759,16 @@
     "author": "Cormac McCarthy",
     "authorSort": "Cormac McCarthy",
     "tags": [
-      "Classics",
       "Historical",
-      "Literary Fiction",
-      "Historical Fiction",
+      "Classics",
       "Western",
-      "General",
+      "Literary Fiction",
       "Horror",
+      "Historical Fiction",
+      "General",
+      "Westerns",
       "Genre Fiction",
-      "Literature & Fiction",
-      "Westerns"
+      "Literature & Fiction"
     ],
     "coverUrl": "https://media.about-clay.com/covers/1363747.jpg"
   },
@@ -913,15 +916,15 @@
     "authorSort": "Anthony Doerr",
     "tags": [
       "Historical Fiction",
-      "Literary Fiction",
       "War",
-      "20th Century",
-      "Genre Fiction",
+      "Literary Fiction",
       "Pulitzer Prize",
       "War & Military",
+      "20th Century",
       "Literature & Fiction",
-      "Friendship",
-      "History"
+      "Historical",
+      "Genre Fiction",
+      "adult"
     ],
     "coverUrl": "https://media.about-clay.com/covers/478556.jpg"
   },
