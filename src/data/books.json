@@ -22,14 +22,14 @@
     "tags": [
       "Biography",
       "Memoir",
+      "History",
+      "Religion",
       "Biographies & Memoirs",
       "Health & Wellness",
       "Politics & Social Sciences",
       "non-fiction",
       "Medicine",
-      "Read Next 2024",
-      "Sad",
-      "Pulitzer Prize"
+      "Read Next 2024"
     ],
     "coverUrl": "https://media.about-clay.com/covers/381825.jpg"
   },
@@ -85,13 +85,13 @@
       "Psychology",
       "Business",
       "Business & Economics",
-      "Philosophy",
       "Career Success",
-      "Business & Careers",
+      "Philosophy",
       "Decision-Making & Problem Solving",
+      "Business & Careers",
       "Self-Help",
-      "Cognitive Psychology & Cognition",
-      "Education"
+      "Education",
+      "Cognitive Psychology & Cognition"
     ],
     "coverUrl": "https://media.about-clay.com/covers/242841.jpg"
   },
@@ -104,14 +104,14 @@
     "tags": [
       "Science Fiction",
       "Sci-fi",
-      "Fantasy",
-      "Literature & Fiction",
       "World Literature",
-      "Aliens",
       "Science Fiction & Fantasy",
+      "Aliens",
+      "Literature & Fiction",
+      "Fantasy",
       "First contact",
-      "General",
-      "Hard Science Fiction"
+      "Hard Science Fiction",
+      "General"
     ],
     "coverUrl": "https://media.about-clay.com/covers/208339.jpg"
   },
@@ -122,6 +122,7 @@
     "author": "Daniel E. Lieberman",
     "authorSort": "Daniel E. Lieberman",
     "tags": [
+      "Science",
       "Diets",
       " Nutrition & Healthy Eating",
       "Physical Illness & Disease",
@@ -139,8 +140,12 @@
     "tags": [
       "Philosophy",
       "History",
+      "reference",
+      "History & Surveys",
+      "Individual Philosophers",
       "Classics",
-      "Biography & Autobiography"
+      "Biography & Autobiography",
+      "Biography"
     ],
     "coverUrl": "https://media.about-clay.com/covers/1467344.jpg"
   },
@@ -164,16 +169,16 @@
     "author": "Jonathan Haidt",
     "authorSort": "Jonathan Haidt",
     "tags": [
-      "Philosophy",
       "Psychology",
+      "Philosophy",
       "Religion",
       "Politics",
       "Sociology",
       "Science",
-      "Social psychology",
-      "Ethics & Moral Philosophy",
-      "non-fiction",
-      "Essay"
+      "Political Ideologies",
+      "History",
+      "political science",
+      "Conservatism & Liberalism"
     ],
     "coverUrl": "https://media.about-clay.com/covers/100774.jpg"
   },
@@ -184,12 +189,15 @@
     "author": "Tom Wolfe",
     "authorSort": "Tom Wolfe",
     "tags": [
-      "Classics",
-      "Adventure",
-      "Space",
+      "Language Arts & Disciplines",
       "History",
+      "Space",
+      "Aviation",
+      "Journalism",
+      "20th Century",
       "Science",
       "Biography",
+      "Classics",
       "Astronautics"
     ],
     "coverUrl": "https://media.about-clay.com/covers/440283.jpg"
@@ -235,13 +243,12 @@
       "Literary Fiction",
       "War",
       "Deforestation",
-      "Nature stories",
-      "Fantasy",
       "Nature",
       "Environment",
       "Pulitzer Prize",
       "speculative fiction",
-      "Literary Collections"
+      "Fantasy",
+      "Nature stories"
     ],
     "coverUrl": "https://media.about-clay.com/covers/243129.jpg"
   },
@@ -253,10 +260,10 @@
     "authorSort": "Carlo Rovelli",
     "tags": [
       "Science",
-      "Space",
       "social science",
       "Physics",
-      "Audiobook"
+      "Audiobook",
+      "Space"
     ],
     "coverUrl": "https://media.about-clay.com/covers/432438.jpg"
   },
@@ -301,11 +308,12 @@
     "authorSort": "Ben Horowitz",
     "tags": [
       "Business & Economics",
-      "Business",
       "Personal Development",
-      "Entrepreneurship",
+      "Business",
       "Business & Careers",
-      "Management & Leadership"
+      "Self-Help",
+      "Management & Leadership",
+      "Entrepreneurship"
     ],
     "coverUrl": "https://media.about-clay.com/covers/431954.jpg"
   },
@@ -325,16 +333,16 @@
     "author": "Cormac McCarthy",
     "authorSort": "Cormac McCarthy",
     "tags": [
+      "Literary Fiction",
       "Western",
       "Classics",
-      "Boys",
       "Historical",
       "Contemporary",
       "Science",
       "Historical Fiction",
       "General fiction",
       "Literature & Fiction",
-      "Literary Fiction"
+      "American fiction"
     ],
     "coverUrl": "https://media.about-clay.com/covers/369140.jpg"
   },
@@ -386,15 +394,15 @@
     "authorSort": "Larry McMurtry",
     "tags": [
       "Historical Fiction",
-      "Western",
       "Classics",
+      "Western",
       "Adventure",
       "Romance",
-      "General",
       "Westerns",
+      "General",
+      "Literary Fiction",
       "Fiction historique",
-      "Classique",
-      "Aventure"
+      "Call"
     ],
     "coverUrl": "https://media.about-clay.com/covers/221025.jpg"
   },
@@ -440,7 +448,11 @@
     "authorSort": "Charles T. Munger",
     "tags": [
       "Finance",
+      "Business",
+      "Business & Economics",
+      "Investments & Securities",
       "Classics",
+      "Biography & Autobiography",
       "History",
       "Investments"
     ],
@@ -456,8 +468,7 @@
       "Classics",
       "Philosophy",
       "Personal Growth",
-      "Biography & Autobiography",
-      "Literary Collections"
+      "Biography & Autobiography"
     ],
     "coverUrl": "https://media.about-clay.com/covers/427414.jpg"
   },
@@ -490,12 +501,12 @@
       "Classics",
       "History",
       "General",
-      "Ancient & Classical",
       "Stoicism",
-      " Ancient",
+      "Ancient & Classical",
+      "Travel",
+      "Psychology",
       "Literature",
-      "religious",
-      "Travel"
+      "Ethics"
     ],
     "coverUrl": "https://media.about-clay.com/covers/157096.jpg"
   },
@@ -551,6 +562,7 @@
       "Classics",
       "Journalists > Fiction",
       "Fairy tales",
+      "Literary Fiction",
       "Islands > Fiction"
     ],
     "coverUrl": "https://media.about-clay.com/covers/88703.jpg"
@@ -564,14 +576,14 @@
     "tags": [
       "History",
       "Civilization",
-      "War",
-      "Technology & Engineering",
       "Kontinent - Gesellschaft - Entwicklung - Umweltfaktor - Vor- und Frühgeschichte",
       "Science",
       "General",
       "reference",
-      "anthropology; non-fiction",
-      "Sociology"
+      "social science",
+      "War",
+      "Classics",
+      "Antiques & Collectibles"
     ],
     "coverUrl": "https://media.about-clay.com/covers/427440.jpg"
   },
@@ -584,6 +596,7 @@
     "tags": [
       "Contemporary",
       "adult",
+      "Literary Fiction",
       "City and town life",
       "Family"
     ],
@@ -642,7 +655,8 @@
     "author": "Jill Jonnes",
     "authorSort": "Jill Jonnes",
     "tags": [
-      "History"
+      "History",
+      "Competition"
     ],
     "coverUrl": "https://media.about-clay.com/covers/556431.jpg"
   },
@@ -655,8 +669,8 @@
     "tags": [
       "Classics",
       "Sagas",
-      "Literary",
       "Literary Fiction",
+      "Literary",
       "History",
       "Authors",
       "General",
@@ -734,14 +748,14 @@
     "author": "Cormac McCarthy",
     "authorSort": "Cormac McCarthy",
     "tags": [
-      "Classics",
+      "Literary Fiction",
       "Adventure",
       "New Mexico",
       "General fiction",
-      "Literary Fiction",
       "Genre Fiction",
       "Literature & Fiction",
       "American fiction",
+      "Classics",
       "Western"
     ],
     "coverUrl": "https://media.about-clay.com/covers/470416.jpg"
@@ -763,15 +777,15 @@
     "authorSort": "Cormac McCarthy",
     "tags": [
       "Historical",
+      "Literary Fiction",
       "Classics",
       "Western",
-      "Literary Fiction",
-      "Historical Fiction",
       "Horror",
-      "Literature & Fiction",
-      "Westerns",
+      "Historical Fiction",
+      "Genre Fiction",
       "General",
-      "Genre Fiction"
+      "Literature & Fiction",
+      "Westerns"
     ],
     "coverUrl": "https://media.about-clay.com/covers/1363747.jpg"
   },
@@ -804,7 +818,10 @@
     "tags": [
       "Biography",
       "Memoir",
-      "Adventure"
+      "Adventure",
+      "Biography & Autobiography",
+      "Surfers",
+      "autobiography"
     ],
     "coverUrl": "https://media.about-clay.com/covers/436575.jpg"
   },
@@ -819,12 +836,12 @@
       "Psychology",
       "Business",
       "Personal Development",
+      "Personal Growth",
       "Self help",
       "Organizational behavior",
+      "Productivity",
       "Business & Economics",
-      "Business & Careers",
-      "Personal Growth",
-      "Productivity"
+      "Business & Careers"
     ],
     "coverUrl": "https://media.about-clay.com/covers/428023.jpg"
   },
@@ -883,11 +900,11 @@
     "author": "Tom Wolfe",
     "authorSort": "Tom Wolfe",
     "tags": [
+      "Literary Fiction",
       "Classics",
       "African Americans",
       "History",
-      "Politics",
-      "Literary Fiction"
+      "Politics"
     ],
     "coverUrl": "https://media.about-clay.com/covers/427452.jpg"
   },
@@ -901,8 +918,8 @@
       "Western",
       "Classics",
       "Historical Fiction",
+      "Literary Fiction",
       "Adventure",
-      "Juvenile Fiction",
       "Travel",
       "Romance",
       "Read Next 2024",
@@ -919,15 +936,15 @@
     "authorSort": "Anthony Doerr",
     "tags": [
       "Historical Fiction",
-      "War",
       "Literary Fiction",
+      "War",
       "Pulitzer Prize",
       "War & Military",
       "20th Century",
       "Literature & Fiction",
-      "Historical",
       "Genre Fiction",
-      "adult"
+      "Historical",
+      "History"
     ],
     "coverUrl": "https://media.about-clay.com/covers/478556.jpg"
   },
