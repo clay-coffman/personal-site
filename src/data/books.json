@@ -246,6 +246,7 @@
       "Nature",
       "Environment",
       "Pulitzer Prize",
+      "Fiction; Nature; Literary Fiction; Environment; Contemporary",
       "speculative fiction",
       "Fantasy",
       "Nature stories"
@@ -340,9 +341,9 @@
       "Contemporary",
       "Science",
       "Historical Fiction",
+      "Sad",
       "General fiction",
-      "Literature & Fiction",
-      "American fiction"
+      "Literature & Fiction"
     ],
     "coverUrl": "https://media.about-clay.com/covers/369140.jpg"
   },
@@ -501,8 +502,8 @@
       "Classics",
       "History",
       "General",
-      "Stoicism",
       "Ancient & Classical",
+      "Stoicism",
       "Travel",
       "Psychology",
       "Literature",
@@ -540,11 +541,10 @@
       "Philosophy",
       "History",
       "Classics",
-      "fake_interest",
       "Philosophy & Stoicism",
-      "Self-Help",
       "Stoicism",
-      "Literary Collections"
+      "Literary Collections",
+      "fake_interest"
     ],
     "coverUrl": "https://media.about-clay.com/covers/427412.jpg"
   },
@@ -728,16 +728,16 @@
     "author": "Anthony Doerr",
     "authorSort": "Anthony Doerr",
     "tags": [
-      "Historical Fiction",
       "Science Fiction",
       "Literary Fiction",
+      "Historical Fiction",
       "Fantasy",
       "Literary",
       "Historical",
       "General",
       "science-fiction",
-      "Contemporary",
-      "Adventure"
+      "Mystery Box",
+      "Contemporary"
     ],
     "coverUrl": "https://media.about-clay.com/covers/432664.jpg"
   },
@@ -748,15 +748,16 @@
     "author": "Cormac McCarthy",
     "authorSort": "Cormac McCarthy",
     "tags": [
+      "Western",
       "Literary Fiction",
-      "Adventure",
       "New Mexico",
+      "Historical Fiction",
       "General fiction",
+      "Classics",
       "Genre Fiction",
       "Literature & Fiction",
       "American fiction",
-      "Classics",
-      "Western"
+      "Adventure"
     ],
     "coverUrl": "https://media.about-clay.com/covers/470416.jpg"
   },
